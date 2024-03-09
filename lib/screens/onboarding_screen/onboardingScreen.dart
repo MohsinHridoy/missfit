@@ -52,53 +52,82 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
             ),
           ),
-          // Positioned(
-          //   bottom: 40.0,
-          //   left: 20.0,
-          //   right: 20.0,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       _currentPage != 0
-          //           ? ElevatedButton(
-          //               onPressed: () {
-          //                 _pageController.previousPage(
-          //                   duration: Duration(milliseconds: 500),
-          //                   curve: Curves.ease,
-          //                 );
-          //               },
-          //               child: Text('Previous'),
-          //             )
-          //           : Container(),
-          //       ElevatedButton(
-          //         onPressed: () {
-          //           if (_currentPage == _pages.length - 1) {
-          //             // Navigate to your home screen or next screen
-          //             Navigator.pushReplacement(
-          //               context,
-          //               MaterialPageRoute(
-          //                 builder: (context) => HomeScreen(),
-          //               ),
-          //             );
-          //           } else {
-          //             _pageController.nextPage(
-          //               duration: Duration(milliseconds: 500),
-          //               curve: Curves.ease,
-          //             );
-          //           }
-          //         },
-          //         child: Text(
-          //             _currentPage == _pages.length - 1 ? 'Finish' : 'Next'),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Positioned(
+            bottom: 40.0,
+            left: 20.0,
+            right: 20.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _currentPage != 0
+                    ? ElevatedButton(
+                        onPressed: () {
+                          _pageController.previousPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        },
+                        child: Text('Previous'),
+                      )
+                    : Container(),
+                GestureDetector(
+                  onTap: () {
+                    if (_currentPage == _pages.length - 1) {
+                      // Navigate to your home screen or next screen
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    } else {
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
+                    }
+                  },
+                  child: Container(
+                    width: 52,
+                    height: 52,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 14),
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFFF4343),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_currentPage == _pages.length - 1) {
+                      // Navigate to your home screen or next screen
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    } else {
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
+                    }
+                  },
+                  child: Text(
+                      _currentPage == _pages.length - 1 ? 'Finish' : 'Next'),
+                ),
+              ],
+            ),
+          ),
 
           Positioned(
             bottom: 20,
             left: 40,
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()),
@@ -107,7 +136,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Container(
                 width: 320,
                 height: 52,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                 decoration: ShapeDecoration(
                   color: Color(0xFFFF4343),
                   shape: RoundedRectangleBorder(
@@ -133,8 +163,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
+
+
           Positioned(
-            top:630,
+            top: 630,
             left: 180,
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -151,12 +183,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget buildIndicator(int index) {
     return Container(
-      width:  _currentPage == index ? 30.0:10.0,
+      width: _currentPage == index ? 30.0 : 10.0,
       height: 10.0,
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
         // shape:  _currentPage == index ?BoxShape.rectangle:BoxShape.circle,
-        color: _currentPage == index ? Color(0xFFFFA142) :  Color(0xFF333333),
+        color: _currentPage == index ? Color(0xFFFFA142) : Color(0xFF333333),
         borderRadius: BorderRadius.circular(10.0),
       ),
     );
