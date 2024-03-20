@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/activityselectionpage/activity_selection_page.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
+
+import '../levelselectionpage/advancement_level_selection_page.dart';
 
 class OnboardingScreen1 extends StatefulWidget {
   @override
@@ -318,3 +321,59 @@ Widget skip_text(String text){
     ),
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:miss_fit/screens/basicinformation/basic_info.dart';
+import 'package:miss_fit/screens/home/home.dart';
+import 'package:miss_fit/screens/levelselectionpage/advancement_level_selection_page.dart';
 import 'package:miss_fit/screens/login/login.dart';
+import 'package:miss_fit/screens/measurementscreen/measurement_screen.dart';
+import 'package:miss_fit/screens/measurementscreen/test.dart';
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
+import 'package:miss_fit/screens/onboarding_screen/rough2.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
+import 'package:miss_fit/screens/registration/registration.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
 
 void main() {
@@ -42,7 +49,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  Otp(),
+      home:  Home(),
     );
   }
 }
