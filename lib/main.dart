@@ -12,6 +12,7 @@ import 'package:miss_fit/screens/onboarding_screen/rough2.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
+import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +50,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  TestScroll(),
+      // home:  SplashScreen(),
+      home:  WorkoutPage(),
+      // home:  TestScroll(),
     );
   }
 }
