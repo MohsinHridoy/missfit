@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
 
 class CustomDotIndicator extends StatefulWidget {
@@ -90,8 +91,11 @@ class _OtpState extends State<Otp> {
 
   void _appendToInput(int value) {
     if (_textController.text.length < 10) {
-      if (value == 0) {
+      if (value < 0) {
         // _removeLastCharacter();
+        _updateFocusedTextField(0);
+
+
       } else {
         _updateFocusedTextField(value);
       }
@@ -105,26 +109,35 @@ class _OtpState extends State<Otp> {
   }
 
   var value1 = 0;
+  var value2 = 0;
 
   void _updateFocusedTextField(int value) {
     if (_focusNode1.hasFocus) {
       _controller1.text = value.toString();
       value1 = 1;
+      value2=0;
+
       setState(() {});
       FocusScope.of(context).requestFocus(_focusNode2);
     } else if (_focusNode2.hasFocus) {
       _controller2.text = value.toString();
       value1 = 2;
+      value2=0;
+
       setState(() {});
       FocusScope.of(context).requestFocus(_focusNode3);
     } else if (_focusNode3.hasFocus) {
       value1 = 3;
+      value2=0;
+
       setState(() {});
 
       _controller3.text = value.toString();
       FocusScope.of(context).requestFocus(_focusNode4);
     } else if (_focusNode4.hasFocus) {
       value1 = 4;
+      value2=0;
+
       setState(() {});
 
       _controller4.text = value.toString();
@@ -173,6 +186,37 @@ class _OtpState extends State<Otp> {
     });
   }
 
+
+  void _removeLastCharacter() {
+    if (_controller4.text.isNotEmpty) {
+      setState(() {
+        value2=1;
+        _controller4.text = ''; // Clear the last text field if it has text
+        FocusScope.of(context).requestFocus(_focusNode3); // Move focus to the previous field
+      });
+    } else if (_controller3.text.isNotEmpty) {
+      setState(() {
+        value2=2;
+
+        _controller3.text = '';
+        FocusScope.of(context).requestFocus(_focusNode2);
+      });
+    } else if (_controller2.text.isNotEmpty) {
+      setState(() {
+        value2=3;
+
+        _controller2.text = '';
+        FocusScope.of(context).requestFocus(_focusNode1);
+      });
+    } else if (_controller1.text.isNotEmpty) {
+      setState(() {
+        value2=4;
+
+        _controller1.text = '';
+        FocusScope.of(context).requestFocus(_focusNode1);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -226,15 +270,31 @@ class _OtpState extends State<Otp> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    'helen83@gmail.com',
-                    style: TextStyle(
-                      color: Color(0xFFFFA142),
-                      fontSize: 16,
-                      fontFamily: 'Archivo',
-                      fontWeight: FontWeight.w400,
-                      height: 1.09,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        'helen83@gmail.com',
+                        style: TextStyle(
+                          color: Color(0xFFFFA142),
+                          fontSize: 16,
+                          fontFamily: 'Archivo',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginPage()),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0,top: 3),
+                          child: Image.asset("assets/otp/icon_edit.png",scale: 1.5,),
+                        ),
+                      )
+                    ],
                   ),
                   SizedBox(
                     height: 30,
@@ -281,7 +341,7 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 0) Center(child: CustomDotIndicator())
+                            if (value1 == 0 || value2==4 ) Center(child: CustomDotIndicator())
                           ]),
                         ),
                         SizedBox(
@@ -320,7 +380,7 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 1) Center(child: CustomDotIndicator()),
+                            if (value1 == 1||value2 ==3) Center(child: CustomDotIndicator()),
                           ]),
                         ),
                         SizedBox(
@@ -358,7 +418,7 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 2) Center(child: CustomDotIndicator()),
+                            if (value1 == 2||value2 ==2) Center(child: CustomDotIndicator()),
                           ]),
                         ),
                         SizedBox(
@@ -396,7 +456,7 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 3) Center(child: CustomDotIndicator()),
+                            if (value1 == 3 ||value2==1) Center(child: CustomDotIndicator()),
                           ]),
                         ),
                       ],
@@ -410,7 +470,7 @@ class _OtpState extends State<Otp> {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 186,
+                          width: 200,
                           child: Text(
                             'Didn’t received any code?',
                             style: TextStyle(
@@ -455,19 +515,19 @@ class _OtpState extends State<Otp> {
                   Padding(
                     padding: const EdgeInsets.only(top: 77.0,left: 20,right: 20),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: _controller4.text.isNotEmpty ? () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Registration()),
                         );
-                      },
+                      } : null,
                       child: Container(
                         width: 320,
                         height: 44,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32, vertical: 12),
                         decoration: ShapeDecoration(
-                          color: Color(0xFFF1F5F9),
+                          color: _controller4.text.isNotEmpty ?  Color(0xFFFF4343) : Color(0xFFF1F5F9),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                         ),
@@ -479,7 +539,8 @@ class _OtpState extends State<Otp> {
                             Text(
                               'Verify',
                               style: TextStyle(
-                                color: Color(0xFF94A3B8),
+                                color: _controller4.text.isNotEmpty ?  Colors.white : Color(0xFF94A3B8),
+                                // color: Color(0xFF94A3B8),
                                 fontSize: 14,
                                 fontFamily: 'Archivo',
                                 fontWeight: FontWeight.w500,
@@ -497,135 +558,132 @@ class _OtpState extends State<Otp> {
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(0.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 30,
-                      child: Container(
-                        decoration: ShapeDecoration(
-                          color: Color(0xFF020617),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
+              child:Column(
+                children: [
+                  Container(
+                    height: 230,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFF020617),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40),
                         ),
                       ),
                     ),
-                    Column(
+                    child: GridView.builder(
+                      gridDelegate:
+                      SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 2.0,
+                          // mainAxisSpacing: 2.0,
+                          childAspectRatio: 2),
+                      // shrinkWrap: true,
+                      itemCount: buttonNumbers.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () =>
+                              _appendToInput(buttonNumbers[index]),
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            child: Center(
+                              child: Opacity(
+                                opacity: 0.9,
+                                child: Text(
+                                  buttonNumbers[index].toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Color(0xFF020617),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 230,
-                          color: Color(0xFF020617),
-                          child: GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    // crossAxisSpacing: 2.0,
-                                    // mainAxisSpacing: 2.0,
-                                    childAspectRatio: 2),
-                            // shrinkWrap: true,
-                            itemCount: buttonNumbers.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                onTap: () =>
-                                    _appendToInput(buttonNumbers[index]),
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  child: Center(
-                                    child: Opacity(
-                                      opacity: 0.9,
-                                      child: Text(
-                                        buttonNumbers[index].toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 22,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
+                        Padding(
+                          padding: const EdgeInsets.only(left: 60.0,bottom: 30,top:40),
+                          child: Image.asset(
+                            "assets/otp/icon_menu.png",
+                            width: 18,
+                            height: 15,
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: Color(0xFF020617),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Padding(
-                              //   padding: const EdgeInsets.only(left: 55.0,bottom: 30),
-                              //   child: Image.asset(
-                              //     "assets/intro/login/dot.png",
-                              //     width: 18,
-                              //     height: 15,
-                              //   ),
-                              // ),
-                              SizedBox(
-                                width: 1,
-                              ),
-                              // ElevatedButton(
-                              //   style: ButtonStyle(
-                              //     // backgroundColor: Colors.white,
-                              //   ),
-                              //   onPressed: () {
-                              //     setState(() {
-                              //       _textController.text =
-                              //           _textController.text + 0.toString();
-                              //     });
-                              //   },
-                              //   child: Text("0"),
-                              // ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 75.0, right: 45.0, bottom: 30),
-                                child: Opacity(
-                                  opacity: 0.9,
-                                  child: Text(
-                                    "0",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 22,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 30,
-                              ),
+                        SizedBox(
+                          width: 1,
+                        ),
+                        // ElevatedButton(
+                        //   style: ButtonStyle(
+                        //     // backgroundColor: Colors.white,
+                        //   ),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       _textController.text =
+                        //           _textController.text + 0.toString();
+                        //     });
+                        //   },
+                        //   child: Text("0"),
+                        // ),
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              _appendToInput(0);
+                              // _textController.text += "0"; // Appending zero to the overall controller, assuming this is needed for additional logic
 
-                              // Padding(
-                              //   padding: const EdgeInsets.only(bottom: 16.0,right: 45),
-                              //   child: IconButton(
-                              //     icon: Icon(Icons.arrow_back),
-                              //     onPressed: () {
-                              //       _removeLastCharacter();
-                              //     },
-                              //   ),
-                              // )
-                              // Padding(
-                              //   padding: const EdgeInsets.only(bottom: 30.0,right: 55),
-                              //   child: Image.asset(
-                              //     "assets/intro/login/img_7.png",
-                              //     width: 20,
-                              //     height: 15,
-                              //   ),
-                              // )
-                            ],
+                              // _textController.text =
+                              //     _textController.text + 0.toString();
+
+                              print(_textController.text );
+                            });
+
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 75.0, right: 45.0, bottom: 30,top: 50),
+                            child: Opacity(
+                              opacity: 0.9,
+                              child: Text(
+                                "0",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0,right: 60,top:40),
+                          child: GestureDetector(
+                            onTap:(){
+                              // _removeLastCharacter();
+                              _removeLastCharacter();
+                            },
+                            child: Image.asset(
+                              "assets/otp/icon_back.png",
+                              width: 20,
+                              height: 35,
+                            ),
+                          ),
+                        )
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             )
           ],

@@ -868,11 +868,22 @@ class _WorkoutPageState extends State<WorkoutPage> {
               return ListView.builder(
                 itemCount: _workoutItems.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(_workoutItems[index].name),
-                    onTap: () {
-                      _selectWorkoutItem(index);
-                    },
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text(_workoutItems[index].name),
+                        onTap: () {
+                          _selectWorkoutItem(index);
+                        },
+                      ),
+                      LinearProgressIndicator(
+                        value: _progressValues[index],
+                        backgroundColor: Colors.white,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          index == _currentIndex ? Colors.green : Colors.grey, // Change color for current item
+                        ),
+                      ),
+                    ],
                   );
                 },
               );

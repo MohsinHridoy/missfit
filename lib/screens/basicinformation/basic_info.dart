@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_widgets.dart';
+import 'package:image_picker/image_picker.dart';
 
 class BasicInfo extends StatefulWidget {
   @override
@@ -10,7 +13,26 @@ class _BasicInfoState extends State<BasicInfo> {
   TextEditingController _fullNameController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
 
+  final ImagePicker _picker = ImagePicker();
+  File? _image;
 
+  Future getImageFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
+
+  Future getImageFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
 
 
 
@@ -60,29 +82,60 @@ class _BasicInfoState extends State<BasicInfo> {
                     Container(
                       width: 92,
                       height: 92,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFF9FAFB),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                      decoration: BoxDecoration(
+                          color: Color(0xFFF9FAFB),
+                          borderRadius: BorderRadius.circular(8)
                       ),
-                      child: Image.asset(
-                        "assets/registration/icon_girl.png",
-                        scale: 2,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: _image == null
+                            ? Image.asset("assets/registration/icon_girl.png", fit: BoxFit.cover)
+                            : Image.file(_image!, fit: BoxFit.cover),
                       ),
                     ),
                     Positioned(
                       bottom: 5,
                       right: 0,
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFF4343),
-                          shape: OvalBorder(),
-                        ),
-                        child: Image.asset(
-                          "assets/registration/icon_take_photo.png",
-                          scale: 2,
+                      child: GestureDetector(
+                        onTap: (){
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: Icon(Icons.photo_library),
+                                    title: Text('Choose from Gallery'),
+                                    onTap: () {
+                                      getImageFromGallery();
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.camera_alt),
+                                    title: Text('Take a Photo'),
+                                    onTap: () {
+                                      getImageFromCamera();
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFF4343),
+                            shape: OvalBorder(),
+                          ),
+                          child: Image.asset(
+                            "assets/registration/icon_take_photo.png",
+                            scale: 2,
+                          ),
                         ),
                       ),
                     )
