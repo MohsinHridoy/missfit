@@ -41,27 +41,29 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF18181B),
+      backgroundColor: Color(0xFFF6F6F6),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              "assets/splash/splash_icon.png",
-              height: 200,
-              width: 200,
+            Center(
+              child: Image.asset(
+                "assets/splash/splash_icon.png",
+                height: 180,
+                width: 180,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
                 'Login to your account',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFF334155),
                   fontSize: 24,
                   fontFamily: 'Kanit',
-                  fontWeight: FontWeight.w500,
-                  height: 0.05,
+                  fontWeight: FontWeight.w600,
+                  height: 1.05,
                 ),
               ),
             ),
@@ -75,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _emailOrPhoneNumberController,
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFF334155),
                     fontSize: 16,
                     fontFamily: 'Archivo',
                     fontWeight: FontWeight.w500,
@@ -83,14 +85,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
                     labelText: 'Enter your email',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Color(0xFF334155)),
                     border: OutlineInputBorder(),
 
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
                   ),
                 ),
@@ -105,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Otp()),
+                    MaterialPageRoute(builder: (context) => Otp(email: _emailOrPhoneNumberController.text)),
                   );
                 },
                 child: Container(
@@ -113,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 52,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                   decoration: ShapeDecoration(
-                    color: _isValidEmail ? Colors.red : Color(0xFFF1F5F9),
+                    color: _isValidEmail ?  Color(0xFFFF4343) :  Color(0xFFD1D5DB),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
                   child: Row(
@@ -124,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         'Login',
                         style: TextStyle(
-                          color: Color(0xFF94A3B8),
+                          color:_isValidEmail ? Colors.white:Color(0xFF334155),
+                          // color: Color(0xFF94A3B8),
                           fontSize: 16,
                           fontFamily: 'Archivo',
                           fontWeight: FontWeight.w600,

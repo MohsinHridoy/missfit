@@ -32,8 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15),
-        color: Color(0xFF18181B),
+        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.20),
+        color: Color(0xFFF6F6F6),
         child: Image.asset(
           "assets/splash/splash_icon.png",
           fit: BoxFit.contain, // Adjust image fit to contain within the container

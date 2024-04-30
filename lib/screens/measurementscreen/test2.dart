@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+
 class TestScroll extends StatefulWidget {
   const TestScroll({Key? key}) : super(key: key);
 
@@ -9,53 +10,51 @@ class TestScroll extends StatefulWidget {
 }
 
 class _TestScrollState extends State<TestScroll> {
-  final List<int> meterValues = List.generate(100, (index) => index + 1); // Update to 100 items
-  PageController? _pageController; // Declare PageController as nullable
-  int currentPageIndex = 50; // Initial selected index (item 51)
-  int selectedValue = 51; // Initial selected value
-  ScrollController _textListController = ScrollController(); // Controller for the text list
+  final List<int> meterValues = List.generate(100, (index) => index + 1);
+  PageController? _pageController;
+  int currentPageIndex = 50;
+  int selectedValue = 51;
+  ScrollController _textListController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      // Calculate the initial page index to display the middle item
-      int initialPageIndex = meterValues.length ~/ 2; // Halfway through the list
+      int initialPageIndex = meterValues.length ~/ 2.5;
+      print(initialPageIndex);
 
+      // Calculate the width of each page
+      double pageWidth = MediaQuery.of(context).size.width * 0.030;
       // Calculate the initial scroll position to center the middle item
-      double initialScrollPosition = (initialPageIndex * 50.0) - (MediaQuery.of(context).size.width / 2);
+      double initialScrollPosition = initialPageIndex * pageWidth - (MediaQuery.of(context).size.width / 2);
 
-      // Initialize PageController after the first frame
-      _pageController = PageController(viewportFraction: 0.020, initialPage: initialPageIndex);
+      _pageController = PageController(viewportFraction: 0.040, initialPage: initialPageIndex);
       _pageController!.addListener(_pageListener);
-      _pageController!.jumpTo(initialScrollPosition);
+      // _pageController!.jumpTo(initialScrollPosition);
 
-      // Update selected value with the value of initially selected item
       selectedValue = meterValues[initialPageIndex];
-      currentPageIndex = initialPageIndex; // Update currentPageIndex accordingly
-      setState(() {}); // Trigger a rebuild to update the text "51 kg"
+      currentPageIndex = initialPageIndex;
+      setState(() {});
     });
   }
+
   @override
   void dispose() {
     _pageController?.removeListener(_pageListener);
-    _pageController?.dispose(); // Dispose PageController if not null
+    _pageController?.dispose();
     super.dispose();
   }
 
   void _pageListener() {
     setState(() {
       currentPageIndex = _pageController!.page!.round();
-      selectedValue = meterValues[currentPageIndex]; // Update selectedValue when the page changes
+      selectedValue = meterValues[currentPageIndex];
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the starting value based on the current page index
-    int startingValue = currentPageIndex - 25;
-    if (startingValue < 0) startingValue = 0;
-    else if (startingValue > 75) startingValue = 75;
+
 
     return Scaffold(
       body: Container(
@@ -87,7 +86,7 @@ class _TestScrollState extends State<TestScroll> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: '$selectedValue', // Display selectedValue
+                            text: '$selectedValue',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 48,
@@ -117,7 +116,7 @@ class _TestScrollState extends State<TestScroll> {
                       opacity: 0.20,
                       child: Container(
                         width: 227,
-                        height: 1, // Set height for the dashed line
+                        height: 1,
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
@@ -139,7 +138,6 @@ class _TestScrollState extends State<TestScroll> {
               child: NotificationListener<ScrollNotification>(
                 onNotification: (scrollNotification) {
                   if (scrollNotification is ScrollUpdateNotification && scrollNotification.depth == 0) {
-                    // Scroll the text list when the PageView scrolls
                     _textListController.jumpTo(_pageController!.position.pixels);
                   }
                   return false;
@@ -157,47 +155,10 @@ class _TestScrollState extends State<TestScroll> {
                               value: meterValues[index],
                               isSelected: index == currentPageIndex,
                             ),
-                            Positioned(
-                              bottom: 10,
-                              left: 0,
-                              right: 0,
-                              child: Text(
-                                '${index + 1}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
+
                           ],
                         );
                       },
-                    ),
-                    Positioned(
-                      bottom: 150,
-                      left: 30,
-                      right: 30,
-                      child: SingleChildScrollView(
-                        controller: _textListController,
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            for (int i = startingValue; i <= startingValue + 50; i++)
-                              Container(
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  '$i',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
                     ),
                   ],
                 ),
@@ -275,6 +236,9 @@ class _TestScrollState extends State<TestScroll> {
     );
   }
 }
+
+
+
 class MeterItem extends StatelessWidget {
   final int value;
   final bool isSelected;
@@ -288,23 +252,29 @@ class MeterItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double itemWidth = 0; // Adjusted item width
-    double itemHeight = isSelected ? 60.0 : 50.0;
+    double itemHeight = isSelected ? 60.0 : 40.0;
     double itemPadding = 0;
+    double viewportFraction = 0.120; // Initial fraction value
 
     if (value % 5 == 0 && value <= 100) {
       itemHeight += 20.0;
       itemWidth = 4.0;
+      viewportFraction = 0.020; // Adjusted fraction value for divisible by 5 items
     }
 
     if (value % 5 != 0 && value <= 100) {
       itemPadding = 10;
       itemWidth = 1.5;
+      viewportFraction = 0.0120; // Default fraction value for non-divisible by 5 items
     }
 
     String? underText;
     if (value % 5 == 0 && value <= 100) {
       underText = "$value";
     }
+
+    // Calculate adjusted width for the green indicator
+    double adjustedWidth = MediaQuery.of(context).size.width * viewportFraction * itemWidth;
 
     return GestureDetector(
       onTap: () {
@@ -334,11 +304,19 @@ class MeterItem extends StatelessWidget {
                   ),
                   if (isSelected)
                     Container(
-                      width: 44, // Adjusted width
+                      width: adjustedWidth, // Adjusted width based on viewport fraction and item width
                       height: 10, // Adjusted height
                       decoration: BoxDecoration(
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(5), // Rounded corners
+                      ),
+                    ),
+                  if (underText != null) // Display under text if it's not null
+                    Text(
+                      underText,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
                       ),
                     ),
                 ],

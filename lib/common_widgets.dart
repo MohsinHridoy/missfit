@@ -18,7 +18,7 @@ Widget buildNextButton(BuildContext context) {
           fontSize: 14,
           fontFamily: 'Archivo',
           fontWeight: FontWeight.w500,
-          height: 0.11,
+          height: 1.11,
         ),
       ),
     ),
@@ -32,11 +32,11 @@ Widget txt_headline(String txt){
   return  Text(
     txt,
     style: TextStyle(
-      color: Colors.white,
+      color: Color(0xFF334155),
       fontSize: 24,
-      fontFamily: 'Kanit',
+      fontFamily: 'Kanit-Regular',
       fontWeight: FontWeight.w500,
-      height: 1.05,
+      height: 1.6,
     ),
   );
 }

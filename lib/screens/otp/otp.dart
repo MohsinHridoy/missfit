@@ -33,14 +33,16 @@ class _CustomDotIndicatorState extends State<CustomDotIndicator> {
       child: Container(
         height: 30,
         width: 2,
-        color:Color(0xFFFFA142),
+        color: Color(0xFFFFA142),
       ),
     );
   }
 }
 
 class Otp extends StatefulWidget {
-  const Otp({super.key});
+  final String email;
+
+  const Otp({super.key, required this.email});
 
   @override
   State<Otp> createState() => _OtpState();
@@ -63,6 +65,9 @@ class _OtpState extends State<Otp> {
   final FocusNode _focusNode4 = FocusNode();
   int _secondsRemaining = 57;
   late Timer _timer;
+
+  String tvSendCodeStatus = "You can request otp code in";
+  String tvDidntRcvCodeStatus = "Didn’t received any code?";
 
   @override
   void initState() {
@@ -94,8 +99,6 @@ class _OtpState extends State<Otp> {
       if (value < 0) {
         // _removeLastCharacter();
         _updateFocusedTextField(0);
-
-
       } else {
         _updateFocusedTextField(value);
       }
@@ -115,20 +118,20 @@ class _OtpState extends State<Otp> {
     if (_focusNode1.hasFocus) {
       _controller1.text = value.toString();
       value1 = 1;
-      value2=0;
+      value2 = 0;
 
       setState(() {});
       FocusScope.of(context).requestFocus(_focusNode2);
     } else if (_focusNode2.hasFocus) {
       _controller2.text = value.toString();
       value1 = 2;
-      value2=0;
+      value2 = 0;
 
       setState(() {});
       FocusScope.of(context).requestFocus(_focusNode3);
     } else if (_focusNode3.hasFocus) {
       value1 = 3;
-      value2=0;
+      value2 = 0;
 
       setState(() {});
 
@@ -136,7 +139,7 @@ class _OtpState extends State<Otp> {
       FocusScope.of(context).requestFocus(_focusNode4);
     } else if (_focusNode4.hasFocus) {
       value1 = 4;
-      value2=0;
+      value2 = 0;
 
       setState(() {});
 
@@ -186,42 +189,43 @@ class _OtpState extends State<Otp> {
     });
   }
 
-
   void _removeLastCharacter() {
     if (_controller4.text.isNotEmpty) {
       setState(() {
-        value2=1;
+        value2 = 1;
         _controller4.text = ''; // Clear the last text field if it has text
-        FocusScope.of(context).requestFocus(_focusNode3); // Move focus to the previous field
+        FocusScope.of(context)
+            .requestFocus(_focusNode3); // Move focus to the previous field
       });
     } else if (_controller3.text.isNotEmpty) {
       setState(() {
-        value2=2;
+        value2 = 2;
 
         _controller3.text = '';
         FocusScope.of(context).requestFocus(_focusNode2);
       });
     } else if (_controller2.text.isNotEmpty) {
       setState(() {
-        value2=3;
+        value2 = 3;
 
         _controller2.text = '';
         FocusScope.of(context).requestFocus(_focusNode1);
       });
     } else if (_controller1.text.isNotEmpty) {
       setState(() {
-        value2=4;
+        value2 = 4;
 
         _controller1.text = '';
         FocusScope.of(context).requestFocus(_focusNode1);
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFF18181B),
+        color: Color(0xFFF6F6F6),
         child: Column(
           children: [
             Padding(
@@ -242,10 +246,10 @@ class _OtpState extends State<Otp> {
                       child: Text(
                         'OTP Verification',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFF334155),
                           fontSize: 24,
                           fontFamily: 'Kanit',
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           height: 1.05,
                         ),
                       ),
@@ -259,7 +263,7 @@ class _OtpState extends State<Otp> {
                     child: Text(
                       'We sent verification code to -',
                       style: TextStyle(
-                        color: Color(0xFFF1F5F9),
+                        color: Color(0xFF334155),
                         fontSize: 16,
                         fontFamily: 'Archivo',
                         fontWeight: FontWeight.w400,
@@ -273,9 +277,9 @@ class _OtpState extends State<Otp> {
                   Row(
                     children: [
                       Text(
-                        'helen83@gmail.com',
+                        widget.email,
                         style: TextStyle(
-                          color: Color(0xFFFFA142),
+                          color: Color(0xFFE88E32),
                           fontSize: 16,
                           fontFamily: 'Archivo',
                           fontWeight: FontWeight.w400,
@@ -283,15 +287,19 @@ class _OtpState extends State<Otp> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0,top: 3),
-                          child: Image.asset("assets/otp/icon_edit.png",scale: 1.5,),
+                          padding: const EdgeInsets.only(left: 8.0, top: 3),
+                          child: Image.asset(
+                            "assets/otp/icon_edit.png",
+                            scale: 1.5,
+                          ),
                         ),
                       )
                     ],
@@ -311,25 +319,25 @@ class _OtpState extends State<Otp> {
                           decoration: ShapeDecoration(
                             // borderRadius: BorderRadius.circular(8.0),
                             shape: RoundedRectangleBorder(
-                              side:
-                                  BorderSide(width: 1, color: Color(0xFF6B7280)),
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFF6B7280)),
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           child: Stack(children: [
                             Positioned(
-                              left:25,
-                              right:25,
+                              left: 25,
+                              right: 25,
                               top: 5,
                               child: TextFormField(
                                 controller: _controller1,
                                 focusNode: _focusNode1,
                                 readOnly: true,
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                                  color: Color(0xFF334155),
+                                  fontSize: 20,
                                   fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                   height: 1.09,
                                 ),
                                 autofocus: true,
@@ -341,7 +349,8 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 0 || value2==4 ) Center(child: CustomDotIndicator())
+                            if (value1 == 0 || value2 == 4)
+                              Center(child: CustomDotIndicator())
                           ]),
                         ),
                         SizedBox(
@@ -352,25 +361,27 @@ class _OtpState extends State<Otp> {
                           height: 64,
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side:
-                                  BorderSide(width: 1, color: Color(0xFF6B7280)),
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFF6B7280)),
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           child: Stack(children: [
                             Positioned(
-                              left:25,
-                              right:25,
+                              left: 25,
+                              right: 25,
                               top: 5,
                               child: TextFormField(
                                 controller: _controller2,
                                 readOnly: true,
                                 focusNode: _focusNode2,
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                                  color: Color(0xFF334155),
+                                  fontSize: 20,
                                   fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.09,
+
                                 ),
                                 decoration: InputDecoration(
                                   // labelText: 'Input 2',
@@ -380,7 +391,8 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 1||value2 ==3) Center(child: CustomDotIndicator()),
+                            if (value1 == 1 || value2 == 3)
+                              Center(child: CustomDotIndicator()),
                           ]),
                         ),
                         SizedBox(
@@ -391,25 +403,27 @@ class _OtpState extends State<Otp> {
                           height: 64,
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side:
-                                  BorderSide(width: 1, color: Color(0xFF6B7280)),
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFF6B7280)),
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           child: Stack(children: [
                             Positioned(
-                              left:25,
-                              right:25,
+                              left: 25,
+                              right: 25,
                               top: 5,
                               child: TextFormField(
                                 controller: _controller3,
                                 focusNode: _focusNode3,
                                 readOnly: true,
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                                  color: Color(0xFF334155),
+                                  fontSize: 20,
                                   fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.09,
+
                                 ),
                                 decoration: InputDecoration(
                                   // labelText: 'Input 3',
@@ -418,7 +432,8 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 2||value2 ==2) Center(child: CustomDotIndicator()),
+                            if (value1 == 2 || value2 == 2)
+                              Center(child: CustomDotIndicator()),
                           ]),
                         ),
                         SizedBox(
@@ -429,25 +444,27 @@ class _OtpState extends State<Otp> {
                           height: 64,
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
-                              side:
-                                  BorderSide(width: 1, color: Color(0xFF6B7280)),
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFF6B7280)),
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           child: Stack(children: [
                             Positioned(
-                              left:25,
-                              right:25,
+                              left: 25,
+                              right: 25,
                               top: 5,
                               child: TextFormField(
                                 controller: _controller4,
                                 focusNode: _focusNode4,
                                 readOnly: true,
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                                  color: Color(0xFF334155),
+                                  fontSize: 20,
                                   fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.09,
+
                                 ),
                                 decoration: InputDecoration(
                                   // labelText: 'Input 4',
@@ -456,7 +473,8 @@ class _OtpState extends State<Otp> {
                                 ),
                               ),
                             ),
-                            if (value1 == 3 ||value2==1) Center(child: CustomDotIndicator()),
+                            if (value1 == 3 || value2 == 1)
+                              Center(child: CustomDotIndicator()),
                           ]),
                         ),
                       ],
@@ -466,13 +484,16 @@ class _OtpState extends State<Otp> {
                     height: 30,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15.0,right: 15),
+                    padding: const EdgeInsets.only(left: 15.0, right: 15),
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 200,
+                          width: 220,
                           child: Text(
-                            'Didn’t received any code?',
+                            _showResendButton
+                                ? tvDidntRcvCodeStatus
+                                : tvSendCodeStatus,
+                            // 'Didn’t received any code?',
                             style: TextStyle(
                               color: Color(0xFF9CA3AF),
                               fontSize: 16,
@@ -513,21 +534,27 @@ class _OtpState extends State<Otp> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 77.0,left: 20,right: 20),
+                    padding:
+                        const EdgeInsets.only(top: 77.0, left: 20, right: 20),
                     child: GestureDetector(
-                      onTap: _controller4.text.isNotEmpty ? () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Registration()),
-                        );
-                      } : null,
+                      onTap: _controller4.text.isNotEmpty
+                          ? () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Registration()),
+                              );
+                            }
+                          : null,
                       child: Container(
                         width: 320,
                         height: 44,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32, vertical: 12),
                         decoration: ShapeDecoration(
-                          color: _controller4.text.isNotEmpty ?  Color(0xFFFF4343) : Color(0xFFF1F5F9),
+                          color: _controller4.text.isNotEmpty
+                              ? Color(0xFFFF4343)
+                              : Color(0xFFF1F5F9),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                         ),
@@ -539,7 +566,9 @@ class _OtpState extends State<Otp> {
                             Text(
                               'Verify',
                               style: TextStyle(
-                                color: _controller4.text.isNotEmpty ?  Colors.white : Color(0xFF94A3B8),
+                                color: _controller4.text.isNotEmpty
+                                    ? Colors.white
+                                    : Color(0xFF94A3B8),
                                 // color: Color(0xFF94A3B8),
                                 fontSize: 14,
                                 fontFamily: 'Archivo',
@@ -558,131 +587,180 @@ class _OtpState extends State<Otp> {
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
-              child:Column(
+              child: Column(
                 children: [
-                  Container(
-                    height: 230,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFF020617),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      height: 300,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFF9FAFB),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          ),
                         ),
                       ),
-                    ),
-                    child: GridView.builder(
-                      gridDelegate:
-                      SliverGridDelegateWithFixedCrossAxisCount(
+                      child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           crossAxisSpacing: 2.0,
-                          // mainAxisSpacing: 2.0,
-                          childAspectRatio: 2),
-                      // shrinkWrap: true,
-                      itemCount: buttonNumbers.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () =>
-                              _appendToInput(buttonNumbers[index]),
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            child: Center(
-                              child: Opacity(
-                                opacity: 0.9,
-                                child: Text(
-                                  buttonNumbers[index].toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 22,
+                          childAspectRatio: 2,
+                        ),
+                        itemCount: buttonNumbers.length + 3,
+                        // Plus 3 for Menu, 0, and Back buttons
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index < buttonNumbers.length) {
+                            // Render numeric buttons
+                            return GestureDetector(
+                              onTap: () => _appendToInput(buttonNumbers[index]),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: Center(
+                                  child: Opacity(
+                                    opacity: 0.9,
+                                    child: Text(
+                                      buttonNumbers[index].toString(),
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    color: Color(0xFF020617),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 60.0,bottom: 30,top:40),
-                          child: Image.asset(
-                            "assets/otp/icon_menu.png",
-                            width: 18,
-                            height: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 1,
-                        ),
-                        // ElevatedButton(
-                        //   style: ButtonStyle(
-                        //     // backgroundColor: Colors.white,
-                        //   ),
-                        //   onPressed: () {
-                        //     setState(() {
-                        //       _textController.text =
-                        //           _textController.text + 0.toString();
-                        //     });
-                        //   },
-                        //   child: Text("0"),
-                        // ),
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              _appendToInput(0);
-                              // _textController.text += "0"; // Appending zero to the overall controller, assuming this is needed for additional logic
-
-                              // _textController.text =
-                              //     _textController.text + 0.toString();
-
-                              print(_textController.text );
-                            });
-
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 75.0, right: 45.0, bottom: 30,top: 50),
-                            child: Opacity(
-                              opacity: 0.9,
-                              child: Text(
-                                "0",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 22,
+                            );
+                          } else {
+                            // Render Menu, 0, and Back buttons
+                            return GestureDetector(
+                              onTap: () {
+                                if (index == buttonNumbers.length) {
+                                  // Handle Menu button
+                                } else if (index == buttonNumbers.length + 1) {
+                                  // Handle 0 button
+                                  _appendToInput(0);
+                                } else if (index == buttonNumbers.length + 2) {
+                                  // Handle Back button
+                                  _removeLastCharacter();
+                                }
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: Center(
+                                  child: index == buttonNumbers.length
+                                      ? Image.asset(
+                                          "assets/otp/icon_menu.png",
+                                          width: 20,
+                                          height: 20,
+                                        )
+                                      : index == buttonNumbers.length + 1
+                                          ? Opacity(
+                                              opacity: 0.9,
+                                              child: Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  color: Color(0xFF334155),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 22,
+                                                ),
+                                              ),
+                                            )
+                                          : Image.asset(
+                                              "assets/otp/icon_back.png",
+                                              width: 20,
+                                              height: 35,
+                                            ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 30.0,right: 60,top:40),
-                          child: GestureDetector(
-                            onTap:(){
-                              // _removeLastCharacter();
-                              _removeLastCharacter();
-                            },
-                            child: Image.asset(
-                              "assets/otp/icon_back.png",
-                              width: 20,
-                              height: 35,
-                            ),
-                          ),
-                        )
-                      ],
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ),
+                  // Container(
+                  //   width: MediaQuery.of(context).size.width,
+                  //   color: Color(0xFF020617),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(left: 60.0,bottom: 30,top:40),
+                  //         child: Image.asset(
+                  //           "assets/otp/icon_menu.png",
+                  //           width: 18,
+                  //           height: 15,
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //         width: 1,
+                  //       ),
+                  //       // ElevatedButton(
+                  //       //   style: ButtonStyle(
+                  //       //     // backgroundColor: Colors.white,
+                  //       //   ),
+                  //       //   onPressed: () {
+                  //       //     setState(() {
+                  //       //       _textController.text =
+                  //       //           _textController.text + 0.toString();
+                  //       //     });
+                  //       //   },
+                  //       //   child: Text("0"),
+                  //       // ),
+                  //       GestureDetector(
+                  //         onTap: (){
+                  //           setState(() {
+                  //             _appendToInput(0);
+                  //             // _textController.text += "0"; // Appending zero to the overall controller, assuming this is needed for additional logic
+                  //
+                  //             // _textController.text =
+                  //             //     _textController.text + 0.toString();
+                  //
+                  //             print(_textController.text );
+                  //           });
+                  //
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.only(
+                  //               left: 75.0, right: 45.0, bottom: 30,top: 50),
+                  //           child: Opacity(
+                  //             opacity: 0.9,
+                  //             child: Text(
+                  //               "0",
+                  //               style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.w500,
+                  //                 fontSize: 22,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //         width: 30,
+                  //       ),
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(bottom: 30.0,right: 60,top:40),
+                  //         child: GestureDetector(
+                  //           onTap:(){
+                  //             // _removeLastCharacter();
+                  //             _removeLastCharacter();
+                  //           },
+                  //           child: Image.asset(
+                  //             "assets/otp/icon_back.png",
+                  //             width: 20,
+                  //             height: 35,
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             )

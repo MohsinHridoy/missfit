@@ -481,7 +481,7 @@ class _HomeState extends State<Home> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         4, // Assuming there are 4 items in the slider
-        (index) => Container(
+            (index) => Container(
           width: 14,
           height: 4,
           margin: EdgeInsets.symmetric(horizontal: 2.0),

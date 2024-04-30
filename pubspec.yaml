@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.8
   image_picker: ^1.0.7
+  provider: ^6.1.2
+
+
+  lottie: ^3.1.0
 
 
 
@@ -69,6 +73,7 @@ flutter:
     - assets/registration/
     - assets/home/
     - assets/otp/
+    - assets/lottie_anim/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -83,10 +88,20 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Archivo
+    - family: Archivo-Regular
       fonts:
         - asset: fonts/archivo/Archivo-Regular.ttf
         - asset: fonts/archivo/Archivo-Bold.ttf
+    - family: Archivo-Bold
+      fonts:
+        - asset: fonts/archivo/Archivo-Bold.ttf
+    - family: Kanit-Regular
+      fonts:
+        - asset: fonts/kanit/Kanit-Regular.ttf
+    - family: Inter-Bold
+      fonts:
+        - asset: fonts/inter/Inter-Bold.ttf
+        - asset: fonts/inter/Inter-Regular.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
