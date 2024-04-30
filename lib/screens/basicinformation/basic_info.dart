@@ -87,7 +87,15 @@ class _BasicInfoState extends State<BasicInfo> {
                         children: <Widget>[
                           ListTile(
                             leading: Icon(Icons.photo_library),
-                            title: Text('Choose from Gallery'),
+                            title: Text('Choose from Gallery',
+
+                            style: TextStyle(
+                      color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      ),
+
+                            ),
                             onTap: () {
                               getImageFromGallery();
                               Navigator.pop(context);
@@ -95,7 +103,15 @@ class _BasicInfoState extends State<BasicInfo> {
                           ),
                           ListTile(
                             leading: Icon(Icons.camera_alt),
-                            title: Text('Take a Photo'),
+                            title: Text('Take a Photo',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+
+
+                            ),
                             onTap: () {
                               getImageFromCamera();
                               Navigator.pop(context);

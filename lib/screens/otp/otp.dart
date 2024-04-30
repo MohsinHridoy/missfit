@@ -299,6 +299,7 @@ class _OtpState extends State<Otp> {
                           child: Image.asset(
                             "assets/otp/icon_edit.png",
                             scale: 1.5,
+                            color: Colors.grey,
                           ),
                         ),
                       )
@@ -320,8 +321,8 @@ class _OtpState extends State<Otp> {
                             // borderRadius: BorderRadius.circular(8.0),
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280)),
-                              borderRadius: BorderRadius.circular(8),
+                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                           child: Stack(children: [
@@ -362,8 +363,8 @@ class _OtpState extends State<Otp> {
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280)),
-                              borderRadius: BorderRadius.circular(8),
+                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                           child: Stack(children: [
@@ -404,8 +405,8 @@ class _OtpState extends State<Otp> {
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280)),
-                              borderRadius: BorderRadius.circular(8),
+                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                           child: Stack(children: [
@@ -445,8 +446,8 @@ class _OtpState extends State<Otp> {
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280)),
-                              borderRadius: BorderRadius.circular(8),
+                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                           child: Stack(children: [
@@ -554,7 +555,7 @@ class _OtpState extends State<Otp> {
                         decoration: ShapeDecoration(
                           color: _controller4.text.isNotEmpty
                               ? Color(0xFFFF4343)
-                              : Color(0xFFF1F5F9),
+                              : Color(0xFFD1D5DB),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                         ),
@@ -625,6 +626,7 @@ class _OtpState extends State<Otp> {
                                     child: Text(
                                       buttonNumbers[index].toString(),
                                       style: TextStyle(
+                                        color: Color(0xFF334155),
                                         fontSize: 22,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,

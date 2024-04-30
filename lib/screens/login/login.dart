@@ -12,17 +12,29 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailOrPhoneNumberController = TextEditingController();
   bool _isValidEmail = false;
+  bool _isEmailFocused = false;
+  late FocusNode _emailOrPhoneNumberFocusNode;
 
   @override
   void initState() {
     super.initState();
     _emailOrPhoneNumberController.addListener(_validateEmail);
+    _emailOrPhoneNumberFocusNode = FocusNode();
+
+    // Add listener to the focus node to update _isEmailFocused
+    _emailOrPhoneNumberFocusNode.addListener(() {
+      setState(() {
+        _isEmailFocused = _emailOrPhoneNumberFocusNode.hasFocus;
+      });
+    });
   }
 
   @override
   void dispose() {
     _emailOrPhoneNumberController.removeListener(_validateEmail);
     _emailOrPhoneNumberController.dispose();
+    _emailOrPhoneNumberFocusNode.dispose();
+
     super.dispose();
   }
 
@@ -76,6 +88,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextFormField(
                   controller: _emailOrPhoneNumberController,
                   keyboardType: TextInputType.emailAddress,
+                  focusNode: _emailOrPhoneNumberFocusNode,
+
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 16,
@@ -87,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
-                    labelText: 'Enter your email',
+                    labelText: _isEmailFocused || _emailOrPhoneNumberController.text.isNotEmpty ? 'Email' : 'Enter your email address',
                     labelStyle: TextStyle(color: Color(0xFF334155)),
                     border: OutlineInputBorder(),
 
