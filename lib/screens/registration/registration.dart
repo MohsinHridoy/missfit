@@ -411,7 +411,7 @@ class _RegistrationState extends State<Registration> {
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 16,
-                              fontFamily: 'Archivo',
+                              fontFamily: 'Archivo-Regular',
                               fontWeight: FontWeight.w400,
                               height: 1.09,
                             ),
@@ -443,14 +443,26 @@ class _RegistrationState extends State<Registration> {
                       _navigateToNextPage();
                     },
                   ),
-                  ActivitySelectionPage(
+                  WorkOutLevelSelectionPage(
                     onNextPressed: () {
                       _navigateToNextPage();
                     },
                   ),
-                  FitnessGoal(),
-                  TestScroll(),
-                  HeightMeasurementsScreen(),
+                  FitnessGoal(
+                    onNextPressed: () {
+                      _navigateToNextPage();
+                    },
+                  ),
+                  TestScroll(
+                    onNextPressed: () {
+                      _navigateToNextPage();
+                    },
+                  ),
+                  HeightMeasurementsScreen(
+                    onNextPressed: () {
+                      _navigateToNextPage();
+                    },
+                  ),
 
 
                   AdvanceLevelSelectionPage001(onVisibilityChange: (isVisible) {

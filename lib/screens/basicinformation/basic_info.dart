@@ -19,7 +19,8 @@ class _BasicInfoState extends State<BasicInfo> {
 
   final ImagePicker _picker = ImagePicker();
   File? _image;
-  bool _isButtonEnabled=false;
+  bool _isButtonEnabled = false;
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +32,8 @@ class _BasicInfoState extends State<BasicInfo> {
   void _updateButtonState() {
     setState(() {
       // Update _isButtonEnabled based on the conditions
-      _isButtonEnabled = _fullNameController.text.isNotEmpty && _ageController.text.isNotEmpty;
+      _isButtonEnabled =
+          _fullNameController.text.isNotEmpty && _ageController.text.isNotEmpty;
     });
   }
 
@@ -41,9 +43,10 @@ class _BasicInfoState extends State<BasicInfo> {
     _ageController.removeListener(_updateButtonState);
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-     _isButtonEnabled =
+    _isButtonEnabled =
         _fullNameController.text.isNotEmpty && _ageController.text.isNotEmpty;
     print("_isButtonEnabled: $_isButtonEnabled");
 
@@ -61,19 +64,24 @@ class _BasicInfoState extends State<BasicInfo> {
               SizedBox(height: 20),
               Text(
                 'Basic Information',
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color(0xFF334155),
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Kanit-Medium',
+                  fontWeight: FontWeight.w500,
+                  height: 0.05,
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 50),
               Text(
-                'Upload profile picture',
+                'Upload Profile Picture',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 16,
+                  fontFamily: 'Archivo-Medium',
                   fontWeight: FontWeight.w500,
+                  height: 0.09,
                 ),
               ),
               SizedBox(height: 20),
@@ -87,14 +95,13 @@ class _BasicInfoState extends State<BasicInfo> {
                         children: <Widget>[
                           ListTile(
                             leading: Icon(Icons.photo_library),
-                            title: Text('Choose from Gallery',
-
-                            style: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      ),
-
+                            title: Text(
+                              'Choose from Gallery',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             onTap: () {
                               getImageFromGallery();
@@ -103,14 +110,13 @@ class _BasicInfoState extends State<BasicInfo> {
                           ),
                           ListTile(
                             leading: Icon(Icons.camera_alt),
-                            title: Text('Take a Photo',
+                            title: Text(
+                              'Take a Photo',
                               style: TextStyle(
                                 color: Color(0xFF334155),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                               ),
-
-
                             ),
                             onTap: () {
                               getImageFromCamera();
@@ -136,7 +142,10 @@ class _BasicInfoState extends State<BasicInfo> {
                         ),
                         child: _image == null
                             ? Center(
-                                child: Image.asset("assets/registration/icon_girl.png",scale: 1.8,),
+                                child: Image.asset(
+                                  "assets/registration/icon_girl.png",
+                                  scale: 1.8,
+                                ),
                               )
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
@@ -153,67 +162,92 @@ class _BasicInfoState extends State<BasicInfo> {
                           width: 40,
                           height: 40,
                           decoration: ShapeDecoration(
-                            color:  Color(0xFFFF4343),
+                            color: Color(0xFFFF4343),
                             shape: CircleBorder(),
                           ),
-                          child: Image.asset("assets/registration/icon_take_photo.png",scale: 2.1,),
+                          child: Image.asset(
+                            "assets/registration/icon_take_photo.png",
+                            scale: 2.1,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 10),
               Container(
                 height: 50,
-
                 child: TextFormField(
                   controller: _fullNameController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: 'Full Name',
+                    labelStyle: TextStyle(color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.09,
+
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
                     border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 20),
               Container(
                 height: 50,
-
                 child: TextFormField(
                   controller: _ageController,
                   keyboardType: TextInputType.number,
-
                   decoration: InputDecoration(
                     labelText: 'Age',
+                    labelStyle: TextStyle(color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.09,
+
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
                     border: OutlineInputBorder(),
-
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: MediaQuery.of(context).size.height/3.3),
               GestureDetector(
                 onTap: _isButtonEnabled ? _login : _login2,
-                child: Container(
-                  width: double.infinity,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    color: _isButtonEnabled ?  Color(0xFFFF4343):  Color(0xFFD1D5DB),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        color: _isButtonEnabled ?  Colors.white:Color(0xFF334155),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: _isButtonEnabled
+                          ? Color(0xFFFF4343)
+                          : Color(0xFFD1D5DB),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color:
+                              _isButtonEnabled ? Colors.white : Color(0xFF334155),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
@@ -251,6 +285,6 @@ class _BasicInfoState extends State<BasicInfo> {
 
   void _login2() {
     print('Login button pressed');
-    widget.onNextPressed();
+    // widget.onNextPressed();
   }
 }

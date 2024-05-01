@@ -6,6 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../common_widgets.dart';
 
 class FitnessGoal extends StatefulWidget {
+  final VoidCallback onNextPressed;
+  const FitnessGoal({Key? key,required this.onNextPressed}) : super(key: key);
+
   @override
   _FitnessGoalState createState() => _FitnessGoalState();
 }
@@ -74,7 +77,13 @@ class _FitnessGoalState extends State<FitnessGoal> {
             Spacer(),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20,bottom: 30),
-              child: buildNextButton(context),
+              child: GestureDetector(
+                onTap: (){
+                  widget.onNextPressed();
+
+                },
+                  child: buildNextButton(context)
+              ),
             ),
           ],
         ),
@@ -109,11 +118,11 @@ class _FitnessGoalState extends State<FitnessGoal> {
               isSelected
                   ? Image.asset(
                 "assets/registration/icon_selected_box.png",
-                scale: 1.9,
+                scale: 2.0,
               )
                   : Image.asset(
                 "assets/registration/icon_unselected_box.png",
-                scale: 1.9,
+                scale: 2.0,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
@@ -122,7 +131,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 16,
-                    fontFamily: 'Archivo',
+                    fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
                     height: 1.09,
                   ),

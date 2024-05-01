@@ -145,7 +145,9 @@ import 'package:flutter/material.dart';
 //
 
 class TestScroll extends StatefulWidget {
-  const TestScroll({Key? key}) : super(key: key);
+  final VoidCallback onNextPressed;
+
+  const TestScroll({Key? key,required this.onNextPressed}) : super(key: key);
 
   @override
   State<TestScroll> createState() => _TestScrollState();
@@ -202,14 +204,14 @@ class _TestScrollState extends State<TestScroll> {
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 24,
-                  fontFamily: 'Kanit',
+                  fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w500,
                   height: 1.05,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 50),
+              padding: const EdgeInsets.only(left: 10.0, top: 50),
               child: Row(
                 children: [
                   Container(
@@ -222,7 +224,7 @@ class _TestScrollState extends State<TestScroll> {
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 48,
-                              fontFamily: 'Archivo',
+                              fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
                               height: 1.03,
                             ),
@@ -232,7 +234,7 @@ class _TestScrollState extends State<TestScroll> {
                             style: TextStyle(
                               color: Color(0xFF334155).withOpacity(0.8),
                               fontSize: 16,
-                              fontFamily: 'Archivo',
+                              fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
                               height: 1.08,
                             ),
@@ -267,20 +269,52 @@ class _TestScrollState extends State<TestScroll> {
             SizedBox(
               height: 40,
             ),
-            Container(
-              height: 120,
-              child: PageView.builder(
-                controller: _pageController,
-                scrollDirection: Axis.horizontal,
-                itemCount: meterValues.length,
-                itemBuilder: (context, index) {
-                  return MeterItem(
-                    value: meterValues[index],
-                    isSelected: index == currentPageIndex,
-                  );
-                },
+        Container(
+          height: 100,
+
+          child: Stack(
+            children: [
+              Container(
+                height: 120,
+                child: PageView.builder(
+                  controller: _pageController,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: meterValues.length,
+                  itemBuilder: (context, index) {
+                    return MeterItem(
+                      value: meterValues[index],
+                      isSelected: index == currentPageIndex,
+                    );
+                  },
+                ),
               ),
-            ),
+
+              Center(
+                child: Column(
+                  children: [
+                    Container(
+                      width: 4,
+                      height:65,
+                      color: Color(0xFFFF4343)
+                      ,
+                    ),
+                    Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: BoxShape.circle,
+                        // Explicitly setting the shape to rectangle
+                        // borderRadius: BorderRadius.all(
+                        //     Radius.circular(6)), // Apply rounded corners
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
 
             Center(
               child: Container(
@@ -302,7 +336,7 @@ class _TestScrollState extends State<TestScroll> {
                               ? Color(0xFFE88E32)
                               : Color(0xFF9CA3AF),
                           fontSize: 20,
-                          fontFamily: 'Archivo',
+                          fontFamily: 'Archivo-Medium',
                           fontWeight: FontWeight.w500,
                           height: 1.07,
                         ),
@@ -312,7 +346,7 @@ class _TestScrollState extends State<TestScroll> {
                       width: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Container(width: 1, color: Color(0xFF334155)),
                     ),
                     SizedBox(
@@ -331,7 +365,7 @@ class _TestScrollState extends State<TestScroll> {
                               ? Color(0xFFE88E32)
                               : Color(0xFF9CA3AF),
                           fontSize: 20,
-                          fontFamily: 'Archivo',
+                          fontFamily: 'Archivo-Medium',
                           fontWeight: FontWeight.w400,
                           height: 1.07,
                         ),
@@ -346,33 +380,37 @@ class _TestScrollState extends State<TestScroll> {
             Spacer(),
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  width: 320,
-                  height: 44,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Next',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Archivo',
-                          fontWeight: FontWeight.w500,
-                          height: 0.11,
+                padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 30),
+                child: GestureDetector(
+                  onTap: (){
+                    widget.onNextPressed();
+
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 44,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFFF4343),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Next',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w500,
+                            height: 0.09,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -433,7 +471,7 @@ class MeterItem extends StatelessWidget {
               width: itemWidth,
               height: itemHeight,
               color: isSelected
-                  ? Color(0xFFFF4343)
+                  ? Colors.transparent
                   : Color(0xFF9E9E9E).withOpacity(0.8),
             ),
             // if (isSelected)
@@ -447,7 +485,7 @@ class MeterItem extends StatelessWidget {
                 width: 12,
                 height: 12,
                 decoration: BoxDecoration(
-                  color: Color(0xFFFF4343),
+                  color: Colors.transparent,
                   shape: BoxShape.circle,
                   // Explicitly setting the shape to rectangle
                   // borderRadius: BorderRadius.all(

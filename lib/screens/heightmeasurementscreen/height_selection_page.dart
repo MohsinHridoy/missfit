@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 
 class HeightMeasurementsScreen extends StatefulWidget {
-  const HeightMeasurementsScreen({Key? key}) : super(key: key);
+  final VoidCallback onNextPressed;
+
+  const HeightMeasurementsScreen({Key? key,required this.onNextPressed}) : super(key: key);
 
   @override
   State<HeightMeasurementsScreen> createState() => _HeightMeasurementsScreenState();
@@ -15,6 +17,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
   int? currentPageIndex = 24; // Set initialPageIndex to 9 for the 10th item
   int? selectedValue = 0;
   String selectedUnit = 'kgs';
+  bool selectedUnitForMesurements=false;
   int? feet;
   int? inch;
   @override
@@ -65,14 +68,14 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 24,
-                  fontFamily: 'Kanit',
+                  fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w500,
                   height: 1.05,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 50),
+              padding: const EdgeInsets.only(left: 8.0, top: 50),
               child: Row(
                 children: [
                   Container(
@@ -81,7 +84,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: "${ selectedValue! ~/ 12}",
+                            text:selectedUnitForMesurements? "${selectedValue! ~/ 100}": "${ selectedValue! ~/ 12}",
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 48,
@@ -91,7 +94,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "ft",
+                            text: selectedUnitForMesurements?"mt": "ft",
                             style: TextStyle(
                               color: Color(0xFF334155).withOpacity(0.8),
                               fontSize: 16,
@@ -101,7 +104,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "${ selectedValue! % 12}",
+                            text: selectedUnitForMesurements?"${selectedValue! % 100}":"${ selectedValue! % 12}",
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 48,
@@ -111,7 +114,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "in",
+                            text: selectedUnitForMesurements?"cm": "in",
                             style: TextStyle(
                               color: Color(0xFF334155).withOpacity(0.8),
                               fontSize: 16,
@@ -150,115 +153,153 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
             SizedBox(
               height: 40,
             ),
-            Container(
-              height: 120,
-              child: PageView.builder(
-                controller: _pageController,
-                scrollDirection: Axis.horizontal,
-                itemCount: meterValues.length,
-                itemBuilder: (context, index) {
-                  return MeterItem(
-                    value: meterValues[index],
-                    isSelected: index == currentPageIndex,
-                  );
-                },
-              ),
-            ),
+        Container(
+          height: 100,
 
-            Center(
-              child: Container(
-                width: 200,
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedUnit = 'kgs';
-                        });
-                      },
-                      child: Text(
-                        'KG',
-                        style: TextStyle(
-                          color: selectedUnit == 'kgs'
-                              ? Color(0xFFE88E32)
-                              : Color(0xFF9CA3AF),
-                          fontSize: 20,
-                          fontFamily: 'Archivo',
-                          fontWeight: FontWeight.w500,
-                          height: 1.07,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(width: 1, color: Color(0xFF334155)),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedUnit = 'lbs';
-                        });
-                      },
-                      child: Text(
-                        'LBS',
-                        style: TextStyle(
-                          color: selectedUnit == 'lbs'
-                              ? Color(0xFFE88E32)
-                              : Color(0xFF9CA3AF),
-                          fontSize: 20,
-                          fontFamily: 'Archivo',
-                          fontWeight: FontWeight.w400,
-                          height: 1.07,
-                        ),
-                      ),
-                    )
-                  ],
+          child: Stack(
+            children: [
+              Container(
+                height: 120,
+                child: PageView.builder(
+                  controller: _pageController,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: meterValues.length,
+                  itemBuilder: (context, index) {
+                    return MeterItem(
+                      value: meterValues[index],
+                      isSelected: index == currentPageIndex,
+                    );
+                  },
                 ),
               ),
+
+              Center(
+                child: Column(
+                  children: [
+                    Container(
+                      width: 4,
+                      height:65,
+                      color: Color(0xFFFF4343)
+                      ,
+                    ),
+                    Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: BoxShape.circle,
+                        // Explicitly setting the shape to rectangle
+                        // borderRadius: BorderRadius.all(
+                        //     Radius.circular(6)), // Apply rounded corners
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+
+
+        Center(
+          child: Container(
+            width: 200,
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedUnit = 'FT';
+                      selectedUnitForMesurements=false;
+                    });
+                  },
+                  child: Text(
+                    'FT',
+                    style: TextStyle(
+                      color: selectedUnit == 'FT'
+                          ? Color(0xFFE88E32)
+                          : Color(0xFF9CA3AF),
+                      fontSize: 20,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 1.07,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(width: 1, color: Color(0xFF334155)),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedUnit = 'CM';
+                      selectedUnitForMesurements=true;
+                    });
+                  },
+                  child: Text(
+                    'CM',
+                    style: TextStyle(
+                      color: selectedUnit == 'CM'
+                          ? Color(0xFFE88E32)
+                          : Color(0xFF9CA3AF),
+                      fontSize: 20,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w400,
+                      height: 1.07,
+                    ),
+                  ),
+                )
+              ],
             ),
+          ),
+        ),
 
 
             Spacer(),
             Center(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  width: 320,
-                  height: 44,
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Next',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Archivo',
-                          fontWeight: FontWeight.w500,
-                          height: 0.11,
+              child:  GestureDetector(
+                onTap: (){
+                  widget.onNextPressed();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 44,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFFF4343),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Next',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w500,
+                            height: 0.09,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              )
             )
 
             // Your existing UI code
@@ -287,12 +328,12 @@ class MeterItem extends StatelessWidget {
     double itemHeight = isSelected ? 60.0 : 35.0;
     double itemPadding = 0;
 
-    if (value % 5 == 0 && value <= 155) {
+    if (value % 6 == 0 && value <= 155) {
       itemHeight += 20.0;
       itemWidth = 3.5;
     }
 
-    if (value % 5 != 0 && value <= 155) {
+    if (value % 6 != 0 && value <= 155) {
       itemPadding = 10;
       itemWidth = 2;
       viewportFraction =
@@ -300,7 +341,7 @@ class MeterItem extends StatelessWidget {
     }
 
     String? underText;
-    if (value % 5 == 0 && value <= 155) {
+    if (value % 6 == 0 && value <= 155) {
       underText = "$value";
     }
 
@@ -316,7 +357,7 @@ class MeterItem extends StatelessWidget {
               width: itemWidth,
               height: itemHeight,
               color: isSelected
-                  ? Color(0xFFFF4343)
+                  ? Colors.transparent
                   : Color(0xFF9E9E9E).withOpacity(0.8),
             ),
             // if (isSelected)
@@ -330,7 +371,7 @@ class MeterItem extends StatelessWidget {
                 width: 12,
                 height: 12,
                 decoration: BoxDecoration(
-                  color: Color(0xFFFF4343),
+                  color: Colors.transparent,
                   shape: BoxShape.circle,
                   // Explicitly setting the shape to rectangle
                   // borderRadius: BorderRadius.all(

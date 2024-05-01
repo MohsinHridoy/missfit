@@ -7,16 +7,16 @@ import '../../common_widgets.dart';
 
 
 
-class ActivitySelectionPage extends StatefulWidget {
+class WorkOutLevelSelectionPage extends StatefulWidget {
   final VoidCallback onNextPressed;
 
-  const ActivitySelectionPage({Key? key,required this.onNextPressed}) : super(key: key);
+  const WorkOutLevelSelectionPage({Key? key,required this.onNextPressed}) : super(key: key);
 
   @override
-  _ActivitySelectionPageState createState() => _ActivitySelectionPageState();
+  _WorkOutLevelSelectionPageState createState() => _WorkOutLevelSelectionPageState();
 }
 
-class _ActivitySelectionPageState extends State<ActivitySelectionPage> {
+class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
   int selectedIndex = 1;
   bool isVisible=false;
 
@@ -53,15 +53,18 @@ class _ActivitySelectionPageState extends State<ActivitySelectionPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                SizedBox(height: 5),
+                txt_headline('What is your advacement \nlevel?'),
                 SizedBox(height: 20),
-                txt_headline(' How long do you like to\n workout for?'),
-                SizedBox(height: 50),
-                buildLevelContainer(0, 'Light Activity', 'About 10-20 minutes'),
-                buildLevelContainer(1, 'Moderate Activity', 'About 30-40 minutes'),
-                buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
+                // buildLevelContainer(0, 'Light Activity', 'About 10-20 minutes'),
+                // buildLevelContainer(1, 'Moderate Activity', 'About 30-40 minutes'),
+                // buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
+                buildLevelContainer(0, 'Beginner', 'I am new to the gym'),
+                buildLevelContainer(1, 'Intermediate', 'I know my way around a gym'),
+                buildLevelContainer(2, 'Advanced', 'I am an expert in the gym'),
                 Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 20),
+                  padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
                   child: GestureDetector(
                       onTap: () async{
                         setState(() {
@@ -119,7 +122,7 @@ class _ActivitySelectionPageState extends State<ActivitySelectionPage> {
                 style: TextStyle(
                   color: titleColor,
                   fontSize: 18,
-                  fontFamily: 'Archivo',
+                  fontFamily: 'Archivo-Medium',
                   fontWeight: FontWeight.w500,
                   height: 1.08,
                 ),
@@ -130,7 +133,7 @@ class _ActivitySelectionPageState extends State<ActivitySelectionPage> {
                 style: TextStyle(
                   color: Color(0xFF475569),
                   fontSize: 14,
-                  fontFamily: 'Archivo',
+                  fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
                   height: 1.11,
                 ),

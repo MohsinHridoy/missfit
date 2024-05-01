@@ -116,11 +116,11 @@ class RegistrationPage extends StatelessWidget {
                   BasicInfo(
                     onNextPressed: model.navigateToNextPage,
                   ),
-                  ActivitySelectionPage(
-                    onNextPressed: model.navigateToNextPage,
-                  ),
+                  // ActivitySelectionPage(
+                  //   onNextPressed: model.navigateToNextPage,
+                  // ),
                   AdvanceLevelSelectionPage(),
-                  FitnessGoal(),
+                  // FitnessGoal(),
                   TestScroll(),
                 ],
               ),

@@ -50,15 +50,15 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 20),
-                  SizedBox(width: 50, child: txt_headline('What is your advacement \nlevel?')),
-                  SizedBox(height: 50),
-                  buildLevelContainer(0, 'Beginner', 'I am new to the gym'),
-                  buildLevelContainer(1, 'Intermediate', 'I know my way around a gym'),
-                  buildLevelContainer(2, 'Advanced', 'I am an expert in the gym'),
+                  SizedBox(height: 5),
+                  SizedBox(width: 50, child: txt_headline('How long do you like to \nworkout for?')),
+                  SizedBox(height: 30),
+                  buildLevelContainer(0, 'Light Activity', 'About 10-20 minutes'),
+                  buildLevelContainer(1, 'Moderate Activity', 'About 30-40 minutes'),
+                  buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10,bottom: 15),
                     child: GestureDetector(
                       onTap: () async {
                         setState(() {
@@ -124,7 +124,7 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 18,
-                            fontFamily: 'Archivo',
+                            fontFamily: 'Archivo-SemiBold',
                             fontWeight: FontWeight.w600,
                             height: 1.08,
                           ),
@@ -140,23 +140,43 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                             style: TextStyle(
                               color: Color(0xFF334155).withOpacity(0.9),
                               fontSize: 16,
-                              fontFamily: 'Archivo',
-                              fontWeight: FontWeight.w400,
-                              height: 1.09,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.09,
                             ),
                           ),
                         ),
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(left: 20.0,right: 20),
+                        padding: const EdgeInsets.only(left: 20.0,right: 20,top: 10),
                         child: GestureDetector(
                             onTap: (){
                               setState(() {
                                 isVisible=true;
                               });
                             },
-                            child: buildNextButton(context)
+                            child:  Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 44,
+                              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFF4343),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Continue',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.11,
+                                  ),
+                                ),
+                              ),
+                            )
 
                         ),
                       ),
@@ -205,7 +225,7 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                 style: TextStyle(
                   color: titleColor,
                   fontSize: 18,
-                  fontFamily: 'Archivo',
+                  fontFamily: 'Archivo-Medium',
                   fontWeight: FontWeight.w500,
                   height: 1.08,
                 ),
@@ -216,7 +236,7 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                 style: TextStyle(
                   color: Color(0xFF475569),
                   fontSize: 14,
-                  fontFamily: 'Archivo',
+                  fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
                   height: 1.11,
                 ),

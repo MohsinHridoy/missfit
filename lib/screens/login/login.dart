@@ -59,29 +59,43 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Image.asset(
-                "assets/splash/splash_icon.png",
-                height: 180,
-                width: 180,
+            SizedBox(height: 60,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 5.0),
+                child: Container(
+                  height: 150,
+                  width: 180,
+                  child: Center(
+                    child: Image.asset(
+                      "assets/splash/splash_icon.png",
+                      height: 140,
+                      width: 180,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
             ),
+            SizedBox(height: 10,),
+
             Padding(
-              padding: const EdgeInsets.only(left: 15.0),
+              padding: const EdgeInsets.only(left: 20.0),
               child: Text(
                 'Login to your account',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 24,
-                  fontFamily: 'Kanit',
+                  fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w600,
-                  height: 1.05,
+                  height: 0.05,
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 42),
             Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15),
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 48,
@@ -102,7 +116,13 @@ class _LoginPageState extends State<LoginPage> {
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
                     labelText: _isEmailFocused || _emailOrPhoneNumberController.text.isNotEmpty ? 'Email' : 'Enter your email address',
-                    labelStyle: TextStyle(color: Color(0xFF334155)),
+                    labelStyle: TextStyle(color: Color(0xFF334155),
+                    fontSize: 16,
+                    fontFamily: 'Archivo-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 0.09,
+
+                    ),
                     border: OutlineInputBorder(),
 
                     focusedBorder: OutlineInputBorder(
@@ -116,13 +136,14 @@ class _LoginPageState extends State<LoginPage> {
             Spacer(), // Pushes the login button to the bottom
 
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15, bottom: 20),
+              padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 30),
               child: GestureDetector(
                 onTap: (){
+                  _isValidEmail ?
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Otp(email: _emailOrPhoneNumberController.text)),
-                  );
+                  ):null;
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -140,10 +161,10 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         'Login',
                         style: TextStyle(
-                          color:_isValidEmail ? Colors.white:Color(0xFF334155),
+                          color:_isValidEmail ? Colors.white.withOpacity(0.9):Color(0xFF334155),
                           // color: Color(0xFF94A3B8),
                           fontSize: 16,
-                          fontFamily: 'Archivo',
+                          fontFamily: 'Archivo-SemiBold',
                           fontWeight: FontWeight.w600,
                           height: 0.09,
                         ),

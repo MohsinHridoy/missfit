@@ -91,17 +91,31 @@ flutter:
     - family: Archivo-Regular
       fonts:
         - asset: fonts/archivo/Archivo-Regular.ttf
-        - asset: fonts/archivo/Archivo-Bold.ttf
+    - family: Archivo-Medium
+      fonts:
+        - asset: fonts/archivo/Archivo-Medium.ttf
     - family: Archivo-Bold
       fonts:
         - asset: fonts/archivo/Archivo-Bold.ttf
+    - family: Archivo-SemiBold
+      fonts:
+        - asset: fonts/archivo/Archivo-SemiBold.ttf
+    - family: Kanit-Medium
+      fonts:
+        - asset: fonts/kanit/Kanit-Medium.ttf
     - family: Kanit-Regular
       fonts:
         - asset: fonts/kanit/Kanit-Regular.ttf
+    - family: Kanit-SemiBold
+      fonts:
+        - asset: fonts/kanit/Kanit-SemiBold.ttf
     - family: Inter-Bold
       fonts:
         - asset: fonts/inter/Inter-Bold.ttf
         - asset: fonts/inter/Inter-Regular.ttf
+    - family: Inter-Medium
+      fonts:
+        - asset: fonts/inter/Inter-Medium.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

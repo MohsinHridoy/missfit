@@ -31,7 +31,7 @@ class _CustomDotIndicatorState extends State<CustomDotIndicator> {
     return Visibility(
       visible: isVisible,
       child: Container(
-        height: 30,
+        height: 25,
         width: 2,
         color: Color(0xFFFFA142),
       ),
@@ -65,6 +65,7 @@ class _OtpState extends State<Otp> {
   final FocusNode _focusNode4 = FocusNode();
   int _secondsRemaining = 57;
   late Timer _timer;
+  bool _firstTextFieldFoucs = false;
 
   String tvSendCodeStatus = "You can request otp code in";
   String tvDidntRcvCodeStatus = "Didn’t received any code?";
@@ -73,7 +74,10 @@ class _OtpState extends State<Otp> {
   void initState() {
     super.initState();
     startTimer();
+    _focusNode1.addListener(() {
+      _firstTextFieldFoucs = _focusNode1.hasFocus;
 
+    });
     // Set up focus listeners to move to the next field when one is filled
     _controller1.addListener(() {
       if (_controller1.text.isNotEmpty) {
@@ -228,53 +232,53 @@ class _OtpState extends State<Otp> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(
-                    height: 70,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: SizedBox(
-                      width: 274,
-                      child: Text(
-                        'OTP Verification',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 24,
-                          fontFamily: 'Kanit',
-                          fontWeight: FontWeight.w600,
-                          height: 1.05,
-                        ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 125,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0,left: 20),
+                  child: SizedBox(
+                    width: 274,
+                    child: Text(
+                      'OTP Verification',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 24,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w600,
+                        height: 0.05,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
+                ),
+                SizedBox(
+                  height: 55,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: SizedBox(
                     width: 320,
                     child: Text(
                       'We sent verification code to -',
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 16,
-                        fontFamily: 'Archivo',
+                        fontFamily: 'Archivo-Regular',
                         fontWeight: FontWeight.w400,
-                        height: 1.09,
+                        height: 0.09,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Row(
                     children: [
                       Text(
                         widget.email,
@@ -298,317 +302,322 @@ class _OtpState extends State<Otp> {
                           padding: const EdgeInsets.only(left: 8.0, top: 3),
                           child: Image.asset(
                             "assets/otp/icon_edit.png",
-                            scale: 1.5,
-                            color: Colors.grey,
+                            scale: 1.7,
                           ),
                         ),
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: 30,
+                ),
+                SizedBox(
+                  height: 45,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0,right: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          // borderRadius: BorderRadius.circular(8.0),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller1,
+                              focusNode: _focusNode1,
+                              readOnly: true,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
+                              autofocus: true,
+                              // Set autofocus to true for the first field
+                              decoration: InputDecoration(
+                                // labelText: 'Input 1',
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
+                              ),
+                            ),
+                          ),
+                          if (value1 == 0 || value2 == 4)
+                            Center(child: CustomDotIndicator())
+                        ]),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller2,
+                              readOnly: true,
+                              focusNode: _focusNode2,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
+                              decoration: InputDecoration(
+                                // labelText: 'Input 2',
+                                //                               border: _defaultBorder,
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
+                              ),
+                            ),
+                          ),
+                          if (value1 == 1 || value2 == 3)
+                            Center(child: CustomDotIndicator()),
+                        ]),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller3,
+                              focusNode: _focusNode3,
+                              readOnly: true,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
+                              decoration: InputDecoration(
+                                // labelText: 'Input 3',
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
+                              ),
+                            ),
+                          ),
+                          if (value1 == 2 || value2 == 2)
+                            Center(child: CustomDotIndicator()),
+                        ]),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller4,
+                              focusNode: _focusNode4,
+                              readOnly: true,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
+                              decoration: InputDecoration(
+                                // labelText: 'Input 4',
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
+                              ),
+                            ),
+                          ),
+                          if (value1 == 3 || value2 == 1)
+                            Center(child: CustomDotIndicator()),
+                        ]),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 0.0, right: 39.0, top: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          width: 66,
-                          height: 64,
-                          decoration: ShapeDecoration(
-                            // borderRadius: BorderRadius.circular(8.0),
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Stack(children: [
-                            Positioned(
-                              left: 25,
-                              right: 25,
-                              top: 5,
-                              child: TextFormField(
-                                controller: _controller1,
-                                focusNode: _focusNode1,
-                                readOnly: true,
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 20,
-                                  fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.09,
-                                ),
-                                autofocus: true,
-                                // Set autofocus to true for the first field
-                                decoration: InputDecoration(
-                                  // labelText: 'Input 1',
-                                  border: InputBorder.none,
-                                  // focusedBorder: _focusedBorder,
-                                ),
-                              ),
-                            ),
-                            if (value1 == 0 || value2 == 4)
-                              Center(child: CustomDotIndicator())
-                          ]),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 66,
-                          height: 64,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Stack(children: [
-                            Positioned(
-                              left: 25,
-                              right: 25,
-                              top: 5,
-                              child: TextFormField(
-                                controller: _controller2,
-                                readOnly: true,
-                                focusNode: _focusNode2,
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 20,
-                                  fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.09,
-
-                                ),
-                                decoration: InputDecoration(
-                                  // labelText: 'Input 2',
-                                  //                               border: _defaultBorder,
-                                  border: InputBorder.none,
-                                  // focusedBorder: _focusedBorder,
-                                ),
-                              ),
-                            ),
-                            if (value1 == 1 || value2 == 3)
-                              Center(child: CustomDotIndicator()),
-                          ]),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 66,
-                          height: 64,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Stack(children: [
-                            Positioned(
-                              left: 25,
-                              right: 25,
-                              top: 5,
-                              child: TextFormField(
-                                controller: _controller3,
-                                focusNode: _focusNode3,
-                                readOnly: true,
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 20,
-                                  fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.09,
-
-                                ),
-                                decoration: InputDecoration(
-                                  // labelText: 'Input 3',
-                                  border: InputBorder.none,
-                                  // focusedBorder: _focusedBorder,
-                                ),
-                              ),
-                            ),
-                            if (value1 == 2 || value2 == 2)
-                              Center(child: CustomDotIndicator()),
-                          ]),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 66,
-                          height: 64,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFF6B7280).withOpacity(0.7)),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Stack(children: [
-                            Positioned(
-                              left: 25,
-                              right: 25,
-                              top: 5,
-                              child: TextFormField(
-                                controller: _controller4,
-                                focusNode: _focusNode4,
-                                readOnly: true,
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 20,
-                                  fontFamily: 'Archivo',
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.09,
-
-                                ),
-                                decoration: InputDecoration(
-                                  // labelText: 'Input 4',
-                                  border: InputBorder.none,
-                                  // focusedBorder: _focusedBorder,
-                                ),
-                              ),
-                            ),
-                            if (value1 == 3 || value2 == 1)
-                              Center(child: CustomDotIndicator()),
-                          ]),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15.0, right: 15),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 220,
-                          child: Text(
-                            _showResendButton
-                                ? tvDidntRcvCodeStatus
-                                : tvSendCodeStatus,
-                            // 'Didn’t received any code?',
-                            style: TextStyle(
-                              color: Color(0xFF9CA3AF),
-                              fontSize: 16,
-                              fontFamily: 'Archivo',
-                              fontWeight: FontWeight.w400,
-                              height: 1.09,
-                            ),
+                ),
+                SizedBox(
+                  height: 35,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 220,
+                        child: Text(
+                          _showResendButton
+                              ? tvDidntRcvCodeStatus
+                              : tvSendCodeStatus,
+                          // 'Didn’t received any code?',
+                          style: TextStyle(
+                            color: Color(0xFF9CA3AF),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 0.09,
                           ),
                         ),
-                        GestureDetector(
-                          onTap: _showResendButton ? resendCode : null,
-                          child: Text(
-                            _showResendButton ? 'Resend' : '',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Color(0xFFFF4343),
-                              fontSize: 16,
-                              fontFamily: 'Archivo',
-                              fontWeight: FontWeight.w500,
-                              height: 1.09,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          _secondsRemaining == 0
-                              ? ''
-                              : '00:${_secondsRemaining.toString().padLeft(2, '0')}',
+                      ),
+                      GestureDetector(
+                        onTap: _showResendButton ? resendCode : null,
+                        child: Text(
+                          _showResendButton ? 'Resend' : '',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            color: Color(0xFFFFA142),
+                            color: Color(0xFFFF4343),
                             fontSize: 16,
-                            fontFamily: 'Archivo',
-                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w500,
                             height: 1.09,
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 77.0, left: 20, right: 20),
-                    child: GestureDetector(
-                      onTap: _controller4.text.isNotEmpty
-                          ? () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Registration()),
-                              );
-                            }
-                          : null,
-                      child: Container(
-                        width: 320,
-                        height: 44,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 32, vertical: 12),
-                        decoration: ShapeDecoration(
-                          color: _controller4.text.isNotEmpty
-                              ? Color(0xFFFF4343)
-                              : Color(0xFFD1D5DB),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Verify',
-                              style: TextStyle(
-                                color: _controller4.text.isNotEmpty
-                                    ? Colors.white
-                                    : Color(0xFF94A3B8),
-                                // color: Color(0xFF94A3B8),
-                                fontSize: 14,
-                                fontFamily: 'Archivo',
-                                fontWeight: FontWeight.w500,
-                                height: 0.11,
-                              ),
-                            ),
-                          ],
+                      ),
+                      Text(
+                        _secondsRemaining == 0
+                            ? ''
+                            : '00:${_secondsRemaining.toString().padLeft(2, '0')}',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Color(0xFFFFA142),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 80,
+                ),
+                GestureDetector(
+                  onTap: _controller4.text.isNotEmpty
+                      ? () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Registration()),
+                    );
+                  }
+                      : null,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 44,
+                      // padding: const EdgeInsets.symmetric(
+                      //     horizontal: 0, vertical: 0),
+                      decoration: ShapeDecoration(
+                        color: _controller4.text.isNotEmpty
+                            ? Color(0xFFFF4343)
+                            : Color(0xFFD1D5DB),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Verify',
+                          style: TextStyle(
+                            color: _controller4.text.isNotEmpty
+                                ? Colors.white
+                                : Color(0xFF334155),
+                            // color: Color(0xFF94A3B8),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w500,
+                            height: 0.11,
+                          ),
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Container(
-                      height: 300,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFF9FAFB),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40),
-                          ),
+                  Container(
+                    height: 330,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFF9FAFB),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
                       ),
+                      shadows: [
+                        BoxShadow(
+                          color: Color(0x11121315),
+                          blurRadius: 15,
+                          offset: Offset(0, -1),
+                          spreadRadius: -3,
+                        )
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 8.0, left: 10, right: 10),
                       child: GridView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           crossAxisSpacing: 2.0,
-                          childAspectRatio: 2,
+                          childAspectRatio: 1.8,
                         ),
                         itemCount: buttonNumbers.length + 3,
                         // Plus 3 for Menu, 0, and Back buttons
@@ -620,6 +629,7 @@ class _OtpState extends State<Otp> {
                               child: Container(
                                 height: 40,
                                 width: 40,
+                                color:Color(0xFFF9FAFB) ,
                                 child: Center(
                                   child: Opacity(
                                     opacity: 0.9,
@@ -628,8 +638,10 @@ class _OtpState extends State<Otp> {
                                       style: TextStyle(
                                         color: Color(0xFF334155),
                                         fontSize: 22,
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Inter-Medium',
                                         fontWeight: FontWeight.w500,
+                                        height: 0.05,
+
                                       ),
                                     ),
                                   ),
@@ -685,6 +697,7 @@ class _OtpState extends State<Otp> {
                       ),
                     ),
                   ),
+
                   // Container(
                   //   width: MediaQuery.of(context).size.width,
                   //   color: Color(0xFF020617),

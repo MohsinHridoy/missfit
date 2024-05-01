@@ -15,10 +15,10 @@ Widget buildNextButton(BuildContext context) {
         'Next',
         style: TextStyle(
           color: Colors.white,
-          fontSize: 14,
-          fontFamily: 'Archivo',
+          fontSize: 16,
+          fontFamily: 'Archivo-SemiBold',
           fontWeight: FontWeight.w500,
-          height: 1.11,
+          height: 0.09,
         ),
       ),
     ),
@@ -29,14 +29,17 @@ Widget buildNextButton(BuildContext context) {
 
 
 Widget txt_headline(String txt){
-  return  Text(
-    txt,
-    style: TextStyle(
-      color: Color(0xFF334155),
-      fontSize: 24,
-      fontFamily: 'Kanit-Regular',
-      fontWeight: FontWeight.w500,
-      height: 1.6,
+  return SizedBox(
+    width: 320,
+    child: Text(
+      txt,
+      style: TextStyle(
+        color: Color(0xFF334155),
+        fontSize: 24,
+        fontFamily: 'Kanit-Medium',
+        fontWeight: FontWeight.w500,
+        height: 1.3,
+      ),
     ),
   );
 }
