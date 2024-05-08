@@ -13,13 +13,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Start a timer for 3 seconds
+    _navigateToNextScreen();
+  }
+
+  void _navigateToNextScreen() {
     Timer(Duration(seconds: 3), () {
-      // After 3 seconds, navigate to the home screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => OnboardingScreen1(),
+          builder: (context) => OnboardingScreen(),
         ),
       );
     });
@@ -28,15 +30,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Customize your splash screen UI here
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.20),
-        color: Color(0xFFF6F6F6),
-        child: Image.asset(
-          "assets/splash/splash_icon.png",
-          fit: BoxFit.contain, // Adjust image fit to contain within the container
+      backgroundColor: Color(0xFFF6F6F6),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.20),
+          child: Image.asset(
+            "assets/splash/splash_icon.png",
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );

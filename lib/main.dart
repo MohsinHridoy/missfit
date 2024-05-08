@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
+import 'package:miss_fit/screens/billingaddress/billing_address.dart';
+import 'package:miss_fit/screens/cartscreen/cart.dart';
+import 'package:miss_fit/screens/cartscreen/cart001.dart';
+import 'package:miss_fit/screens/checkout/checkout.dart';
+import 'package:miss_fit/screens/checkout/checkout_with_address.dart';
+import 'package:miss_fit/screens/colourselectionpage/colour_selection_page.dart';
+import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
+import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
+import 'package:miss_fit/screens/filterbrandsselectionpage/brandsselectionpage.dart';
+import 'package:miss_fit/screens/filtercategoryselectionpage/categoryselectionpage.dart';
+import 'package:miss_fit/screens/filterreviewselectionpage/review_selection_page.dart';
+import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
+import 'package:miss_fit/screens/filtersizeselectionpage/size_selection_page.dart';
 import 'package:miss_fit/screens/heightmeasurementscreen/height_selection_page.dart';
 import 'package:miss_fit/screens/home/home.dart';
+import 'package:miss_fit/screens/home/home001.dart';
 import 'package:miss_fit/screens/levelselectionpage/advancement_level_selection_page.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/measurementscreen/measurement_screen.dart';
@@ -10,12 +25,22 @@ import 'package:miss_fit/screens/measurementscreen/test3.dart';
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough2.dart';
+import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
+import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
+import 'package:miss_fit/screens/payment/payment_screeen.dart';
+import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
 import 'package:miss_fit/screens/registration/registration001.dart';
 import 'package:miss_fit/screens/registrationstatuspage/registration_status_page.dart';
+import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
+import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
+import 'package:miss_fit/screens/shoppage/shop_page.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
+import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
+import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen-test_002.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen.dart';
+import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen_test_001.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -56,6 +81,8 @@ class MyApp extends StatelessWidget {
       ),
       // home:  SplashScreen(),
       home:  SplashScreen(),
+      // home:  CancelOrderStatus( status: CancelOrderStatusEnum.Processing,),
+      // home:  OrderStatus( status: OrderStatusEnum.Placed,),
       // home:  TestScroll(),
     );
   }

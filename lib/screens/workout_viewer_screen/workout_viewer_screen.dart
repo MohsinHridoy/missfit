@@ -768,6 +768,28 @@ class _WorkoutPageState extends State<WorkoutPage> {
     });
   }
 
+  // void _selectWorkoutItem(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //     Navigator.pop(context); // Close the bottom sheet after item selection
+  //   });
+  //
+  //   // Calculate the scroll offset based on the selected index
+  //   double scrollOffset = (_currentIndex) * (MediaQuery.of(context).size.width / 3.6 + 2 * 8.0);
+  //
+  //   // Scroll to the calculated offset
+  //   _scrollController.animateTo(
+  //     scrollOffset,
+  //     duration: Duration(milliseconds: 500),
+  //     curve: Curves.easeInOut,
+  //   );
+  //
+  //   // Restart the timer for the selected exercise
+  //   _timer.cancel();
+  //   _initItemStarted();
+  //   _startTimer();
+  // }
+
   void _selectWorkoutItem(int index) {
     setState(() {
       _currentIndex = index;
@@ -784,9 +806,14 @@ class _WorkoutPageState extends State<WorkoutPage> {
       curve: Curves.easeInOut,
     );
 
+    if (!_itemStarted[_currentIndex]) {
+      _itemStarted[_currentIndex] = true;
+      _secondsRemainingList[_currentIndex] = _workoutItems[_currentIndex].durationInSeconds;
+      _progressValues[_currentIndex] = 0.0;
+    }
+
     // Restart the timer for the selected exercise
     _timer.cancel();
-    _initItemStarted();
     _startTimer();
   }
   @override

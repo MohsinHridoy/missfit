@@ -14,20 +14,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingPage(
       title: 'Welcome to Missfit',
       description:
-          'Lorem ipsum dolor sit amet consectetur. Sed magnis tortor metus morbi ante e.',
-      image: 'assets/onboarding/img_onboarding_1.png',
+      'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.',
+      image: 'assets/onboarding/img_onboarding_4.png',
     ),
     OnboardingPage(
       title: 'Challenge with Friends',
       description:
-          'Lorem ipsum dolor sit amet consectetur. Sed magnis tortor metus morbi ante e.',
-      image: 'assets/onboarding/img_onboarding_2.png',
+      'Lorem ipsum dolor sit amet consectetur. Sed    \n magnis tortor metus morbi ante e.',
+      image: 'assets/onboarding/img_onboarding_5.png',
     ),
     OnboardingPage(
       title: 'Achieve Your Goals',
       description:
-          'TLorem ipsum dolor sit amet consectetur. Sed magnis tortor metus morbi ante e.',
-      image: 'assets/onboarding/img_onboarding_3.png',
+      'TLorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.',
+      image: 'assets/onboarding/img_onbaording_6.png',
     ),
   ];
 
@@ -38,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            color: Color(0xFF18181B),
+            color: Color(0xFFF6F6F6),
             child: PageView.builder(
               controller: _pageController,
               itemCount: _pages.length,
@@ -52,127 +52,115 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
             ),
           ),
-          Positioned(
-            bottom: 40.0,
-            left: 20.0,
-            right: 20.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _currentPage != 0
-                    ? ElevatedButton(
-                        onPressed: () {
-                          _pageController.previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease,
-                          );
-                        },
-                        child: Text('Previous'),
-                      )
-                    : Container(),
-                GestureDetector(
-                  onTap: () {
-                    if (_currentPage == _pages.length - 1) {
-                      // Navigate to your home screen or next screen
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ),
-                      );
-                    } else {
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease,
-                      );
-                    }
-                  },
-                  child: Container(
-                    width: 52,
-                    height: 52,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 14),
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFF4343),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_currentPage == _pages.length - 1) {
-                      // Navigate to your home screen or next screen
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ),
-                      );
-                    } else {
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease,
-                      );
-                    }
-                  },
-                  child: Text(
-                      _currentPage == _pages.length - 1 ? 'Finish' : 'Next'),
-                ),
-              ],
-            ),
-          ),
 
-          Positioned(
-            bottom: 20,
-            left: 40,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
+          if (_currentPage != 2)
+            Positioned(
+              bottom: 35,
+              left: 27,
+              right: 27,
               child: Container(
-                width: 320,
-                height: 52,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                decoration: ShapeDecoration(
-                  color: Color(0xFFFF4343),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
+                width: MediaQuery.of(context).size.width,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Next',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'Archivo',
-                        fontWeight: FontWeight.w600,
-                        height: 0.09,
+                    GestureDetector(
+                      onTap: () {
+                        print("cliekd");
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                          height: 30,
+                          width: 50,
+                          color: Colors.transparent,
+                          child: Center(child: skip_text("Skip"))),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _pageController.nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        );
+                      },
+                      child: Container(
+                        width: 52,
+                        height: 52,
+                        // padding: const EdgeInsets.symmetric(
+                        //     horizontal: 32, vertical: 14),
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFF4343),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                        ),
+                        child: Center(
+                            child: Image.asset(
+                              "assets/onboarding/icon_left_arrow.png",
+                              width: 30,
+                              height: 30,
+                            )),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ),
 
+          if (_currentPage != 0 && _currentPage != 1)
+            Positioned(
+              bottom: 35,
+              left: 27,
+              right: 27,
+              child: GestureDetector(
+                onTap: () {
+                  navigateToPage(context, LoginPage());
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFFF4343),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Get Started',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Archivo',
+                          fontWeight: FontWeight.w600,
+                          height: 0.09,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
 
           Positioned(
-            top: 630,
-            left: 180,
+            top: MediaQuery.of(context).size.height *
+                0.71, // Adjusted top position based on screen height
+            left: 0,
+            right: 0,
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              // Center the row horizontally
               children: List.generate(
                 _pages.length,
-                (index) => buildIndicator(index),
+                    (index) => buildIndicator(index),
               ),
             ),
           ),
@@ -183,16 +171,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget buildIndicator(int index) {
     return Container(
-      width: _currentPage == index ? 30.0 : 10.0,
-      height: 10.0,
+      width: _currentPage == index ? 27.0 : 8.0,
+      height: 8.0,
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
         // shape:  _currentPage == index ?BoxShape.rectangle:BoxShape.circle,
-        color: _currentPage == index ? Color(0xFFFFA142) : Color(0xFF333333),
-        borderRadius: BorderRadius.circular(10.0),
+        color: _currentPage == index ? Color(0xFFFFA142) : Color(0xFFD1D5DB),
+        borderRadius: BorderRadius.circular(20.0),
       ),
     );
   }
+}
+
+void navigateToPage(BuildContext context, Widget destinationPage) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => destinationPage,
+    ),
+  );
 }
 
 class OnboardingPage extends StatelessWidget {
@@ -214,36 +211,37 @@ class OnboardingPage extends StatelessWidget {
           // color: Colors.red,
           child: Image.asset(
             image,
-            height: 600,
+            height: MediaQuery.of(context).size.height *
+                0.68, // Adjusted height based on screen height
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(height: 80.0),
+        SizedBox(height: 55.0),
         Text(
           title,
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFF334155).withOpacity(0.9),
             fontSize: 24,
-            fontFamily: 'Kanit',
+            fontFamily: 'Kanit-SemiBold',
             fontWeight: FontWeight.w600,
-            height: 0.05,
+            height: 1.5,
           ),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(height: 11.0),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: SizedBox(
-            width: 320,
+          padding: EdgeInsets.only(left: 1,right: 1),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
             child: Text(
               description,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFFF1F5F9),
+                color: Color(0xFF334155).withOpacity(0.9),
                 fontSize: 16,
-                fontFamily: 'Archivo',
+                fontFamily: 'Archivo-Regular',
                 fontWeight: FontWeight.w400,
-                height: 1.09,
+                height: 1.5,
               ),
             ),
           ),
@@ -251,4 +249,18 @@ class OnboardingPage extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget skip_text(String text) {
+  return Text(
+    text,
+    textAlign: TextAlign.center,
+    style: TextStyle(
+      color: Color(0xFF334155).withOpacity(0.9),
+      fontSize: 16,
+      fontFamily: 'Archivo',
+      fontWeight: FontWeight.w600,
+      height: 0.09,
+    ),
+  );
 }
