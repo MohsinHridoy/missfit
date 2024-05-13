@@ -255,52 +255,78 @@ class _HomeState extends State<Home> {
                   _textTitle('New Workout'),
                   _buildListWorkOutItem(),
 
-                  Container(
-                    width: 319.64,
-                    height: 156,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage("assets/home/img_book_service.png"),
-                        fit: BoxFit.cover,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 156,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: AssetImage("assets/home/img_book_service.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0,left: 15,bottom: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 196,
+                              child: Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Book your service\n',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF4343),
+                                        fontSize: 22,
+                                        fontFamily: 'Kanit-Medium',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'with our coaches',
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 16,
+                                        fontFamily: 'Kanit-Regular',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            Container(
+                              width: 104,
+                              height: 36,
+
+                              decoration: ShapeDecoration(
+                                color: Color(0xFFFF4343),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Book now',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.10,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: 196,
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Book your service\n',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF4343),
-                                    fontSize: 22,
-                                    fontFamily: 'Kanit',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.06,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'with our coaches',
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 16,
-                                    fontFamily: 'Kanit',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0.09,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
-
 
                   Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -671,7 +697,8 @@ class _HomeState extends State<Home> {
           height: 6,
           margin: EdgeInsets.symmetric(horizontal: 2.0),
           decoration: ShapeDecoration(
-            color: index == _currentPage1 ?  Color(0xFFFFA142) : Color(0xFFE5E7EB),
+            color:
+                index == _currentPage1 ? Color(0xFFFFA142) : Color(0xFFE5E7EB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
@@ -1194,7 +1221,6 @@ class _HomeState extends State<Home> {
                 ],
               ),
             )
-
           ],
         ),
       ),
