@@ -169,6 +169,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
+
+
   Widget buildIndicator(int index) {
     return Container(
       width: _currentPage == index ? 27.0 : 8.0,

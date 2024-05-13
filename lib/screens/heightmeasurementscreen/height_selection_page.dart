@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -13,35 +14,54 @@ class HeightMeasurementsScreen extends StatefulWidget {
 
 class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
   final List<int> meterValues = List.generate(155, (index) => index + 1);
-  PageController? _pageController;
-  int? currentPageIndex = 24; // Set initialPageIndex to 9 for the 10th item
-  int? selectedValue = 0;
+  late PageController _pageController;
+  int currentPageIndex = 24; // Set initialPageIndex to 24
+  int selectedValue = 0;
   String selectedUnit = 'kgs';
   bool selectedUnitForMesurements=false;
   int? feet;
   int? inch;
+  late SharedPreferences _prefs;
+  late int _savedIndex;
+
   @override
   void initState() {
     super.initState();
+    _initPrefs();
     _pageController = PageController(
-        viewportFraction: 0.027,
-        initialPage: currentPageIndex!,
-        keepPage: true);
-    _pageController!.addListener(_pageListener);
-    selectedValue = meterValues[currentPageIndex!];
+      viewportFraction: 0.027,
+      initialPage: currentPageIndex,
+      keepPage: true,
+    );
+    _pageController.addListener(_pageListener);
+    selectedValue = meterValues[currentPageIndex];
+  }
+
+  void _initPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+    // Retrieve the saved current index, default to 0 if not found
+    _savedIndex = _prefs.getInt('currentIndexHeight') ?? 0;
+    currentPageIndex = _savedIndex;
+    selectedValue = meterValues[currentPageIndex];
+  }
+
+  // Save current index to SharedPreferences
+  _saveIndex(int index) async {
+    await _prefs.setInt('currentIndexHeight', index);
   }
 
   @override
   void dispose() {
-    _pageController?.removeListener(_pageListener);
-    _pageController?.dispose();
+    _pageController.removeListener(_pageListener);
+    _pageController.dispose();
     super.dispose();
   }
 
   void _pageListener() {
     setState(() {
-      currentPageIndex = _pageController!.page!.round();
-      selectedValue = meterValues[currentPageIndex!];
+      currentPageIndex = _pageController.page!.round();
+      selectedValue = meterValues[currentPageIndex];
+      _saveIndex(currentPageIndex);
     });
   }
   String formatFeetAndInches(int totalInches) {
@@ -267,7 +287,10 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
             Spacer(),
             Center(
               child:  GestureDetector(
-                onTap: (){
+                onTap: () async{
+                  await _saveIndex(currentPageIndex!);
+                  print(currentPageIndex);
+
                   widget.onNextPressed();
                 },
                 child: Padding(

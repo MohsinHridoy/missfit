@@ -89,11 +89,11 @@ class CustomPageIndicator extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              width: index == currentIndex ? 27 : 8,
-              height: 8,
+              width: index == currentIndex ? 27 : 23,
+              height: 6,
               decoration: BoxDecoration(
-                shape: index == currentIndex ? BoxShape.rectangle : BoxShape.circle,
-                borderRadius: index == currentIndex ? BorderRadius.circular(20) : null,
+                shape: index == currentIndex ? BoxShape.rectangle : BoxShape.rectangle,
+                borderRadius: index == currentIndex ? BorderRadius.circular(20) : BorderRadius.circular(20),
                 color: dotColor,
               ),
             ),

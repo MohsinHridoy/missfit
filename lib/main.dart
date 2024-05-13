@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
@@ -9,6 +12,7 @@ import 'package:miss_fit/screens/checkout/checkout.dart';
 import 'package:miss_fit/screens/checkout/checkout_with_address.dart';
 import 'package:miss_fit/screens/colourselectionpage/colour_selection_page.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/filterbrandsselectionpage/brandsselectionpage.dart';
 import 'package:miss_fit/screens/filtercategoryselectionpage/categoryselectionpage.dart';
@@ -24,7 +28,6 @@ import 'package:miss_fit/screens/measurementscreen/measurement_screen.dart';
 import 'package:miss_fit/screens/measurementscreen/test3.dart';
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
-import 'package:miss_fit/screens/onboarding_screen/rough2.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
@@ -37,6 +40,8 @@ import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 import 'package:miss_fit/screens/shoppage/shop_page.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
+import 'package:miss_fit/screens/subscription/subscription.dart';
+import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen-test_002.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen.dart';
@@ -53,14 +58,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
 
       theme: ThemeData(
-
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -80,16 +84,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home:  SplashScreen(),
-      home:  SplashScreen(),
+      // home:  DeliavryAddress(),
       // home:  CancelOrderStatus( status: CancelOrderStatusEnum.Processing,),
-      // home:  OrderStatus( status: OrderStatusEnum.Placed,),
+      home: DashBoard(),
+      // home:  FilterShopScreen(),
       // home:  TestScroll(),
     );
   }
 }
-
-
-
 
 // void main() {
 //   runApp(MyApp());
@@ -111,150 +113,373 @@ class MyApp extends StatelessWidget {
 //   }
 // }
 
+class FilterItems extends StatefulWidget {
+  const FilterItems({Key? key}) : super(key: key);
 
-class MeterScrollView extends StatefulWidget {
   @override
-  _MeterScrollViewState createState() => _MeterScrollViewState();
+  State<FilterItems> createState() => _FilterItemsState();
+}
+
+class _FilterItemsState extends State<FilterItems> {
+  double minValue = 0; // Initial minimum value
+  double maxValue = 3000; // Initial maximum value
+  double knobSize = 22; // Width of the knob
+
+  void _updatePosition(DragUpdateDetails details, bool isMin) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double posValue =
+    ((details.globalPosition.dx - knobSize / 2) / screenWidth * 100)
+        .clamp(0, 100);
+
+    if (isMin) {
+      if (posValue <= maxValue - 1) {
+        setState(() {
+          minValue = posValue.clamp(0, maxValue - 1);
+          if (minValue >= maxValue - 1) {
+            // If the minimum knob reaches the position of the maximum knob
+            // Set the value to 100
+            minValue = 100;
+          }
+        });
+      }
+    } else {
+      if (posValue >= minValue + 1) {
+        setState(() {
+          maxValue = posValue.clamp(minValue + 1, 100);
+          if (maxValue <= minValue + 1) {
+            // If the maximum knob reaches the position of the minimum knob
+            // Set the value to 0
+            maxValue = 0;
+          }
+          if (maxValue >= 99) {
+            // If the maximum knob reaches the edge of the range
+            // Set the value to 100
+            maxValue = 100;
+          }
+        });
+      }
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double minLeft =
+    (screenWidth * (minValue / 100)).clamp(0, screenWidth - knobSize);
+    double maxLeft =
+    (screenWidth * (maxValue / 100)).clamp(knobSize, screenWidth);
+
+    return Scaffold(
+      body: Column(
+        children: [
+          SizedBox(height: 200),
+          SizedBox(
+            width: screenWidth,
+            height: 50,
+            child: GestureDetector(
+              onHorizontalDragUpdate: (details) {
+                _updatePosition(details, true);
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 8,
+                    left: minLeft + 50,
+                    right: screenWidth - maxLeft + 70,
+                    child: Container(
+                      height: 5,
+                      color: Color(0xFF22C55E),
+                    ),
+                  ),
+                  Positioned(
+                    left: minLeft + 30,
+                    child: GestureDetector(
+                      onHorizontalDragUpdate: (details) {
+                        _updatePosition(details, true);
+                      },
+                      child: Container(
+                        width: knobSize,
+                        height: knobSize,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(knobSize / 2),
+                        ),
+                        child: Image.asset(
+                            "assets/order/icon_range_slider.png"),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: maxLeft - knobSize - 50,
+                    child: GestureDetector(
+                      onHorizontalDragUpdate: (details) {
+                        _updatePosition(details, false);
+                      },
+                      child: Container(
+                        width: knobSize,
+                        height: knobSize,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(knobSize / 2),
+                        ),
+                        child: Image.asset(
+                            "assets/order/icon_range_slider.png"),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildRangeTextItem('${minValue.round()} '),
+              _buildRangeText('to'),
+              _buildRangeTextItem('${maxValue.round()} ')
+            ],
+          ),
+          Spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRangeTextItem(String text) {
+    return Container(
+      width: 117,
+      height: 40,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      clipBehavior: Clip.antiAlias,
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(width: 0.50, color: Color(0xFFD1D5DB)),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      child: Row(
+        children: [
+          Text(
+            '\$',
+            style: TextStyle(
+              color: Color(0xFF334155),
+              fontSize: 16,
+              fontFamily: 'Archivo',
+              fontWeight: FontWeight.w400,
+              height: 0.09,
+            ),
+          ),
+          Expanded(child: _buildRangeText(text)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRangeText(String text) {
+    return Text(
+      text,
+      textAlign: TextAlign.right,
+      style: TextStyle(
+        color: Color(0xFF334155),
+        fontSize: 16,
+        fontFamily: 'Archivo',
+        fontWeight: FontWeight.w400,
+        height: 0.09,
+      ),
+    );
+  }
 }
 
 
 
 
+class MyHomePage extends StatefulWidget {
 
-class _MeterScrollViewState extends State<MeterScrollView> {
-  final List<int> meterValues = List.generate(100, (index) => index + 1);
-  late PageController _pageController;
-  int currentPageIndex = 50; // Set initial page index to 50
 
   @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(
-      initialPage: currentPageIndex,
-      viewportFraction: 0.030,
-    );
-    _pageController.addListener(_scrollListener);
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
-    // Jump to the middle item when the page starts
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      _scrollToSelectedPage();
-    });
-  }
-
-  @override
-  void dispose() {
-    _pageController.removeListener(_scrollListener);
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _scrollListener() {
-    setState(() {
-      currentPageIndex = _pageController.page!.round();
-    });
-  }
-
-  void _scrollToSelectedPage() {
-    _pageController.animateToPage(
-      currentPageIndex,
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
-  }
+class _MyHomePageState extends State<MyHomePage> {
+  double _lowerValue = 0;
+  double _upperValue = 3000;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meter Scroll View'),
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              for (var index = 0; index < meterValues.length; index++)
-                MeterItem(
-                  value: meterValues[index],
-                  isSelected: index == currentPageIndex,
-                  isFractional: meterValues[index] % 5 == 0,
-                  onPageChanged: (pageIndex) {
-                    setState(() {
-                      currentPageIndex = pageIndex;
-                      _scrollToSelectedPage();
-                    });
-                  },
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 50, left: 20, right: 20),
+              alignment: Alignment.centerLeft,
+              child: FlutterSlider(
+                values: [_lowerValue, _upperValue],
+                rangeSlider: true,
+                max: 3000,
+                min: 0,
+                jump: true,
+                trackBar: FlutterSliderTrackBar(
+                  activeTrackBarHeight: 3,
+                  activeTrackBar: BoxDecoration(color: Color(0xFF22C55E)),
                 ),
-            ],
-          ),
+                tooltip: FlutterSliderTooltip(
+                  textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
+                    boxStyle: FlutterSliderTooltipBox(
+                        decoration: BoxDecoration(
+                            color: Colors.transparent
+                        )
+                    )
+                ),
+                handler: FlutterSliderHandler(
+                  decoration: BoxDecoration(),
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                      border: Border.all(color: Color(0xFF22C55E), width: 2),
+
+
+                    ),
+                    padding: EdgeInsets.all(3),
+                    child: Container(
+                      height: 18,
+                      width: 18,
+                      decoration: BoxDecoration(
+                          color: Color(0xFF22C55E),
+                          borderRadius: BorderRadius.circular(25)),
+                    ),
+                  ),
+                ),
+                rightHandler: FlutterSliderHandler(
+
+                  decoration: BoxDecoration(),
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                      border: Border.all(color: Color(0xFF22C55E), width: 2),
+
+
+                    ),
+                    padding: EdgeInsets.all(3),
+                    child: Container(
+                      height: 18,
+                      width: 18,
+                      padding: EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                          color: Color(0xFF22C55E),
+                          borderRadius: BorderRadius.circular(25)),
+                    ),
+                  ),
+                ),
+                disabled: false,
+                onDragging: (handlerIndex, lowerValue, upperValue) {
+                  setState(() {
+                    _lowerValue = lowerValue;
+                    _upperValue = upperValue;
+
+                    print(_lowerValue);
+                  });
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class MeterItem extends StatelessWidget {
-  final int value;
-  final bool isSelected;
-  final bool isFractional;
-  final void Function(int) onPageChanged;
 
-  const MeterItem({
-    Key? key,
-    required this.value,
-    required this.isSelected,
-    required this.isFractional,
-    required this.onPageChanged,
-  }) : super(key: key);
+
+class YourWidget extends StatefulWidget {
+  @override
+  _YourWidgetState createState() => _YourWidgetState();
+}
+
+class _YourWidgetState extends State<YourWidget> {
+  double minValue = 0; // Initial minimum value
+  double maxValue = 100; // Initial maximum value
+  double knobSize = 22; // Width of the knob
 
   @override
   Widget build(BuildContext context) {
-    double itemWidth = isFractional ? 8.0 : 10.0; // Adjusted width for items divisible by 5
-    double itemHeight = isSelected ? 100.0 : 80.0;
-    double itemPadding = isSelected ? 20.0 : 0.0;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double minLeft = (screenWidth * (minValue / 100)).clamp(0, screenWidth - knobSize);
+    double maxLeft = (screenWidth * (maxValue / 100)).clamp(knobSize, screenWidth);
 
-    Color itemColor = isSelected ? Colors.red.withOpacity(0.7) : Colors.white.withOpacity(0.7);
-    Color textColor = isSelected ? Colors.white : Colors.black;
-
-    if (isFractional) {
-      itemPadding += 5.0;
-    }
-
-    String? underText;
-    if (value % 5 == 0 && value <= 100) {
-      underText = "$value";
-    }
-
-    return GestureDetector(
-      onTap: () {
-        onPageChanged(value - 1); // Adjust the page index to match the item's index
-      },
-      child: Column(
-        children: [
-          Container(
-            width: itemWidth,
-            height: itemHeight,
-            padding: EdgeInsets.symmetric(vertical: itemPadding),
-            margin: EdgeInsets.only(left: isFractional ? 5.0 : 0.0, right: isFractional ? 5.0 : 0.0),
-            decoration: BoxDecoration(
-              color: itemColor,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Center(
-              child: Text(
-                '$value',
-                style: TextStyle(fontSize: 14, color: textColor),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Your Widget'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Min Value: ${minValue.toStringAsFixed(1)}'),
+                Text('Max Value: ${maxValue.toStringAsFixed(1)}'),
+              ],
             ),
           ),
-          Text(
-            underText ?? '',
-            style: TextStyle(fontSize: 14, color: Colors.black),
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
+          SizedBox(height: 20),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: screenWidth,
+                height: 5,
+                color: Colors.grey[300],
+              ),
+              Positioned(
+                left: minLeft - knobSize / 2,
+                child: GestureDetector(
+                  onHorizontalDragUpdate: (details) {
+                    setState(() {
+                      minValue += details.primaryDelta! / screenWidth * 100;
+                      if (minValue < 0) minValue = 0;
+                      if (minValue > maxValue) minValue = maxValue;
+                    });
+                  },
+                  child: Container(
+                    width: knobSize,
+                    height: knobSize,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: maxLeft - knobSize / 2,
+                child: GestureDetector(
+                  onHorizontalDragUpdate: (details) {
+                    setState(() {
+                      maxValue += details.primaryDelta! / screenWidth * 100;
+                      if (maxValue > 100) maxValue = 100;
+                      if (maxValue < minValue) maxValue = minValue;
+                    });
+                  },
+                  child: Container(
+                    width: knobSize,
+                    height: knobSize,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

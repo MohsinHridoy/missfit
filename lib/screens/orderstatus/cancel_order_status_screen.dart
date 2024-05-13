@@ -3,7 +3,7 @@ import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 
 import '../cartscreen/cart.dart';
 
-enum CancelOrderStatusEnum { Processing, Placed, Packed, Shipped, Packed1 }
+enum CancelOrderStatusEnum { Processing,CANCELLED, Placed, Packed, Shipped, Packed1 }
 
 class CancelOrderStatus extends StatefulWidget {
   final CancelOrderStatusEnum status;
@@ -98,7 +98,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                         padding: const EdgeInsets.only(left: 20.0,right: 20),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 400,
+                          height: 425,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -161,6 +161,8 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
 
                                 _buildStatusItem(CancelOrderStatusEnum.Processing,
                                     'Order Processing', 'Tuesday, 26 March, 09:13 AM'),
+                                _buildStatusItem(CancelOrderStatusEnum.Placed, 'Order Canceled',
+                                    'Tuesday, 26 March, 09:15 AM'),
                                 _buildStatusItem(CancelOrderStatusEnum.Placed, 'Order Placed',
                                     'Tuesday, 26 March, 09:15 AM'),
                                 _buildStatusItem(CancelOrderStatusEnum.Packed, 'Order Packed',
@@ -184,7 +186,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -202,7 +204,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -345,90 +347,6 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                                 ),
                               ),
                               Spacer(),
-                              // Align(
-                              //   alignment: Alignment.bottomCenter,
-                              //   child: Padding(
-                              //     padding: const EdgeInsets.only(top: 45.0),
-                              //     child: Row(
-                              //       children: [
-                              //         GestureDetector(
-                              //           onTap: () {
-                              //             setState(() {
-                              //               if (item.quantity > 1)
-                              //                 item.quantity--;
-                              //             });
-                              //           },
-                              //           child: Container(
-                              //             width: 24,
-                              //             height: 24,
-                              //             padding: const EdgeInsets.only(
-                              //               top: 4.50,
-                              //               left: 4,
-                              //               right: 4,
-                              //               bottom: 3.50,
-                              //             ),
-                              //             clipBehavior: Clip.antiAlias,
-                              //             decoration: BoxDecoration(
-                              //               color: Color(0xFF94A3B8),
-                              //               borderRadius:
-                              //               BorderRadius.circular(4),
-                              //             ),
-                              //             child: Center(
-                              //               child: Image.asset(
-                              //                   "assets/cart/icon_minus.png"),
-                              //             ),
-                              //           ),
-                              //         ),
-                              //         Padding(
-                              //           padding: const EdgeInsets.only(
-                              //               left: 4.0, right: 4.0),
-                              //           child: SizedBox(
-                              //             width: 20,
-                              //             child: Center(
-                              //               child: Text(
-                              //                 '${item.quantity}',
-                              //                 style: TextStyle(
-                              //                   color: Color(0xFF334155),
-                              //                   fontSize: 14,
-                              //                   fontFamily: 'Archivo',
-                              //                   fontWeight: FontWeight.w400,
-                              //                   height: 0.10,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           ),
-                              //         ),
-                              //         GestureDetector(
-                              //           onTap: () {
-                              //             setState(() {
-                              //               item.quantity++;
-                              //             });
-                              //           },
-                              //           child: Container(
-                              //             width: 24,
-                              //             height: 24,
-                              //             padding: const EdgeInsets.only(
-                              //               top: 4.50,
-                              //               left: 4,
-                              //               right: 4,
-                              //               bottom: 3.50,
-                              //             ),
-                              //             clipBehavior: Clip.antiAlias,
-                              //             decoration: BoxDecoration(
-                              //               color: Color(0xFFFF4343),
-                              //               borderRadius:
-                              //               BorderRadius.circular(4),
-                              //             ),
-                              //             child: Center(
-                              //               child: Image.asset(
-                              //                   "assets/cart/icon_add.png"),
-                              //             ),
-                              //           ),
-                              //         )
-                              //       ],
-                              //     ),
-                              //   ),
-                              // )
                               SizedBox(
                                 width: 79,
                                 child: Text(
@@ -560,7 +478,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 14,
-                    fontFamily: 'Archivo',
+                    fontFamily: 'Archivo-Regular',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -575,19 +493,20 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
               children: [
                 _isStatusChecked(status, widget.status)
                     ? _buildLinearHeight(40)
-                    : _buildLinearHeight1(20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: Text(
-                    time,
-                    style: TextStyle(
-                      color: Color(0xFF66758C),
-                      fontSize: 12,
-                      fontFamily: 'Archivo',
-                      fontWeight: FontWeight.w400,
+                    : _buildDashedHeight(30),
+                if (_isStatusChecked(status, widget.status)) // Only add the time if the status is checked
+                  Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: Text(
+                      time,
+                      style: TextStyle(
+                        color: Color(0xFF66758C),
+                        fontSize: 12,
+                        fontFamily: 'Archivo-Regular',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

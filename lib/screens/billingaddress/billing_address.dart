@@ -238,14 +238,17 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                   bottomLeft: Radius.circular(8),
                 ),
               )),
-          Text(
-            'Same as Shipping Address',
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 14,
-              fontFamily: 'Archivo-Medium',
-              fontWeight: FontWeight.w500,
-              height: 0.10,
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Text(
+              'Same as Shipping Address',
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 14,
+                fontFamily: 'Archivo-Medium',
+                fontWeight: FontWeight.w500,
+                height: 0.10,
+              ),
             ),
           ),
           Spacer(),

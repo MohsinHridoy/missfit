@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // class TestScroll extends StatefulWidget {
 //   const TestScroll({Key? key}) : super(key: key);
@@ -159,10 +160,12 @@ class _TestScrollState extends State<TestScroll> {
   int? currentPageIndex = 24; // Set initialPageIndex to 9 for the 10th item
   int? selectedValue = 0;
   String selectedUnit = 'kgs';
-
+  late SharedPreferences _prefs;
+  late int _savedIndex;
   @override
   void initState() {
     super.initState();
+    _initPrefs();
     _pageController = PageController(
         viewportFraction: 0.042,
         initialPage: currentPageIndex!,
@@ -170,7 +173,27 @@ class _TestScrollState extends State<TestScroll> {
     _pageController!.addListener(_pageListener);
     selectedValue = meterValues[currentPageIndex!];
   }
+// Initialize SharedPreferences
+  void _initPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+    // Retrieve the saved current index, default to 0 if not found
+    _savedIndex = _prefs.getInt('currentIndex') ?? 0;
 
+    setState(() {
+      _pageController = PageController(
+        viewportFraction: 0.042,
+        initialPage: _savedIndex,
+        keepPage: true,
+      );
+      _pageController!.addListener(_pageListener);
+      currentPageIndex = _savedIndex;
+      selectedValue = meterValues[currentPageIndex!];
+    });
+  }
+  // Save current index to SharedPreferences
+  _saveIndex(int index) async {
+    await _prefs.setInt('currentIndex', index);
+  }
   @override
   void dispose() {
     _pageController?.removeListener(_pageListener);
@@ -382,7 +405,10 @@ class _TestScrollState extends State<TestScroll> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 30),
                 child: GestureDetector(
-                  onTap: (){
+                  onTap: () async{
+                    await _saveIndex(currentPageIndex!);
+
+                    print(currentPageIndex);
                     widget.onNextPressed();
 
                   },

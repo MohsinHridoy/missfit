@@ -77,7 +77,8 @@ class _HomeState extends State<Home> {
   List<BlogItem> blogItems = [
     BlogItem(
       imagePath: 'assets/home/img_blog_item.png',
-      title: 'Mastering Responsive Web Design: Techniques and Business studyBusiness stud',
+      title:
+          'Mastering Responsive Web Design: Techniques and Business studyBusiness stud',
       dateAndTime: '02 Fév',
       category: 'Full body',
     ),
@@ -99,56 +100,72 @@ class _HomeState extends State<Home> {
       dateAndTime: '02 Fév',
       category: 'Full body',
     )
+    // Add more WorkoutItem objects as needed
+  ];
+
+  List<BlogItem> headerItems = [
+    BlogItem(
+      imagePath: 'assets/home/img_blog_item.png',
+      title:
+          'Mastering Responsive Web Design: Techniques and Business studyBusiness stud',
+      dateAndTime: '02 Fév',
+      category: 'Full body',
+    ),
+    BlogItem(
+      imagePath: 'assets/home/img_blog_item.png',
+      title: 'Mastering Responsive Web Design: Techniques and B...',
+      dateAndTime: '02 Fév',
+      category: 'Full body',
+    )
 
     // Add more WorkoutItem objects as needed
   ];
 
   int _currentPage = 0; // Track the current page index
+  int _currentPage1 = 0; // Track the current page index
   ScrollController _scrollController = ScrollController();
-  double lastScrollPosition = 0;  // Variable to keep track of last scroll position
-  bool isScrollingUp=false;
-  bool hasCrossedAboveWhileUp = false;  // Track if crossed 60 while going up
+  double lastScrollPosition =
+      0; // Variable to keep track of last scroll position
+  bool isScrollingUp = false;
+  bool hasCrossedAboveWhileUp = false; // Track if crossed 60 while going up
   bool isAboveThreshold = false;
+
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
   }
 
-      // Current state above 60 or not
-
+  // Current state above 60 or not
 
   void _scrollListener() {
     double currentScroll = _scrollController.offset;
     bool isScrollingUp = currentScroll > lastScrollPosition;
 
     if (currentScroll >= 60 && isScrollingUp) {
-      hasCrossedAboveWhileUp = true;  // Set flag when scrolling up above 60
+      hasCrossedAboveWhileUp = true; // Set flag when scrolling up above 60
     }
 
     if (currentScroll < 50) {
-      hasCrossedAboveWhileUp = false;  // Reset flag when dropping below 60
-      setState(() {
-
-      });
+      hasCrossedAboveWhileUp = false; // Reset flag when dropping below 60
+      setState(() {});
     }
 
-    isAboveThreshold = currentScroll >= 60;  // Update current state above or below threshold
+    isAboveThreshold =
+        currentScroll >= 60; // Update current state above or below threshold
 
     // Now handle printing logic based on updated flags
     if (isAboveThreshold) {
       if (isScrollingUp) {
-        setState(() {
-
-        });
-        print("Above 60: True");  // Print when scrolling up above 60
+        setState(() {});
+        print("Above 60: True"); // Print when scrolling up above 60
       } else if (!isScrollingUp && hasCrossedAboveWhileUp) {
-        print("Above 60: False");  // Print when scrolling down below 60
-
+        print("Above 60: False"); // Print when scrolling down below 60
       }
     }
 
-    lastScrollPosition = currentScroll;  // Update last scroll position for next calculation
+    lastScrollPosition =
+        currentScroll; // Update last scroll position for next calculation
   }
 
   @override
@@ -157,22 +174,34 @@ class _HomeState extends State<Home> {
     _scrollController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            color:  Color(0xFFF6F6F6),
+            color: Color(0xFFF6F6F6),
             child: SingleChildScrollView(
-              controller: _scrollController,  // Set the controller here
+              controller: _scrollController, // Set the controller here
 
               child: Column(
                 children: [
                   SizedBox(
                     height: 150,
                   ),
-                  _build_Plan_Status(),
+
+                  // _build_Plan_Status(),
+
+                  _buildEventItem(),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  _buildBlogIndicatorItem(),
+
+                  SizedBox(
+                    height: 50,
+                  ),
 
                   _textTitle('Select Activity'),
                   Container(
@@ -180,7 +209,6 @@ class _HomeState extends State<Home> {
                     height: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-
                       image: DecorationImage(
                         image: AssetImage('assets/home/img_take_challenge.png'),
                         fit: BoxFit.fill,
@@ -188,7 +216,7 @@ class _HomeState extends State<Home> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
-                      child:  Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -220,10 +248,60 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   _buildActivityItem(),
-                  SizedBox(height: 40,),
+                  SizedBox(
+                    height: 40,
+                  ),
 
                   _textTitle('New Workout'),
                   _buildListWorkOutItem(),
+
+                  Container(
+                    width: 319.64,
+                    height: 156,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: AssetImage("assets/home/img_book_service.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 196,
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Book your service\n',
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 22,
+                                    fontFamily: 'Kanit',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0.06,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: 'with our coaches',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 16,
+                                    fontFamily: 'Kanit',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.09,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
@@ -255,7 +333,9 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   _buildBlogItem(),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   _buildBlogIndicatorItem(),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -289,7 +369,9 @@ class _HomeState extends State<Home> {
                   ),
                   _buildListSubcribeItem(),
 
-                  SizedBox(height: 150,)
+                  SizedBox(
+                    height: 150,
+                  )
                 ],
               ),
             ),
@@ -333,7 +415,6 @@ class _HomeState extends State<Home> {
           //   ),
           // ),
 
-
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.15,
@@ -341,7 +422,9 @@ class _HomeState extends State<Home> {
                 const EdgeInsets.only(top: 10, left: 16, right: 16, bottom: 12),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
-              color:  hasCrossedAboveWhileUp ?Colors.white.withAlpha(27):Colors.white,
+              color: hasCrossedAboveWhileUp
+                  ? Colors.white.withAlpha(27)
+                  : Colors.white,
               // Set color to transparent
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -353,7 +436,7 @@ class _HomeState extends State<Home> {
             child: Stack(
               children: [
                 Visibility(
-                  visible: hasCrossedAboveWhileUp ?true:false,
+                  visible: hasCrossedAboveWhileUp ? true : false,
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                     child: Container(),
@@ -419,7 +502,7 @@ class _HomeState extends State<Home> {
                         "assets/home/icon_notifications.png",
                         width: 24,
                         height: 24,
-                        color:Color(0xFF334155) ,
+                        color: Color(0xFF334155),
                       )
                     ],
                   ),
@@ -564,13 +647,14 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-
-                  Image.asset("assets/home/img_subcribe_girl.png", width: 100, height: 200,),
+                  Image.asset(
+                    "assets/home/img_subcribe_girl.png",
+                    width: 100,
+                    height: 200,
+                  ),
                 ],
               ),
             ),
-
-
           );
         },
       ),
@@ -581,13 +665,13 @@ class _HomeState extends State<Home> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
-        4, // Assuming there are 4 items in the slider
-            (index) => Container(
-          width: 14,
-          height: 5,
+        2, // Assuming there are 4 items in the slider
+        (index) => Container(
+          width: 23.33,
+          height: 6,
           margin: EdgeInsets.symmetric(horizontal: 2.0),
           decoration: ShapeDecoration(
-            color: index == _currentPage ? Color(0xFFFFA142): Colors.grey,
+            color: index == _currentPage1 ?  Color(0xFFFFA142) : Color(0xFFE5E7EB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
@@ -596,16 +680,19 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
   List<String> _splitTitle(String title) {
     if (title.length > 40) {
       // Split the title into two lines if it exceeds a certain length
-      int index = title.lastIndexOf(' ', 40); // Find the index of the last space before or at the 30th character
+      int index = title.lastIndexOf(' ',
+          40); // Find the index of the last space before or at the 30th character
       if (index != -1) {
         return [title.substring(0, index), title.substring(index + 1)];
       }
     }
     return [title];
   }
+
   Widget _buildBlogItem() {
     return Container(
       height: 200,
@@ -670,8 +757,7 @@ class _HomeState extends State<Home> {
                   ),
                   Container(
                     height: 70,
-                    padding: const EdgeInsets.only(
-                        top: 5, left: 16),
+                    padding: const EdgeInsets.only(top: 5, left: 16),
                     clipBehavior: Clip.antiAlias,
                     decoration: ShapeDecoration(
                       color: Color(0x6618181B),
@@ -708,47 +794,48 @@ class _HomeState extends State<Home> {
                         //   ),
                         // ),
 
-
-          SizedBox(
-            width: 268,
-            height: 50,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  lines.first, // Displaying the first line
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Archivo-Medium',
-                    fontWeight: FontWeight.w500,
-                    height: 1.4,
-                  ),
-                  maxLines: 1,
-                ),
-                SizedBox(height: 2), // Add some space between lines
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        lines.length > 1 ? lines[1] : '', // Displaying the second line, if available
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-Medium',
-                          fontWeight: FontWeight.w500,
-                          height: 1.4,
+                        SizedBox(
+                          width: 268,
+                          height: 50,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                lines.first, // Displaying the first line
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.4,
+                                ),
+                                maxLines: 1,
+                              ),
+                              SizedBox(height: 2),
+                              // Add some space between lines
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      lines.length > 1 ? lines[1] : '',
+                                      // Displaying the second line, if available
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.4,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  SizedBox(width: 150),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    SizedBox(width: 150),
-                  ],
-                ),
-              ],
-            ),
-          ),
                       ],
                     ),
                   ),
@@ -761,20 +848,373 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // Widget _buildEventItem() {
+  //   return Container(
+  //     height: 200,
+  //     child: PageView.builder(
+  //       controller: PageController(viewportFraction: 0.9),
+  //       itemCount: blogItems.length,
+  //       onPageChanged: (int page) {
+  //         setState(() {
+  //           _currentPage = page; // Update the current page index
+  //         });
+  //       },
+  //       itemBuilder: (BuildContext context, int index) {
+  //         BlogItem item = blogItems[index];
+  //         List<String> lines = _splitTitle(item.title);
+  //
+  //         print(lines.first);
+  //
+  //         return Padding(
+  //           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+  //           child: Container(
+  //             width: 200,
+  //             height: 200,
+  //             decoration: BoxDecoration(
+  //               borderRadius: BorderRadius.circular(10.0),
+  //               image: DecorationImage(
+  //                 image: AssetImage(item.imagePath),
+  //                 fit: BoxFit.fill,
+  //               ),
+  //             ),
+  //             child: Column(
+  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //               children: [
+  //                 Padding(
+  //                   padding: const EdgeInsets.all(8.0),
+  //                   child: Align(
+  //                     alignment: Alignment.topRight,
+  //                     child: Container(
+  //                       width: 55,
+  //                       height: 18,
+  //                       padding: const EdgeInsets.symmetric(
+  //                           horizontal: 4, vertical: 2),
+  //                       decoration: ShapeDecoration(
+  //                         color: Color(0x21FFF4E4),
+  //                         shape: RoundedRectangleBorder(
+  //                           borderRadius: BorderRadius.circular(1),
+  //                         ),
+  //                       ),
+  //                       child: Center(
+  //                         child: Text(
+  //                           'Beginner',
+  //                           style: TextStyle(
+  //                             color: Color(0xFFFFA142),
+  //                             fontSize: 10,
+  //                             fontFamily: 'Archivo-Regular',
+  //                             fontWeight: FontWeight.w400,
+  //                             height: 0.14,
+  //                           ),
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 Container(
+  //                   height: 70,
+  //                   padding: const EdgeInsets.only(
+  //                       top: 5, left: 16),
+  //                   clipBehavior: Clip.antiAlias,
+  //                   decoration: ShapeDecoration(
+  //                     color: Color(0x6618181B),
+  //                     // Set color to transparent
+  //                     shape: RoundedRectangleBorder(
+  //                       borderRadius: BorderRadius.only(
+  //                         bottomLeft: Radius.circular(4),
+  //                         bottomRight: Radius.circular(4),
+  //                       ),
+  //                     ),
+  //                   ),
+  //                   child: Stack(
+  //                     children: [
+  //                       BackdropFilter(
+  //                         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+  //                         child: Container(),
+  //                       ),
+  //                       // SizedBox(
+  //                       //   width: 268,
+  //                       //   height: 50,
+  //                       //   child: Text(
+  //                       //     item.title,
+  //                       //     textAlign: TextAlign.left, // Center align text horizontally
+  //                       //
+  //                       //     style: TextStyle(
+  //                       //       color: Colors.white,
+  //                       //       fontSize: 16,
+  //                       //       fontFamily: 'Archivo-Medium',
+  //                       //       fontWeight: FontWeight.w500,
+  //                       //       height: 1.4
+  //                       //     ),
+  //                       //     maxLines: 2, // Maximum lines for the text to wrap
+  //                       //     overflow: TextOverflow.ellipsis,
+  //                       //   ),
+  //                       // ),
+  //
+  //
+  //                       SizedBox(
+  //                         width: 268,
+  //                         height: 50,
+  //                         child: Column(
+  //                           crossAxisAlignment: CrossAxisAlignment.start,
+  //                           children: [
+  //                             Text(
+  //                               lines.first, // Displaying the first line
+  //                               style: TextStyle(
+  //                                 color: Colors.white,
+  //                                 fontSize: 16,
+  //                                 fontFamily: 'Archivo-Medium',
+  //                                 fontWeight: FontWeight.w500,
+  //                                 height: 1.4,
+  //                               ),
+  //                               maxLines: 1,
+  //                             ),
+  //                             SizedBox(height: 2), // Add some space between lines
+  //                             Row(
+  //                               children: [
+  //                                 Expanded(
+  //                                   child: Text(
+  //                                     lines.length > 1 ? lines[1] : '', // Displaying the second line, if available
+  //                                     style: TextStyle(
+  //                                       color: Colors.white,
+  //                                       fontSize: 16,
+  //                                       fontFamily: 'Archivo-Medium',
+  //                                       fontWeight: FontWeight.w500,
+  //                                       height: 1.4,
+  //                                     ),
+  //                                     maxLines: 1,
+  //                                     overflow: TextOverflow.ellipsis,
+  //                                   ),
+  //                                 ),
+  //                                 SizedBox(width: 150),
+  //                               ],
+  //                             ),
+  //                           ],
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
+
+  Widget _buildEventItem() {
+    return Container(
+      height: 136,
+      child: PageView.builder(
+        controller: PageController(viewportFraction: 0.9),
+        itemCount: headerItems.length,
+        onPageChanged: (int page) {
+          setState(() {
+            _currentPage1 = page; // Update the current page index
+          });
+        },
+        itemBuilder: (BuildContext context, int index) {
+          BlogItem item = headerItems[index];
+          List<String> lines = _splitTitle(item.title);
+
+          // Check if the index is even or odd to render different types of items
+          if (index.isEven) {
+            return _buildTitleSubtitleItem(item, lines);
+          } else {
+            return _buildButtonProgressBarItem(item);
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildTitleSubtitleItem(BlogItem item, List<String> lines) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      child: Container(
+        width: 200,
+        height: 136,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            // image: DecorationImage(
+            //   image: AssetImage(item.imagePath),
+            //   fit: BoxFit.fill,
+            // ),
+            color: Color(0xFFE7F8FF)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                'Tomorrow, 18:00',
+                style: TextStyle(
+                  color: Color(0xFF334155),
+                  fontSize: 14,
+                  fontFamily: 'Archivo-Regular',
+                  fontWeight: FontWeight.w400,
+                  height: 0.10,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                'Nutrition For Everybody',
+                style: TextStyle(
+                  color: Color(0xFF334155),
+                  fontSize: 16,
+                  fontFamily: 'Archivo-SemiBold',
+                  fontWeight: FontWeight.w600,
+                  height: 0.09,
+                ),
+              ),
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, bottom: 40),
+              child: Text(
+                'Offline Event',
+                style: TextStyle(
+                  color: Color(0xFF66758C),
+                  fontSize: 14,
+                  fontFamily: 'Archivo',
+                  fontWeight: FontWeight.w400,
+                  height: 0.10,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButtonProgressBarItem(BlogItem item) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      child: Container(
+        width: 200,
+        height: 136,
+        decoration: ShapeDecoration(
+          color: Color(0xFFFFEAE7),
+          shape: RoundedRectangleBorder(
+            side: BorderSide(width: 2, color: Colors.white),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          shadows: [
+            BoxShadow(
+              color: Color(0x0C000000),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        'Your subscription is will\nbe end! Let’s renew it!',
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      width: 154,
+                      height: 36,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Renew subscription',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.10,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 85,
+              width: 100,
+              child: Stack(
+                children: [
+                  Center(
+                    child: CustomPaint(
+                      size: Size(60, 60),
+                      painter: MyCircularProgressPainter(
+                        backgroundColor: Colors.white,
+                        progress: progressPercentage,
+                        gradient: LinearGradient(
+                          begin: Alignment(0.06, -1.00),
+                          end: Alignment(-0.06, 1),
+                          colors: [Color(0xFFFF4343), Color(0xFFFF4343)],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      '5',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFFF4343),
+                        fontSize: 24,
+                        fontFamily: 'Kanit',
+                        fontWeight: FontWeight.w500,
+                        height: 0.05,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _textTitle(String title) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 20.0,bottom: 40),
+        padding: const EdgeInsets.only(left: 20.0, bottom: 40),
         child: Text(
           title,
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 20,
-              fontFamily: 'Kanit-Medium',
-              fontWeight: FontWeight.w500,
-              height: 0.06,
-            ),
+          style: TextStyle(
+            color: Color(0xFF334155),
+            fontSize: 20,
+            fontFamily: 'Kanit-Medium',
+            fontWeight: FontWeight.w500,
+            height: 0.06,
+          ),
         ),
       ),
     );
@@ -873,7 +1313,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 5.0,left: 2),
+                              padding: const EdgeInsets.only(top: 5.0, left: 2),
                               child: Row(
                                 children: [
                                   Padding(
@@ -884,7 +1324,8 @@ class _HomeState extends State<Home> {
                                       decoration: ShapeDecoration(
                                         color: Color(0xFFFF4343),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(4),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
                                         ),
                                       ),
                                     ),
@@ -900,7 +1341,8 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 4.0,right: 4.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 4.0, right: 4.0),
                                     child: Container(
                                       width: 4,
                                       height: 4,
@@ -942,7 +1384,7 @@ class _HomeState extends State<Home> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10.0, top: 20,right: 15),
+          padding: const EdgeInsets.only(left: 10.0, top: 20, right: 15),
           child: activityCard(
               'assets/home/img_workout.png', 'Start a workout', '200 Workouts'),
         ),
@@ -1006,7 +1448,7 @@ class _HomeState extends State<Home> {
 
   Widget _build_Plan_Status() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 70),
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 70),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 85,

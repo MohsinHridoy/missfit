@@ -77,74 +77,77 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 40,
                     ),
-                    Container(
-                      height: 60,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 15.0, right: 10),
-                            child: Image.asset(
-                              "assets/order/icon_congrates.png",
-                              height: 50,
-                              width: 50,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      child: Container(
+                        height: 60,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 15.0, right: 10),
+                              child: Image.asset(
+                                "assets/order/icon_congrates.png",
+                                height: 50,
+                                width: 50,
+                              ),
                             ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: SizedBox(
-                                  height: 20,
-                                  child: Text(
-                                    'Congrats! Your Order is Submitted',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.09,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: SizedBox(
+                                    height: 20,
+                                    child: Text(
+                                      'Congrats! Your Order is Submitted',
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.09,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'Your order no is ',
-                                        style: TextStyle(
-                                          color: Color(0xFF334155),
-                                          fontSize: 14,
-                                          fontFamily: 'Archivo-Medium',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.10,
+                                SizedBox(
+                                  height: 15,
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Your order no is ',
+                                          style: TextStyle(
+                                            color: Color(0xFF334155),
+                                            fontSize: 14,
+                                            fontFamily: 'Archivo-Medium',
+                                            fontWeight: FontWeight.w500,
+                                            height: 0.10,
+                                          ),
                                         ),
-                                      ),
-                                      TextSpan(
-                                        text: '#126546',
-                                        style: TextStyle(
-                                          color: Color(0xFFE88E32),
-                                          fontSize: 14,
-                                          fontFamily: 'Archivo-Medium',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.10,
+                                        TextSpan(
+                                          text: '#126546',
+                                          style: TextStyle(
+                                            color: Color(0xFFE88E32),
+                                            fontSize: 14,
+                                            fontFamily: 'Archivo-Medium',
+                                            fontWeight: FontWeight.w500,
+                                            height: 0.10,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 
@@ -155,14 +158,14 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     _buildDelivaryStatusTextItem(),
 
@@ -173,7 +176,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -183,13 +186,13 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                     _buildEsrtimatedDateStatus(),
 
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
+                      padding: const EdgeInsets.only(left: 20.0,top: 30,bottom: 20),
                       child: Text(
-                        'Delivery Method',
+                        'Payment Method',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -205,11 +208,15 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
                       ),
+                    ),
+
+                    SizedBox(
+                      height: 15,
                     ),
 
                     _buildCartItemsList(),
@@ -220,7 +227,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -278,7 +285,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
   Widget _buildCartItemsList() {
     return SingleChildScrollView(
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: List.generate(
                 cartItems.length,
@@ -497,41 +504,62 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
   Widget _buildSummeryItemText(String title, String value) {
     return Padding(
       padding:
-          const EdgeInsets.only(left: 25.0, right: 25, top: 30, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
+      child: Column(
         children: [
-          SizedBox(
-            width: 150,
-            child: Text(
-              title,
-              style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 16,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 0.09,
-                  wordSpacing: 1),
-            ),
-          ),
-          SizedBox(
-            width: 71,
-            child: Text(
-              value,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 16,
-                fontFamily: 'Archivo-Regular',
-                fontWeight: FontWeight.w400,
-                height: 0.09,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 150,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Regular',
+                      fontWeight: FontWeight.w400,
+                      height: 0.09,
+                      wordSpacing: 1),
+                ),
               ),
+              SizedBox(
+                width: 71,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 16,
+                    fontFamily: 'Archivo-Regular',
+                    fontWeight: FontWeight.w400,
+                    height: 0.09,
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 25,),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 1,
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 0.5,
+                  color: Colors.grey.withOpacity(0.3),
+                ),
+              ),
+            ),
+            child: CustomPaint(
+              painter: DashedLinePainter(),
             ),
           )
         ],
       ),
     );
   }
+
 
   Widget _buildDelivaryStatusTextItem() {
     return Padding(
@@ -647,7 +675,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                     style: TextStyle(
                       color: Color(0xFF334155),
                       fontSize: 16,
-                      fontFamily: 'Archivo',
+                      fontFamily: 'Archivo-Regular',
                       fontWeight: FontWeight.w400,
                       height: 0.09,
                     ),
@@ -693,7 +721,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 14,
-                    fontFamily: 'Archivo',
+                    fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
                     height: 0.10,
                   ),
@@ -708,7 +736,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                 style: TextStyle(
                   color: Color(0xFF66758C),
                   fontSize: 12,
-                  fontFamily: 'Archivo',
+                  fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
                   height: 0.12,
                 ),
@@ -736,5 +764,33 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
         ),
       ),
     );
+  }
+}
+class DashedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = Colors.white.withOpacity(0.6)
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.square; // Setting strokeCap to square
+
+    final double dashWidth = 5;
+    final double dashSpace = 10;
+    double startX = 0;
+
+    while (startX < size.width) {
+      canvas.drawLine(
+        Offset(startX, size.height / 2),
+        Offset(startX + dashWidth, size.height / 2),
+        paint,
+      );
+      startX += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }

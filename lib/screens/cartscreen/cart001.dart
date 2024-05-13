@@ -99,11 +99,11 @@ class _Cart001State extends State<Cart001> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20),
-                    _buildSelectAllCheckbox(),
                     SizedBox(height: 25),
+                    _buildSelectAllCheckbox(),
+                    SizedBox(height: 30),
                     _buildCartItemsList(),
-                    SizedBox(height: 40),
+                    SizedBox(height: 30),
                     _buildVoucherCode(),
                     SizedBox(
                       height: 50,
@@ -115,11 +115,14 @@ class _Cart001State extends State<Cart001> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     _buildSummeryItemText('Subtotal', 'CHF 140'),
                     _buildRemovedItemsList(),
@@ -130,8 +133,7 @@ class _Cart001State extends State<Cart001> {
                     Container(
                         width: MediaQuery.of(context).size.width,
                         height: 76,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 16),
+
                         decoration: ShapeDecoration(
                           color: Colors.white.withOpacity(0.05000000074505806),
                           shape: RoundedRectangleBorder(
@@ -147,7 +149,7 @@ class _Cart001State extends State<Cart001> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 15.0),
+                              padding: const EdgeInsets.only(top: 25.0,left: 15),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -186,23 +188,26 @@ class _Cart001State extends State<Cart001> {
                                           CheckOut()),
                                 );
                               },
-                              child: Container(
-                                width: 150,
-                                height: 44,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Checkout',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0.10,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Container(
+                                  width: 150,
+                                  height: 44,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFFFF4343),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Checkout',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.10,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -238,35 +243,55 @@ class _Cart001State extends State<Cart001> {
   Widget _buildSummeryItemText(String title, String value) {
     return Padding(
       padding:
-          const EdgeInsets.only(left: 25.0, right: 25, top: 30, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
+      child: Column(
         children: [
-          SizedBox(
-            width: 150,
-            child: Text(
-              title,
-              style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 16,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 0.09,
-                  wordSpacing: 1),
-            ),
-          ),
-          SizedBox(
-            width: 71,
-            child: Text(
-              value,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 16,
-                fontFamily: 'Archivo-Regular',
-                fontWeight: FontWeight.w400,
-                height: 0.09,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 150,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Regular',
+                      fontWeight: FontWeight.w400,
+                      height: 0.09,
+                      wordSpacing: 1),
+                ),
               ),
+              SizedBox(
+                width: 71,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 16,
+                    fontFamily: 'Archivo-Regular',
+                    fontWeight: FontWeight.w400,
+                    height: 0.09,
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 25,),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 1,
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 0.5,
+                  color: Colors.grey.withOpacity(0.3),
+                ),
+              ),
+            ),
+            child: CustomPaint(
+              painter: DashedLinePainter(),
             ),
           )
         ],
@@ -388,7 +413,7 @@ class _Cart001State extends State<Cart001> {
               });
             },
             child: Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 5),
+              padding: const EdgeInsets.only(left: 15.0, right: 10),
               child: Image.asset(
                 isAllSelected
                     ? "assets/cart/icon_checkbox.png"
@@ -402,7 +427,7 @@ class _Cart001State extends State<Cart001> {
             style: TextStyle(
               color: Color(0xFF334155),
               fontSize: 14,
-              fontFamily: 'Archivo',
+              fontFamily: 'Archivo-Regular',
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -424,13 +449,13 @@ class _Cart001State extends State<Cart001> {
                   });
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 4.0, right: 8),
+                  padding: const EdgeInsets.only(left: 4.0, right: 12),
                   child: Text(
                     'Remove',
                     style: TextStyle(
                       color: Color(0xFFEF4444),
                       fontSize: 14,
-                      fontFamily: 'Archivo',
+                      fontFamily: 'Archivo-Regular',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -447,7 +472,7 @@ class _Cart001State extends State<Cart001> {
   Widget _buildCartItemsList() {
     return SingleChildScrollView(
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.only(left:20,right: 25),
             child: Column(
               children: List.generate(
                 cartItems.length,
@@ -511,7 +536,7 @@ class _Cart001State extends State<Cart001> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 25.0, bottom: 25),
+                                            top: 20.0, bottom: 30),
                                         child: Text(
                                           '2 kg',
                                           style: TextStyle(
@@ -574,7 +599,7 @@ class _Cart001State extends State<Cart001> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 4.0, right: 4.0),
+                                            left: 10.0, right: 10.0),
                                         child: SizedBox(
                                           width: 20,
                                           child: Center(
@@ -583,7 +608,7 @@ class _Cart001State extends State<Cart001> {
                                               style: TextStyle(
                                                 color: Color(0xFF334155),
                                                 fontSize: 14,
-                                                fontFamily: 'Archivo',
+                                                fontFamily: 'Archivo-Regular',
                                                 fontWeight: FontWeight.w400,
                                                 height: 0.10,
                                               ),
@@ -647,76 +672,6 @@ class _Cart001State extends State<Cart001> {
             )));
   }
 
-  // Widget _buildRemovedItemsList() {
-  //   double totalHeight = 20.0;
-  //   // Calculate the total height of list items
-  //   for (var removedItem in removedItems) {
-  //     totalHeight += _calculateListItemHeight(removedItem);
-  //   }
-  //   // Calculate extra padding based on the number of items
-  //   double extraPadding =
-  //       removedItems.isNotEmpty ? (removedItems.length) * 10.0 : 0.0;
-  //   // Add the total height and extra padding
-  //   totalHeight += extraPadding;
-  //
-  //   return Container(
-  //     height: totalHeight,
-  //     child: ListView.builder(
-  //       shrinkWrap: true,
-  //       itemCount: removedItems.length,
-  //       physics: NeverScrollableScrollPhysics(),
-  //       itemBuilder: (BuildContext context, int index) {
-  //         final removedItem = removedItems[index];
-  //
-  //         return Padding(
-  //           padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 5),
-  //           child: Container(
-  //             width: 320,
-  //             height: 40,
-  //             clipBehavior: Clip.antiAlias,
-  //             decoration: BoxDecoration(
-  //               color: Colors.white,
-  //               borderRadius: BorderRadius.circular(8),
-  //             ),
-  //             child: Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               children: [
-  //                 Text(
-  //                   '“Dumbbells” Deleted',
-  //                   style: TextStyle(
-  //                     color: Color(0xFF334155),
-  //                     fontSize: 14,
-  //                     fontFamily: 'Archivo-Regular',
-  //                     fontWeight: FontWeight.w400,
-  //                     height: 0.10,
-  //                   ),
-  //                 ),
-  //                 GestureDetector(
-  //                   onTap: () {
-  //                     setState(() {
-  //                       cartItems.add(removedItem);
-  //                       removedItems.remove(removedItem);
-  //                     });
-  //                   },
-  //                   child: Text(
-  //                     'Undo',
-  //                     style: TextStyle(
-  //                       color: Color(0xFFEF4444),
-  //                       fontSize: 14,
-  //                       fontFamily: 'Archivo-Regular',
-  //                       fontWeight: FontWeight.w400,
-  //                       height: 0.11,
-  //                     ),
-  //                   ),
-  //                 )
-  //               ],
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
 
   Widget _buildRemovedItemsList() {
     return SingleChildScrollView(
@@ -729,7 +684,7 @@ class _Cart001State extends State<Cart001> {
                   final removedItem = removedItems[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                        horizontal: 1, vertical: 10),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 40,
@@ -738,12 +693,12 @@ class _Cart001State extends State<Cart001> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
                               '"${removedItem.title}" Deleted',
                               style: TextStyle(
                                 color: Color(0xFF334155),
@@ -753,29 +708,37 @@ class _Cart001State extends State<Cart001> {
                                 height: 0.10,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  cartItems.add(removedItem);
-                                  removedItems.remove(removedItem);
-                                });
-                              },
-                              child: SizedBox(
-                                width: 100,
-                                child: Text(
-                                  'Undo',
-                                  style: TextStyle(
-                                    color: Color(0xFFEF4444),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo-Regular',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0.11,
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                cartItems.add(removedItem);
+                                removedItems.remove(removedItem);
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                color: Colors.transparent,
+                                child: Center(
+                                  child: Text(
+                                    'Undo',
+                                    style: TextStyle(
+                                      color: Color(0xFFEF4444),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.11,
+                                    ),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   );
@@ -784,19 +747,38 @@ class _Cart001State extends State<Cart001> {
             )));
   }
 
-  double _calculateListItemHeight(CartItem item) {
-    // Adjust this value based on your ListTile's content
-    double defaultItemHeight = 50.0;
-    // You can calculate the height based on the content of the list item
-    // For example, you can add the heights of text widgets, buttons, etc.
-    // Here, we're just returning a default height for simplicity
-    return defaultItemHeight;
-  }
-
   void _removeSelectedItems() {
     setState(() {
       removedItems.addAll(cartItems.where((item) => item.isChecked));
       cartItems.removeWhere((item) => item.isChecked);
     });
+  }
+}
+class DashedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = Colors.white.withOpacity(0.6)
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.square; // Setting strokeCap to square
+
+    final double dashWidth = 5;
+    final double dashSpace = 10;
+    double startX = 0;
+
+    while (startX < size.width) {
+      canvas.drawLine(
+        Offset(startX, size.height / 2),
+        Offset(startX + dashWidth, size.height / 2),
+        paint,
+      );
+      startX += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }

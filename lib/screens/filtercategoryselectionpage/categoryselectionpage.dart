@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Category {
   final String name;
   final int itemCount;
@@ -14,14 +17,83 @@ class Category {
   });
 }
 
+class CategoryItem extends StatelessWidget {
+  final Category category;
+  final ValueChanged<bool> onTap;
+
+  const CategoryItem({
+    Key? key,
+    required this.category,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTap(!category.isSelected);
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 20.0,
+          right: 20,
+          bottom: 5,
+        ),
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            vertical: 12.0,
+            horizontal: 2.0,
+          ),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey[300]!,
+                width: 1.0,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                child: category.isSelected
+                    ? Image.asset(
+                  "assets/registration/icon_selected_box.png",
+                  scale: 2.0,
+                )
+                    : Image.asset(
+                  "assets/registration/icon_unselected_checkbox1.png",
+                  scale: 2.0,
+                ),
+              ),
+              SizedBox(width: 16.0),
+              Text(
+                '${category.name} (${category.itemCount})',
+                style: TextStyle(
+                  color: Color(0xFF334155),
+                  fontSize: 16,
+                  fontFamily: 'Archivo-Regular',
+                  fontWeight: FontWeight.w400,
+                  height: 0.09,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class CategorySelectionPage extends StatefulWidget {
   const CategorySelectionPage({Key? key}) : super(key: key);
 
   @override
-  State<CategorySelectionPage> createState() => _CategorySelectionPageState();
+  _CategorySelectionPageState createState() =>
+      _CategorySelectionPageState();
 }
 
-class _CategorySelectionPageState extends State<CategorySelectionPage> {
+class _CategorySelectionPageState extends State<CategorySelectionPage>
+    with AutomaticKeepAliveClientMixin<CategorySelectionPage> {
   late SharedPreferences _prefs;
   List<Category> categories = [
     Category(name: 'Gym Equipment', itemCount: 32),
@@ -33,6 +105,9 @@ class _CategorySelectionPageState extends State<CategorySelectionPage> {
     Category(name: 'Shorts', itemCount: 80),
     Category(name: 'Sneakers', itemCount: 64),
   ];
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -48,7 +123,8 @@ class _CategorySelectionPageState extends State<CategorySelectionPage> {
     if (selectedCategoryNames != null) {
       setState(() {
         categories.forEach((category) {
-          category.isSelected = selectedCategoryNames.contains(category.name);
+          category.isSelected =
+              selectedCategoryNames.contains(category.name);
         });
       });
       // Print all the saved items
@@ -76,6 +152,7 @@ class _CategorySelectionPageState extends State<CategorySelectionPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // Necessary for AutomaticKeepAliveClientMixin
     return Scaffold(
       body: Container(
         color: Color(0xFFF6F6F6),
@@ -99,7 +176,7 @@ class _CategorySelectionPageState extends State<CategorySelectionPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",
@@ -122,66 +199,20 @@ class _CategorySelectionPageState extends State<CategorySelectionPage> {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            SizedBox(height: 15),
             Expanded(
               child: Container(
                 child: SingleChildScrollView(
                   child: Column(
                     children: List.generate(categories.length, (index) {
                       final category = categories[index];
-                      return GestureDetector(
-                        onTap: () {
+                      return CategoryItem(
+                        category: category,
+                        onTap: (isSelected) {
                           setState(() {
-                            category.isSelected = !category.isSelected;
+                            category.isSelected = isSelected;
                           });
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 20.0,
-                            right: 20,
-                            bottom: 5,
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 2.0,
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.grey[300]!,
-                                  width: 1.0,
-                                ),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  child: category.isSelected
-                                      ? Image.asset(
-                                    "assets/registration/icon_selected_box.png",
-                                    scale: 2.0,
-                                  )
-                                      : Image.asset(
-                                    "assets/registration/icon_unselected_checkbox1.png",
-                                    scale: 2.0,
-                                  ),
-                                ),
-                                SizedBox(width: 16.0),
-                                Text(
-                                  '${category.name} (${category.itemCount})',
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-Regular',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0.09,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
                       );
                     }),
                   ),

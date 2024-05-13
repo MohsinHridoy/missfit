@@ -99,7 +99,7 @@ class _OrderStatusState extends State<OrderStatus> {
                         padding: const EdgeInsets.only(left: 20.0,right: 20),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 400,
+                          height: 420,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -120,14 +120,14 @@ class _OrderStatusState extends State<OrderStatus> {
                                       style: TextStyle(
                                         color: Color(0xFF334155),
                                         fontSize: 14,
-                                        fontFamily: 'Archivo',
+                                        fontFamily: 'Archivo-Medium',
                                         fontWeight: FontWeight.w500,
                                         height: 0.10,
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: 25),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
@@ -135,7 +135,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 12,
-                                      fontFamily: 'Archivo',
+                                      fontFamily: 'Archivo-Regular',
                                       fontWeight: FontWeight.w400,
                                       height: 0.12,
                                     ),
@@ -157,6 +157,8 @@ class _OrderStatusState extends State<OrderStatus> {
                                     ),
                                   ),
                                 ),
+                                SizedBox(height: 20),
+
                                 _buildStatusItem(OrderStatusEnum.Processing,
                                     'Order Processing', 'Tuesday, 26 March, 09:13 AM'),
                                 _buildStatusItem(OrderStatusEnum.Placed, 'Order Placed',
@@ -182,7 +184,7 @@ class _OrderStatusState extends State<OrderStatus> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -200,7 +202,7 @@ class _OrderStatusState extends State<OrderStatus> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
@@ -261,7 +263,7 @@ class _OrderStatusState extends State<OrderStatus> {
           builder: (BuildContext context, StateSetter setState) {
             return Container(
               padding: EdgeInsets.only(top: 20, left: 15),
-              height:isInitialViewVisible? 300:250,
+              height: isInitialViewVisible ? 300 : 250,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: isInitialViewVisible
@@ -282,31 +284,44 @@ class _OrderStatusState extends State<OrderStatus> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     for (int i = 0; i < 4; i++) // Build items dynamically
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        padding:
+                        const EdgeInsets.symmetric(vertical: 10),
                         child: Row(
                           children: [
                             SizedBox(
                               width: 24,
                               height: 24,
                               child: Image.asset(
-                                itemSelection[i] ? "assets/payment/icon_radio_check.png" : "assets/payment/icon_radio_uncheck.png",
+                                itemSelection[i]
+                                    ? "assets/payment/icon_radio_check.png"
+                                    : "assets/payment/icon_radio_uncheck.png",
                                 scale: 2,
                               ),
                             ),
-                            SizedBox(width: 10), // Add spacing between checkbox and text
+                            SizedBox(
+                                width: 10), // Add spacing between checkbox and text
                             GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    print("Before setState: isInitialViewVisible = $isInitialViewVisible");
-
-                                    itemSelection[i] = !itemSelection[i]; // Toggle selection state
-                                    isInitialViewVisible = false; // Hide initial view
-                                  });
-                                },
-                                child: _buildBottomSheetText(_getBottomSheetItemText(i))
+                              onTap: () {
+                                setState(() {
+                                  print(
+                                      "Before setState: isInitialViewVisible = $isInitialViewVisible");
+                                  // Unselect all items
+                                  for (int j = 0; j < 4; j++) {
+                                    itemSelection[j] = false;
+                                  }
+                                  itemSelection[i] =
+                                  true; // Select current item
+                                  isInitialViewVisible =
+                                  false; // Hide initial view
+                                });
+                              },
+                              child: _buildBottomSheetText(
+                                  _getBottomSheetItemText(i)),
                             ), // Get text based on index
                           ],
                         ),
@@ -316,9 +331,10 @@ class _OrderStatusState extends State<OrderStatus> {
                     : Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-
-
-                    Image.asset("assets/order/img_cancel_order.png",scale: 2,),
+                    Image.asset(
+                      "assets/order/img_cancel_order.png",
+                      scale: 2,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: SizedBox(
@@ -336,9 +352,9 @@ class _OrderStatusState extends State<OrderStatus> {
                         ),
                       ),
                     ),
-
                     Padding(
-                      padding: const EdgeInsets.only(left: 5.0,right: 5,bottom: 1,top: 15),
+                      padding: const EdgeInsets.only(
+                          left: 5.0, right: 5, bottom: 1, top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -346,7 +362,7 @@ class _OrderStatusState extends State<OrderStatus> {
                             onTap: () {
                               Navigator.pop(
                                   context); // Close the modal when tapped
-                              isInitialViewVisible=true;
+                              isInitialViewVisible = true;
                             },
                             child: Container(
                               width: 150,
@@ -375,23 +391,25 @@ class _OrderStatusState extends State<OrderStatus> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => CancelOrderStatus(status: CancelOrderStatusEnum.Placed,),
+                                builder: (context) =>
+                                    CancelOrderStatus(
+                                      status: CancelOrderStatusEnum.CANCELLED,
+                                    ),
                               ));
                             },
                             child: Container(
                               width: 150,
                               height: 52,
-
                               decoration: ShapeDecoration(
                                 color: Color(0xFFFF4343),
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
+                                    borderRadius:
+                                    BorderRadius.circular(8)),
                               ),
-
                               child: Center(
-                                child:Text(
+                                child: Text(
                                   'Yes',
                                   style: TextStyle(
                                     color: Colors.white,
@@ -407,8 +425,6 @@ class _OrderStatusState extends State<OrderStatus> {
                         ],
                       ),
                     ),
-
-                    // Add buttons or any other content as needed
                   ],
                 ),
               ),
@@ -418,6 +434,9 @@ class _OrderStatusState extends State<OrderStatus> {
       },
     );
   }
+
+
+
   Widget _buildBottomSheetText(String text){
     return SizedBox(
       width: 283,
@@ -752,7 +771,7 @@ class _OrderStatusState extends State<OrderStatus> {
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 14,
-                    fontFamily: 'Archivo',
+                    fontFamily: 'Archivo-Regular',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -767,26 +786,26 @@ class _OrderStatusState extends State<OrderStatus> {
               children: [
                 _isStatusChecked(status, widget.status)
                     ? _buildLinearHeight(40)
-                    : _buildDashedHeight(50),
-                Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: Text(
-                    time,
-                    style: TextStyle(
-                      color: Color(0xFF66758C),
-                      fontSize: 12,
-                      fontFamily: 'Archivo',
-                      fontWeight: FontWeight.w400,
+                    : _buildDashedHeight(30),
+                if (_isStatusChecked(status, widget.status)) // Only add the time if the status is checked
+                  Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: Text(
+                      time,
+                      style: TextStyle(
+                        color: Color(0xFF66758C),
+                        fontSize: 12,
+                        fontFamily: 'Archivo-Regular',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
       ],
     );
   }
-
   Widget _buildLinearHeight(double height) {
     return Container(
       height: height,

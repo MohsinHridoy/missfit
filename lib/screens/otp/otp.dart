@@ -124,31 +124,35 @@ class _OtpState extends State<Otp> {
       value1 = 1;
       value2 = 0;
 
-      setState(() {});
       FocusScope.of(context).requestFocus(_focusNode2);
+      setState(() {});
+
     } else if (_focusNode2.hasFocus) {
       _controller2.text = value.toString();
       value1 = 2;
       value2 = 0;
 
-      setState(() {});
       FocusScope.of(context).requestFocus(_focusNode3);
+      setState(() {});
+
     } else if (_focusNode3.hasFocus) {
       value1 = 3;
       value2 = 0;
 
-      setState(() {});
 
       _controller3.text = value.toString();
       FocusScope.of(context).requestFocus(_focusNode4);
+      setState(() {});
+
     } else if (_focusNode4.hasFocus) {
       value1 = 4;
       value2 = 0;
 
-      setState(() {});
 
       _controller4.text = value.toString();
       FocusScope.of(context).requestFocus(_focusNode4);
+      setState(() {});
+
     }
   }
 

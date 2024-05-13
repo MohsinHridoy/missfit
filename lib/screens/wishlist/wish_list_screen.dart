@@ -98,6 +98,8 @@ class _WishListState extends State<WishList> {
                         fontSize: 18,
                         fontFamily: 'Kanit-Medium',
                         fontWeight: FontWeight.w500,
+                        height: 0.07,
+
                       ),
                     ),
                     Spacer(),
@@ -135,49 +137,47 @@ class _WishListState extends State<WishList> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Expanded(
-                          child: Container(
-                            // width: labelText == 'All' ? 48 :  textWidth + 30,
-                            height: 36,
-                            alignment: Alignment.center,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: index == selectedIndex
-                                      ? Color(0xFFFFA142)
-                                      : Color(0xFFD1D5DB),
-                                ),
-                                borderRadius: BorderRadius.circular(4),
+                        child: Container(
+                          // width: labelText == 'All' ? 48 :  textWidth + 30,
+                          height: 36,
+                          alignment: Alignment.center,
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                width: 1,
+                                strokeAlign: BorderSide.strokeAlignCenter,
+                                color: index == selectedIndex
+                                    ? Color(0xFFFFA142)
+                                    : Color(0xFFD1D5DB),
                               ),
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 15,
-                                    ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 15.0),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 15,
+                                  ),
 
-                                    SizedBox(
-                                      width: 1,
+                                  SizedBox(
+                                    width: 1,
+                                  ),
+                                  Text(
+                                    labelText,
+                                    style: TextStyle(
+                                      color: index == selectedIndex
+                                          ? Color(0xFFE88E32)
+                                          : Color(0xFF334155),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.10,
                                     ),
-                                    Text(
-                                      labelText,
-                                      style: TextStyle(
-                                        color: index == selectedIndex
-                                            ? Color(0xFFE88E32)
-                                            : Color(0xFF334155),
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo-Regular',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0.10,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -248,7 +248,7 @@ class _WishListState extends State<WishList> {
                                                     style: TextStyle(
                                                       color: Color(0xFF334155),
                                                       fontSize: 14,
-                                                      fontFamily: 'Archivo',
+                                                      fontFamily: 'Archivo-SemiBold',
                                                       fontWeight: FontWeight.w600,
                                                       height: 0.09,
                                                     ),
@@ -265,7 +265,7 @@ class _WishListState extends State<WishList> {
                                                           style: TextStyle(
                                                             color: Color(0xFF334155),
                                                             fontSize: 12,
-                                                            fontFamily: 'Archivo',
+                                                            fontFamily: 'Archivo-Medium',
                                                             fontWeight: FontWeight.w500,
                                                             height: 0.12,
                                                           )),
@@ -275,7 +275,7 @@ class _WishListState extends State<WishList> {
                                                         style: TextStyle(
                                                           color: Color(0xFF66758C),
                                                           fontSize: 10,
-                                                          fontFamily: 'Archivo',
+                                                          fontFamily: 'Archivo-Regular',
                                                           fontWeight: FontWeight.w400,
                                                           decoration:
                                                           TextDecoration.lineThrough,
@@ -301,7 +301,7 @@ class _WishListState extends State<WishList> {
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 10,
-                                                        fontFamily: 'Archivo',
+                                                        fontFamily: 'Archivo-SemiBold',
                                                         fontWeight: FontWeight.w600,
                                                         height: 0.14,
                                                       ),
@@ -351,7 +351,7 @@ class _WishListState extends State<WishList> {
                                                             style: TextStyle(
                                                               color: Color(0xFF334155),
                                                               fontSize: 16,
-                                                              fontFamily: 'Archivo',
+                                                              fontFamily: 'Archivo-Medium',
                                                               fontWeight: FontWeight.w500,
                                                               height: 0.09,
                                                             ),
@@ -385,7 +385,7 @@ class _WishListState extends State<WishList> {
                                                                         style: TextStyle(
                                                                           color: Color(0xFFFF4343),
                                                                           fontSize: 16,
-                                                                          fontFamily: 'Archivo',
+                                                                          fontFamily: 'Archivo-SemiBold',
                                                                           fontWeight: FontWeight.w600,
                                                                           height: 0.09,
                                                                         ),

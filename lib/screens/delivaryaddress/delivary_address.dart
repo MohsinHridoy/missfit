@@ -160,7 +160,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                               style: TextStyle(
                                 color: _isAllFieldsFilled ?Colors.white:Color(0xFF334155),
                                 fontSize: 14,
-                                fontFamily: 'Archivo',
+                                fontFamily: 'Archivo-SemiBold',
                                 fontWeight: FontWeight.w600,
                                 height: 0.10,
                               ),

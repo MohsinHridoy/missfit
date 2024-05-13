@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shoppage/searchpage.dart';
 import 'package:miss_fit/screens/shoppage/shop_page.dart';
+import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
 class CustomItem {
@@ -30,7 +32,6 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   List<CustomItem> items = [
-
     CustomItem(
         title: 'Anti-Burst Balance Ball',
         image: 'assets/product_details/img_autobrust.png',
@@ -78,7 +79,8 @@ class _ShopPageState extends State<ShopPage> {
   ];
 
   List<String> categoryItems = ['All', 'Gym Equpment', 'Nutrition', 'Body'];
-  List<CustomItem> filteredItems = []; // Items to be displayed based on the selected category
+  List<CustomItem> filteredItems =
+      []; // Items to be displayed based on the selected category
   int selectedIndex = 0; // Add this line
 
   @override
@@ -86,83 +88,105 @@ class _ShopPageState extends State<ShopPage> {
     // TODO: implement initState
     super.initState();
 
-    filteredItems=items;
+    filteredItems = items;
   }
+
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            color: Color(0xFFF6F6F6),
-
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 60,),
-                appBar(),
-                SizedBox(height: 5),
-                _buildSearchBar(),
-                SizedBox(height: 45),
-                InkWell(
-                  onTap: (){
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: Color(0xFFF6F6F6),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 60,
+              ),
+              appBar(),
+              SizedBox(height: 5),
+              GestureDetector(
+                  onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AllItemsSearchPage()),
+                      MaterialPageRoute(
+                          builder: (context) => AllItemsSearchPage()),
                     );
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 22.0,right: 22),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'New Arrival',
-                          style: TextStyle(
-                            color: Color(0xFF334155),
-                            fontSize: 20,
-                            fontFamily: 'Kanit-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.06,
-                          ),
-                        ),
-                        Text(
-                          'See All',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 0.10,
-                          ),
-                        ),
-                      ],
+                  child: _buildSearchBar()),
+              SizedBox(height: 30),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 22.0, right: 22),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'New Arrival',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 20,
+                        fontFamily: 'Kanit-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 0.06,
+                      ),
                     ),
-                  ),
+                    InkWell(
+                      onTap: (){
+                        print("see all");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AllItemsShopPage()),
+                        );
+                      },
+                      child: SizedBox(
+                        width: 50,
+                        height: 30,
+                        child: Center(
+                          child: Text(
+                            'See All',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Container(
-                    width: 370,
-                    height: 221,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: items.length,
-                            itemBuilder: (context, index) {
-                              final item = items[index];
-                              return Padding(
-                                padding: EdgeInsets.only(right: 5, left: 20),
+              ),
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Container(
+                  width: 370,
+                  height: 221,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            final item = items[index];
+                            return Padding(
+                              padding: EdgeInsets.only(right: 5, left: 20),
+                              child: GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProductDetails(),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   width: 170,
                                   height: 250,
@@ -193,10 +217,10 @@ class _ShopPageState extends State<ShopPage> {
                                             ),
                                             child: Center(
                                                 child: Image.asset(
-                                                  item.image,
-                                                  width: 100,
-                                                  height: 100,
-                                                )),
+                                              item.image,
+                                              width: 100,
+                                              height: 100,
+                                            )),
                                           ),
                                           Expanded(
                                             child: Container(
@@ -206,27 +230,26 @@ class _ShopPageState extends State<ShopPage> {
                                                 shape: RoundedRectangleBorder(
                                                   side: BorderSide(
                                                       width: 1,
-                                                      color: Color(0xFFE5E7EB)
-                                                          ),
+                                                      color: Color(0xFFE5E7EB)),
                                                   borderRadius:
-                                                  BorderRadius.only(
+                                                      BorderRadius.only(
                                                     bottomLeft:
-                                                    Radius.circular(4),
+                                                        Radius.circular(4),
                                                     bottomRight:
-                                                    Radius.circular(4),
+                                                        Radius.circular(4),
                                                   ),
                                                 ),
                                               ),
                                               child: Padding(
                                                 padding:
-                                                EdgeInsets.only(top: 1.0),
+                                                    EdgeInsets.only(top: 1.0),
                                                 child: Padding(
                                                   padding:
-                                                  const EdgeInsets.all(8.0),
+                                                      const EdgeInsets.all(8.0),
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       SizedBox(
                                                         width: 200,
@@ -239,35 +262,35 @@ class _ShopPageState extends State<ShopPage> {
                                                                 0xFF334155),
                                                             fontSize: 14,
                                                             fontFamily:
-                                                            'Archivo',
+                                                                'Archivo-SemiBold',
                                                             fontWeight:
-                                                            FontWeight.w600,
+                                                                FontWeight.w600,
                                                           ),
                                                         ),
                                                       ),
                                                       SizedBox(height: 18),
                                                       Container(
                                                         width: MediaQuery.of(
-                                                            context)
+                                                                context)
                                                             .size
                                                             .width,
                                                         child: Row(
                                                           mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
                                                             Text(
                                                                 'CHF ${item.price.toStringAsFixed(2)}',
                                                                 style:
-                                                                TextStyle(
+                                                                    TextStyle(
                                                                   color: Color(
                                                                       0xFF334155),
                                                                   fontSize: 12,
                                                                   fontFamily:
-                                                                  'Archivo',
+                                                                      'Archivo-Medium',
                                                                   fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
+                                                                      FontWeight
+                                                                          .w500,
                                                                   height: 0.12,
                                                                 )),
                                                             Text(
@@ -277,13 +300,13 @@ class _ShopPageState extends State<ShopPage> {
                                                                     0xFF66758C),
                                                                 fontSize: 10,
                                                                 fontFamily:
-                                                                'Archivo',
+                                                                    'Archivo-Regular',
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w400,
+                                                                    FontWeight
+                                                                        .w400,
                                                                 decoration:
-                                                                TextDecoration
-                                                                    .lineThrough,
+                                                                    TextDecoration
+                                                                        .lineThrough,
                                                                 height: 0.14,
                                                               ),
                                                             ),
@@ -326,340 +349,343 @@ class _ShopPageState extends State<ShopPage> {
                                     ],
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 50),
-                Padding(
-                  padding: const EdgeInsets.only(left: 22.0,right: 22),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'All Products',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AllItemsShopPage()));
-                        },
-                        child: Text(
-                          'See All',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 0.10,
-                          ),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 30),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15),
-                  child: SizedBox(
-                    height: 50.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categoryItems.length,
-                      itemBuilder: (context, index) {
-                        final labelText = categoryItems[index];
-                        final textWidth = labelText.length * 12.0; //
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
+              ),
+              SizedBox(height: 50),
+              Padding(
+                padding: const EdgeInsets.only(left: 22.0, right: 22),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'All Products',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 20,
+                        fontFamily: 'Kanit-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 0.06,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AllItemsShopPage()));
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 30,
+                        color: Colors.transparent,
+                        child: Center(
+                          child: Text(
+                            'See All',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 15),
+
+
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15),
+                child: Container(
+                  height: 50.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categoryItems.length,
+                    itemBuilder: (context, index) {
+                      final labelText = categoryItems[index];
+                      final textWidth = labelText.length * 12.0; //
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                            // Filter items based on the selected category
+                            if (selectedIndex == 0) {
+                              // All category selected, show all items
+                              filteredItems = items;
+                            } else {
                               // Filter items based on the selected category
-                              if (selectedIndex == 0) {
-                                // All category selected, show all items
-                                filteredItems = items;
-                              } else {
-                                // Filter items based on the selected category
-                                filteredItems = items
-                                    .where((item) => item.category == categoryItems[index])
-                                    .toList();
-                              }
-                            });
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Expanded(
-                              child: Container(
-                                // width: labelText == 'All' ? 48 :  textWidth + 30,
-                                height: 36,
-                                alignment: Alignment.center,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      strokeAlign: BorderSide.strokeAlignCenter,
-                                      color: index == selectedIndex
-                                          ? Color(0xFFFFA142)
-                                          : Color(0xFFD1D5DB),
-                                    ),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
+                              filteredItems = items
+                                  .where((item) =>
+                                      item.category == categoryItems[index])
+                                  .toList();
+                            }
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            // width: labelText == 'All' ? 48 :  textWidth + 30,
+                            height: 36,
+                            alignment: Alignment.center,
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  strokeAlign: BorderSide.strokeAlignCenter,
+                                  color: index == selectedIndex
+                                      ? Color(0xFFFFA142)
+                                      : Color(0xFFD1D5DB),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 15.0),
-                                  child: Center(
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 15,
-                                        ),
-                                        // if (labelText != 'All')
-                                        //   Image.asset(
-                                        //     "assets/review/icon_star.png",
-                                        //     scale: 2,
-                                        //   ),
-                                        SizedBox(
-                                          width: 1,
-                                        ),
-                                        Text(
-                                          labelText,
-                                          style: TextStyle(
-                                            color: index == selectedIndex
-                                                ? Color(0xFFE88E32)
-                                                : Color(0xFF334155),
-                                            fontSize: 14,
-                                            fontFamily: 'Archivo-Regular',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.10,
-                                          ),
-                                        ),
-                                      ],
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 15,
                                     ),
-                                  ),
+                                    // if (labelText != 'All')
+                                    //   Image.asset(
+                                    //     "assets/review/icon_star.png",
+                                    //     scale: 2,
+                                    //   ),
+                                    Text(
+                                      labelText,
+                                      style: TextStyle(
+                                        color: index == selectedIndex
+                                            ? Color(0xFFE88E32)
+                                            : Color(0xFF334155),
+                                        fontSize: 14,
+                                        fontFamily: 'Archivo-Regular',
+                                        fontWeight: FontWeight.w400,
+                                        height: 0.10,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
+              ),
 
-                SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 22.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
 
-                      children: [
-                        GridView.builder(
-                          shrinkWrap: true,
+              SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 22.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GridView.builder(
+                        shrinkWrap: true,
 
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            // Number of items per row
-                            crossAxisSpacing: 0.5,
-                            // Adjust the spacing between items horizontally
-                            mainAxisSpacing: 20,
-                            // Adjust the spacing between items vertically
-                            childAspectRatio:
-                            0.85, // Adjust the aspect ratio of items
-                          ),
-                          itemCount: filteredItems.length,
-                          // Replace 6 with your actual item count
-                          itemBuilder: (context, index) {
-                            final item = filteredItems[index];
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          // Number of items per row
+                          // Adjust the spacing between items horizontally
+                          mainAxisSpacing: 20,
+                          // Adjust the spacing between items vertically
+                          childAspectRatio:
+                              0.85, // Adjust the aspect ratio of items
+                        ),
+                        itemCount: filteredItems.length,
+                        // Replace 6 with your actual item count
+                        itemBuilder: (context, index) {
+                          final item = filteredItems[index];
 
-                            return GestureDetector(
-                              onTap: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ProductDetails(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 170,
-                                height: 250,
-                                padding: const EdgeInsets.only(bottom: 1),
-                                child: Stack(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Container(
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProductDetails(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 200,
+                              height: 250,
+                              // padding: const EdgeInsets.only(bottom: 1),
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: 160,
+                                        height: 152,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: ShapeDecoration(
+                                          color: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(4),
+                                              topRight: Radius.circular(4),
+                                            ),
+                                          ),
+                                        ),
+                                        child: Center(
+                                            child: Image.asset(
+                                          item.image,
+                                          width: 100,
+                                          height: 100,
+                                        )),
+                                      ),
+                                      Expanded(
+                                        child: Container(
                                           width: 160,
-                                          height: 152,
-                                          clipBehavior: Clip.antiAlias,
                                           decoration: ShapeDecoration(
-                                            color: Colors.white,
+                                            color: Color(0xFFF3F4F6),
                                             shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  width: 1,
+                                                  color: Color(0xFFE5E7EB)
+                                                      .withOpacity(0.5)),
                                               borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(4),
-                                                topRight: Radius.circular(4),
+                                                bottomLeft:
+                                                    Radius.circular(4),
+                                                bottomRight:
+                                                    Radius.circular(4),
                                               ),
                                             ),
                                           ),
-                                          child: Center(
-                                              child: Image.asset(
-                                                item.image,
-                                                width: 100,
-                                                height: 100,
-                                              )),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            width: 160,
-                                            decoration: ShapeDecoration(
-                                              color: Color(0xFFF3F4F6),
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(
-                                                    width: 1,
-                                                    color: Color(0xFFE5E7EB)
-                                                        .withOpacity(0.5)),
-                                                borderRadius:
-                                                BorderRadius.only(
-                                                  bottomLeft:
-                                                  Radius.circular(4),
-                                                  bottomRight:
-                                                  Radius.circular(4),
-                                                ),
-                                              ),
-                                            ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.only(top: 5.0),
                                             child: Padding(
                                               padding:
-                                              EdgeInsets.only(top: 5.0),
-                                              child: Padding(
-                                                padding:
-                                                const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 128,
-                                                      child: Text(
-                                                        item.title,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                          color: Color(
-                                                              0xFF334155),
-                                                          fontSize: 14,
-                                                          fontFamily:
-                                                          'Archivo',
-                                                          fontWeight:
-                                                          FontWeight.w600,
-                                                        ),
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 128,
+                                                    child: Text(
+                                                      item.title,
+                                                      overflow: TextOverflow
+                                                          .ellipsis,
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xFF334155),
+                                                        fontSize: 14,
+                                                        fontFamily: 'Archivo-SemiBold',
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                       ),
                                                     ),
-                                                    SizedBox(height: 18),
-                                                    Container(
-                                                      width: MediaQuery.of(
-                                                          context)
-                                                          .size
-                                                          .width,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                              'CHF ${item.price.toStringAsFixed(2)}',
-                                                              style:
-                                                              TextStyle(
-                                                                color: Color(
-                                                                    0xFF334155),
-                                                                fontSize: 12,
-                                                                fontFamily:
-                                                                'Archivo',
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                height: 0.12,
-                                                              )),
-                                                          Text(
-                                                            'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                                                  ),
+                                                  SizedBox(height: 18),
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                            'CHF ${item.price.toStringAsFixed(2)}',
                                                             style: TextStyle(
                                                               color: Color(
-                                                                  0xFF66758C),
-                                                              fontSize: 10,
+                                                                  0xFF334155),
+                                                              fontSize: 12,
                                                               fontFamily:
-                                                              'Archivo',
+                                                                  'Archivo-Medium',
                                                               fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              decoration:
-                                                              TextDecoration
-                                                                  .lineThrough,
-                                                              height: 0.14,
-                                                            ),
+                                                                  FontWeight
+                                                                      .w500,
+                                                              height: 0.12,
+                                                            )),
+                                                        Text(
+                                                          'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xFF66758C),
+                                                            fontSize: 10,
+                                                            fontFamily:
+                                                                'Archivo-Regular',
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .lineThrough,
+                                                            height: 0.14,
                                                           ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Visibility(
-                                      visible: items[index].isChecked,
-                                      child: Container(
-                                          height: 40,
-                                          width: 50,
-                                          child: Image.asset(
-                                              "assets/product_details/icon_sale.png")),
-                                    ),
-                                    Positioned(
-                                      top: 19,
-                                      left: 10,
-                                      child: Visibility(
-                                        visible: items[index].isChecked,
-                                        child: Text(
-                                          'Sale',
-                                          style: TextStyle(
-                                            color: Color(0xFF0F172A),
-                                            fontSize: 10,
-                                            fontFamily: 'Archivo-Medium',
-                                            fontWeight: FontWeight.w500,
-                                            height: 0.15,
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ],
+                                  ),
+                                  Visibility(
+                                    visible: items[index].isChecked,
+                                    child: Container(
+                                        height: 40,
+                                        width: 50,
+                                        child: Image.asset(
+                                            "assets/product_details/icon_sale.png")),
+                                  ),
+                                  Positioned(
+                                    top: 19,
+                                    left: 10,
+                                    child: Visibility(
+                                      visible: items[index].isChecked,
+                                      child: Text(
+                                        'Sale',
+                                        style: TextStyle(
+                                          color: Color(0xFF0F172A),
+                                          fontSize: 10,
+                                          fontFamily: 'Archivo-Medium',
+                                          fontWeight: FontWeight.w500,
+                                          height: 0.15,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
-
-                SizedBox(height: 50),
-
-              ],
-            ),
+              ),
+              SizedBox(height: 200),
+            ],
           ),
         ),
       ),
@@ -668,7 +694,7 @@ class _ShopPageState extends State<ShopPage> {
 
   Widget _buildSearchBar() {
     return Padding(
-      padding: const EdgeInsets.only(left: 22.0,right: 22),
+      padding: const EdgeInsets.only(left: 22.0, right: 22),
       child: Row(
         children: [
           Expanded(
@@ -693,12 +719,13 @@ class _ShopPageState extends State<ShopPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                 Image.asset("assets/shophome/icon_search.png"),
+                  Image.asset("assets/shophome/icon_search.png"),
                   SizedBox(width: 8),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: TextFormField(
+                        readOnly: true,
                         style: TextStyle(
                           color: Color(0xFF9CA3AF),
                           fontSize: 14,
@@ -753,7 +780,7 @@ class _ShopPageState extends State<ShopPage> {
 
   Widget appBar() {
     return Padding(
-      padding: const EdgeInsets.only(left: 22.0,right: 22.0),
+      padding: const EdgeInsets.only(left: 22.0, right: 22.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -772,14 +799,14 @@ class _ShopPageState extends State<ShopPage> {
           Row(
             children: [
               GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => WishList()),
-                  );
-                },
-                  child: buildIconContainer("assets/shophome/icon_wishlist.png")
-              ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WishList()),
+                    );
+                  },
+                  child:
+                      buildIconContainer("assets/shophome/icon_wishlist.png")),
               SizedBox(width: 16),
               buildIconContainer("assets/shophome/icon_shopping_cart.png"),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
+import 'package:miss_fit/screens/otp/otp001.dart';
 
 
 
@@ -142,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                   _isValidEmail ?
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Otp(email: _emailOrPhoneNumberController.text)),
+                    MaterialPageRoute(builder: (context) => Otp001(email: _emailOrPhoneNumberController.text)),
                   ):null;
                 },
                 child: Container(

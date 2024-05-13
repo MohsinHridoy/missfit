@@ -362,7 +362,7 @@ class _RegistrationState extends State<Registration> {
   void _onSkipButtonPressed() {
 
 
-    _indicatorColors[_currentPage] = Color(0xFF9CA3AF);
+    _indicatorColors[_currentPage] =  Color(0xFFEF4444);
     if (_currentPage < 5) {
       _currentPage++;
       _pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);

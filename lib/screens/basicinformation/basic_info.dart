@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BasicInfo extends StatefulWidget {
   final VoidCallback onNextPressed;
@@ -24,7 +25,7 @@ class _BasicInfoState extends State<BasicInfo> {
   @override
   void initState() {
     super.initState();
-
+    _initializeStateFromSharedPreferences();
     // Add a listener to the _ageController
     _ageController.addListener(_updateButtonState);
   }
@@ -42,6 +43,28 @@ class _BasicInfoState extends State<BasicInfo> {
     // Clean up the listener when the widget is disposed
     _ageController.removeListener(_updateButtonState);
     super.dispose();
+  }
+
+  Future<void> _saveDataToSharedPreferences() async {
+    // Get the SharedPreferences instance
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Save full name and age to SharedPreferences
+    await prefs.setString('fullName', _fullNameController.text);
+    await prefs.setString('age', _ageController.text);
+  }
+
+  Future<void> _initializeStateFromSharedPreferences() async {
+    // Get the SharedPreferences instance
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Get the saved data from SharedPreferences
+    String? fullName = prefs.getString('fullName');
+    String? age = prefs.getString('age');
+
+    // Set the saved data to the controllers
+    _fullNameController.text = fullName ?? '';
+    _ageController.text = age ?? '';
   }
 
   @override
@@ -157,7 +180,7 @@ class _BasicInfoState extends State<BasicInfo> {
                       ),
                       Positioned(
                         bottom: 28,
-                        left: 85,
+                        left: 80,
                         child: Container(
                           width: 40,
                           height: 40,
@@ -278,8 +301,9 @@ class _BasicInfoState extends State<BasicInfo> {
     });
   }
 
-  void _login() {
+  void _login() async{
     print('Login button pressed');
+    _saveDataToSharedPreferences();
     widget.onNextPressed();
   }
 

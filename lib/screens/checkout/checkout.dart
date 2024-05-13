@@ -2,6 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 
+import '../cartscreen/cart001.dart';
+
 class CartItem {
   final String title;
   int quantity;
@@ -98,19 +100,19 @@ class _CheckOutState extends State<CheckOut> {
                   children: [
                     SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(25.0),
                       child: Text(
                         'Delivery Location',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
                       ),
                     ),
-                    SizedBox(height: 25),
+                    SizedBox(height: 10),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,right: 25),
@@ -126,39 +128,47 @@ class _CheckOutState extends State<CheckOut> {
                         radius: Radius.circular(5),
                         // Border radius
                         // padding: EdgeInsets.all(5), // Padding around the border
-                        child: Container(
-                          width: 396, // Container width
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                            borderRadius:
-                            BorderRadius.circular(5), // Border radius
-                          ), // Background color
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                  height: 20,
-                                  width: 20,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DeliavryAddress()),
+                            );
+                          },
+                          child: Container(
+                            width: 396, // Container width
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF6F6F6),
+                              borderRadius:
+                              BorderRadius.circular(5), // Border radius
+                            ), // Background color
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                    height: 20,
+                                    width: 20,
                                     child: Image.asset(
-                                        "assets/cart/icon_plus.png",),
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Text(
-                                  'Add Delivery Address',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF4343),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.10,
+                                      "assets/cart/icon_plus1.png",color: Color(0xFFFF4343) ,)
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Text(
+                                    'Add Delivery Address',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF4343),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.10,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -180,26 +190,112 @@ class _CheckOutState extends State<CheckOut> {
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
-                          fontFamily: 'Kanit',
+                          fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w600,
                           height: 0.06,
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 25,
+                    ),
                     _buildSummeryItemText('Subtotal', 'CHF 140'),
-
-
-                    _buildRemovedItemsList(),
 
                     _buildOrderSummeryItem(),
                     SizedBox(
                       height: 50,
                     ),
+                    // Container(
+                    //     width: MediaQuery.of(context).size.width,
+                    //     height: 76,
+                    //     padding: const EdgeInsets.symmetric(
+                    //         horizontal: 20, vertical: 16),
+                    //     decoration: ShapeDecoration(
+                    //       color: Colors.white.withOpacity(0.05000000074505806),
+                    //       shape: RoundedRectangleBorder(
+                    //         side: BorderSide(
+                    //           width: 1,
+                    //           color:
+                    //           Colors.white.withOpacity(0.10999999940395355),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //       crossAxisAlignment: CrossAxisAlignment.end,
+                    //       children: [
+                    //         Padding(
+                    //           padding: const EdgeInsets.only(top: 15.0),
+                    //           child: Column(
+                    //             crossAxisAlignment: CrossAxisAlignment.start,
+                    //             children: [
+                    //               Text(
+                    //                 'Total price',
+                    //                 style: TextStyle(
+                    //                   color: Color(0xFF334155),
+                    //                   fontSize: 10,
+                    //                   fontFamily: 'Archivo-Medium',
+                    //                   fontWeight: FontWeight.w500,
+                    //                   height: 0.14,
+                    //                 ),
+                    //               ),
+                    //               SizedBox(
+                    //                 height: 20,
+                    //               ),
+                    //               Text(
+                    //                 'CHF 210',
+                    //                 style: TextStyle(
+                    //                   color: Color(0xFF334155),
+                    //                   fontSize: 16,
+                    //                   fontFamily: 'Archivo-Medium',
+                    //                   fontWeight: FontWeight.w500,
+                    //                   height: 0.09,
+                    //                 ),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         // GestureDetector(
+                    //         //   onTap:(){
+                    //         //     Navigator.push(
+                    //         //       context,
+                    //         //       MaterialPageRoute(
+                    //         //           builder: (context) =>
+                    //         //               DeliavryAddress()),
+                    //         //     );
+                    //         //   },
+                    //         //   child: Container(
+                    //         //     width: 150,
+                    //         //     height: 44,
+                    //         //     decoration: ShapeDecoration(
+                    //         //       color: Color(0xFFFF4343),
+                    //         //       shape: RoundedRectangleBorder(
+                    //         //           borderRadius: BorderRadius.circular(8)),
+                    //         //     ),
+                    //         //     child: Center(
+                    //         //       child: Text(
+                    //         //         'Checkout',
+                    //         //         style: TextStyle(
+                    //         //           color: Colors.white,
+                    //         //           fontSize: 14,
+                    //         //           fontFamily: 'Archivo-SemiBold',
+                    //         //           fontWeight: FontWeight.w600,
+                    //         //           height: 0.10,
+                    //         //         ),
+                    //         //       ),
+                    //         //     ),
+                    //         //   ),
+                    //         // ),
+                    //
+                    //
+                    //
+                    //       ],
+                    //     ))
+
                     Container(
                         width: MediaQuery.of(context).size.width,
                         height: 76,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 16),
+
                         decoration: ShapeDecoration(
                           color: Colors.white.withOpacity(0.05000000074505806),
                           shape: RoundedRectangleBorder(
@@ -215,7 +311,7 @@ class _CheckOutState extends State<CheckOut> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 15.0),
+                              padding: const EdgeInsets.only(top: 25.0,left: 15),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -246,31 +342,29 @@ class _CheckOutState extends State<CheckOut> {
                               ),
                             ),
                             GestureDetector(
-                              onTap:(){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          DeliavryAddress()),
-                                );
+                              onTap: () {
+
                               },
-                              child: Container(
-                                width: 150,
-                                height: 44,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Checkout',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0.10,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Container(
+                                  width: 150,
+                                  height: 44,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFFD1D5DB),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Checkout',
+                                      style: TextStyle(
+                                        color: Color(0xFF66758C),
+                                        fontSize: 14,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.10,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -306,36 +400,56 @@ class _CheckOutState extends State<CheckOut> {
 
   Widget _buildSummeryItemText(String title, String value) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25.0,right: 25,top: 30,bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding:
+      const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
+      child: Column(
         children: [
-          SizedBox(
-            width: 150,
-            child: Text(
-              title,
-              style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 16,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 0.09,
-                  wordSpacing: 1
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 150,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Regular',
+                      fontWeight: FontWeight.w400,
+                      height: 0.09,
+                      wordSpacing: 1),
+                ),
+              ),
+              SizedBox(
+                width: 71,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 16,
+                    fontFamily: 'Archivo-Regular',
+                    fontWeight: FontWeight.w400,
+                    height: 0.09,
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 25,),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 1,
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 0.5,
+                  color: Colors.grey.withOpacity(0.3),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: 71,
-            child: Text(
-              value,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 16,
-                fontFamily: 'Archivo-Regular',
-                fontWeight: FontWeight.w400,
-                height: 0.09,
-              ),
+            child: CustomPaint(
+              painter: DashedLinePainter(),
             ),
           )
         ],
@@ -518,7 +632,7 @@ class _CheckOutState extends State<CheckOut> {
 
     return SingleChildScrollView(
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.only(left:20,right: 25),
             child: Column(
               children: List.generate(
                 cartItems.length,
@@ -533,7 +647,18 @@ class _CheckOutState extends State<CheckOut> {
                         children: [
                           Row(
                             children: [
-
+                              GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      item.isChecked = !item.isChecked;
+                                    });
+                                  },
+                                  child: Image.asset(
+                                    item.isChecked
+                                        ? "assets/cart/icon_checkbox.png"
+                                        : "assets/cart/icon_uncheck.png",
+                                    scale: 2,
+                                  )),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Container(
@@ -571,7 +696,7 @@ class _CheckOutState extends State<CheckOut> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 25.0, bottom: 25),
+                                            top: 20.0, bottom: 30),
                                         child: Text(
                                           '2 kg',
                                           style: TextStyle(
@@ -634,7 +759,7 @@ class _CheckOutState extends State<CheckOut> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 4.0, right: 4.0),
+                                            left: 10.0, right: 10.0),
                                         child: SizedBox(
                                           width: 20,
                                           child: Center(
@@ -643,7 +768,7 @@ class _CheckOutState extends State<CheckOut> {
                                               style: TextStyle(
                                                 color: Color(0xFF334155),
                                                 fontSize: 14,
-                                                fontFamily: 'Archivo',
+                                                fontFamily: 'Archivo-Regular',
                                                 fontWeight: FontWeight.w400,
                                                 height: 0.10,
                                               ),

@@ -99,7 +99,7 @@ class _SizeSelectionPageState extends State<SizeSelectionPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",
@@ -125,72 +125,70 @@ class _SizeSelectionPageState extends State<SizeSelectionPage> {
             ),
             SizedBox(height: 15,),
             Expanded(
-              child: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: List.generate(size.length, (index) {
-                      final category = size[index];
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            category.isSelected = !category.isSelected;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 20.0,
-                            right: 20,
-                            bottom: 5,
+              child: AutomaticKeepAlive(
+                child: Column(
+                  children: List.generate(size.length, (index) {
+                    final category = size[index];
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          category.isSelected = !category.isSelected;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20.0,
+                          right: 20,
+                          bottom: 5,
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 2.0,
                           ),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 2.0,
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.grey[300]!,
-                                  width: 1.0,
-                                ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey[300]!,
+                                width: 1.0,
                               ),
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  child: category.isSelected
-                                      ? Image.asset(
-                                    "assets/registration/icon_selected_box.png",
-                                    scale: 2.0,
-                                  )
-                                      : Image.asset(
-                                    "assets/registration/icon_unselected_checkbox1.png",
-                                    scale: 2.0,
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                child: category.isSelected
+                                    ? Image.asset(
+                                  "assets/registration/icon_selected_box.png",
+                                  scale: 2.0,
+                                )
+                                    : Image.asset(
+                                  "assets/registration/icon_unselected_checkbox1.png",
+                                  scale: 2.0,
+                                ),
+                              ),
+                              SizedBox(width: 16.0),
+                              Expanded(
+                                child: Text(
+                                  '${category.name} (${category.itemCount})',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.09,
                                   ),
                                 ),
-                                SizedBox(width: 16.0),
-                                Expanded(
-                                  child: Text(
-                                    '${category.name} (${category.itemCount})',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.09,
-                                    ),
-                                  ),
-                                ),
-
-
-
-                              ],
-                            ),
+                              ),
+                
+                
+                
+                            ],
                           ),
                         ),
-                      );
-                    }),
-                  ),
+                      ),
+                    );
+                  }),
                 ),
               ),
             ),

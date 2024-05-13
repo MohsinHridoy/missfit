@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
 class AllItemsShopPage extends StatefulWidget {
@@ -86,52 +87,50 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
   }
 
   Widget _buildItem(String item, int index) {
-    return Expanded(
-      child: Container(
-        height: 36,
-        decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              width: 1,
-              strokeAlign: BorderSide.strokeAlignCenter,
-              color: Color(0xFFFFA142),
-            ),
-            borderRadius: BorderRadius.circular(4),
+    return Container(
+      height: 36,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            strokeAlign: BorderSide.strokeAlignCenter,
+            color: Color(0xFFFFA142),
           ),
+          borderRadius: BorderRadius.circular(4),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left:12.0,right: 13.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GestureDetector(
                 onTap: (){
                   setState(() {
                     chipitems.removeAt(index);
                   });
                 },
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
-                    child: Image.asset("assets/shophome/icon_delete.png",scale: 1.7,),
-                  )
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: Text(
-                  item,
-                  style: TextStyle(
-                    color: Color(0xFFE88E32),
-                    fontSize: 14,
-                    fontFamily: 'Archivo',
-                    fontWeight: FontWeight.w400,
-                    height: 0.10,
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Image.asset("assets/shophome/icon_delete.png",scale: 1.7,),
+                )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:5,right: 12.0),
+              child: Text(
+                item,
+                style: TextStyle(
+                  color: Color(0xFFE88E32),
+                  fontSize: 14,
+                  fontFamily: 'Archivo-Regular',
+                  fontWeight: FontWeight.w400,
+                  height: 0.10,
                 ),
               ),
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -170,7 +169,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.2),
+                    SizedBox(width: MediaQuery.of(context).size.width / 3.6),
                     Text(
                       'All Products',
                       textAlign: TextAlign.center,
@@ -203,37 +202,37 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                         children: chipitems.map((chipitems) => _buildItem(chipitems,chipitems.indexOf(chipitems))).toList(),
                       ),
                     ),
-                    SizedBox(height: 40,),
+                    SizedBox(height: 20,),
 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 22.0,right: 22),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'All Products',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 20,
-                              fontFamily: 'Kanit-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 0.06,
-                            ),
-                          ),
-                          Text(
-                            'See All',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Color(0xFFFF4343),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.10,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 22.0,right: 22),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Text(
+                    //         'All Products',
+                    //         style: TextStyle(
+                    //           color: Color(0xFF334155),
+                    //           fontSize: 20,
+                    //           fontFamily: 'Kanit-SemiBold',
+                    //           fontWeight: FontWeight.w600,
+                    //           height: 0.06,
+                    //         ),
+                    //       ),
+                    //       Text(
+                    //         'See All',
+                    //         textAlign: TextAlign.right,
+                    //         style: TextStyle(
+                    //           color: Color(0xFFFF4343),
+                    //           fontSize: 14,
+                    //           fontFamily: 'Archivo-Medium',
+                    //           fontWeight: FontWeight.w500,
+                    //           height: 0.10,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Padding(
@@ -330,7 +329,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                                                                 0xFF334155),
                                                             fontSize: 14,
                                                             fontFamily:
-                                                            'Archivo',
+                                                            'Archivo-SemiBold',
                                                             fontWeight:
                                                             FontWeight.w600,
                                                           ),
@@ -355,7 +354,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                                                                       0xFF334155),
                                                                   fontSize: 12,
                                                                   fontFamily:
-                                                                  'Archivo',
+                                                                  'Archivo-Medium',
                                                                   fontWeight:
                                                                   FontWeight
                                                                       .w500,
@@ -368,7 +367,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                                                                     0xFF66758C),
                                                                 fontSize: 10,
                                                                 fontFamily:
-                                                                'Archivo',
+                                                                'Archivo-Regular',
                                                                 fontWeight:
                                                                 FontWeight
                                                                     .w400,
@@ -521,25 +520,34 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
             ),
           ),
           SizedBox(width: 10),
-          Container(
-            width: 40,
-            height: 40,
-            padding: const EdgeInsets.all(8),
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: Colors.white.withOpacity(0.05),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-                borderRadius: BorderRadius.circular(4),
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => FilterShopScreen(),
+                ),
+              );
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              padding: const EdgeInsets.all(8),
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
+                color: Colors.white.withOpacity(0.05),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
+                  borderRadius: BorderRadius.circular(4),
+                ),
               ),
-            ),
-            child: Center(
-              child: Image.asset(
-                'assets/shophome/icon_filter.png',
-                // Replace 'your_image.png' with the actual path to your image asset
-                width: 24,
-                height: 24,
-                fit: BoxFit.cover, // Adjust the fit as needed
+              child: Center(
+                child: Image.asset(
+                  'assets/shophome/icon_filter.png',
+                  // Replace 'your_image.png' with the actual path to your image asset
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.cover, // Adjust the fit as needed
+                ),
               ),
             ),
           ),

@@ -53,7 +53,7 @@ class _ReviewListState extends State<ReviewList> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Handle back button tap
+                          Navigator.pop(context);
                         },
                         child: Image.asset(
                           "assets/cart/icon_left_arrow.png",
@@ -189,7 +189,7 @@ class HorizontalListView extends StatelessWidget {
                         SizedBox(width: 15,),
 
                         index == 0 ?SizedBox(): Image.asset("assets/review/icon_star.png",scale: 2,),
-                        SizedBox(width: 1,),
+                        SizedBox(width:index == 0 ? 0:5,),
 
 
                         Text(
@@ -325,7 +325,7 @@ class ReviewListView extends StatelessWidget {
                                       style: TextStyle(
                                         color: Color(0xFF66758C),
                                         fontSize: 12,
-                                        fontFamily: 'Archivo',
+                                        fontFamily: 'Archivo-Regular',
                                         fontWeight: FontWeight.w400,
                                         height: 0.12,
                                       ),
