@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/home/home001.dart';
+import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
+import 'package:miss_fit/screens/subscription/subscription.dart';
 
 
 class DashBoard extends StatefulWidget {
@@ -14,10 +17,10 @@ class _DashBoardState extends State<DashBoard> {
 
   static List<Widget> _widgetOptions = <Widget>[
     Home(),
-    SecondPage(),
-    ThirdPage(),
-    FourthPage(),
-    FifthPage(),
+    ShopPage(),
+    Cart001(),
+    Subscription(),
+    Subscription(),
   ];
 
   final List<bool> _isSelected = [true, false, false, false, false];
@@ -40,7 +43,7 @@ class _DashBoardState extends State<DashBoard> {
     return Scaffold(
       body: Stack(
         children: [
-          Expanded(child: _widgetOptions.elementAt(_selectedIndex)),
+          _widgetOptions.elementAt(_selectedIndex), // Removed Expanded widget here
           Positioned(
             bottom: 10,
             left: 10,
@@ -93,21 +96,21 @@ class _DashBoardState extends State<DashBoard> {
         children: [
           Column(
             children: [
-              SizedBox(height: 11),
+              SizedBox(height: 20),
               SizedBox(
-                height: 30,
-                width: 30,
+                height: 20,
+                width: 20,
                 child: _getIconData(index),
               ),
             ],
           ),
           Positioned(
-            bottom: 4,
-            left: 12,
+            bottom: 12,
+            left: 7,
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
-              width: 8,
-              height: 15,
+              width: 6,
+              height: 6,
               decoration: BoxDecoration(
                 color: _isSelected[index] ? Colors.red : Colors.transparent, // Change color to red if selected
                 shape: BoxShape.circle,
@@ -125,11 +128,11 @@ class _DashBoardState extends State<DashBoard> {
 
     switch (index) {
       case 0:
-        return _buildIcon('assets/dashboard/icon_home.png', iconColor);
+        return _buildIcon(isSelected ?'assets/dashboard/img_1.png':'assets/dashboard/img.png', iconColor);
       case 1:
         return _buildIcon('assets/dashboard/icon_shop.png', iconColor);
       case 2:
-        return _buildIcon('assets/dashboard/icon_bag.png', iconColor);
+        return _buildIcon(isSelected ?'assets/dashboard/icon_bag1.png':'assets/dashboard/icon_bag.png', iconColor);
       case 3:
         return _buildIcon('assets/dashboard/icon.png', iconColor);
       case 4:

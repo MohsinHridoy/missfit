@@ -214,7 +214,11 @@ class _Cart001State extends State<Cart001> {
                               ),
                             ),
                           ],
-                        ))
+                        )),
+
+                    SizedBox(
+                      height: 100,
+                    ),
                   ],
                 ),
               ),

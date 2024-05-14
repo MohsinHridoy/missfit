@@ -42,38 +42,70 @@ class _HomeState extends State<Home> {
   double progressPercentage = 0.7;
   List<WorkoutItem> workoutItems = [
     WorkoutItem(
-      imagePath: 'assets/home/img_workout_item_1.png',
+      imagePath: 'assets/home/img_new_workout.png',
       title: 'Calorie torcher',
       duration: '2h 30min',
       category: 'Full body',
     ),
     WorkoutItem(
-      imagePath: 'assets/home/img_workout_item_2.png',
+      imagePath: 'assets/home/img_new_workout.png',
       title: 'Calorie torcher',
       duration: '2h 30min',
       category: 'Full body',
     ),
     WorkoutItem(
-      imagePath: 'assets/home/img_workout_item_1.png',
+      imagePath: 'assets/home/img_new_workout.png',
       title: 'Calorie torcher',
       duration: '2h 30min',
       category: 'Full body',
     ),
     WorkoutItem(
-      imagePath: 'assets/home/img_workout_item_2.png',
+      imagePath: 'assets/home/img_new_workout.png',
       title: 'Calorie torcher',
       duration: '2h 30min',
       category: 'Full body',
     ),
     WorkoutItem(
-      imagePath: 'assets/home/img_workout_item_2.png',
+      imagePath: 'assets/home/img_upcoming_event.png',
       title: 'Calorie torcher',
       duration: '2h 30min',
       category: 'Full body',
     ),
     // Add more WorkoutItem objects as needed
   ];
-
+  List<WorkoutItem> upcomingEventsItems = [
+    WorkoutItem(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    WorkoutItem(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    WorkoutItem(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    WorkoutItem(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    WorkoutItem(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    // Add more WorkoutItem objects as needed
+  ];
   List<BlogItem> blogItems = [
     BlogItem(
       imagePath: 'assets/home/img_blog_item.png',
@@ -197,53 +229,56 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 15,
                   ),
-                  _buildBlogIndicatorItem(),
+                  _buildEventndicatorItem(),
 
                   SizedBox(
                     height: 50,
                   ),
 
                   _textTitle('Select Activity'),
-                  Container(
-                    width: 373,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        image: AssetImage('assets/home/img_take_challenge.png'),
-                        fit: BoxFit.fill,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 22.0,right: 22.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          image: AssetImage('assets/home/img_take_challenge.png'),
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 50,
-                          ),
-                          Text(
-                            'Take a Challenge',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Kanit-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.07,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 50,
                             ),
-                          ),
-                          Text(
-                            '12 Challenges',
-                            style: TextStyle(
-                              color: Color(0xFFF3F4F6),
-                              fontSize: 12,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.11,
+                            Text(
+                              'Take a Challenge',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Kanit-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.07,
+                              ),
                             ),
-                          )
-                        ],
+                            Text(
+                              '12 Challenges',
+                              style: TextStyle(
+                                color: Color(0xFFF3F4F6),
+                                fontSize: 12,
+                                fontFamily: 'Archivo-Regular',
+                                fontWeight: FontWeight.w400,
+                                height: 0.11,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -254,9 +289,18 @@ class _HomeState extends State<Home> {
 
                   _textTitle('New Workout'),
                   _buildListWorkOutItem(),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  _textTitle('Upcoming Event'),
+                  _buildListUpcomingEventListItem(),
+
+                  SizedBox(
+                    height: 30,
+                  ),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0,right: 20),
+                    padding: const EdgeInsets.only(left: 20.0, right: 20),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 156,
@@ -268,7 +312,8 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 20.0,left: 15,bottom: 20),
+                        padding: const EdgeInsets.only(
+                            top: 20.0, left: 15, bottom: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -299,11 +344,12 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 20,
+                            ),
                             Container(
                               width: 104,
                               height: 36,
-
                               decoration: ShapeDecoration(
                                 color: Color(0xFFFF4343),
                                 shape: RoundedRectangleBorder(
@@ -326,6 +372,9 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
 
                   Padding(
@@ -358,11 +407,20 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
                   _buildBlogItem(),
                   SizedBox(
                     height: 20,
                   ),
+
+
                   _buildBlogIndicatorItem(),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
@@ -379,21 +437,40 @@ class _HomeState extends State<Home> {
                             height: 0.06,
                           ),
                         ),
-                        Text(
-                          'View all',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 1.11,
-                          ),
-                        )
+                        // Text(
+                        //   'View all',
+                        //   textAlign: TextAlign.right,
+                        //   style: TextStyle(
+                        //     color: Color(0xFFFF4343),
+                        //     fontSize: 14,
+                        //     fontFamily: 'Archivo-Medium',
+                        //     fontWeight: FontWeight.w500,
+                        //     height: 1.11,
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
-                  _buildListSubcribeItem(),
+
+
+                  // _buildListSubcribeItem(),
+
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 194,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/home/img.png'),
+                          // Your asset image path here
+                          fit: BoxFit.fill,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
 
                   SizedBox(
                     height: 150,
@@ -448,9 +525,11 @@ class _HomeState extends State<Home> {
                 const EdgeInsets.only(top: 10, left: 16, right: 16, bottom: 12),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
-              color: hasCrossedAboveWhileUp
-                  ? Colors.white.withAlpha(27)
-                  : Colors.white,
+              // color: hasCrossedAboveWhileUp
+              //     ? Colors.white.withAlpha(27)
+              //     : Colors.white,
+
+              color: Colors.white,
               // Set color to transparent
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -461,13 +540,13 @@ class _HomeState extends State<Home> {
             ),
             child: Stack(
               children: [
-                Visibility(
-                  visible: hasCrossedAboveWhileUp ? true : false,
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    child: Container(),
-                  ),
-                ),
+                // Visibility(
+                //   visible: hasCrossedAboveWhileUp ? true : false,
+                //   child: BackdropFilter(
+                //     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                //     child: Container(),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: Row(
@@ -640,7 +719,7 @@ class _HomeState extends State<Home> {
     return Container(
       height: 200,
       child: ListView.builder(
-        itemCount: workoutItems.length,
+        itemCount: 1,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           WorkoutItem item = workoutItems[index];
@@ -687,7 +766,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _buildBlogIndicatorItem() {
+  Widget _buildEventndicatorItem() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -699,6 +778,27 @@ class _HomeState extends State<Home> {
           decoration: ShapeDecoration(
             color:
                 index == _currentPage1 ? Color(0xFFFFA142) : Color(0xFFE5E7EB),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBlogIndicatorItem() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        4, // Assuming there are 4 items in the slider
+        (index) => Container(
+          width: 23.33,
+          height: 6,
+          margin: EdgeInsets.symmetric(horizontal: 2.0),
+          decoration: ShapeDecoration(
+            color:
+                index == _currentPage ? Color(0xFFFFA142) : Color(0xFFE5E7EB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
@@ -1064,11 +1164,11 @@ class _HomeState extends State<Home> {
         height: 136,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            // image: DecorationImage(
-            //   image: AssetImage(item.imagePath),
-            //   fit: BoxFit.fill,
-            // ),
-            color: Color(0xFFE7F8FF)),
+            image: DecorationImage(
+              image: AssetImage("assets/home/img_banner.png"),
+              fit: BoxFit.fill,
+            ),
+            ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1125,19 +1225,22 @@ class _HomeState extends State<Home> {
         width: 200,
         height: 136,
         decoration: ShapeDecoration(
-          color: Color(0xFFFFEAE7),
+          image: DecorationImage(
+            image: AssetImage("assets/home/img_banner1.png"),
+            fit: BoxFit.fill,
+          ),
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 2, color: Colors.white),
+            // side: BorderSide(width: 2, color: Colors.white),
             borderRadius: BorderRadius.circular(8),
           ),
-          shadows: [
-            BoxShadow(
-              color: Color(0x0C000000),
-              blurRadius: 4,
-              offset: Offset(0, 2),
-              spreadRadius: 0,
-            )
-          ],
+          // shadows: [
+          //   BoxShadow(
+          //     color: Color(0x0C000000),
+          //     blurRadius: 0.5,
+          //     offset: Offset(0,0.4),
+          //     spreadRadius: 0,
+          //   )
+          // ],
         ),
         child: Row(
           children: [
@@ -1248,7 +1351,7 @@ class _HomeState extends State<Home> {
 
   Widget _buildListWorkOutItem() {
     return Container(
-      height: 235,
+      height: 215,
       child: ListView.builder(
         itemCount: workoutItems.length,
         scrollDirection: Axis.horizontal,
@@ -1259,17 +1362,128 @@ class _HomeState extends State<Home> {
             child: Container(
               width: 280,
               height: 175,
-              margin: EdgeInsets.symmetric(vertical: 8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: AssetImage(item.imagePath),
-                  fit: BoxFit.fill,
-                ),
+                color: Colors
+                    .white, // Add this line to set a color for the container
+
+                // image: DecorationImage(
+                //   image: AssetImage(item.imagePath),
+                //   fit: BoxFit.fill,
+                // ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Stack(
                 children: [
+                  Column(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8.0),
+                              topRight: Radius.circular(8.0)),
+                          child: Image.asset(
+                            item.imagePath,
+                            fit: BoxFit.cover,
+                          )),
+                      Container(
+                        width: 280,
+                        height: 75,
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 16, right: 16, bottom: 12),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          // Set color to transparent
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(4),
+                              bottomRight: Radius.circular(4),
+                            ),
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            // BackdropFilter(
+                            //   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                            //   child: Container(),
+                            // ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 203,
+                                  child: Text(
+                                    item.title,
+                                    style: TextStyle(
+                                      color: Color(0xFF334155),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.08,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 5.0, left: 2),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 5.0),
+                                        child: Container(
+                                          width: 2,
+                                          height: 12,
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFFFF4343),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        item.duration,
+                                        style: TextStyle(
+                                          color: Color(0xFF9CA3AF),
+                                          fontSize: 10,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0.14,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 4.0, right: 4.0),
+                                        child: Container(
+                                          width: 4,
+                                          height: 4,
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF9CA3AF),
+                                            shape: OvalBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        item.category,
+                                        style: TextStyle(
+                                          color: Color(0xFF9CA3AF),
+                                          fontSize: 10,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0.14,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
@@ -1300,102 +1514,186 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 280,
-                    height: 75,
-                    padding: const EdgeInsets.only(
-                        top: 10, left: 16, right: 16, bottom: 12),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: ShapeDecoration(
-                      color: Colors.transparent,
-                      // Set color to transparent
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(4),
-                          bottomRight: Radius.circular(4),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildListUpcomingEventListItem() {
+    return Container(
+      height: 235,
+      child: ListView.builder(
+        itemCount: upcomingEventsItems.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          WorkoutItem item = upcomingEventsItems[index];
+          return Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Container(
+              width: 280,
+              decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10.0),
+                              topRight: Radius.circular(10.0)),
+                          child: Image.asset(
+                            item.imagePath,
+                            fit: BoxFit.fill,
+                          )),
+                      Container(
+                        width: 280,
+                        height: 75,
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          left: 16,
+                          right: 16,
                         ),
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Container(),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 203,
-                              child: Text(
-                                item.title,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Archivo-Medium',
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.08,
-                                ),
-                              ),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          // Set color to transparent
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(4),
+                              bottomRight: Radius.circular(4),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0, left: 2),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 5.0),
-                                    child: Container(
-                                      width: 2,
-                                      height: 12,
-                                      decoration: ShapeDecoration(
-                                        color: Color(0xFFFF4343),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 203,
+                                  child: Text(
+                                    item.title,
+                                    style: TextStyle(
+                                      color: Color(0xFF334155),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.08,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 5.0, left: 2),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 5.0),
+                                        child: Container(
+                                          width: 2,
+                                          height: 12,
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFFFF4343),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  Text(
-                                    item.duration,
-                                    style: TextStyle(
-                                      color: Color(0xFF9CA3AF),
-                                      fontSize: 10,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.14,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 4.0, right: 4.0),
-                                    child: Container(
-                                      width: 4,
-                                      height: 4,
-                                      decoration: ShapeDecoration(
-                                        color: Color(0xFF9CA3AF),
-                                        shape: OvalBorder(),
+                                      Text(
+                                        item.duration,
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 10,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0.14,
+                                        ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 4.0, right: 4.0),
+                                        child: Container(
+                                          width: 4,
+                                          height: 4,
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF9CA3AF),
+                                            shape: OvalBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        '18.00 - 23.00 PM',
+                                        style: TextStyle(
+                                          color: Color(0xFF475569),
+                                          fontSize: 12,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0.12,
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Text(
-                                    item.category,
-                                    style: TextStyle(
-                                      color: Color(0xFF9CA3AF),
-                                      fontSize: 10,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.14,
-                                    ),
-                                  )
-                                ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Container(
+                      width: 42,
+                      height: 49,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFF252323),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              '24',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFFE88E32),
+                                fontSize: 14,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                                height: 0.07,
+                                letterSpacing: -0.28,
+                              ),
+                            ),
+                            Text(
+                              'Dec',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFFE88E32),
+                                fontSize: 14,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400,
+                                height: 0.11,
                               ),
                             )
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),

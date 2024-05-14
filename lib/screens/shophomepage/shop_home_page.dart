@@ -403,7 +403,7 @@ class _ShopPageState extends State<ShopPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 30),
 
 
               Padding(
@@ -488,6 +488,7 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
 
 
               SingleChildScrollView(

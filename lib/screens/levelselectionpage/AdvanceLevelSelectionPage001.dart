@@ -3,6 +3,8 @@ import 'package:lottie/lottie.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../dashboard/dashboard.dart';
+
 class AdvanceLevelSelectionPage001 extends StatefulWidget {
   final ValueChanged<bool> onVisibilityChange;
 
@@ -154,6 +156,10 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                             onTap: (){
                               setState(() {
                                 isVisible=true;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => DashBoard()),
+                                );
                               });
                             },
                             child:  Container(

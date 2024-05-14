@@ -236,7 +236,7 @@ class _WishListState extends State<WishList> {
                                           ),
 
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 10.0,top: 5,right: 10),
+                                            padding: const EdgeInsets.only(left: 10.0,top: 5,right: 3),
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
