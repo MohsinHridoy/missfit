@@ -87,6 +87,8 @@ flutter:
     - assets/review/
     - assets/shophome/
     - assets/dashboard/
+    - assets/eventdetails/
+    - assets/coachbooking/
     - assets/search/
     - assets/subscription/
     - assets/workout/www.mp4

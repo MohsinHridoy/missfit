@@ -274,7 +274,7 @@
 //           //             clipBehavior: Clip.antiAlias,
 //           //             decoration: ShapeDecoration(
 //           //               image: DecorationImage(
-//           //                 image: AssetImage("assets/home/img_profile.png"),
+//           //                 image: AssetImage("assets/home/icon_profile.png"),
 //           //                 fit: BoxFit.fill,
 //           //               ),
 //           //               shape: RoundedRectangleBorder(
@@ -369,7 +369,7 @@
 //                       clipBehavior: Clip.antiAlias,
 //                       decoration: ShapeDecoration(
 //                         image: DecorationImage(
-//                           image: AssetImage("assets/home/img_profile.png"),
+//                           image: AssetImage("assets/home/icon_profile.png"),
 //                           fit: BoxFit.fill,
 //                         ),
 //                         shape: RoundedRectangleBorder(

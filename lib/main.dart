@@ -10,10 +10,12 @@ import 'package:miss_fit/screens/cartscreen/cart.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/checkout/checkout.dart';
 import 'package:miss_fit/screens/checkout/checkout_with_address.dart';
+import 'package:miss_fit/screens/coachbookingscreen/coach_booking_screen.dart';
 import 'package:miss_fit/screens/colourselectionpage/colour_selection_page.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
+import 'package:miss_fit/screens/eventdetails/event_details_screen.dart';
 import 'package:miss_fit/screens/filterbrandsselectionpage/brandsselectionpage.dart';
 import 'package:miss_fit/screens/filtercategoryselectionpage/categoryselectionpage.dart';
 import 'package:miss_fit/screens/filterreviewselectionpage/review_selection_page.dart';
@@ -86,7 +88,7 @@ class MyApp extends StatelessWidget {
       // home:  SplashScreen(),
       // home:  DeliavryAddress(),
       // home:  CancelOrderStatus( status: CancelOrderStatusEnum.Processing,),
-      home: SplashScreen(),
+      home: SelectService(),
       // home:  FilterShopScreen(),
       // home:  TestScroll(),
     );
