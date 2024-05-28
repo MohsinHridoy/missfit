@@ -88,6 +88,7 @@ flutter:
     - assets/shophome/
     - assets/dashboard/
     - assets/eventdetails/
+    - assets/servicedetails/
     - assets/coachbooking/
     - assets/search/
     - assets/subscription/

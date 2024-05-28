@@ -30,20 +30,26 @@ import 'package:miss_fit/screens/measurementscreen/measurement_screen.dart';
 import 'package:miss_fit/screens/measurementscreen/test3.dart';
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
+import 'package:miss_fit/screens/orderhistory/order_history.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
+import 'package:miss_fit/screens/profile/profile.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
 import 'package:miss_fit/screens/registration/registration001.dart';
 import 'package:miss_fit/screens/registrationstatuspage/registration_status_page.dart';
 import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
+import 'package:miss_fit/screens/reviewsummery/review_summery_screen.dart';
+import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
+import 'package:miss_fit/screens/servicedetails/service_details.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 import 'package:miss_fit/screens/shoppage/shop_page.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
 import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
+import 'package:miss_fit/screens/timeselectionscreen/select_time_screen.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen-test_002.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen.dart';
@@ -88,7 +94,7 @@ class MyApp extends StatelessWidget {
       // home:  SplashScreen(),
       // home:  DeliavryAddress(),
       // home:  CancelOrderStatus( status: CancelOrderStatusEnum.Processing,),
-      home: SelectService(),
+      home: OrderHistory(),
       // home:  FilterShopScreen(),
       // home:  TestScroll(),
     );
