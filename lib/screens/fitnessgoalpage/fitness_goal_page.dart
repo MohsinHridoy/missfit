@@ -7,7 +7,9 @@ import '../../common_widgets.dart';
 
 class FitnessGoal extends StatefulWidget {
   final VoidCallback onNextPressed;
-  const FitnessGoal({Key? key,required this.onNextPressed}) : super(key: key);
+  String? status;
+
+   FitnessGoal({Key? key,required this.onNextPressed,this.status}) : super(key: key);
 
   @override
   _FitnessGoalState createState() => _FitnessGoalState();
@@ -77,14 +79,55 @@ class _FitnessGoalState extends State<FitnessGoal> {
             Spacer(),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20,bottom: 30),
+              child: Visibility(
+                visible: widget.status != 'profile',
+
+                child: GestureDetector(
+                  onTap: (){
+                    widget.onNextPressed();
+
+                  },
+                    child: buildNextButton(context)
+                ),
+              ),
+            ),
+
+            Visibility(
+              visible: widget.status == 'profile',
+
               child: GestureDetector(
                 onTap: (){
                   widget.onNextPressed();
 
                 },
-                  child: buildNextButton(context)
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 52,
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFFF4343),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Save Change',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.09,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),

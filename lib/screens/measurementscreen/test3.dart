@@ -148,7 +148,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TestScroll extends StatefulWidget {
   final VoidCallback onNextPressed;
 
-  const TestScroll({Key? key,required this.onNextPressed}) : super(key: key);
+  String? status;
+
+   TestScroll({Key? key,required this.onNextPressed,this.status}) : super(key: key);
 
   @override
   State<TestScroll> createState() => _TestScrollState();
@@ -426,7 +428,7 @@ class _TestScrollState extends State<TestScroll> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Next',
+                          widget.status == 'profile'?'Save & Next':'Next',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,

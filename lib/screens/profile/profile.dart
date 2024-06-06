@@ -2,7 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
+import 'package:miss_fit/screens/myaddress/my_address.dart';
 import 'package:miss_fit/screens/orderhistory/order_history.dart';
+import 'package:miss_fit/screens/payment/payment_screeen.dart';
+import 'package:miss_fit/screens/payment_status/payment_status.dart';
+import 'package:miss_fit/screens/personalinfo/personal_info.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -133,9 +138,9 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 50,),
                     _buildIndicatorTitleText('General'),
 
-                    _buildProfileItemCategory(context,"assets/profile/icon_personal_info.png",'Personal Info',OrderHistory()),
-                    _buildProfileItemCategory(context,"assets/profile/icon_address.png",'My Address',OrderHistory()),
-                    _buildProfileItemCategory(context,"assets/profile/icon_payment_card.png",'Payment Card',OrderHistory()),
+                    _buildProfileItemCategory(context,"assets/profile/icon_personal_info.png",'Personal Info',PersonalInfo()),
+                    _buildProfileItemCategory(context,"assets/profile/icon_address.png",'My Address',MyAddress()),
+                    _buildProfileItemCategory(context,"assets/profile/icon_payment_card.png",'Payment Card',AddNewCard(status: 'profile',)),
 
                     _buildIndicatorTitleText('Subscription'),
 
@@ -205,8 +210,11 @@ class _ProfileState extends State<Profile> {
 
               GestureDetector(
                   onTap: (){
-                    print("Clicked");
-                  },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => page),
+                    );
+                    },
                   child: Image.asset("assets/profile/icon_right_arrow.png", scale: 1.8,)
 
               ),

@@ -7,14 +7,19 @@ import '../dashboard/dashboard.dart';
 
 class AdvanceLevelSelectionPage001 extends StatefulWidget {
   final ValueChanged<bool> onVisibilityChange;
+  String? status;
 
-  const AdvanceLevelSelectionPage001({Key? key, required this.onVisibilityChange}) : super(key: key);
+  AdvanceLevelSelectionPage001(
+      {Key? key, required this.onVisibilityChange, this.status})
+      : super(key: key);
 
   @override
-  _AdvanceLevelSelectionPageState001 createState() => _AdvanceLevelSelectionPageState001();
+  _AdvanceLevelSelectionPageState001 createState() =>
+      _AdvanceLevelSelectionPageState001();
 }
 
-class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage001> {
+class _AdvanceLevelSelectionPageState001
+    extends State<AdvanceLevelSelectionPage001> {
   int selectedIndex = 1;
   bool isVisible = false;
 
@@ -36,8 +41,10 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
 
   Future<void> saveSelectedIndex() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('selectedIndexAdvanceLevel'); // Remove the old selectedIndex
-    await prefs.setInt('selectedIndexAdvanceLevel', selectedIndex); // Save the new selectedIndex
+    await prefs
+        .remove('selectedIndexAdvanceLevel'); // Remove the old selectedIndex
+    await prefs.setInt('selectedIndexAdvanceLevel',
+        selectedIndex); // Save the new selectedIndex
   }
 
   @override
@@ -53,29 +60,66 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(height: 5),
-                  SizedBox(width: 50, child: txt_headline('How long do you like to \nworkout for?')),
+                  SizedBox(
+                      width: 50,
+                      child: txt_headline(
+                          'How long do you like to \nworkout for?')),
                   SizedBox(height: 30),
-                  buildLevelContainer(0, 'Light Activity', 'About 10-20 minutes'),
-                  buildLevelContainer(1, 'Moderate Activity', 'About 30-40 minutes'),
+                  buildLevelContainer(
+                      0, 'Light Activity', 'About 10-20 minutes'),
+                  buildLevelContainer(
+                      1, 'Moderate Activity', 'About 30-40 minutes'),
                   buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10,bottom: 15),
-                    child: GestureDetector(
-                      onTap: () async {
-                        setState(() {
-                          isVisible = true;
-                          widget.onVisibilityChange(isVisible); // Notify parent widget about visibility change
-                        });
-                      },
-                      child: buildNextButton(context),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 10, bottom: 15),
+                    child: Visibility(
+                      visible: isVisible && widget.status != 'profile',
+                      child: GestureDetector(
+                        onTap: () async {
+                          setState(() {
+                            isVisible = true;
+                            widget.onVisibilityChange(
+                                isVisible); // Notify parent widget about visibility change
+                          });
+                        },
+                        child: buildNextButton(context),
+                      ),
                     ),
                   ),
+                  Visibility(
+                    visible: widget.status == 'profile',
+
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 52,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 112, vertical: 17),
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Save',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.09,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
             Visibility(
-              visible: isVisible,
+              visible: isVisible && widget.status != 'profile',
               child: Opacity(
                 opacity: 0.80,
                 child: Container(
@@ -85,16 +129,15 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                 ),
               ),
             ),
-
             Positioned(
               bottom: 0,
               child: Visibility(
-                visible: isVisible,
-
+                visible: isVisible && widget.status != 'profile',
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 303,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -103,21 +146,20 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                       topRight: Radius.circular(30),
                     ),
                   ),
-                  child:   Column(
+                  child: Column(
                     children: [
                       SizedBox(
                         height: 100,
                         width: 100,
                         child: Lottie.asset(
-                          'assets/lottie_anim/tik_anim.json', // Path to the Lottie JSON file in the assets folder
+                          'assets/lottie_anim/tik_anim.json',
+                          // Path to the Lottie JSON file in the assets folder
                           height: 200, // Adjust height as needed
                           width: 200, // Adjust width as needed
                           fit: BoxFit.cover, // Adjust the fit
                           repeat: false, // Play animation only once
-
                         ),
                       ),
-
                       SizedBox(
                         width: 320,
                         child: Text(
@@ -149,23 +191,25 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                           ),
                         ),
                       ),
-
                       Padding(
-                        padding: const EdgeInsets.only(left: 20.0,right: 20,top: 10),
+                        padding: const EdgeInsets.only(
+                            left: 20.0, right: 20, top: 10),
                         child: GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               setState(() {
-                                isVisible=true;
+                                isVisible = true;
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => DashBoard()),
+                                  MaterialPageRoute(
+                                      builder: (context) => DashBoard()),
                                 );
                               });
                             },
-                            child:  Container(
+                            child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 44,
-                              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 12),
                               decoration: BoxDecoration(
                                 color: Color(0xFFFF4343),
                                 borderRadius: BorderRadius.circular(8),
@@ -182,9 +226,7 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
                                   ),
                                 ),
                               ),
-                            )
-
-                        ),
+                            )),
                       ),
                     ],
                   ),
@@ -198,8 +240,10 @@ class _AdvanceLevelSelectionPageState001 extends State<AdvanceLevelSelectionPage
   }
 
   Widget buildLevelContainer(int index, String title, String subtitle) {
-    Color titleColor = index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
-    Color borderColor = index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
+    Color titleColor =
+        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
+    Color borderColor =
+        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
 
     return GestureDetector(
       onTap: () async {

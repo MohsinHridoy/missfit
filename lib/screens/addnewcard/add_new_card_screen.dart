@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 
 class AddNewCard extends StatefulWidget {
-  const AddNewCard({super.key});
+  String? status;
+   AddNewCard({super.key,this.status});
 
   @override
   State<AddNewCard> createState() => _AddNewCardState();
@@ -64,7 +65,7 @@ class _AddNewCardState extends State<AddNewCard> {
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width / 4.2),
                     Text(
-                      'Add New Card',
+                     widget.status == 'profile'?'Payment Card': 'Add New Card',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -84,7 +85,7 @@ class _AddNewCardState extends State<AddNewCard> {
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Text(
-                isVisible ?  'Add Card':'My Cart',
+                isVisible ?  'Add Card':'My Card',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 18,
@@ -294,6 +295,14 @@ class _AddNewCardState extends State<AddNewCard> {
                                 builder: (BuildContext context) {
                                   return Container(
                                     height: 215, // Adjust the height as necessary
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20.0),
+                                        topRight: Radius.circular(20.0),
+                                      ),
+
+                                    ),
                                     width: MediaQuery.of(context).size.width,
                                     child: Column(
                                       children: <Widget>[

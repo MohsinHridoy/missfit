@@ -76,7 +76,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",

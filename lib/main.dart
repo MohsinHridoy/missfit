@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:miss_fit/screens/activityselectiondashboard/activityselectiondashboard.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
@@ -22,12 +23,14 @@ import 'package:miss_fit/screens/filterreviewselectionpage/review_selection_page
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/filtersizeselectionpage/size_selection_page.dart';
 import 'package:miss_fit/screens/heightmeasurementscreen/height_selection_page.dart';
+import 'package:miss_fit/screens/heightselectiondashboard/height_selection_dashboard.dart';
 import 'package:miss_fit/screens/home/home.dart';
 import 'package:miss_fit/screens/home/home001.dart';
 import 'package:miss_fit/screens/levelselectionpage/advancement_level_selection_page.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/measurementscreen/measurement_screen.dart';
 import 'package:miss_fit/screens/measurementscreen/test3.dart';
+import 'package:miss_fit/screens/myaddress/my_address.dart';
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
 import 'package:miss_fit/screens/orderhistory/order_history.dart';
@@ -35,11 +38,13 @@ import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
+import 'package:miss_fit/screens/personalinfo/personal_info.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/profile/profile.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
 import 'package:miss_fit/screens/registration/registration001.dart';
 import 'package:miss_fit/screens/registrationstatuspage/registration_status_page.dart';
+import 'package:miss_fit/screens/review/write_review.dart';
 import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
 import 'package:miss_fit/screens/reviewsummery/review_summery_screen.dart';
 import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
@@ -94,7 +99,9 @@ class MyApp extends StatelessWidget {
       // home:  SplashScreen(),
       // home:  DeliavryAddress(),
       // home:  CancelOrderStatus( status: CancelOrderStatusEnum.Processing,),
-      home: Profile(),
+      // home: BasicInfo(onNextPressed: () {  },),
+      home: ProductReview(),
+      // home: ActivitySelectionDashBoard(),
       // home:  FilterShopScreen(),
       // home:  TestScroll(),
     );

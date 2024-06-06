@@ -5,7 +5,8 @@ import 'package:miss_fit/screens/billingaddress/billing_address.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DeliavryAddress extends StatefulWidget {
-  const DeliavryAddress({super.key});
+  String? status;
+   DeliavryAddress({super.key,this.status});
 
   @override
   State<DeliavryAddress> createState() => _DeliavryAddressState();
@@ -50,7 +51,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",

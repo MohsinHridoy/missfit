@@ -5,8 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HeightMeasurementsScreen extends StatefulWidget {
   final VoidCallback onNextPressed;
+  String? status;
 
-  const HeightMeasurementsScreen({Key? key,required this.onNextPressed}) : super(key: key);
+   HeightMeasurementsScreen({Key? key,required this.onNextPressed,this.status}) : super(key: key);
 
   @override
   State<HeightMeasurementsScreen> createState() => _HeightMeasurementsScreenState();
@@ -309,7 +310,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Next',
+                          widget.status == 'profile'?'Save':'Next',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
