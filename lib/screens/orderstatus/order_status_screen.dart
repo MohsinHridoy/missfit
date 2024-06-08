@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
+import 'package:miss_fit/screens/returnproduct/return_product.dart';
 
 import '../cartscreen/cart.dart';
 
@@ -8,8 +9,8 @@ enum OrderStatusEnum { Processing, Placed, Packed, Shipped, Packed1 }
 
 class OrderStatus extends StatefulWidget {
   final OrderStatusEnum status;
-
-  const OrderStatus({Key? key, required this.status}) : super(key: key);
+  String? navigationStatus;
+   OrderStatus({Key? key, required this.status,this.navigationStatus}) : super(key: key);
 
   @override
   State<OrderStatus> createState() => _OrderStatusState();
@@ -64,7 +65,7 @@ class _OrderStatusState extends State<OrderStatus> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",
@@ -211,40 +212,103 @@ class _OrderStatusState extends State<OrderStatus> {
 
                     _buildCartItemsList(),
 
-                    Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: GestureDetector(
-                        onTap: (){
-                          _showBottomSheet(context);
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 44,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 17),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side:
-                              BorderSide(width: 1, color: Color(0xFFFF4343)),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
 
-                          child: Center(
-                            child: Text(
-                              'Cancel Order',
-                              style: TextStyle(
-                                color: Color(0xFFFF4343),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.10,
+
+                    if(widget.navigationStatus=='Processing')
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
+                                },
+                                child: Container(
+                                  height: 52,
+                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Return',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF4343),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: Container(
+                                height: 52,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFF4343),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Buy Again',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.09,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: GestureDetector(
+                          onTap: (){
+                            _showBottomSheet(context);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 44,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 32, vertical: 17),
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side:
+                                BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+
+                            child: Center(
+                              child: Text(
+                                'Cancel Order',
+                                style: TextStyle(
+                                  color: Color(0xFFFF4343),
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    )
 
                   ],
                 ),

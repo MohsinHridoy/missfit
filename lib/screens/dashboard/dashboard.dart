@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/home/home001.dart';
+import 'package:miss_fit/screens/profile/profile.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 import 'package:miss_fit/screens/subscription/subscription.dart';
 
@@ -20,7 +21,7 @@ class _DashBoardState extends State<DashBoard> {
     ShopPage(),
     Cart001(),
     Subscription(),
-    Subscription(),
+    Profile(),
   ];
 
   final List<bool> _isSelected = [true, false, false, false, false];

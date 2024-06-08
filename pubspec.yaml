@@ -91,6 +91,7 @@ flutter:
     - assets/eventdetails/
     - assets/servicedetails/
     - assets/profile/
+    - assets/mysubscription/
     - assets/coachbooking/
     - assets/search/
     - assets/subscription/

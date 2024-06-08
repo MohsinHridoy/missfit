@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
+import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
+import 'package:miss_fit/screens/review/write_review.dart';
 
 class ImageItem {
   final String imageUrl;
@@ -56,6 +59,11 @@ class _OrderHistoryState extends State<OrderHistory> {
           title: 'Another Product',
           price: 'CHF 120',
         ),
+        ImageItem(
+          imageUrl: 'assets/product_details/img_dumble.png',
+          title: 'Another Product',
+          price: 'CHF 120',
+        ),
       ],
     ),
     OrderHistoryItem(
@@ -83,16 +91,38 @@ class _OrderHistoryState extends State<OrderHistory> {
       name: 'Jane Smith',
       stars: 2,
       reviewStatus: 'Cancelled',
+      imageItems: [
+        ImageItem(
+          imageUrl: 'assets/product_details/img_dumble.png',
+          title: 'Big Power Sports Nutrition',
+          price: 'CHF 240',
+        ),
+        ImageItem(
+          imageUrl: 'assets/product_details/img_dumble.png',
+          title: 'Another Product',
+          price: 'CHF 120',
+        ),
+      ],
     ),
   ];
+  List<OrderHistoryItem> filteredItems =
+      []; // Items to be displayed based on the selected category
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    filteredItems = orderHistoryItems;
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<OrderHistoryItem> filteredReviews = selectedIndex == 0
-        ? orderHistoryItems
-        : orderHistoryItems
-            .where((review) => review.stars == selectedIndex)
-            .toList();
+    // List<OrderHistoryItem> filteredReviews = selectedIndex == 0
+    //     ? orderHistoryItems
+    //     : orderHistoryItems
+    //         .where((review) => review.reviewStatus == selectedIndex)
+    //         .toList();
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -126,9 +156,9 @@ class _OrderHistoryState extends State<OrderHistory> {
                           scale: 2,
                         ),
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 3),
+                      SizedBox(width: MediaQuery.of(context).size.width / 3.8),
                       Text(
-                        'Review',
+                        'Order History',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF1E293B),
@@ -146,51 +176,11 @@ class _OrderHistoryState extends State<OrderHistory> {
                 height: 15,
               ),
               // Rating Section
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        "assets/review/icon_star.png",
-                        scale: 1.7,
-                      ),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '4.2 ',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.09,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '(12 Reviews)',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 12,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               // Horizontal List View Section
 
               // Review List View Section
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 10),
                 child: SizedBox(
                   height: 45.0,
                   child: ListView.builder(
@@ -202,6 +192,17 @@ class _OrderHistoryState extends State<OrderHistory> {
                         onTap: () {
                           setState(() {
                             selectedIndex = index;
+                            // Filter items based on the selected category
+                            if (selectedIndex == 0) {
+                              // All category selected, show all items
+                              filteredItems = orderHistoryItems;
+                            } else {
+                              // Filter items based on the selected category
+                              filteredItems = orderHistoryItems
+                                  .where((item) =>
+                                      item.reviewStatus == categoryItems[index])
+                                  .toList();
+                            }
                           });
                         },
                         child: Padding(
@@ -210,7 +211,9 @@ class _OrderHistoryState extends State<OrderHistory> {
                             height: 36,
                             alignment: Alignment.center,
                             decoration: ShapeDecoration(
+                              color: index == selectedIndex ?Colors.white:Colors.transparent,
                               shape: RoundedRectangleBorder(
+
                                 side: BorderSide(
                                   width: 1,
                                   strokeAlign: BorderSide.strokeAlignCenter,
@@ -222,24 +225,20 @@ class _OrderHistoryState extends State<OrderHistory> {
                               ),
                             ),
                             child: Center(
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 15,
+                              child:  Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                  categoryItems[index],
+                                  style: TextStyle(
+                                    color: index == selectedIndex
+                                        ? Color(0xFFE88E32)
+                                        : Color(0xFF334155),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.10,
                                   ),
-                                  Text(
-                                    categoryItems[index],
-                                    style: TextStyle(
-                                      color: index == selectedIndex
-                                          ? Color(0xFFE88E32)
-                                          : Color(0xFF334155),
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.10,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
@@ -252,20 +251,21 @@ class _OrderHistoryState extends State<OrderHistory> {
 
               Expanded(
                 child: ListView.builder(
-                  itemCount: filteredReviews.length,
+                  itemCount: filteredItems.length,
                   itemBuilder: (context, index) {
                     double totalPrice = 0;
-                    if (filteredReviews[index].imageItems != null) {
-                      for (var item in filteredReviews[index].imageItems!) {
+                    if (filteredItems[index].imageItems != null) {
+                      for (var item in filteredItems[index].imageItems!) {
                         totalPrice += double.parse(item.price.split(
                             ' ')[1]); // Assuming price format is 'CHF xxx'
                       }
                     }
                     return Padding(
                       padding: const EdgeInsets.only(
-                          left: 20.0, right: 20, bottom: 15),
+                          left: 0.0, right: 0, bottom: 15),
                       child: Container(
                         decoration: BoxDecoration(
+                          color: Colors.white,
                           border: Border(
                               bottom: BorderSide(
                                   color: Colors.grey.withOpacity(0.5))),
@@ -273,147 +273,332 @@ class _OrderHistoryState extends State<OrderHistory> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'INV #26510654',
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo',
-                                        fontWeight: FontWeight.w500,
-                                        height: 0,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 18,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 6, vertical: 2),
-                                      decoration: ShapeDecoration(
-                                        color: _getColorForReviewStatus(
-                                            filteredReviews[index]
-                                                .reviewStatus),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4)),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          filteredReviews[index].reviewStatus,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 10,
-                                            fontFamily: 'Archivo',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.14,
-                                          ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'INV #26510654',
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 14,
+                                          fontFamily: 'Archivo-Medium',
+                                          fontWeight: FontWeight.w500,
+                                          height: 0,
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  '12 May, 2024',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Color(0xFF66758C),
-                                    fontSize: 12,
-                                    fontFamily: 'Archivo',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0,
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Container(
+                                          height: 18,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 6, vertical: 2),
+                                          decoration: ShapeDecoration(
+                                            color: _getColorForReviewStatus(
+                                                filteredItems[index]
+                                                    .reviewStatus),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              filteredItems[index].reviewStatus,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                                fontFamily: 'Archivo-Regular',
+                                                fontWeight: FontWeight.w400,
+                                                height: 0.14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                            Text(
-                              'Total Price: CHF ${totalPrice.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w500,
-                                height: 0.09,
+                                  Text(
+                                    '12 May, 2024',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFF66758C),
+                                      fontSize: 12,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                             SizedBox(
                               height: 15,
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            if (filteredReviews[index].imageItems !=
+                            if (filteredItems[index].imageItems !=
                                 null) // Check if image items exist
                               SingleChildScrollView(
                                 scrollDirection: Axis.vertical,
                                 child: Column(
-                                  children: filteredReviews[index]
+                                  children: filteredItems[index]
                                       .imageItems!
                                       .map((item) {
                                     return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
+                                      child: Column(
                                         children: [
-                                          Image.asset(item.imageUrl,
-                                              width: 50, height: 50),
-                                          SizedBox(height: 5),
-                                          SizedBox(
-                                            width: 157,
-                                            child: Text(
-                                              item.title,
-                                              maxLines: 2,
-                                              style: TextStyle(
-                                                color: Color(0xFF334155),
-                                                fontSize: 14,
-                                                fontFamily: 'Archivo-Regular',
-                                                fontWeight: FontWeight.w400,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ),
-                                          Column(
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             children: [
-                                              SizedBox(
-                                                width: 63,
-                                                child: Text(
-                                                  item.price,
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color: Color(0xFF334155),
-                                                    fontSize: 14,
-                                                    fontFamily: 'Archivo',
-                                                    fontWeight: FontWeight.w500,
-                                                    height: 0.09,
+                                              Container(
+                                                width: 44,
+                                                height: 44,
+                                                decoration: ShapeDecoration(
+                                                  color: Color(0xFFD9D9D9),
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                                                ),
+                                                child: Image.asset(item.imageUrl,
+                                                    ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8.0),
+                                                child: SizedBox(
+                                                  width: 157,
+                                                  child: Text(
+                                                    item.title,
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                      color: Color(0xFF334155),
+                                                      fontSize: 14,
+                                                      fontFamily: 'Archivo-Regular',
+                                                      fontWeight: FontWeight.w400,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(height: 20),
-                                              SizedBox(
-                                                width: 85,
-                                                child: Text(
-                                                  '2 x CHF 120',
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    color: Color(0xFF66758C),
-                                                    fontSize: 14,
-                                                    fontFamily: 'Archivo',
-                                                    fontWeight: FontWeight.w400,
-                                                    height: 0.09,
+                                              Spacer(),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 63,
+                                                    child: Text(
+                                                      item.price,
+                                                      textAlign: TextAlign.right,
+                                                      style: TextStyle(
+                                                        color: Color(0xFF334155),
+                                                        fontSize: 14,
+                                                        fontFamily: 'Archivo',
+                                                        fontWeight: FontWeight.w500,
+                                                        height: 0.09,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              )
+                                                  SizedBox(height: 20),
+                                                  SizedBox(
+                                                    width: 85,
+                                                    child: Text(
+                                                      '2 x CHF 120',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Color(0xFF66758C),
+                                                        fontSize: 14,
+                                                        fontFamily: 'Archivo',
+                                                        fontWeight: FontWeight.w400,
+                                                        height: 0.09,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ],
                                           ),
+                                          SizedBox(height: 15),
+                                          Divider(height: 0.5,color: Color(0xFFE5E7EB),)
                                         ],
                                       ),
                                     );
                                   }).toList(),
                                 ),
                               ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Total Price:',
+                                    style: TextStyle(
+                                      color: Color(0xFF334155),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.09,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Total Price:CHF ${totalPrice.toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                      color: Color(0xFF334155),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.09,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Visibility(
+                                visible: filteredItems[index].reviewStatus !=
+                                    'Delivered',
+                                child: GestureDetector(
+                                  onTap:(){
+                                    if(filteredItems[index].reviewStatus ==
+                                        'Processing')
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>OrderStatus(status: OrderStatusEnum.Processing,navigationStatus:'Processing'),
+                                      ),
+                                    );
+                                    else if(filteredItems[index].reviewStatus ==
+                                        'Cancelled')
+                                      {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>CancelOrderStatus(status: CancelOrderStatusEnum.CANCELLED),
+                                          ),
+                                        );
+                                      }
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 40,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 32, vertical: 17),
+                                    decoration: ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            width: 1, color: Color(0xFFFF4343)),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'View Details',
+                                        style: TextStyle(
+                                          color: Color(0xFFFF4343),
+                                          fontSize: 14,
+                                          fontFamily: 'Archivo',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.10,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Visibility(
+                                visible: filteredItems[index].reviewStatus ==
+                                    'Delivered',
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap:(){
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>OrderStatus(status: OrderStatusEnum.Packed1,navigationStatus:'Processing'),
+                                            ),
+                                          );
+                                         },
+                                        child: Container(
+                                          height: 40,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 32, vertical: 17),
+                                          decoration: ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  width: 1, color: Color(0xFFFF4343)),
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              'View Details',
+                                              style: TextStyle(
+                                                color: Color(0xFFFF4343),
+                                                fontSize: 14,
+                                                fontFamily: 'Archivo',
+                                                fontWeight: FontWeight.w600,
+                                                height: 0.10,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 5,),
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap:(){
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>ProductReview(),
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          height: 40,
+
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFFFF4343),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(8)),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              'Write Review',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontFamily: 'Archivo-SemiBold',
+                                                fontWeight: FontWeight.w600,
+                                                height: 0.10,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
                           ],
                         ),
                       ),
