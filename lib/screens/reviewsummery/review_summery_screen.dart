@@ -14,55 +14,96 @@ class _ReviewSummaryState extends State<ReviewSummary> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              // Adjust the corner radius as needed
-              bottomRight:
-              Radius.circular(20), // Adjust the corner radius as needed
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 10,
-                offset: Offset(0, 2), // changes position of shadow
-              ),
-            ],
-          ),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              color: Colors.black,
-            ),
-            title: Text(
-              'Review Summary',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF1E293B),
-                fontSize: 18,
-                fontFamily: 'Kanit',
-                fontWeight: FontWeight.w500,
-                height: 0.07,
-              ),
-            ),
-            centerTitle: true,
-          ),
-        ),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(kToolbarHeight),
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //       color: Colors.white,
+      //       borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(20),
+      //         // Adjust the corner radius as needed
+      //         bottomRight:
+      //         Radius.circular(20), // Adjust the corner radius as needed
+      //       ),
+      //       boxShadow: [
+      //         BoxShadow(
+      //           color: Colors.black.withOpacity(0.1),
+      //           spreadRadius: 1,
+      //           blurRadius: 10,
+      //           offset: Offset(0, 2), // changes position of shadow
+      //         ),
+      //       ],
+      //     ),
+      //     child: AppBar(
+      //       backgroundColor: Colors.transparent,
+      //       elevation: 0,
+      //       leading: IconButton(
+      //         icon: Icon(Icons.arrow_back),
+      //         onPressed: () {
+      //           Navigator.pop(context);
+      //         },
+      //         color: Colors.black,
+      //       ),
+      //       title: Text(
+      //         'Review Summary',
+      //         textAlign: TextAlign.center,
+      //         style: TextStyle(
+      //           color: Color(0xFF1E293B),
+      //           fontSize: 18,
+      //           fontFamily: 'Kanit',
+      //           fontWeight: FontWeight.w500,
+      //           height: 0.07,
+      //         ),
+      //       ),
+      //       centerTitle: true,
+      //     ),
+      //   ),
+      // ),
       body: Container(
           color: Color(0xFFF6F6F6),
           child: Column(
             children: [
+              Container(
+                height: 97,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16)),
+                  border: Border.all(color: Colors.white.withOpacity(0.11)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 35.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          "assets/cart/icon_left_arrow.png",
+                          scale: 2,
+                        ),
+                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width / 4.2),
+                      Text(
+                        'Review Summery',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF1E293B),
+                          fontSize: 18,
+                          fontFamily: 'Kanit-Medium',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 // Adjust the padding as needed

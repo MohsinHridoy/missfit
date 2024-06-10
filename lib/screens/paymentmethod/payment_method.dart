@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Category {
@@ -116,10 +118,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.1),
+                    SizedBox(width: MediaQuery.of(context).size.width / 4),
 
                     Text(
-                      'Sort By',
+                      'Payment Method',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -275,6 +277,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
               padding: const EdgeInsets.all(20.0),
               child: GestureDetector(
                 onTap: () {
+                  navigateToNextPage(context,MySubscription(title: 'payment_method',));
                   _saveSelectedCategories();
                 },
                 child: Container(

@@ -53,7 +53,9 @@ class _EventDetailsState extends State<EventDetails> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+
+                        Navigator.pop(context);
+
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",
@@ -593,6 +595,8 @@ class _EventDetailsState extends State<EventDetails> {
                       padding: const EdgeInsets.only(left: 20.0,right: 20,top: 10),
                       child: GestureDetector(
                           onTap: (){
+                            Navigator.pop(context);
+
                             // setState(() {
                             //   isVisible=true;
                             //   Navigator.push(

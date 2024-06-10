@@ -58,7 +58,7 @@ class SubscriptionHistory extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 20),
                   child: Container(
-                    width: 318,
+                    width: MediaQuery.of(context).size.width,
                     height: 87,
                     padding: const EdgeInsets.only(
                       top: 20,
@@ -139,7 +139,6 @@ class SubscriptionHistory extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: 90),
                                 Container(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,

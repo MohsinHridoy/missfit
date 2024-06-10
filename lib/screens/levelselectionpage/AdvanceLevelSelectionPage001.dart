@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -75,7 +76,7 @@ class _AdvanceLevelSelectionPageState001
                     padding: const EdgeInsets.only(
                         left: 10.0, right: 10, bottom: 15),
                     child: Visibility(
-                      visible: isVisible && widget.status != 'profile',
+                      visible: widget.status != 'profile',
                       child: GestureDetector(
                         onTap: () async {
                           setState(() {
@@ -91,25 +92,30 @@ class _AdvanceLevelSelectionPageState001
                   Visibility(
                     visible: widget.status == 'profile',
 
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 52,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 112, vertical: 17),
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFF4343),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.09,
+                    child: GestureDetector(
+                      onTap: (){
+                        navigateToNextPage(context,DashBoard(number: 4,));
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 52,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 112, vertical: 17),
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFF4343),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.09,
+                            ),
                           ),
                         ),
                       ),
@@ -198,6 +204,8 @@ class _AdvanceLevelSelectionPageState001
                             onTap: () {
                               setState(() {
                                 isVisible = true;
+                                _setLoggedIn(true);
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -238,7 +246,10 @@ class _AdvanceLevelSelectionPageState001
       ),
     );
   }
-
+  Future<void> _setLoggedIn(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', value);
+  }
   Widget buildLevelContainer(int index, String title, String subtitle) {
     Color titleColor =
         index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);

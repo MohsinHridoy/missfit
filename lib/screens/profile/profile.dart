@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
+import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/myaddress/my_address.dart';
 import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:miss_fit/screens/orderhistory/order_history.dart';
@@ -52,7 +55,10 @@ class _ProfileState extends State<Profile> {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+                            navigateToNextPage(context,Settings());
+
+
+
                           },
                           child: Image.asset(
                             "assets/profile/icon_gearbox.png",
@@ -131,33 +137,38 @@ class _ProfileState extends State<Profile> {
                     SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      width: 174,
-                      height: 36,
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFFA142),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4)),
-                      ),
-                      child: Row(
-                        children: [
-                          Image.asset("assets/profile/icon_manage_subscription.png"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 3.0),
-                            child: Text(
-                              'Buy Subscription',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 0.09,
+                    GestureDetector(
+                      onTap: (){
+                        navigateToNextPage(context,DashBoard(number: 3,));
+                      },
+                      child: Container(
+                        width: 174,
+                        height: 36,
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFFA142),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset("assets/profile/icon_manage_subscription.png"),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 3.0),
+                              child: Text(
+                                'Buy Subscription',
+                                style: TextStyle(
+                                  color: Color(0xFF334155),
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.09,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -297,61 +308,64 @@ class _ProfileState extends State<Profile> {
     return Padding(
       padding:
           const EdgeInsets.only(left: 20.0, right: 20, top: 15, bottom: 15),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: GestureDetector(
+        onTap: (){
+          navigateToNextPage(context,page);
+
+        },
+        child: Container(
+          color: Colors.white,
+
+          child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        imgPath,
+                        scale: 2,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0.09,
+                        ),
+                      ),
+                    ],
+                  ),
                   Image.asset(
-                    imgPath,
-                    scale: 2,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Regular',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
-                    ),
+                    "assets/profile/icon_right_arrow.png",
+                    scale: 1.8,
                   ),
                 ],
               ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => page),
-                    );
-                  },
-                  child: Image.asset(
-                    "assets/profile/icon_right_arrow.png",
-                    scale: 1.8,
-                  )),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      strokeAlign: BorderSide.strokeAlignCenter,
+                      color: Color(0xFFF3F4F6),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 1,
-                  strokeAlign: BorderSide.strokeAlignCenter,
-                  color: Color(0xFFF3F4F6),
-                ),
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -361,159 +375,165 @@ class _ProfileState extends State<Profile> {
     return Padding(
       padding:
           const EdgeInsets.only(left: 20.0, right: 20, top: 15, bottom: 15),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Image.asset(
-                    imgPath,
-                    scale: 2,
+      child: GestureDetector(
+        onTap: (){
+          showModalBottomSheet(
+            barrierColor: Color(0xFF111827).withOpacity(0.7),
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                height: 250, // Adjust the height as necessary
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Color(0xFFEF4444),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Regular',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
+                ),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 30),
+                    Image.asset(
+                      "assets/profile/icon_bottomsheet_logout.png",
+                      scale: 2,
                     ),
-                  ),
-                ],
-              ),
-              GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      barrierColor: Color(0xFF111827).withOpacity(0.7),
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Container(
-                          height: 250, // Adjust the height as necessary
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0),
+                    SizedBox(height: 20),
+                    Text(
+                      'Are you sure to log out from this app?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 18,
+                        fontFamily: 'Archivo-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 0.08,
+                      ),
+                    ),
+                    SizedBox(height: 40),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 30.0, right: 30, bottom: 1),
+                      child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(
+                                  context); // Close the modal when tapped
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 52,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 17),
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      width: 1,
+                                      color: Color(0xFFFF4343)),
+                                  borderRadius:
+                                  BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'No',
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.09,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(height: 30),
-                              Image.asset(
-                                "assets/profile/icon_bottomsheet_logout.png",
-                                scale: 2,
+                          GestureDetector(
+                            onTap: () {
+                              // setState(() {
+                              //   paymentItems.removeAt(index);
+                              //
+                              // });
+
+                              navigateToNextPage(context,LoginPage(status: 'profile',));
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 52,
+                              decoration: ShapeDecoration(
+                                color: Color(0xFFFF4343),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(8)),
                               ),
-                              SizedBox(height: 20),
-                              Text(
-                                'Are you sure to log out from this app?',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 18,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.08,
+                              child: Center(
+                                child: Text(
+                                  'Yes',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.09,
+                                  ),
                                 ),
                               ),
-                              SizedBox(height: 40),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 30.0, right: 30, bottom: 1),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.pop(
-                                            context); // Close the modal when tapped
-                                      },
-                                      child: Container(
-                                        width: 150,
-                                        height: 52,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 32, vertical: 17),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                                width: 1,
-                                                color: Color(0xFFFF4343)),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'No',
-                                            style: TextStyle(
-                                              color: Color(0xFFFF4343),
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.09,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        // setState(() {
-                                        //   paymentItems.removeAt(index);
-                                        //
-                                        // });
-                                      },
-                                      child: Container(
-                                        width: 150,
-                                        height: 52,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFFFF4343),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'Yes',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo-SemiBold',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.09,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 20),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Image.asset(
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        imgPath,
+                        scale: 2,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: Color(0xFFEF4444),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0.09,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Image.asset(
                     "assets/profile/icon_right_arrow.png",
                     color: Color(0xFFEF4444),
                     scale: 1.8,
-                  )),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
             ],
           ),
-          SizedBox(
-            height: 15,
-          ),
-        ],
+        ),
       ),
     );
   }

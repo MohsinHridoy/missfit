@@ -70,6 +70,9 @@ class PaymentStatus extends StatelessWidget {
                 ),
               ),
               SizedBox(
+                height: 20,
+              ),
+              SizedBox(
                 width: 320,
                 child: Text(
                   'Payment Successfull',
@@ -104,11 +107,11 @@ class PaymentStatus extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(30.0),
                 child: SizedBox(
                   width: 320,
                   child: Text(
-                    'Programme d\'entraînement avec suivi',
+                     '       Programme d\'entraînement avec suivi',
                     style: TextStyle(
                       color: Color(0xFF334155),
                       fontSize: 16,

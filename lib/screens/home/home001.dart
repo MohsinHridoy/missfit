@@ -1,6 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/coachbookingscreen/coach_booking_screen.dart';
+import 'package:miss_fit/screens/eventdetails/event_details_screen.dart';
+import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
+import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
 import 'package:miss_fit/widgets/circular_progress_bar.dart';
 
 class WorkoutItem {
@@ -237,47 +241,57 @@ class _HomeState extends State<Home> {
 
                   _textTitle('Select Activity'),
                   Padding(
-                    padding: const EdgeInsets.only(left: 22.0,right: 22.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: AssetImage('assets/home/img_take_challenge.png'),
-                          fit: BoxFit.fill,
+                    padding: const EdgeInsets.only(left: 22.0, right: 22.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TakeChallenge()),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/home/img_take_challenge.png'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 50,
-                            ),
-                            Text(
-                              'Take a Challenge',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: 'Kanit-Medium',
-                                fontWeight: FontWeight.w500,
-                                height: 0.07,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 50,
                               ),
-                            ),
-                            Text(
-                              '12 Challenges',
-                              style: TextStyle(
-                                color: Color(0xFFF3F4F6),
-                                fontSize: 12,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 0.11,
+                              Text(
+                                'Take a Challenge',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: 'Kanit-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.07,
+                                ),
                               ),
-                            )
-                          ],
+                              Text(
+                                '12 Challenges',
+                                style: TextStyle(
+                                  color: Color(0xFFF3F4F6),
+                                  fontSize: 12,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.11,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -301,74 +315,84 @@ class _HomeState extends State<Home> {
 
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0, right: 20),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 156,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: AssetImage("assets/home/img_book_service.png"),
-                          fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CoachListScreen()),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 156,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image:
+                                AssetImage("assets/home/img_book_service.png"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20.0, left: 15, bottom: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 196,
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Book your service\n',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF4343),
-                                        fontSize: 22,
-                                        fontFamily: 'Kanit-Medium',
-                                        fontWeight: FontWeight.w500,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20.0, left: 15, bottom: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 196,
+                                child: Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Book your service\n',
+                                        style: TextStyle(
+                                          color: Color(0xFFFF4343),
+                                          fontSize: 22,
+                                          fontFamily: 'Kanit-Medium',
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text: 'with our coaches',
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 16,
-                                        fontFamily: 'Kanit-Regular',
-                                        fontWeight: FontWeight.w400,
+                                      TextSpan(
+                                        text: 'with our coaches',
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 16,
+                                          fontFamily: 'Kanit-Regular',
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              width: 104,
-                              height: 36,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFFF4343),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Book now',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.10,
+                                    ],
                                   ),
                                 ),
                               ),
-                            )
-                          ],
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                width: 104,
+                                height: 36,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFF4343),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Book now',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.10,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -416,7 +440,6 @@ class _HomeState extends State<Home> {
                     height: 20,
                   ),
 
-
                   _buildBlogIndicatorItem(),
                   SizedBox(
                     height: 20,
@@ -451,7 +474,6 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
-
 
                   // _buildListSubcribeItem(),
 
@@ -558,7 +580,7 @@ class _HomeState extends State<Home> {
                         clipBehavior: Clip.antiAlias,
                         decoration: ShapeDecoration(
                           image: DecorationImage(
-                            image: AssetImage("assets/home/icon_profile.png"),
+                            image: AssetImage("assets/home/img_profile.png"),
                             fit: BoxFit.fill,
                           ),
                           shape: RoundedRectangleBorder(
@@ -1163,12 +1185,12 @@ class _HomeState extends State<Home> {
         width: 200,
         height: 136,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-              image: AssetImage("assets/home/img_banner.png"),
-              fit: BoxFit.fill,
-            ),
-            ),
+          borderRadius: BorderRadius.circular(10.0),
+          image: DecorationImage(
+            image: AssetImage("assets/home/img_banner.png"),
+            fit: BoxFit.fill,
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1524,181 +1546,191 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildListUpcomingEventListItem() {
-    return Container(
-      height: 235,
-      child: ListView.builder(
-        itemCount: upcomingEventsItems.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          WorkoutItem item = upcomingEventsItems[index];
-          return Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Container(
-              width: 280,
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10.0),
-                              topRight: Radius.circular(10.0)),
-                          child: Image.asset(
-                            item.imagePath,
-                            fit: BoxFit.fill,
-                          )),
-                      Container(
-                        width: 280,
-                        height: 75,
-                        padding: const EdgeInsets.only(
-                          top: 10,
-                          left: 16,
-                          right: 16,
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          // Set color to transparent
-                          shape: RoundedRectangleBorder(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EventDetails(),
+          ),
+        );
+      },
+      child: Container(
+        height: 235,
+        child: ListView.builder(
+          itemCount: upcomingEventsItems.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (BuildContext context, int index) {
+            WorkoutItem item = upcomingEventsItems[index];
+            return Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Container(
+                width: 280,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        ClipRRect(
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(4),
-                              bottomRight: Radius.circular(4),
+                                topLeft: Radius.circular(10.0),
+                                topRight: Radius.circular(10.0)),
+                            child: Image.asset(
+                              item.imagePath,
+                              fit: BoxFit.fill,
+                            )),
+                        Container(
+                          width: 280,
+                          height: 75,
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 16,
+                            right: 16,
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            // Set color to transparent
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(4),
+                                bottomRight: Radius.circular(4),
+                              ),
                             ),
                           ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 203,
-                                  child: Text(
-                                    item.title,
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.08,
+                          child: Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: 203,
+                                    child: Text(
+                                      item.title,
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.08,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 5.0, left: 2),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 5.0),
-                                        child: Container(
-                                          width: 2,
-                                          height: 12,
-                                          decoration: ShapeDecoration(
-                                            color: Color(0xFFFF4343),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5.0, left: 2),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 5.0),
+                                          child: Container(
+                                            width: 2,
+                                            height: 12,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFFFF4343),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        item.duration,
-                                        style: TextStyle(
-                                          color: Color(0xFF334155),
-                                          fontSize: 10,
-                                          fontFamily: 'Archivo-Regular',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0.14,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 4.0, right: 4.0),
-                                        child: Container(
-                                          width: 4,
-                                          height: 4,
-                                          decoration: ShapeDecoration(
-                                            color: Color(0xFF9CA3AF),
-                                            shape: OvalBorder(),
+                                        Text(
+                                          item.duration,
+                                          style: TextStyle(
+                                            color: Color(0xFF334155),
+                                            fontSize: 10,
+                                            fontFamily: 'Archivo-Regular',
+                                            fontWeight: FontWeight.w400,
+                                            height: 0.14,
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        '18.00 - 23.00 PM',
-                                        style: TextStyle(
-                                          color: Color(0xFF475569),
-                                          fontSize: 12,
-                                          fontFamily: 'Archivo-Regular',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0.12,
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 4.0, right: 4.0),
+                                          child: Container(
+                                            width: 4,
+                                            height: 4,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFF9CA3AF),
+                                              shape: OvalBorder(),
+                                            ),
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: Container(
-                      width: 42,
-                      height: 49,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFF252323),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              '24',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFFE88E32),
-                                fontSize: 14,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                                height: 0.07,
-                                letterSpacing: -0.28,
+                                        Text(
+                                          '18.00 - 23.00 PM',
+                                          style: TextStyle(
+                                            color: Color(0xFF475569),
+                                            fontSize: 12,
+                                            fontFamily: 'Archivo-Regular',
+                                            fontWeight: FontWeight.w400,
+                                            height: 0.12,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                            ),
-                            Text(
-                              'Dec',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFFE88E32),
-                                fontSize: 14,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400,
-                                height: 0.11,
-                              ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  )
-                ],
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: Container(
+                        width: 42,
+                        height: 49,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFF252323),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(2)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                '24',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFFE88E32),
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.07,
+                                  letterSpacing: -0.28,
+                                ),
+                              ),
+                              Text(
+                                'Dec',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFFE88E32),
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.11,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

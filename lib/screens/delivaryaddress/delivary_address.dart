@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
+import 'package:miss_fit/screens/reviewsummery/review_summery_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DeliavryAddress extends StatefulWidget {
   String? status;
-   DeliavryAddress({super.key,this.status});
+
+  DeliavryAddress({super.key, this.status});
 
   @override
   State<DeliavryAddress> createState() => _DeliavryAddressState();
@@ -17,7 +19,6 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
   TextEditingController _lastNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _phoneNumberController = TextEditingController();
-
 
   TextEditingController _regionController = TextEditingController();
   TextEditingController _postCodeController = TextEditingController();
@@ -31,7 +32,6 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
     return Scaffold(
       body: Container(
         color: Color(0xFFF6F6F6),
-
         child: Column(
           children: [
             Container(
@@ -74,14 +74,14 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                 ),
               ),
             ),
-
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-                    SizedBox(height: 30,),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
@@ -122,7 +122,8 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                       height: 30,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0,right: 20,top:20),
+                      padding:
+                          const EdgeInsets.only(left: 20.0, right: 20, top: 20),
                       child: Text(
                         'Address',
                         style: TextStyle(
@@ -139,19 +140,32 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     _textFormField(_streetAddressController, 'Street Address'),
                     _textFormField(_cityController, 'City'),
                     _textFormField(_addressController, 'Address'),
-                    SizedBox(height: 40,),
+                    SizedBox(
+                      height: 40,
+                    ),
                     GestureDetector(
-                      onTap: (){
-                        _isAllFieldsFilled ?  _saveData():null;
+                      onTap: () {
+                        _isAllFieldsFilled ? _saveData() : null;
+                        if (widget.status == 'subscription') {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ReviewSummary()),
+                          );
+                        }
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: 44,
-                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 32, vertical: 17),
                           decoration: ShapeDecoration(
-                            color: _isAllFieldsFilled ? Colors.red : Color(0xFFD1D5DB), // Dynamic color based on validation
+                            color: _isAllFieldsFilled
+                                ? Colors.red
+                                : Color(0xFFD1D5DB),
+                            // Dynamic color based on validation
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
@@ -159,7 +173,9 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                             child: Text(
                               'Save & Continue',
                               style: TextStyle(
-                                color: _isAllFieldsFilled ?Colors.white:Color(0xFF334155),
+                                color: _isAllFieldsFilled
+                                    ? Colors.white
+                                    : Color(0xFF334155),
                                 fontSize: 14,
                                 fontFamily: 'Archivo-SemiBold',
                                 fontWeight: FontWeight.w600,
@@ -179,6 +195,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
       ),
     );
   }
+
   void _checkFieldsFilled() {
     setState(() {
       _isAllFieldsFilled = _firstNameController.text.isNotEmpty &&
@@ -217,6 +234,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
       // Possibly show an alert dialog or a snackbar
     }
   }
+
   Widget _textFormField(TextEditingController controller, String Label) {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20, top: 25),

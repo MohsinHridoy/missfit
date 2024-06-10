@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
 import 'package:miss_fit/screens/otp/otp001.dart';
 
@@ -6,7 +7,10 @@ import 'package:miss_fit/screens/otp/otp001.dart';
 
 
 class LoginPage extends StatefulWidget {
-  @override
+  final String? status;
+
+  // Constructor with named parameter
+  const LoginPage({Key? key, this.status}) : super(key: key);  @override
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -26,8 +30,12 @@ class _LoginPageState extends State<LoginPage> {
     _emailOrPhoneNumberFocusNode.addListener(() {
       setState(() {
         _isEmailFocused = _emailOrPhoneNumberFocusNode.hasFocus;
+        // Conditionally focus the text field based on widget.status
+
       });
     });
+
+
   }
 
   @override
@@ -53,6 +61,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.status == 'profile') {
+      FocusScope.of(context).requestFocus(_emailOrPhoneNumberFocusNode);
+    }
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
       body: Center(
@@ -141,10 +152,8 @@ class _LoginPageState extends State<LoginPage> {
               child: GestureDetector(
                 onTap: (){
                   _isValidEmail ?
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Otp001(email: _emailOrPhoneNumberController.text)),
-                  ):null;
+                  navigateToNextPage(context,Otp001(email: _emailOrPhoneNumberController.text))
+                 :null;
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

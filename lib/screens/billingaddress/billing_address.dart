@@ -1,11 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/checkout/checkout_with_address.dart';
+import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BillingDeliavryAddress extends StatefulWidget {
-  const BillingDeliavryAddress({super.key});
+  final String? status;
+
+  const BillingDeliavryAddress({super.key, this.status});
 
   @override
   State<BillingDeliavryAddress> createState() => _BillingDeliavryAddressState();
@@ -30,11 +34,14 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
   @override
   void initState() {
     super.initState();
+    if(widget.status=='profile')
+    _loadData();
   }
 
   Future<void> _loadData() async {
     final prefs = await SharedPreferences.getInstance();
-    final jsonData = prefs.getString('shippingaddress');
+    final jsonData = prefs.getString('billing_address');
+    print(jsonData);
     if (jsonData != null) {
       setState(() {
         final userData = jsonDecode(jsonData);
@@ -85,7 +92,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width / 4.2),
                     Text(
-                      'Delivary Address',
+                     widget.status!='profile'? 'Delivary Address':'Payment Method',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -107,7 +114,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                     SizedBox(
                       height: 30,
                     ),
-                    Padding(
+                    widget.status!='profile' ?Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
                         'Add Billing Address',
@@ -119,9 +126,9 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                           height: 0.06,
                         ),
                       ),
-                    ),
+                    ):SizedBox(),
                     SizedBox(height: 10,),
-                    _buildSelectAllCheckbox(),
+                    widget.status!='profile' ?_buildSelectAllCheckbox():SizedBox(),
                     SizedBox(
                       height: 30,
                     ),
@@ -191,7 +198,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                           ),
                           child: Center(
                             child: Text(
-                              'Save & Continue',
+                              widget.status!='profile' ? 'Save & Continue':'Save',
                               style: TextStyle(
                                 color: _isAllFieldsFilled
                                     ? Colors.white
@@ -341,12 +348,15 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
       };
       final jsonData = jsonEncode(data);
       await prefs.setString('billing_address', jsonData);
+       if(widget.status=='profile')
+         {
+           navigateToNextPage(context,MySubscription());
+         }
+       else
+         {
+           navigateToNextPage(context,CheckOutAddress());
 
-      // Optionally navigate to another page or show a message
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CheckOutAddress()),
-      );
+         }
     } else {
       // Handle the case where not all fields are filled
       // Possibly show an alert dialog or a snackbar

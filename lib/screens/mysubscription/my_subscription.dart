@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:miss_fit/screens/paymentmethod/payment_method.dart';
 import 'package:miss_fit/screens/subscription_history/subscription_history.dart';
 
 
 class MySubscription extends StatelessWidget {
+  final String? title;
+
+  const MySubscription({Key? key,  this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,7 +55,8 @@ class MySubscription extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                            navigateToNextPage(context, DashBoard(number: 4,));
+
                         },
                         child: Image.asset(
                           "assets/cart/icon_left_arrow.png",
@@ -256,11 +262,10 @@ class _BillingInfoContainer extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SubscriptionHistory()),
-                        );
+
+
+                        navigateToNextPage(context, SubscriptionHistory());
+
                       },
                       child: Container(
                         color: Colors.white,
@@ -296,11 +301,10 @@ class _BillingInfoContainer extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BillingDeliavryAddress()),
-                        );
+
+
+                        navigateToNextPage(context, BillingDeliavryAddress(status: 'profile',));
+
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 35.0),
@@ -398,11 +402,10 @@ class _PaymentDetailsContainer extends StatelessWidget {
                         const SizedBox(width: 25),
                         GestureDetector(
                           onTap: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PaymentMethod()),
-                            );
+
+
+                            navigateToNextPage(context, PaymentMethod());
+
                           },
                           child: Container(
                             color: Colors.white,
@@ -690,25 +693,30 @@ class _OptionItem extends StatelessWidget {
 class _RenewSubscriptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 44,
-      decoration: BoxDecoration(
-        color: Color(0xFFFF4343),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Center(
-        child: Text(
-          'Renew Subscription',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontFamily: 'Archivo-SemiBold',
-            fontWeight: FontWeight.w600,
-            height: 1.2, // Adjusted height
+    return GestureDetector(
+      onTap: (){
+        navigateToNextPage(context,DashBoard(number: 3,));
+      },
+      child: Container(
+        width: double.infinity,
+        height: 44,
+        decoration: BoxDecoration(
+          color: Color(0xFFFF4343),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(
+          child: Text(
+            'Renew Subscription',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontFamily: 'Archivo-SemiBold',
+              fontWeight: FontWeight.w600,
+              height: 1.2, // Adjusted height
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

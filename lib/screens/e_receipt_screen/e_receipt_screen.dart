@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
 
 class EReceiptScreen extends StatefulWidget {
@@ -80,7 +81,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Handle back button tap
+                          Navigator.pop(context);
                         },
                         child: Image.asset(
                           "assets/cart/icon_left_arrow.png",
@@ -233,7 +234,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                   onTap: (){
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => PaymentStatus()),
+                      MaterialPageRoute(builder: (context) => DashBoard()),
                     );
                   },
                   child: Container(

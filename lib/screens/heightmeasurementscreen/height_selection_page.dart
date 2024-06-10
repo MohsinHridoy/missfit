@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -289,6 +291,8 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
             Center(
               child:  GestureDetector(
                 onTap: () async{
+                  if(widget.status == 'profile')
+                    navigateToNextPage(context,DashBoard(number: 4,));
                   await _saveIndex(currentPageIndex!);
                   print(currentPageIndex);
 

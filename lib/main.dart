@@ -58,6 +58,7 @@ import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
 import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/subscription_history/subscription_history.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
+import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
 import 'package:miss_fit/screens/timeselectionscreen/select_time_screen.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen-test_002.dart';
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MissFit',
       debugShowCheckedModeBanner: false,
 
       theme: ThemeData(

@@ -7,7 +7,8 @@ import 'package:miss_fit/screens/subscription/subscription.dart';
 
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({Key? key}) : super(key: key);
+ final int? number;
+  const DashBoard({Key? key, this.number}) : super(key: key);
 
   @override
   State<DashBoard> createState() => _DashBoardState();
@@ -20,11 +21,22 @@ class _DashBoardState extends State<DashBoard> {
     Home(),
     ShopPage(),
     Cart001(),
+    // Cart001(),
     Subscription(),
     Profile(),
   ];
 
-  final List<bool> _isSelected = [true, false, false, false, false];
+
+  void initState() {
+    super.initState();
+    int? index;
+    if(widget.number == 4 || widget.number == 3)
+      index = widget.number;
+    _selectedIndex = index ?? 0; // Revised line
+    _isSelected[_selectedIndex] = true;
+  }
+
+  final List<bool> _isSelected = [false, false, false, false, false];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -41,6 +53,8 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       body: Stack(
         children: [
@@ -131,11 +145,13 @@ class _DashBoardState extends State<DashBoard> {
       case 0:
         return _buildIcon(isSelected ?'assets/dashboard/img_1.png':'assets/dashboard/img.png', iconColor);
       case 1:
-        return _buildIcon('assets/dashboard/icon_shop.png', iconColor);
-      case 2:
         return _buildIcon(isSelected ?'assets/dashboard/icon_bag1.png':'assets/dashboard/icon_bag.png', iconColor);
-      case 3:
+
+      case 2:
         return _buildIcon('assets/dashboard/icon.png', iconColor);
+      case 3:
+        return _buildIcon('assets/dashboard/icon_shop.png', iconColor);
+
       case 4:
         return _buildIcon('assets/dashboard/icon_profile.png', iconColor);
       default:
@@ -150,76 +166,4 @@ class _DashBoardState extends State<DashBoard> {
     );
   }
 
-
-
-
-}
-class FirstPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Center(
-        child: Text('Home Page Content'),
-      ),
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Search'),
-      ),
-      body: Center(
-        child: Text('Search Page Content'),
-      ),
-    );
-  }
-}
-
-class ThirdPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Notifications'),
-      ),
-      body: Center(
-        child: Text('Notifications Page Content'),
-      ),
-    );
-  }
-}
-
-class FourthPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
-      ),
-      body: Center(
-        child: Text('Settings Page Content'),
-      ),
-    );
-  }
-}
-
-class FifthPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
-      body: Center(
-        child: Text('Profile Page Content'),
-      ),
-    );
-  }
 }

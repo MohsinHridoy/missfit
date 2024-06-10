@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
+import 'package:miss_fit/screens/subscriptionprice/subscription_price1.dart';
 
 class Subscription extends StatefulWidget {
   const Subscription({super.key});
@@ -37,12 +39,15 @@ class _SubscriptionState extends State<Subscription> {
                       onTap: () {
                         // Handle back button tap
                       },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
+                      child: Visibility(
+                        visible: false,
+                        child: Image.asset(
+                          "assets/cart/icon_left_arrow.png",
+                          scale: 2,
+                        ),
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.5),
+                    SizedBox(width: MediaQuery.of(context).size.width / 3.1),
                     Text(
                       'Subscription',
                       textAlign: TextAlign.center,
@@ -87,122 +92,130 @@ class _SubscriptionState extends State<Subscription> {
 
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,right: 25.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 481,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1.40, color: Color(0xFFE5E7EB)),
-                            borderRadius: BorderRadius.circular(8),
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SubscriptionPriceSelectionPage()),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 481,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1.40, color: Color(0xFFE5E7EB)),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 8.0),
-                                        child: Image.asset(
-                                          "assets/subscription/icon_premium.png",
-                                          scale: 2,
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 8.0),
+                                          child: Image.asset(
+                                            "assets/subscription/icon_premium.png",
+                                            scale: 2,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 218,
+                                          child: Text(
+                                            'Premium',
+                                            style: TextStyle(
+                                              color: Color(0xFF334155),
+                                              fontSize: 24,
+                                              fontFamily: 'Archivo-SemiBold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 0.06,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 40),
+                                    SizedBox(
+                                      width: 280,
+                                      child: Text(
+                                        'CHF 990 ou CHF 89/mois',
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 18,
+                                          fontFamily: 'Archivo-SemiBold',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.07,
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 218,
-                                        child: Text(
-                                          'Premium',
-                                          style: TextStyle(
-                                            color: Color(0xFF334155),
-                                            fontSize: 24,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.06,
+                                    ),
+                                    SizedBox(height: 25),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 1,
+                                      decoration: BoxDecoration(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                            width: 0.5,
+                                            color: Colors.grey.withOpacity(0.0),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 40),
-                                  SizedBox(
-                                    width: 280,
-                                    child: Text(
-                                      'CHF 990 ou CHF 89/mois',
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 18,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.07,
+                                      child: CustomPaint(
+                                        painter: DashedLinePainter(),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: 25),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 1,
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide(
-                                          width: 0.5,
-                                          color: Colors.grey.withOpacity(0.0),
-                                        ),
-                                      ),
-                                    ),
-                                    child: CustomPaint(
-                                      painter: DashedLinePainter(),
-                                    ),
-                                  ),
-                                  SizedBox(height: 15),
-                                  _buildSubscriptionDetailsText(
-                                      'Accès aux Cours Collectifs & Circuits Trainings'),
-                                  _buildSubscriptionDetailsText(
-                                      'Accès Preminum sur notre app (vidéo d’entrainement, conseils, etc)'),
-                                  _buildSubscriptionDetailsText(
-                                      'Accès gratuit à nos Events “Girls Only”'),
-                                  _buildSubscriptionDetailsText('Shaker & sac offerts '),
-                                  SizedBox(height: 40),
+                                    SizedBox(height: 15),
+                                    _buildSubscriptionDetailsText(
+                                        'Accès aux Cours Collectifs & Circuits Trainings'),
+                                    _buildSubscriptionDetailsText(
+                                        'Accès Preminum sur notre app (vidéo d’entrainement, conseils, etc)'),
+                                    _buildSubscriptionDetailsText(
+                                        'Accès gratuit à nos Events “Girls Only”'),
+                                    _buildSubscriptionDetailsText('Shaker & sac offerts '),
+                                    SizedBox(height: 40),
 
-                                  _buildButton('Acheter un abonnement')
-                                ],
-                              ),
-                            ),
-
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Image.asset(
-                                  "assets/subscription/icon_premium_offer_icon.png",
-                                  scale: 2,
-                                )),
-                            Align(
-                              alignment: Alignment.topRight,
-
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text(
-                                  '20% off',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Color(0xFFF9FAFB),
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.09,
-                                  ),
+                                    _buildButton('Acheter un abonnement')
+                                  ],
                                 ),
                               ),
-                            )
 
-                          ],
+                              Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/subscription/icon_premium_offer_icon.png",
+                                    scale: 2,
+                                  )),
+                              Align(
+                                alignment: Alignment.topRight,
+
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text(
+                                    '20% off',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFFF9FAFB),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.09,
+                                    ),
+                                  ),
+                                ),
+                              )
+
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -210,122 +223,130 @@ class _SubscriptionState extends State<Subscription> {
                     SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,right: 25.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 481,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1.40, color: Color(0xFFE5E7EB)),
-                            borderRadius: BorderRadius.circular(8),
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SubscriptionPriceSelectionPage1()),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 481,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1.40, color: Color(0xFFE5E7EB)),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 8.0),
-                                        child: Image.asset(
-                                          "assets/subscription/icon_basic.png",
-                                          scale: 2,
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 8.0),
+                                          child: Image.asset(
+                                            "assets/subscription/icon_basic.png",
+                                            scale: 2,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 218,
+                                          child: Text(
+                                            'Basic',
+                                            style: TextStyle(
+                                              color: Color(0xFF334155),
+                                              fontSize: 24,
+                                              fontFamily: 'Archivo-SemiBold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 0.06,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 40),
+                                    SizedBox(
+                                      width: 280,
+                                      child: Text(
+                                        'CHF 990 ou CHF 89/mois',
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 18,
+                                          fontFamily: 'Archivo-SemiBold',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.07,
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 218,
-                                        child: Text(
-                                          'Basic',
-                                          style: TextStyle(
-                                            color: Color(0xFF334155),
-                                            fontSize: 24,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.06,
+                                    ),
+                                    SizedBox(height: 25),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 1,
+                                      decoration: BoxDecoration(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                            width: 0.5,
+                                            color: Colors.grey.withOpacity(0.0),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 40),
-                                  SizedBox(
-                                    width: 280,
-                                    child: Text(
-                                      'CHF 990 ou CHF 89/mois',
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 18,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.07,
+                                      child: CustomPaint(
+                                        painter: DashedLinePainter(),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: 25),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 1,
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide(
-                                          width: 0.5,
-                                          color: Colors.grey.withOpacity(0.0),
-                                        ),
-                                      ),
-                                    ),
-                                    child: CustomPaint(
-                                      painter: DashedLinePainter(),
-                                    ),
-                                  ),
-                                  SizedBox(height: 15),
-                                  _buildSubscriptionDetailsText(
-                                      'Accès aux Cours Collectifs & Circuits Trainings'),
-                                  _buildSubscriptionDetailsText(
-                                      'Accès Preminum sur notre app (vidéo d’entrainement, conseils, etc)'),
-                                  _buildSubscriptionDetailsText(
-                                      'Accès gratuit à nos Events “Girls Only”'),
-                                  _buildSubscriptionDetailsText('Shaker & sac offerts '),
-                                  SizedBox(height: 40),
+                                    SizedBox(height: 15),
+                                    _buildSubscriptionDetailsText(
+                                        'Accès aux Cours Collectifs & Circuits Trainings'),
+                                    _buildSubscriptionDetailsText(
+                                        'Accès Preminum sur notre app (vidéo d’entrainement, conseils, etc)'),
+                                    _buildSubscriptionDetailsText(
+                                        'Accès gratuit à nos Events “Girls Only”'),
+                                    _buildSubscriptionDetailsText('Shaker & sac offerts '),
+                                    SizedBox(height: 40),
 
-                                  _buildButton('Acheter un abonnement')
-                                ],
-                              ),
-                            ),
-
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: Image.asset(
-                                  "assets/subscription/icon_basic_offer_icon.png",
-                                  scale: 2,
-                                )),
-                            Align(
-                              alignment: Alignment.topRight,
-
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text(
-                                  '10% off',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Color(0xFFF9FAFB),
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.09,
-                                  ),
+                                    _buildButton('Acheter un abonnement')
+                                  ],
                                 ),
                               ),
-                            )
 
-                          ],
+                              Align(
+                                  alignment: Alignment.topRight,
+                                  child: Image.asset(
+                                    "assets/subscription/icon_basic_offer_icon.png",
+                                    scale: 2,
+                                  )),
+                              Align(
+                                alignment: Alignment.topRight,
+
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text(
+                                    '10% off',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFFF9FAFB),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.09,
+                                    ),
+                                  ),
+                                ),
+                              )
+
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -442,6 +463,8 @@ class _SubscriptionState extends State<Subscription> {
               setState(() {
                 isSelectedYearly = true;
                 isSelectedMonthly = false;
+
+
               });
             },
             child: Container(
