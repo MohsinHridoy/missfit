@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
 class WishList extends StatefulWidget {
@@ -10,7 +11,6 @@ class WishList extends StatefulWidget {
 
 class _WishListState extends State<WishList> {
   List<CustomItem> items = [
-
     CustomItem(
         title: 'Dumbbells',
         image: 'assets/product_details/img_dumble.png',
@@ -99,7 +99,6 @@ class _WishListState extends State<WishList> {
                         fontFamily: 'Kanit-Medium',
                         fontWeight: FontWeight.w500,
                         height: 0.07,
-
                       ),
                     ),
                     Spacer(),
@@ -161,7 +160,6 @@ class _WishListState extends State<WishList> {
                                   SizedBox(
                                     width: 15,
                                   ),
-
                                   SizedBox(
                                     width: 1,
                                   ),
@@ -192,7 +190,7 @@ class _WishListState extends State<WishList> {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 22.0,right: 22),
+                  padding: const EdgeInsets.only(left: 22.0, right: 22),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -206,14 +204,15 @@ class _WishListState extends State<WishList> {
                           final item = filteredItems[index];
 
                           return Padding(
-                            padding: const EdgeInsets.only(top:8.0),
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 110,
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -226,7 +225,8 @@ class _WishListState extends State<WishList> {
                                             decoration: ShapeDecoration(
                                               color: Color(0xFFE5E7EB),
                                               shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(8)),
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
                                             ),
                                             child: Center(
                                               child: Image.asset(
@@ -234,22 +234,26 @@ class _WishListState extends State<WishList> {
                                               ),
                                             ),
                                           ),
-
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 10.0,top: 5,right: 3),
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, top: 5, right: 3),
                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 SizedBox(
                                                   width: 200,
                                                   child: Text(
                                                     item.title,
-                                                    overflow: TextOverflow.ellipsis,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     style: TextStyle(
                                                       color: Color(0xFF334155),
                                                       fontSize: 14,
-                                                      fontFamily: 'Archivo-SemiBold',
-                                                      fontWeight: FontWeight.w600,
+                                                      fontFamily:
+                                                          'Archivo-SemiBold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                       height: 0.09,
                                                     ),
                                                   ),
@@ -258,27 +262,37 @@ class _WishListState extends State<WishList> {
                                                 Container(
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Text(
                                                           'CHF ${item.price.toStringAsFixed(2)}',
                                                           style: TextStyle(
-                                                            color: Color(0xFF334155),
+                                                            color: Color(
+                                                                0xFF334155),
                                                             fontSize: 12,
-                                                            fontFamily: 'Archivo-Medium',
-                                                            fontWeight: FontWeight.w500,
+                                                            fontFamily:
+                                                                'Archivo-Medium',
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                             height: 0.12,
                                                           )),
-                                                      SizedBox(width: 3,),
+                                                      SizedBox(
+                                                        width: 3,
+                                                      ),
                                                       Text(
                                                         'CHF ${item.originalPrice.toStringAsFixed(2)}',
                                                         style: TextStyle(
-                                                          color: Color(0xFF66758C),
+                                                          color:
+                                                              Color(0xFF66758C),
                                                           fontSize: 10,
-                                                          fontFamily: 'Archivo-Regular',
-                                                          fontWeight: FontWeight.w400,
+                                                          fontFamily:
+                                                              'Archivo-Regular',
+                                                          fontWeight:
+                                                              FontWeight.w400,
                                                           decoration:
-                                                          TextDecoration.lineThrough,
+                                                              TextDecoration
+                                                                  .lineThrough,
                                                           height: 0.14,
                                                         ),
                                                       ),
@@ -291,9 +305,12 @@ class _WishListState extends State<WishList> {
                                                   height: 32,
                                                   decoration: ShapeDecoration(
                                                     color: Color(0xFFFF4343),
-                                                    shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                        BorderRadius.circular(8)),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
                                                   ),
                                                   child: Center(
                                                     child: Text(
@@ -301,127 +318,181 @@ class _WishListState extends State<WishList> {
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 10,
-                                                        fontFamily: 'Archivo-SemiBold',
-                                                        fontWeight: FontWeight.w600,
+                                                        fontFamily:
+                                                            'Archivo-SemiBold',
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         height: 0.14,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-
                                               ],
                                             ),
                                           )
                                         ],
                                       ),
-
                                       Align(
                                         alignment: Alignment.bottomLeft,
-                                        child:Padding(
-                                          padding: const EdgeInsets.only(top: 50.0,right: 10),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 50.0, right: 10),
                                           child: GestureDetector(
-                                            onTap: (){
+                                            onTap: () {
                                               setState(() {
                                                 // Remove the payment item at the current index
                                                 showModalBottomSheet(
-                                                  barrierColor: Color(0xFF111827).withOpacity(0.7),
+                                                  barrierColor:
+                                                      Color(0xFF111827)
+                                                          .withOpacity(0.7),
                                                   context: context,
-                                                  builder: (BuildContext context) {
+                                                  builder:
+                                                      (BuildContext context) {
                                                     return Container(
-                                                      height: 215, // Adjust the height as necessary
-                                                      width: MediaQuery.of(context).size.width,
+                                                      height: 215,
+                                                      // Adjust the height as necessary
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
                                                       child: Column(
                                                         children: <Widget>[
                                                           SizedBox(height: 50),
                                                           Text(
                                                             'Delete Existing Card',
-                                                            textAlign: TextAlign.center,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                             style: TextStyle(
-                                                              color: Color(0xFF334155),
+                                                              color: Color(
+                                                                  0xFF334155),
                                                               fontSize: 18,
-                                                              fontFamily: 'Archivo-SemiBold',
-                                                              fontWeight: FontWeight.w600,
+                                                              fontFamily:
+                                                                  'Archivo-SemiBold',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
                                                               height: 0.08,
                                                             ),
                                                           ),
                                                           SizedBox(height: 30),
                                                           Text(
                                                             'Do you want to delete this card?',
-                                                            textAlign: TextAlign.center,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                             style: TextStyle(
-                                                              color: Color(0xFF334155),
+                                                              color: Color(
+                                                                  0xFF334155),
                                                               fontSize: 16,
-                                                              fontFamily: 'Archivo-Medium',
-                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily:
+                                                                  'Archivo-Medium',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
                                                               height: 0.09,
                                                             ),
                                                           ),
                                                           SizedBox(height: 40),
                                                           Padding(
-                                                            padding: const EdgeInsets.only(left: 30.0,right: 30,bottom: 1),
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 30.0,
+                                                                    right: 30,
+                                                                    bottom: 1),
                                                             child: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
                                                               children: [
                                                                 GestureDetector(
                                                                   onTap: () {
                                                                     Navigator.pop(
                                                                         context); // Close the modal when tapped
                                                                   },
-                                                                  child: Container(
+                                                                  child:
+                                                                      Container(
                                                                     width: 150,
                                                                     height: 52,
-                                                                    padding: const EdgeInsets.symmetric(
-                                                                        horizontal: 32, vertical: 17),
-                                                                    decoration: ShapeDecoration(
-                                                                      shape: RoundedRectangleBorder(
+                                                                    padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                        horizontal:
+                                                                            32,
+                                                                        vertical:
+                                                                            17),
+                                                                    decoration:
+                                                                        ShapeDecoration(
+                                                                      shape:
+                                                                          RoundedRectangleBorder(
                                                                         side: BorderSide(
-                                                                            width: 1, color: Color(0xFFFF4343)),
-                                                                        borderRadius: BorderRadius.circular(8),
+                                                                            width:
+                                                                                1,
+                                                                            color:
+                                                                                Color(0xFFFF4343)),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8),
                                                                       ),
                                                                     ),
-                                                                    child: Center(
-                                                                      child: Text(
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
                                                                         'No',
-                                                                        style: TextStyle(
-                                                                          color: Color(0xFFFF4343),
-                                                                          fontSize: 16,
-                                                                          fontFamily: 'Archivo-SemiBold',
-                                                                          fontWeight: FontWeight.w600,
-                                                                          height: 0.09,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xFFFF4343),
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontFamily:
+                                                                              'Archivo-SemiBold',
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          height:
+                                                                              0.09,
                                                                         ),
                                                                       ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 GestureDetector(
-                                                                  onTap: (){
-
-                                                                    setState(() {
-                                                                      items.removeAt(index);
+                                                                  onTap: () {
+                                                                    setState(
+                                                                        () {
+                                                                      items.removeAt(
+                                                                          index);
                                                                       Navigator.pop(
                                                                           context);
                                                                     });
-
                                                                   },
-                                                                  child: Container(
+                                                                  child:
+                                                                      Container(
                                                                     width: 150,
                                                                     height: 52,
-
-                                                                    decoration: ShapeDecoration(
-                                                                      color: Color(0xFFFF4343),
+                                                                    decoration:
+                                                                        ShapeDecoration(
+                                                                      color: Color(
+                                                                          0xFFFF4343),
                                                                       shape: RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(8)),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8)),
                                                                     ),
-
-                                                                    child: Center(
-                                                                      child: Text(
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
                                                                         'Yes',
-                                                                        style: TextStyle(
-                                                                          color: Colors.white,
-                                                                          fontSize: 16,
-                                                                          fontFamily: 'Archivo-SemiBold',
-                                                                          fontWeight: FontWeight.w600,
-                                                                          height: 0.09,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontFamily:
+                                                                              'Archivo-SemiBold',
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          height:
+                                                                              0.09,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -446,23 +517,27 @@ class _WishListState extends State<WishList> {
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius:
-                                                BorderRadius.circular(4),
+                                                    BorderRadius.circular(4),
                                               ),
-                                              child: Image.asset("assets/product_details/icon_delete.png"),
+                                              child: Image.asset(
+                                                  "assets/product_details/icon_delete.png"),
                                             ),
                                           ),
                                         ),
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                         side: BorderSide(
                                           width: 1,
-                                          strokeAlign: BorderSide.strokeAlignCenter,
+                                          strokeAlign:
+                                              BorderSide.strokeAlignCenter,
                                           color: Color(0xFFE5E7EB),
                                         ),
                                       ),
@@ -479,30 +554,38 @@ class _WishListState extends State<WishList> {
                 ),
               ),
             ),
-
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 52,
-            decoration: ShapeDecoration(
-              color: Color(0xFFFF4343),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            ),
-             child:Center(
-               child: Text(
-                 'All Add to Cart',
-                 style: TextStyle(
-                   color: Colors.white,
-                   fontSize: 16,
-                   fontFamily: 'Archivo-SemiBold',
-                   fontWeight: FontWeight.w600,
-                   height: 0.09,
-                 ),
-               ),
-             ) ,
-          ),
-        )
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Cart001()),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFFF4343),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'All Add to Cart',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Archivo-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 0.09,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

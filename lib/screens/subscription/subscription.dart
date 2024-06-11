@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price1.dart';
 
@@ -94,10 +95,15 @@ class _SubscriptionState extends State<Subscription> {
                       padding: const EdgeInsets.only(left: 25.0,right: 25.0),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SubscriptionPriceSelectionPage()),
-                          );
+                          if(isSelectedYearly==true)
+                          {
+                            navigateToNextPage(context,SubscriptionPriceSelectionPage());
+                          }
+                          else
+                          {
+                            navigateToNextPage(context,SubscriptionPriceSelectionPage1());
+
+                          }
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,
@@ -225,10 +231,15 @@ class _SubscriptionState extends State<Subscription> {
                       padding: const EdgeInsets.only(left: 25.0,right: 25.0),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SubscriptionPriceSelectionPage1()),
-                          );
+                          if(isSelectedYearly==true)
+                          {
+                            navigateToNextPage(context,SubscriptionPriceSelectionPage());
+                          }
+                          else
+                          {
+                            navigateToNextPage(context,SubscriptionPriceSelectionPage1());
+
+                          }
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,
@@ -372,7 +383,7 @@ class _SubscriptionState extends State<Subscription> {
                       ),
                     ),
 
-                    SizedBox(height: 50),
+                    SizedBox(height: 150,),
 
 
 
@@ -380,6 +391,8 @@ class _SubscriptionState extends State<Subscription> {
                 ),
               ),
             ),
+
+
           ],
         ),
       ),
@@ -472,7 +485,7 @@ class _SubscriptionState extends State<Subscription> {
               height: 54,
               decoration: BoxDecoration(
                 color:
-                    isSelectedYearly ? Color(0xFFFFA142) : Colors.transparent,
+                isSelectedYearly ? Color(0xFFFFA142) : Colors.transparent,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Center(
@@ -501,7 +514,7 @@ class _SubscriptionState extends State<Subscription> {
               height: 54,
               decoration: BoxDecoration(
                 color:
-                    isSelectedMonthly ? Color(0xFFFFA142) : Colors.transparent,
+                isSelectedMonthly ? Color(0xFFFFA142) : Colors.transparent,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Center(

@@ -139,7 +139,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        navigateToNextPage(context,DashBoard(number: 3,));
+                        navigateToNextPage(context,DashBoard(number: 2,));
                       },
                       child: Container(
                         width: 174,

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
+import 'package:miss_fit/screens/e_receipt_screen/e_receipt_Screen_challenges.dart';
 import 'package:miss_fit/screens/e_receipt_screen/e_receipt_screen.dart';
 
 class PaymentStatus extends StatelessWidget {
-  const PaymentStatus({super.key});
+  final String? status;
+  const PaymentStatus({super.key,this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class PaymentStatus extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Handle back button tap
+                          Navigator.pop(context);
                         },
                         child: Image.asset(
                           "assets/cart/icon_left_arrow.png",
@@ -122,11 +126,9 @@ class PaymentStatus extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 150,
-              ),
+              Spacer(),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20, top: 10),
+                padding: const EdgeInsets.only(left: 20.0, right: 20, top: 10 ),
                 child: GestureDetector(
                     onTap: () {
                       // setState(() {
@@ -136,6 +138,7 @@ class PaymentStatus extends StatelessWidget {
                       //     MaterialPageRoute(builder: (context) => DashBoard()),
                       //   );
                       // });
+                      navigateToNextPage(context,DashBoard());
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
@@ -148,7 +151,7 @@ class PaymentStatus extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Continue',
+                          'Back To Home',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -161,13 +164,18 @@ class PaymentStatus extends StatelessWidget {
                     )),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20, top: 10),
+                padding: const EdgeInsets.only(left: 20.0, right: 20, top: 10,bottom: 25),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EReceiptScreen()),
-                    );
+
+                    if(status=='reviewsummery')
+
+                    navigateToNextPage(context,EReceiptScreenSubscription());
+                    else
+                      {
+                        navigateToNextPage(context,EReceiptScreen());
+
+                      }
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,

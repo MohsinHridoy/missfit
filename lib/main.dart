@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
       // home:  DeliavryAddress(),
       // home:  CancelOrderStatus( status: CancelOrderStatusEnum.Processing,),
       // home: BasicInfo(onNextPressed: () {  },),
-      home: DashBoard(),
+      home: SplashScreen(),
       // home: ActivitySelectionDashBoard(),
       // home:  FilterShopScreen(),
       // home:  TestScroll(),

@@ -20,7 +20,7 @@ class _DashBoardState extends State<DashBoard> {
   static List<Widget> _widgetOptions = <Widget>[
     Home(),
     ShopPage(),
-    Cart001(),
+    // Cart001(),
     // Cart001(),
     Subscription(),
     Profile(),
@@ -29,11 +29,14 @@ class _DashBoardState extends State<DashBoard> {
 
   void initState() {
     super.initState();
+    // if(widget)
+
     int? index;
-    if(widget.number == 4 || widget.number == 3)
+    if(widget.number == 3 || widget.number == 2)
       index = widget.number;
     _selectedIndex = index ?? 0; // Revised line
     _isSelected[_selectedIndex] = true;
+
   }
 
   final List<bool> _isSelected = [false, false, false, false, false];
@@ -53,6 +56,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).unfocus();
 
 
     return Scaffold(
@@ -87,11 +91,14 @@ class _DashBoardState extends State<DashBoard> {
                     )
                   ],
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(
-                    _widgetOptions.length,
-                        (index) => _buildNavBarItem(index),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      _widgetOptions.length,
+                          (index) =>_buildNavBarItem(index),
+                    ),
                   ),
                 ),
               ),
@@ -107,28 +114,39 @@ class _DashBoardState extends State<DashBoard> {
       onTap: () {
         _onItemTapped(index);
       },
-      child: Stack(
+      child: Column(
         children: [
-          Column(
-            children: [
-              SizedBox(height: 20),
-              SizedBox(
-                height: 20,
-                width: 20,
-                child: _getIconData(index),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 12,
-            left: 7,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              width: 6,
-              height: 6,
-              decoration: BoxDecoration(
-                color: _isSelected[index] ? Colors.red : Colors.transparent, // Change color to red if selected
-                shape: BoxShape.circle,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20.0,right: 30),
+              child: Container(
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(height: 20),
+                        SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: _getIconData(index),
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      bottom: 12,
+                      left: 7,
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: _isSelected[index] ? Colors.red : Colors.transparent, // Change color to red if selected
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -147,12 +165,12 @@ class _DashBoardState extends State<DashBoard> {
       case 1:
         return _buildIcon(isSelected ?'assets/dashboard/icon_bag1.png':'assets/dashboard/icon_bag.png', iconColor);
 
+      // case 2:
+      //   return _buildIcon('assets/dashboard/icon.png', iconColor);
       case 2:
-        return _buildIcon('assets/dashboard/icon.png', iconColor);
-      case 3:
         return _buildIcon('assets/dashboard/icon_shop.png', iconColor);
 
-      case 4:
+      case 3:
         return _buildIcon('assets/dashboard/icon_profile.png', iconColor);
       default:
         return Container(); // Return a placeholder if index is out of bounds

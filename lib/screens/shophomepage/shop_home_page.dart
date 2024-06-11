@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shoppage/searchpage.dart';
@@ -108,11 +109,9 @@ class _ShopPageState extends State<ShopPage> {
               SizedBox(height: 5),
               GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AllItemsSearchPage()),
-                    );
+
+
+                    navigateToNextPage(context,AllItemsSearchPage());
                   },
                   child: _buildSearchBar()),
               SizedBox(height: 30),
@@ -138,7 +137,7 @@ class _ShopPageState extends State<ShopPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AllItemsShopPage()),
+                              builder: (context) => AllItemsSearchPage()),
                         );
                       },
                       child: SizedBox(
@@ -694,19 +693,71 @@ class _ShopPageState extends State<ShopPage> {
   }
 
   Widget _buildSearchBar() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 22.0, right: 22),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              height: 40,
-              padding: const EdgeInsets.only(
-                top: 8,
-                left: 12,
-                right: 8,
-                bottom: 8,
+    return Container(
+      color: Color(0xFFF6F6F6),
+
+      child: Padding(
+        padding: const EdgeInsets.only(left: 22.0, right: 22),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 12,
+                  right: 8,
+                  bottom: 8,
+                ),
+                clipBehavior: Clip.antiAlias,
+                decoration: ShapeDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/shophome/icon_search.png"),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: TextFormField(
+                          readOnly: true,
+                          style: TextStyle(
+                            color: Color(0xFF9CA3AF),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 0.10,
+                          ),
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'Search',
+                            hintStyle: TextStyle(
+                              color: Color(0xFF9CA3AF),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 0.10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+            ),
+            SizedBox(width: 10),
+            Container(
+              width: 40,
+              height: 40,
+              padding: const EdgeInsets.all(8),
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 color: Colors.white.withOpacity(0.05),
@@ -715,66 +766,18 @@ class _ShopPageState extends State<ShopPage> {
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset("assets/shophome/icon_search.png"),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: TextFormField(
-                        readOnly: true,
-                        style: TextStyle(
-                          color: Color(0xFF9CA3AF),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 0.10,
-                        ),
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Search',
-                          hintStyle: TextStyle(
-                            color: Color(0xFF9CA3AF),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 0.10,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              child: Center(
+                child: Image.asset(
+                  'assets/shophome/icon_filter.png',
+                  // Replace 'your_image.png' with the actual path to your image asset
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.cover, // Adjust the fit as needed
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 10),
-          Container(
-            width: 40,
-            height: 40,
-            padding: const EdgeInsets.all(8),
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: Colors.white.withOpacity(0.05),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            child: Center(
-              child: Image.asset(
-                'assets/shophome/icon_filter.png',
-                // Replace 'your_image.png' with the actual path to your image asset
-                width: 24,
-                height: 24,
-                fit: BoxFit.cover, // Adjust the fit as needed
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

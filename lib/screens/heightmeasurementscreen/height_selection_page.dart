@@ -107,7 +107,8 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text:selectedUnitForMesurements? "${selectedValue! ~/ 100}": "${ selectedValue! ~/ 12}",
+                            text:"${selectedValue! ~/ 100}",
+                            // text:selectedUnitForMesurements? "${selectedValue! ~/ 100}": "${ selectedValue! ~/ 12}",
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 48,
@@ -231,33 +232,33 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedUnit = 'FT';
-                      selectedUnitForMesurements=false;
-                    });
-                  },
-                  child: Text(
-                    'FT',
-                    style: TextStyle(
-                      color: selectedUnit == 'FT'
-                          ? Color(0xFFE88E32)
-                          : Color(0xFF9CA3AF),
-                      fontSize: 20,
-                      fontFamily: 'Archivo-Medium',
-                      fontWeight: FontWeight.w500,
-                      height: 1.07,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(width: 1, color: Color(0xFF334155)),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     setState(() {
+                //       selectedUnit = 'FT';
+                //       selectedUnitForMesurements=false;
+                //     });
+                //   },
+                //   child: Text(
+                //     'FT',
+                //     style: TextStyle(
+                //       color: selectedUnit == 'FT'
+                //           ? Color(0xFFE88E32)
+                //           : Color(0xFF9CA3AF),
+                //       fontSize: 20,
+                //       fontFamily: 'Archivo-Medium',
+                //       fontWeight: FontWeight.w500,
+                //       height: 1.07,
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   width: 10,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.all(12.0),
+                //   child: Container(width: 1, color: Color(0xFF334155)),
+                // ),
                 SizedBox(
                   width: 5,
                 ),
@@ -292,7 +293,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
               child:  GestureDetector(
                 onTap: () async{
                   if(widget.status == 'profile')
-                    navigateToNextPage(context,DashBoard(number: 4,));
+                    navigateToNextPage(context,DashBoard(number: 3,));
                   await _saveIndex(currentPageIndex!);
                   print(currentPageIndex);
 

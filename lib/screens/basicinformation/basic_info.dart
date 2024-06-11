@@ -346,7 +346,7 @@ class _BasicInfoState extends State<BasicInfo> {
         
                     child: GestureDetector(
                       onTap: (){
-                        navigateToNextPage(context,DashBoard(number: 4,));
+                        navigateToNextPage(context,DashBoard(number: 3,));
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,

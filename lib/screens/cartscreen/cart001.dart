@@ -71,7 +71,7 @@ class _Cart001State extends State<Cart001> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context); // This will pop the current screen off the navigation stack and return to the previous screen
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",
@@ -128,7 +128,7 @@ class _Cart001State extends State<Cart001> {
                     _buildRemovedItemsList(),
                     _buildOrderSummeryItem(),
                     SizedBox(
-                      height: 50,
+                      height: 100,
                     ),
                     Container(
                         width: MediaQuery.of(context).size.width,
@@ -216,9 +216,9 @@ class _Cart001State extends State<Cart001> {
                           ],
                         )),
 
-                    SizedBox(
-                      height: 100,
-                    ),
+                    // SizedBox(
+                    //   height: 100,
+                    // ),
                   ],
                 ),
               ),

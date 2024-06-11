@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class SubscriptionPriceSelectionPage extends StatefulWidget {
@@ -15,10 +15,10 @@ class SubscriptionPriceSelectionPage extends StatefulWidget {
 
 class _SubscriptionPriceSelectionPageState
     extends State<SubscriptionPriceSelectionPage> {
-  int selectedIndex = 1;
+  int selectedIndex = 0;
   bool isVisible = false;
   bool isVisible1 = false;
-   TextEditingController controller=TextEditingController();
+  TextEditingController controller=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,15 +220,15 @@ class _SubscriptionPriceSelectionPageState
                                                 width: 1,
                                                 color: Color(0xFFD1D5DB)),
                                             borderRadius:
-                                                BorderRadius.circular(4),
+                                            BorderRadius.circular(4),
                                           ),
                                         ),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           children: [
                                             SizedBox(width: 8),
                                             Expanded(
@@ -251,13 +251,13 @@ class _SubscriptionPriceSelectionPageState
                                                     height: 0.10,
                                                   ),
                                                   decoration:
-                                                      InputDecoration.collapsed(
+                                                  InputDecoration.collapsed(
                                                     hintText: 'testtest',
                                                     hintStyle: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 14,
                                                       fontFamily:
-                                                          'Archivo-Regular',
+                                                      'Archivo-Regular',
                                                       fontWeight: FontWeight.w400,
                                                       height: 0.10,
                                                     ),
@@ -303,12 +303,9 @@ class _SubscriptionPriceSelectionPageState
                                     left: 20.0, right: 20, top: 8),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.pop(
-                                        context); // Close the bottom sheet
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => DeliavryAddress(status: 'subscription',)),
-                                    );
+
+
+                                    navigateToNextPage(context, DeliavryAddress(status: 'subscription',));
                                   },
                                   child: Container(
                                     width: MediaQuery.of(context).size.width,
@@ -383,9 +380,9 @@ class _SubscriptionPriceSelectionPageState
 
   Widget buildLevelContainer(int index, String title, String subtitle) {
     Color titleColor =
-        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
+    index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
     Color borderColor =
-        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
+    index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
 
     return GestureDetector(
       onTap: () async {
@@ -414,13 +411,13 @@ class _SubscriptionPriceSelectionPageState
               Container(
                 child: selectedIndex == index
                     ? Image.asset(
-                        "assets/payment/icon_radio_check.png",
-                        scale: 2.0,
-                      )
+                  "assets/payment/icon_radio_check.png",
+                  scale: 2.0,
+                )
                     : Image.asset(
-                        "assets/payment/icon_radio_uncheck.png",
-                        scale: 2.0,
-                      ),
+                  "assets/payment/icon_radio_uncheck.png",
+                  scale: 2.0,
+                ),
               ),
               SizedBox(width: 10.0),
               Column(

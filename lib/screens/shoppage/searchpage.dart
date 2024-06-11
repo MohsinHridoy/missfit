@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
+import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
 class AllItemsSearchPage extends StatefulWidget {
@@ -56,6 +57,8 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
 
     // Add more items here as needed
   ];
+
+
   List<String> searchHistory = [];
 
   List<CustomItem> filteredItems =
@@ -71,6 +74,11 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
     super.initState();
 
     filteredItems = items;
+
+    _focusNode = FocusNode();
+
+    // Add listener to the focus node to update _isEmailFocused
+
   }
 
   @override
@@ -82,6 +90,8 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
   }
 
   Widget _buildSearchHistory() {
+    // FocusScope.of(context).requestFocus(_focusNode);
+
     return Visibility(
       visible: searchHistory.isNotEmpty,
       child: Container(
@@ -261,162 +271,172 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
                               itemBuilder: (context, index) {
                                 final item = filteredItems[index];
 
-                                return Container(
-                                  width: 170,
-                                  height: 250,
-                                  padding: const EdgeInsets.only(bottom: 1),
-                                  child: Stack(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Container(
-                                            width: 160,
-                                            height: 152,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: ShapeDecoration(
-                                              color: Colors.white,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(4),
-                                                  topRight: Radius.circular(4),
-                                                ),
-                                              ),
-                                            ),
-                                            child: Center(
-                                                child: Image.asset(
-                                              item.image,
-                                              width: 100,
-                                              height: 100,
-                                            )),
-                                          ),
-                                          Expanded(
-                                            child: Container(
+                                return GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProductDetails(),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 170,
+                                    height: 250,
+                                    padding: const EdgeInsets.only(bottom: 1),
+                                    child: Stack(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Container(
                                               width: 160,
+                                              height: 152,
+                                              clipBehavior: Clip.antiAlias,
                                               decoration: ShapeDecoration(
-                                                color: Color(0xFFF3F4F6),
+                                                color: Colors.white,
                                                 shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
-                                                      width: 1,
-                                                      color: Color(0xFFE5E7EB)
-                                                          .withOpacity(0.5)),
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(4),
-                                                    bottomRight:
-                                                        Radius.circular(4),
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(4),
+                                                    topRight: Radius.circular(4),
                                                   ),
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 10.0),
+                                              child: Center(
+                                                  child: Image.asset(
+                                                item.image,
+                                                width: 100,
+                                                height: 100,
+                                              )),
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                width: 160,
+                                                decoration: ShapeDecoration(
+                                                  color: Color(0xFFF3F4F6),
+                                                  shape: RoundedRectangleBorder(
+                                                    side: BorderSide(
+                                                        width: 1,
+                                                        color: Color(0xFFE5E7EB)
+                                                            .withOpacity(0.5)),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(4),
+                                                      bottomRight:
+                                                          Radius.circular(4),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0,
-                                                          right: 8.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(
-                                                        width: 250,
-                                                        child: Text(
-                                                          item.title,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: TextStyle(
-                                                            color: Color(
-                                                                0xFF334155),
-                                                            fontSize: 14,
-                                                            fontFamily:
-                                                                'Archivo-SemiBold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                      EdgeInsets.only(top: 10.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8.0,
+                                                            right: 8.0),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 250,
+                                                          child: Text(
+                                                            item.title,
+                                                            overflow: TextOverflow
+                                                                .ellipsis,
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF334155),
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  'Archivo-SemiBold',
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      SizedBox(height: 18),
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                                'CHF ${item.price.toStringAsFixed(2)}',
-                                                                style:
-                                                                    TextStyle(
+                                                        SizedBox(height: 18),
+                                                        Container(
+                                                          width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width,
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                  'CHF ${item.price.toStringAsFixed(2)}',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Color(
+                                                                        0xFF334155),
+                                                                    fontSize: 12,
+                                                                    fontFamily:
+                                                                        'Archivo-Medium',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    height: 0.12,
+                                                                  )),
+                                                              Text(
+                                                                'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                                                                style: TextStyle(
                                                                   color: Color(
-                                                                      0xFF334155),
-                                                                  fontSize: 12,
+                                                                      0xFF66758C),
+                                                                  fontSize: 10,
                                                                   fontFamily:
-                                                                      'Archivo-Medium',
+                                                                      'Archivo-Regular',
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w500,
-                                                                  height: 0.12,
-                                                                )),
-                                                            Text(
-                                                              'CHF ${item.originalPrice.toStringAsFixed(2)}',
-                                                              style: TextStyle(
-                                                                color: Color(
-                                                                    0xFF66758C),
-                                                                fontSize: 10,
-                                                                fontFamily:
-                                                                    'Archivo-Regular',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                                height: 0.14,
+                                                                          .w400,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .lineThrough,
+                                                                  height: 0.14,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Visibility(
-                                        visible: items[index].isChecked,
-                                        child: Container(
-                                            height: 40,
-                                            width: 50,
-                                            child: Image.asset(
-                                                "assets/product_details/icon_sale.png")),
-                                      ),
-                                      Positioned(
-                                        top: 19,
-                                        left: 10,
-                                        child: Visibility(
+                                          ],
+                                        ),
+                                        Visibility(
                                           visible: items[index].isChecked,
-                                          child: Text(
-                                            'Sale',
-                                            style: TextStyle(
-                                              color: Color(0xFF0F172A),
-                                              fontSize: 10,
-                                              fontFamily: 'Archivo-Medium',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.15,
+                                          child: Container(
+                                              height: 40,
+                                              width: 50,
+                                              child: Image.asset(
+                                                  "assets/product_details/icon_sale.png")),
+                                        ),
+                                        Positioned(
+                                          top: 19,
+                                          left: 10,
+                                          child: Visibility(
+                                            visible: items[index].isChecked,
+                                            child: Text(
+                                              'Sale',
+                                              style: TextStyle(
+                                                color: Color(0xFF0F172A),
+                                                fontSize: 10,
+                                                fontFamily: 'Archivo-Medium',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0.15,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      )
-                                    ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 );
                               },

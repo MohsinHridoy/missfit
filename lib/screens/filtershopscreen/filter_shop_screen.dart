@@ -224,7 +224,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // Handle back button tap
+                          Navigator.pop(context); // This will pop the current screen off the navigation stack and return to the previous screen
                         },
                         child: Image.asset(
                           "assets/cart/icon_left_arrow.png",

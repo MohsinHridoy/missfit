@@ -55,7 +55,7 @@ class MySubscription extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                            navigateToNextPage(context, DashBoard(number: 4,));
+                            navigateToNextPage(context, DashBoard(number: 3,));
 
                         },
                         child: Image.asset(
@@ -93,6 +93,7 @@ class MySubscription extends StatelessWidget {
                   ),
                 ),
               ),
+
             ],
           ),
         ),
@@ -695,7 +696,7 @@ class _RenewSubscriptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        navigateToNextPage(context,DashBoard(number: 3,));
+        navigateToNextPage(context,DashBoard(number: 2,));
       },
       child: Container(
         width: double.infinity,

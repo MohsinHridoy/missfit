@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
 
@@ -232,10 +233,12 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                 padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20),
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => DashBoard()),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => DashBoard()),
+                    // );
+
+                    navigateToNextPage(context,DashBoard());
                   },
                   child: Container(
                     width: 370,
@@ -249,7 +252,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        'Continue',
+                        'Download e-receipt',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,

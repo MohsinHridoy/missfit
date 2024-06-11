@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
 import 'package:miss_fit/screens/reviewsummery/review_summery_screen.dart';
+import 'package:miss_fit/screens/reviewsummery/review_summery_subscription_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DeliavryAddress extends StatefulWidget {
@@ -58,9 +60,9 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 4.2),
+                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.3):SizedBox(width: MediaQuery.of(context).size.width / 4.2),
                     Text(
-                      'Delivary Address',
+                      widget.status=='subscription' ?'Checkout':'Delivary Address',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -82,7 +84,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     SizedBox(
                       height: 30,
                     ),
-                    Padding(
+                    widget.status!='subscription' ?Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
                         'Add Shipping Address',
@@ -94,7 +96,9 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                           height: 0.06,
                         ),
                       ),
-                    ),
+                    ):SizedBox(),
+
+
                     SizedBox(
                       height: 30,
                     ),
@@ -123,7 +127,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(left: 20.0, right: 20, top: 20),
+                      const EdgeInsets.only(left: 20.0, right: 20, top: 20),
                       child: Text(
                         'Address',
                         style: TextStyle(
@@ -147,11 +151,9 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                       onTap: () {
                         _isAllFieldsFilled ? _saveData() : null;
                         if (widget.status == 'subscription') {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ReviewSummary()),
-                          );
+
+                          navigateToNextPage(context, ReviewSummary1());
+
                         }
                       },
                       child: Padding(

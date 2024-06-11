@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
 import 'package:miss_fit/screens/otp/otp001.dart';
 
@@ -27,13 +28,13 @@ class _LoginPageState extends State<LoginPage> {
     _emailOrPhoneNumberFocusNode = FocusNode();
 
     // Add listener to the focus node to update _isEmailFocused
-    _emailOrPhoneNumberFocusNode.addListener(() {
-      setState(() {
-        _isEmailFocused = _emailOrPhoneNumberFocusNode.hasFocus;
-        // Conditionally focus the text field based on widget.status
-
-      });
-    });
+    // _emailOrPhoneNumberFocusNode.addListener(() {
+    //   setState(() {
+    //     _isEmailFocused = _emailOrPhoneNumberFocusNode.hasFocus;
+    //     // Conditionally focus the text field based on widget.status
+    //
+    //   });
+    // });
 
 
   }
@@ -151,9 +152,22 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 30),
               child: GestureDetector(
                 onTap: (){
-                  _isValidEmail ?
-                  navigateToNextPage(context,Otp001(email: _emailOrPhoneNumberController.text))
-                 :null;
+                  if(widget.status=='profile')
+
+                    {
+                      _emailOrPhoneNumberController.clear();
+                      _isEmailFocused = false;
+                      FocusScope.of(context).unfocus();
+
+                      navigateToNextPage(context,DashBoard());
+                    }
+                  else
+                    {
+                      _isValidEmail ?
+                      navigateToNextPage(context,Otp001(email: _emailOrPhoneNumberController.text,))
+                          :null;
+                    }
+
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

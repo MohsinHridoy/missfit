@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
@@ -981,7 +982,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ShopPage()),
+                                          builder: (context) => Cart001()),
                                     );
                                   },
                                   child: Container(

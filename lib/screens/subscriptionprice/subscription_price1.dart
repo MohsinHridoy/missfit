@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
@@ -350,16 +351,8 @@ class _SubscriptionPriceSelectionPage1State
                                           left: 20.0, right: 20, top: 8),
                                       child: GestureDetector(
                                         onTap: () {
-                                          Navigator.pop(
-                                              context); // Close the bottom sheet
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DeliavryAddress(
-                                                      status: 'subscription',
-                                                    )),
-                                          );
+                                          navigateToNextPage(context, DeliavryAddress(status: 'subscription',));
+
                                         },
                                         child: Container(
                                           width:

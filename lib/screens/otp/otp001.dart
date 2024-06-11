@@ -38,9 +38,9 @@ class _CustomDotIndicatorState extends State<CustomDotIndicator> {
 }
 
 class Otp001 extends StatefulWidget {
-  final String email;
+  final String? email;
 
-  const Otp001({super.key, required this.email});
+  const Otp001({super.key,  this.email});
 
   @override
   State<Otp001> createState() => _Otp001State();
@@ -280,7 +280,7 @@ class _Otp001State extends State<Otp001> {
                   child: Row(
                     children: [
                       Text(
-                        widget.email,
+                        widget.email!,
                         style: TextStyle(
                           color: Color(0xFFE88E32),
                           fontSize: 16,
