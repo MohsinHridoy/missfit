@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       FocusScope.of(context).requestFocus(_emailOrPhoneNumberFocusNode);
     }
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F6),
+      backgroundColor: Color(0xFF18181B),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: 180,
                   child: Center(
                     child: Image.asset(
-                      "assets/splash/splash_icon.png",
+                      "assets/splash/splash_icon_white.png",
                       height: 140,
                       width: 180,
                       fit: BoxFit.cover,
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Text(
                 'Login to your account',
                 style: TextStyle(
-                  color: Color(0xFF334155),
+                  color: Colors.white,
                   fontSize: 24,
                   fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w600,
@@ -118,9 +118,9 @@ class _LoginPageState extends State<LoginPage> {
                   focusNode: _emailOrPhoneNumberFocusNode,
 
                   style: TextStyle(
-                    color: Color(0xFF334155),
+                    color: Colors.white,
                     fontSize: 16,
-                    fontFamily: 'Archivo',
+                    fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
                     height: 1.09,
                   ),
@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
                     labelText: _isEmailFocused || _emailOrPhoneNumberController.text.isNotEmpty ? 'Email' : 'Enter your email address',
-                    labelStyle: TextStyle(color: Color(0xFF334155),
+                    labelStyle: TextStyle(color: Colors.white,
                     fontSize: 16,
                     fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 52,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                   decoration: ShapeDecoration(
-                    color: _isValidEmail ?  Color(0xFFFF4343) :  Color(0xFFD1D5DB),
+                    color: _isValidEmail ?  Color(0xFFFF4343) :  Color(0xFFF3F4F6),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
                   child: Row(
@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         'Login',
                         style: TextStyle(
-                          color:_isValidEmail ? Colors.white.withOpacity(0.9):Color(0xFF334155),
+                          color:_isValidEmail ? Colors.white.withOpacity(0.9):Color(0xFF94A3B8),
                           // color: Color(0xFF94A3B8),
                           fontSize: 16,
                           fontFamily: 'Archivo-SemiBold',

@@ -76,7 +76,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFF18181B),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +89,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
               child: Text(
                 'What is your height?',
                 style: TextStyle(
-                  color: Color(0xFF334155),
+                  color:  Colors.white,
                   fontSize: 24,
                   fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w500,
@@ -110,9 +110,9 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                             text:"${selectedValue! ~/ 100}",
                             // text:selectedUnitForMesurements? "${selectedValue! ~/ 100}": "${ selectedValue! ~/ 12}",
                             style: TextStyle(
-                              color: Color(0xFF334155),
+                              color: Colors.white,
                               fontSize: 48,
-                              fontFamily: 'Archivo',
+                              fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
                               height: 1.03,
                             ),
@@ -120,9 +120,9 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                           TextSpan(
                             text: selectedUnitForMesurements?"mt": "ft",
                             style: TextStyle(
-                              color: Color(0xFF334155).withOpacity(0.8),
+                              color: Colors.white,
                               fontSize: 16,
-                              fontFamily: 'Archivo',
+                              fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
                               height: 1.08,
                             ),
@@ -130,9 +130,9 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                           TextSpan(
                             text: selectedUnitForMesurements?"${selectedValue! % 100}":"${ selectedValue! % 12}",
                             style: TextStyle(
-                              color: Color(0xFF334155),
+                              color: Colors.white,
                               fontSize: 48,
-                              fontFamily: 'Archivo',
+                              fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
                               height: 1.03,
                             ),
@@ -140,7 +140,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                           TextSpan(
                             text: selectedUnitForMesurements?"cm": "in",
                             style: TextStyle(
-                              color: Color(0xFF334155).withOpacity(0.8),
+                              color: Colors.white,
                               fontSize: 16,
                               fontFamily: 'Archivo',
                               fontWeight: FontWeight.w500,
@@ -161,7 +161,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
                             width: 0.5,
-                            color: Colors.grey,
+                            color: Color(0xFF18181B),
                           ),
                         ),
                       ),
@@ -356,9 +356,11 @@ class MeterItem extends StatelessWidget {
     double itemWidth = 10;
     double itemHeight = isSelected ? 60.0 : 35.0;
     double itemPadding = 0;
-
+     Color colur=Colors.white.withOpacity(0.6);
     if (value % 6 == 0 && value <= 155) {
       itemHeight += 20.0;
+      colur=Colors.white.withOpacity(0.8);
+
       itemWidth = 3.5;
     }
 
@@ -387,7 +389,7 @@ class MeterItem extends StatelessWidget {
               height: itemHeight,
               color: isSelected
                   ? Colors.transparent
-                  : Color(0xFF9E9E9E).withOpacity(0.8),
+                  : colur,
             ),
             // if (isSelected)
             //   Container(

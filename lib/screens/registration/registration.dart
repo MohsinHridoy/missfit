@@ -378,12 +378,12 @@ class _RegistrationState extends State<Registration> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFF18181B),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Color(0xFFF6F6F6),
+              color: Color(0xFF18181B),
               height: 100,
               child: Stack(
                 children: [
@@ -397,7 +397,7 @@ class _RegistrationState extends State<Registration> {
                           onTap: () {
                             _navigateToPreviousPage();
                           },
-                          child: Image.asset("assets/registration/icon_right_arrow.png", scale: 1.8,),
+                          child: Image.asset("assets/registration/icon_right_arrow.png",color: Colors.white, scale: 1.8,),
                         ),
                         CustomPageIndicator(
                           currentIndex: _currentPage,
@@ -409,7 +409,7 @@ class _RegistrationState extends State<Registration> {
                           child: Text(
                             'Skip',
                             style: TextStyle(
-                              color: Color(0xFF334155),
+                              color: Colors.white,
                               fontSize: 16,
                               fontFamily: 'Archivo-Regular',
                               fontWeight: FontWeight.w400,

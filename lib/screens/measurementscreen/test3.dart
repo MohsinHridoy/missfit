@@ -214,7 +214,7 @@ class _TestScrollState extends State<TestScroll> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFF18181B),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,7 +227,7 @@ class _TestScrollState extends State<TestScroll> {
               child: Text(
                 'What is your weight?',
                 style: TextStyle(
-                  color: Color(0xFF334155),
+                  color: Colors.white,
                   fontSize: 24,
                   fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w500,
@@ -247,7 +247,7 @@ class _TestScrollState extends State<TestScroll> {
                           TextSpan(
                             text: '$selectedValue',
                             style: TextStyle(
-                              color: Color(0xFF334155),
+                              color: Colors.white,
                               fontSize: 48,
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
@@ -257,7 +257,7 @@ class _TestScrollState extends State<TestScroll> {
                           TextSpan(
                             text: selectedUnit,
                             style: TextStyle(
-                              color: Color(0xFF334155).withOpacity(0.8),
+                              color: Colors.white.withOpacity(0.8),
                               fontSize: 16,
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
@@ -278,7 +278,7 @@ class _TestScrollState extends State<TestScroll> {
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
                             width: 0.5,
-                            color: Colors.grey,
+                            color: Color(0xFF18181B),
                           ),
                         ),
                       ),
@@ -549,7 +549,7 @@ class DashedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.white.withOpacity(0.6)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.square; // Setting strokeCap to square

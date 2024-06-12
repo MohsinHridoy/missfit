@@ -78,7 +78,7 @@ class _BasicInfoState extends State<BasicInfo> {
 
     return Scaffold(
 
-      backgroundColor: Color(0xFFF6F6F6),
+      backgroundColor: Color(0xFF18181B),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
@@ -114,7 +114,7 @@ class _BasicInfoState extends State<BasicInfo> {
                         'Basic Information',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xFF1E293B),
+                          color: Colors.white,
                           fontSize: 18,
                           fontFamily: 'Kanit-Medium',
                           fontWeight: FontWeight.w500,
@@ -139,7 +139,7 @@ class _BasicInfoState extends State<BasicInfo> {
                       'Basic Information',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color(0xFF334155),
+                        color: Colors.white,
                         fontSize: 24,
                         fontFamily: 'Kanit-Medium',
                         fontWeight: FontWeight.w500,
@@ -154,7 +154,7 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: Text(
                       'Upload Profile Picture',
                       style: TextStyle(
-                        color: Color(0xFF334155),
+                        color: Colors.white,
                         fontSize: 16,
                         fontFamily: 'Archivo-Medium',
                         fontWeight: FontWeight.w500,
@@ -265,18 +265,18 @@ class _BasicInfoState extends State<BasicInfo> {
                       decoration: InputDecoration(
                         labelText: 'Full Name',
                         labelStyle: TextStyle(
-                          color: Color(0xFF334155),
+                          color: Colors.white,
                           fontSize: 16,
                           fontFamily: 'Archivo-Medium',
                           fontWeight: FontWeight.w500,
                           height: 0.09,
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                          borderSide: BorderSide(color: Color(0xFF6B7280)),
                         ),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                          borderSide: BorderSide(color: Color(0xFF6B7280)),
                         ),
                       ),
                     ),
@@ -290,17 +290,17 @@ class _BasicInfoState extends State<BasicInfo> {
                       decoration: InputDecoration(
                         labelText: 'Age',
                         labelStyle: TextStyle(
-                          color: Color(0xFF334155),
+                          color:Colors.white,
                           fontSize: 16,
                           fontFamily: 'Archivo-Medium',
                           fontWeight: FontWeight.w500,
                           height: 0.09,
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                          borderSide: BorderSide(color:Color(0xFF6B7280)),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                          borderSide: BorderSide(color: Color(0xFF6B7280)),
                         ),
                         border: OutlineInputBorder(),
                       ),
@@ -321,8 +321,8 @@ class _BasicInfoState extends State<BasicInfo> {
                           height: 52,
                           decoration: BoxDecoration(
                             color: _isButtonEnabled
-                                ? Color(0xFFFF4343)
-                                : Color(0xFFD1D5DB),
+                                ?  Color(0xFFFF4343)
+                                : Color(0xFFF3F4F6),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
@@ -331,7 +331,7 @@ class _BasicInfoState extends State<BasicInfo> {
                               style: TextStyle(
                                 color: _isButtonEnabled
                                     ? Colors.white
-                                    : Color(0xFF334155),
+                                    :  Color(0xFF94A3B8),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),

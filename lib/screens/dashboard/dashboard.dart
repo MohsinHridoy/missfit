@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
+import 'package:miss_fit/screens/home/home.dart';
 import 'package:miss_fit/screens/home/home001.dart';
 import 'package:miss_fit/screens/profile/profile.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
@@ -74,11 +75,11 @@ class _DashBoardState extends State<DashBoard> {
                 width: MediaQuery.of(context).size.width,
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.05),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                       width: 1,
-                      color: Colors.white.withOpacity(0.10999999940395355),
+                      color: Colors.white.withOpacity(0.05),
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -157,7 +158,7 @@ class _DashBoardState extends State<DashBoard> {
 
   Widget _getIconData(int index) {
     bool isSelected = _isSelected[index];
-    Color iconColor = isSelected ? Colors.red : Colors.grey; // Change color to green if selected
+    Color iconColor = isSelected ? Colors.red : Colors.white; // Change color to green if selected
 
     switch (index) {
       case 0:

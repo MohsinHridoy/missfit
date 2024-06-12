@@ -34,7 +34,7 @@ Widget txt_headline(String txt){
     child: Text(
       txt,
       style: TextStyle(
-        color: Color(0xFF334155),
+        color: Colors.white,
         fontSize: 24,
         fontFamily: 'Kanit-Medium',
         fontWeight: FontWeight.w500,

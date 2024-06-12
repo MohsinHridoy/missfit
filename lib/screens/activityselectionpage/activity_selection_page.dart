@@ -49,7 +49,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFF18181B),
         padding: const EdgeInsets.all(20.0),
         child: Stack(
           children: [
@@ -128,9 +128,9 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
 
   Widget buildLevelContainer(int index, String title, String subtitle) {
     Color titleColor =
-        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
+        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFFCBD5E1);
     Color borderColor =
-        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
+        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFF252323);
 
     return GestureDetector(
       onTap: () async {
@@ -147,7 +147,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFF252323),
             border: Border.all(
               width: 1,
               color: borderColor,
@@ -171,7 +171,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
               Text(
                 subtitle,
                 style: TextStyle(
-                  color: Color(0xFF475569),
+                  color:  Color(0xFFCBD5E1),
                   fontSize: 14,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,

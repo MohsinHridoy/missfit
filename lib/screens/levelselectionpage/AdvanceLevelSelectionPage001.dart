@@ -52,7 +52,7 @@ class _AdvanceLevelSelectionPageState001
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFF18181B),
         child: Stack(
           children: [
             Padding(
@@ -146,7 +146,7 @@ class _AdvanceLevelSelectionPageState001
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xFF252323),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -172,7 +172,7 @@ class _AdvanceLevelSelectionPageState001
                           'Congratulations !',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Color(0xFF334155),
+                            color:Colors.white,
                             fontSize: 18,
                             fontFamily: 'Archivo-SemiBold',
                             fontWeight: FontWeight.w600,
@@ -188,7 +188,7 @@ class _AdvanceLevelSelectionPageState001
                             'You Have successfullly registerd',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Color(0xFF334155).withOpacity(0.9),
+                              color: Colors.white.withOpacity(0.9),
                               fontSize: 16,
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
@@ -252,9 +252,9 @@ class _AdvanceLevelSelectionPageState001
   }
   Widget buildLevelContainer(int index, String title, String subtitle) {
     Color titleColor =
-        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
+    index == selectedIndex ? Color(0xFFE88E32) : Color(0xFFCBD5E1);
     Color borderColor =
-        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
+    index == selectedIndex ? Color(0xFFFFA142) : Color(0xFF252323);
 
     return GestureDetector(
       onTap: () async {
@@ -271,7 +271,7 @@ class _AdvanceLevelSelectionPageState001
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFF252323),
             border: Border.all(
               width: 1,
               color: borderColor,
@@ -295,7 +295,7 @@ class _AdvanceLevelSelectionPageState001
               Text(
                 subtitle,
                 style: TextStyle(
-                  color: Color(0xFF475569),
+                  color:  Color(0xFFCBD5E1),
                   fontSize: 14,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,

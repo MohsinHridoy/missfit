@@ -228,7 +228,7 @@ class _Otp001State extends State<Otp001> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFF18181B),
         child: Column(
           children: [
             Column(
@@ -244,7 +244,7 @@ class _Otp001State extends State<Otp001> {
                     child: Text(
                       'OTP Verification',
                       style: TextStyle(
-                        color: Color(0xFF334155),
+                        color: Colors.white,
                         fontSize: 24,
                         fontFamily: 'Kanit-Medium',
                         fontWeight: FontWeight.w600,
@@ -263,7 +263,7 @@ class _Otp001State extends State<Otp001> {
                     child: Text(
                       'We sent verification code to -',
                       style: TextStyle(
-                        color: Color(0xFF334155),
+                        color: Color(0xFFF1F5F9),
                         fontSize: 16,
                         fontFamily: 'Archivo-Regular',
                         fontWeight: FontWeight.w400,
@@ -282,7 +282,7 @@ class _Otp001State extends State<Otp001> {
                       Text(
                         widget.email!,
                         style: TextStyle(
-                          color: Color(0xFFE88E32),
+                          color: Color(0xFFFFA142),
                           fontSize: 16,
                           fontFamily: 'Archivo',
                           fontWeight: FontWeight.w400,
@@ -326,7 +326,7 @@ class _Otp001State extends State<Otp001> {
                                 width: 1,
                                 color: _firstTextFieldFoucs
                                     ? Color(0xFF6B7280).withOpacity(0.9)
-                                    : Color(0xFFD1D5DB)),
+                                    :  Color(0xFF6B7280)),
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
@@ -340,7 +340,7 @@ class _Otp001State extends State<Otp001> {
                               focusNode: _focusNode1,
                               readOnly: true,
                               style: TextStyle(
-                                color: Color(0xFF334155),
+                                color: Colors.white,
                                 fontSize: 20,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
@@ -371,7 +371,7 @@ class _Otp001State extends State<Otp001> {
                                 width: 1,
                                 color: _firstTextFieldFoucs
                                     ? Color(0xFF6B7280).withOpacity(0.9)
-                                    : Color(0xFFD1D5DB)),
+                                    :  Color(0xFF6B7280)),
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
@@ -385,7 +385,7 @@ class _Otp001State extends State<Otp001> {
                               readOnly: true,
                               focusNode: _focusNode2,
                               style: TextStyle(
-                                color: Color(0xFF334155),
+                                color: Colors.white,
                                 fontSize: 20,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
@@ -429,7 +429,7 @@ class _Otp001State extends State<Otp001> {
                               focusNode: _focusNode3,
                               readOnly: true,
                               style: TextStyle(
-                                color: Color(0xFF334155),
+                                color: Colors.white,
                                 fontSize: 20,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
@@ -472,7 +472,7 @@ class _Otp001State extends State<Otp001> {
                               focusNode: _focusNode4,
                               readOnly: true,
                               style: TextStyle(
-                                color: Color(0xFF334155),
+                                color: Colors.white,
                                 fontSize: 20,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
@@ -599,7 +599,7 @@ class _Otp001State extends State<Otp001> {
                 width: MediaQuery.of(context).size.width,
               
                 decoration: ShapeDecoration(
-                  color: Color(0xFFF9FAFB),
+                  color:  Color(0xFF020617),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
@@ -635,14 +635,14 @@ class _Otp001State extends State<Otp001> {
                           child: Container(
                             height: 40,
                             width: 40,
-                            color: Color(0xFFF9FAFB),
+                            color:  Color(0xFF020617),
                             child: Center(
                               child: Opacity(
                                 opacity: 0.9,
                                 child: Text(
                                   buttonNumbers[index].toString(),
                                   style: TextStyle(
-                                    color: Color(0xFF334155),
+                                    color: Colors.white,
                                     fontSize: 22,
                                     fontFamily: 'Inter-Medium',
                                     fontWeight: FontWeight.w500,
@@ -683,7 +683,7 @@ class _Otp001State extends State<Otp001> {
                                 child: Text(
                                   "0",
                                   style: TextStyle(
-                                    color: Color(0xFF334155),
+                                    color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 22,
                                   ),

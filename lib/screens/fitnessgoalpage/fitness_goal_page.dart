@@ -54,7 +54,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color:  Color(0xFF18181B),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -147,10 +147,10 @@ class _FitnessGoalState extends State<FitnessGoal> {
           width: MediaQuery.of(context).size.width,
           height: 55,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color:  Color(0xFF252323),
             borderRadius: BorderRadius.circular(4),
             border: Border.all(
-              color: isSelected ? Color(0xFFFFA142) :  Color(0xFFE5E7EB),
+              color: isSelected ? Color(0xFFFFA142) :   Color(0xFF363434),
               width: 1,
             ),
           ),
@@ -172,7 +172,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
                 child: Text(
                   text,
                   style: TextStyle(
-                    color: Color(0xFF334155),
+                    color: Colors.white,
                     fontSize: 16,
                     fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
