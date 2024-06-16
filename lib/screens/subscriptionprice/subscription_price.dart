@@ -147,7 +147,7 @@ class _SubscriptionPriceSelectionPageState
               child: GestureDetector(
                 onTap: (){
                   setState(() {
-                    // isVisible1=!isVisible1;
+                    isVisible1=!isVisible1;
                   });
                 },
                 child: Container(

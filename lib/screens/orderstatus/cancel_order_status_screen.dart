@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 
 import '../cartscreen/cart.dart';
 
@@ -217,6 +219,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                       padding: const EdgeInsets.all(30.0),
                       child: GestureDetector(
                         onTap: (){
+                          navigateToNextPage(context, DashBoard(number: 1,));
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,

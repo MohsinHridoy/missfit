@@ -117,7 +117,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               right: 27,
               child: GestureDetector(
                 onTap: () {
-                  navigateToPage(context, LoginPage());
+                  navigateToPage(context, LoginPage(status: 'onboarding',));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

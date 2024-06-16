@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 
 import '../cartscreen/cart001.dart';
@@ -130,12 +131,8 @@ class _CheckOutState extends State<CheckOut> {
                         // padding: EdgeInsets.all(5), // Padding around the border
                         child: GestureDetector(
                           onTap: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      DeliavryAddress()),
-                            );
+                            navigateToNextPage(context,  DeliavryAddress(status: 'cart',));
+
                           },
                           child: Container(
                             width: 396, // Container width

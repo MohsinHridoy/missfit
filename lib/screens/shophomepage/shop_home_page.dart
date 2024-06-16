@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shoppage/searchpage.dart';
@@ -95,115 +96,265 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          color: Color(0xFFF6F6F6),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 60,
-              ),
-              appBar(),
-              SizedBox(height: 5),
-              GestureDetector(
-                  onTap: () {
-
-
-                    navigateToNextPage(context,AllItemsSearchPage());
-                  },
-                  child: _buildSearchBar()),
-              SizedBox(height: 30),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 22.0, right: 22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Color(0xFFF6F6F6),
+      body: Column(
+        children: [
+          appBar(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                color: Color(0xFFF6F6F6),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'New Arrival',
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 20,
-                        fontFamily: 'Kanit-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.06,
-                      ),
+                    SizedBox(
+                      height: 35,
                     ),
-                    InkWell(
-                      onTap: (){
-                        print("see all");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AllItemsSearchPage()),
-                        );
-                      },
-                      child: SizedBox(
-                        width: 50,
-                        height: 30,
-                        child: Center(
-                          child: Text(
-                            'See All',
-                            textAlign: TextAlign.right,
+                    GestureDetector(
+                        onTap: () {
+                          navigateToNextPage(context, AllItemsSearchPage());
+                        },
+                        child: _buildSearchBar()),
+                    SizedBox(height: 30),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 22.0, right: 22),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'New Arrival',
                             style: TextStyle(
-                              color: Color(0xFFFF4343),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.10,
+                              color: Color(0xFF334155),
+                              fontSize: 20,
+                              fontFamily: 'Kanit-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.06,
                             ),
                           ),
-                        ),
+                          InkWell(
+                            onTap: () {
+                              print("see all");
+                              navigateToNextPage(context,AllItemsShopPage(status: 'newarrival',));
+                            },
+                            child: SizedBox(
+                              width: 50,
+                              height: 30,
+                              child: Center(
+                                child: Text(
+                                  'See All',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0.10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Container(
-                  width: 370,
-                  height: 221,
-                  child: Row(
-                    children: [
-                      Expanded(
+                    SizedBox(height: 30),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 0.0),
+                    //   child: Container(
+                    //     width: 370,
+                    //     height: 221,
+                    //     child: ListView.builder(
+                    //       scrollDirection: Axis.horizontal,
+                    //       itemCount: items.length,
+                    //       itemBuilder: (context, index) {
+                    //         final item = items[index];
+                    //         EdgeInsets itemPadding = index == 0 ? EdgeInsets.only(left: 23.0) : EdgeInsets.zero;
+                    //
+                    //         return Padding(
+                    //           padding: itemPadding,
+                    //           child: GestureDetector(
+                    //             onTap: (){
+                    //               Navigator.push(
+                    //                 context,
+                    //                 MaterialPageRoute(
+                    //                   builder: (context) => ProductDetails(),
+                    //                 ),
+                    //               );
+                    //             },
+                    //             child: Container(
+                    //               width: 180,
+                    //               height: 250,
+                    //               padding: const EdgeInsets.only(bottom: 5),
+                    //               child: Stack(
+                    //                 children: [
+                    //                   Column(
+                    //                     children: [
+                    //                       Container(
+                    //                         width: 160,
+                    //                         height: 152,
+                    //                         clipBehavior: Clip.antiAlias,
+                    //                         decoration: ShapeDecoration(
+                    //                           color: Colors.white,
+                    //                           shape: RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.only(
+                    //                               topLeft: Radius.circular(4),
+                    //                               topRight: Radius.circular(4),
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                         child: Center(
+                    //                           child: Image.asset(
+                    //                             item.image,
+                    //                             width: 100,
+                    //                             height: 100,
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                       Expanded(
+                    //                         child: Container(
+                    //                           width: 160,
+                    //                           decoration: ShapeDecoration(
+                    //                             color: Color(0xFFF3F4F6),
+                    //                             shape: RoundedRectangleBorder(
+                    //                               side: BorderSide(
+                    //                                 width: 1,
+                    //                                 color: Color(0xFFE5E7EB),
+                    //                               ),
+                    //                               borderRadius: BorderRadius.only(
+                    //                                 bottomLeft: Radius.circular(4),
+                    //                                 bottomRight: Radius.circular(4),
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                           child: Padding(
+                    //                             padding: EdgeInsets.only(top: 1.0),
+                    //                             child: Padding(
+                    //                               padding: const EdgeInsets.all(8.0),
+                    //                               child: Column(
+                    //                                 crossAxisAlignment: CrossAxisAlignment.start,
+                    //                                 children: [
+                    //                                   SizedBox(
+                    //                                     width: 200,
+                    //                                     child: Text(
+                    //                                       item.title,
+                    //                                       overflow: TextOverflow.ellipsis,
+                    //                                       style: TextStyle(
+                    //                                         color: Color(0xFF334155),
+                    //                                         fontSize: 14,
+                    //                                         fontFamily: 'Archivo-SemiBold',
+                    //                                         fontWeight: FontWeight.w600,
+                    //                                       ),
+                    //                                     ),
+                    //                                   ),
+                    //                                   SizedBox(height: 18),
+                    //                                   Container(
+                    //                                     width: MediaQuery.of(context).size.width,
+                    //                                     child: Row(
+                    //                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //                                       children: [
+                    //                                         Text(
+                    //                                           'CHF ${item.price.toStringAsFixed(2)}',
+                    //                                           style: TextStyle(
+                    //                                             color: Color(0xFF334155),
+                    //                                             fontSize: 12,
+                    //                                             fontFamily: 'Archivo-Medium',
+                    //                                             fontWeight: FontWeight.w500,
+                    //                                             height: 0.12,
+                    //                                           ),
+                    //                                         ),
+                    //                                         Text(
+                    //                                           'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                    //                                           style: TextStyle(
+                    //                                             color: Color(0xFF66758C),
+                    //                                             fontSize: 10,
+                    //                                             fontFamily: 'Archivo-Regular',
+                    //                                             fontWeight: FontWeight.w400,
+                    //                                             decoration: TextDecoration.lineThrough,
+                    //                                             height: 0.14,
+                    //                                           ),
+                    //                                         ),
+                    //                                       ],
+                    //                                     ),
+                    //                                   ),
+                    //                                 ],
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                   Visibility(
+                    //                     visible: items[index].isChecked,
+                    //                     child: Container(
+                    //                       height: 40,
+                    //                       width: 50,
+                    //                       child: Image.asset("assets/product_details/icon_sale.png"),
+                    //                     ),
+                    //                   ),
+                    //                   Positioned(
+                    //                     top: 19,
+                    //                     left: 10,
+                    //                     child: Visibility(
+                    //                       visible: items[index].isChecked,
+                    //                       child: Text(
+                    //                         'Sale',
+                    //                         style: TextStyle(
+                    //                           color: Color(0xFF0F172A),
+                    //                           fontSize: 10,
+                    //                           fontFamily: 'Archivo-Medium',
+                    //                           fontWeight: FontWeight.w500,
+                    //                           height: 0.15,
+                    //                         ),
+                    //                       ),
+                    //                     ),
+                    //                   )
+                    //                 ],
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         );
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: Container(
+                        width: MediaQuery.of(context)
+                            .size
+                            .width, // Take full width of the screen
+                        height: 221,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             final item = items[index];
                             return Padding(
-                              padding: EdgeInsets.only(right: 5, left: 20),
+                              padding: EdgeInsets.only(
+                                  left: index == 0 ? 22.0 : 0, right: 15),
+                              // Apply left padding only to the first item
                               child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ProductDetails(),
-                                    ),
-                                  );
+                                onTap: () {
+
+                                  navigateToNextPage(context,ProductDetails());
                                 },
                                 child: Container(
-                                  width: 170,
-                                  height: 250,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.45,
+                                  // Set width to half of screen width
+                                  height: 170,
                                   padding: const EdgeInsets.only(bottom: 5),
-                                  // decoration: ShapeDecoration(
-                                  //   color: Color(0xFFF3F4F6),
-                                  //   shape: RoundedRectangleBorder(
-                                  //     // side: BorderSide(width: 1, color: Color(0xFFE5E7EB)),
-                                  //     borderRadius: BorderRadius.circular(4),
-                                  //   ),
-                                  // ),
                                   child: Stack(
                                     children: [
                                       Column(
                                         children: [
                                           Container(
-                                            width: 160,
-                                            height: 152,
+                                            width: double.infinity,
+                                            height: 153,
                                             clipBehavior: Clip.antiAlias,
                                             decoration: ShapeDecoration(
                                               color: Colors.white,
@@ -215,21 +366,23 @@ class _ShopPageState extends State<ShopPage> {
                                               ),
                                             ),
                                             child: Center(
-                                                child: Image.asset(
-                                              item.image,
-                                              width: 100,
-                                              height: 100,
-                                            )),
+                                              child: Image.asset(
+                                                item.image,
+                                                width: 100,
+                                                height: 100,
+                                              ),
+                                            ),
                                           ),
                                           Expanded(
                                             child: Container(
-                                              width: 160,
+                                              width: double.infinity,
                                               decoration: ShapeDecoration(
                                                 color: Color(0xFFF3F4F6),
                                                 shape: RoundedRectangleBorder(
                                                   side: BorderSide(
-                                                      width: 1,
-                                                      color: Color(0xFFE5E7EB)),
+                                                    width: 1,
+                                                    color: Color(0xFFE5E7EB),
+                                                  ),
                                                   borderRadius:
                                                       BorderRadius.only(
                                                     bottomLeft:
@@ -241,79 +394,75 @@ class _ShopPageState extends State<ShopPage> {
                                               ),
                                               child: Padding(
                                                 padding:
-                                                    EdgeInsets.only(top: 1.0),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(
-                                                        width: 200,
-                                                        child: Text(
-                                                          item.title,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: TextStyle(
-                                                            color: Color(
-                                                                0xFF334155),
-                                                            fontSize: 14,
-                                                            fontFamily:
-                                                                'Archivo-SemiBold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 200,
+                                                      child: Text(
+                                                        item.title,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Color(0xFF334155),
+                                                          fontSize: 14,
+                                                          fontFamily:
+                                                              'Archivo-SemiBold',
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                                       ),
-                                                      SizedBox(height: 18),
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                                'CHF ${item.price.toStringAsFixed(2)}',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xFF334155),
-                                                                  fontSize: 12,
-                                                                  fontFamily:
-                                                                      'Archivo-Medium',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  height: 0.12,
-                                                                )),
-                                                            Text(
-                                                              'CHF ${item.originalPrice.toStringAsFixed(2)}',
-                                                              style: TextStyle(
-                                                                color: Color(
-                                                                    0xFF66758C),
-                                                                fontSize: 10,
-                                                                fontFamily:
-                                                                    'Archivo-Regular',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                                height: 0.14,
-                                                              ),
+                                                    ),
+                                                    SizedBox(height: 18),
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'CHF ${item.price.toStringAsFixed(2)}',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF334155),
+                                                              fontSize: 12,
+                                                              fontFamily:
+                                                                  'Archivo-Medium',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              height: 0.12,
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                          Text(
+                                                            'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF66758C),
+                                                              fontSize: 10,
+                                                              fontFamily:
+                                                                  'Archivo-Regular',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .lineThrough,
+                                                              height: 0.14,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                    SizedBox(height: 4),
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -323,10 +472,11 @@ class _ShopPageState extends State<ShopPage> {
                                       Visibility(
                                         visible: items[index].isChecked,
                                         child: Container(
-                                            height: 40,
-                                            width: 50,
-                                            child: Image.asset(
-                                                "assets/product_details/icon_sale.png")),
+                                          height: 40,
+                                          width: 50,
+                                          child: Image.asset(
+                                              "assets/product_details/icon_sale.png"),
+                                        ),
                                       ),
                                       Positioned(
                                         top: 19,
@@ -353,341 +503,540 @@ class _ShopPageState extends State<ShopPage> {
                           },
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.only(left: 22.0, right: 22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'All Products',
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 20,
-                        fontFamily: 'Kanit-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.06,
-                      ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AllItemsShopPage()));
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 30,
-                        color: Colors.transparent,
-                        child: Center(
-                          child: Text(
-                            'See All',
-                            textAlign: TextAlign.right,
+                    SizedBox(height: 35),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 22),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'All Products',
                             style: TextStyle(
-                              color: Color(0xFFFF4343),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.10,
+                              color: Color(0xFF334155),
+                              fontSize: 20,
+                              fontFamily: 'Kanit-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.06,
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 30),
-
-
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15),
-                child: Container(
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: categoryItems.length,
-                    itemBuilder: (context, index) {
-                      final labelText = categoryItems[index];
-                      final textWidth = labelText.length * 12.0; //
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                            // Filter items based on the selected category
-                            if (selectedIndex == 0) {
-                              // All category selected, show all items
-                              filteredItems = items;
-                            } else {
-                              // Filter items based on the selected category
-                              filteredItems = items
-                                  .where((item) =>
-                                      item.category == categoryItems[index])
-                                  .toList();
-                            }
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            // width: labelText == 'All' ? 48 :  textWidth + 30,
-                            height: 36,
-                            alignment: Alignment.center,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: index == selectedIndex
-                                      ? Color(0xFFFFA142)
-                                      : Color(0xFFD1D5DB),
-                                ),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    // if (labelText != 'All')
-                                    //   Image.asset(
-                                    //     "assets/review/icon_star.png",
-                                    //     scale: 2,
-                                    //   ),
-                                    Text(
-                                      labelText,
-                                      style: TextStyle(
-                                        color: index == selectedIndex
-                                            ? Color(0xFFE88E32)
-                                            : Color(0xFF334155),
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo-Regular',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0.10,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-
-
-              SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 22.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GridView.builder(
-                        shrinkWrap: true,
-
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          // Number of items per row
-                          // Adjust the spacing between items horizontally
-                          mainAxisSpacing: 20,
-                          // Adjust the spacing between items vertically
-                          childAspectRatio:
-                              0.85, // Adjust the aspect ratio of items
-                        ),
-                        itemCount: filteredItems.length,
-                        // Replace 6 with your actual item count
-                        itemBuilder: (context, index) {
-                          final item = filteredItems[index];
-
-                          return GestureDetector(
+                          GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProductDetails(),
-                                ),
-                              );
+                              navigateToNextPage(context,AllItemsShopPage(status: 'allproducts',));
+
                             },
                             child: Container(
-                              width: 200,
-                              height: 250,
-                              // padding: const EdgeInsets.only(bottom: 1),
-                              child: Stack(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        width: 160,
-                                        height: 152,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: ShapeDecoration(
-                                          color: Colors.white,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(4),
-                                              topRight: Radius.circular(4),
-                                            ),
-                                          ),
-                                        ),
-                                        child: Center(
-                                            child: Image.asset(
-                                          item.image,
-                                          width: 100,
-                                          height: 100,
-                                        )),
+                              width: 50,
+                              height: 30,
+                              color: Colors.transparent,
+                              child: Center(
+                                child: Text(
+                                  'See All',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0.10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15),
+
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 0.0, horizontal: 18),
+                      child: Container(
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: categoryItems.length,
+                          itemBuilder: (context, index) {
+                            final labelText = categoryItems[index];
+                            final textWidth = labelText.length * 12.0; //
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedIndex = index;
+                                  // Filter items based on the selected category
+                                  if (selectedIndex == 0) {
+                                    // All category selected, show all items
+                                    filteredItems = items;
+                                  } else {
+                                    // Filter items based on the selected category
+                                    filteredItems = items
+                                        .where((item) =>
+                                            item.category ==
+                                            categoryItems[index])
+                                        .toList();
+                                  }
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  // width: labelText == 'All' ? 48 :  textWidth + 30,
+                                  height: 36,
+                                  alignment: Alignment.center,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        width: 1,
+                                        strokeAlign:
+                                            BorderSide.strokeAlignCenter,
+                                        color: index == selectedIndex
+                                            ? Color(0xFFFFA142)
+                                            : Color(0xFFD1D5DB),
                                       ),
-                                      Expanded(
-                                        child: Container(
-                                          width: 160,
-                                          decoration: ShapeDecoration(
-                                            color: Color(0xFFF3F4F6),
-                                            shape: RoundedRectangleBorder(
-                                              side: BorderSide(
-                                                  width: 1,
-                                                  color: Color(0xFFE5E7EB)
-                                                      .withOpacity(0.5)),
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(4),
-                                                bottomRight:
-                                                    Radius.circular(4),
-                                              ),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 15.0),
+                                    child: Center(
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          // if (labelText != 'All')
+                                          //   Image.asset(
+                                          //     "assets/review/icon_star.png",
+                                          //     scale: 2,
+                                          //   ),
+                                          Text(
+                                            labelText,
+                                            style: TextStyle(
+                                              color: index == selectedIndex
+                                                  ? Color(0xFFE88E32)
+                                                  : Color(0xFF334155),
+                                              fontSize: 14,
+                                              fontFamily: 'Archivo-Regular',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0.10,
                                             ),
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.only(top: 5.0),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(
-                                                    width: 128,
-                                                    child: Text(
-                                                      item.title,
-                                                      overflow: TextOverflow
-                                                          .ellipsis,
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFF334155),
-                                                        fontSize: 14,
-                                                        fontFamily: 'Archivo-SemiBold',
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.vertical,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(left: 22.0),
+                    //     child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         GridView.builder(
+                    //           shrinkWrap: true,
+                    //
+                    //           physics: NeverScrollableScrollPhysics(),
+                    //           gridDelegate:
+                    //               SliverGridDelegateWithFixedCrossAxisCount(
+                    //             crossAxisCount: 2,
+                    //             // Number of items per row
+                    //             // Adjust the spacing between items horizontally
+                    //             mainAxisSpacing: 20,
+                    //             // Adjust the spacing between items vertically
+                    //             childAspectRatio:
+                    //                 0.85, // Adjust the aspect ratio of items
+                    //           ),
+                    //           itemCount: filteredItems.length,
+                    //           // Replace 6 with your actual item count
+                    //           itemBuilder: (context, index) {
+                    //             final item = filteredItems[index];
+                    //
+                    //             return GestureDetector(
+                    //               onTap: () {
+                    //                 Navigator.push(
+                    //                   context,
+                    //                   MaterialPageRoute(
+                    //                     builder: (context) => ProductDetails(),
+                    //                   ),
+                    //                 );
+                    //               },
+                    //               child: Container(
+                    //                 width: 200,
+                    //                 height: 250,
+                    //                 // padding: const EdgeInsets.only(bottom: 1),
+                    //                 child: Stack(
+                    //                   children: [
+                    //                     Column(
+                    //                       children: [
+                    //                         Container(
+                    //                           width: 160,
+                    //                           height: 152,
+                    //                           clipBehavior: Clip.antiAlias,
+                    //                           decoration: ShapeDecoration(
+                    //                             color: Colors.white,
+                    //                             shape: RoundedRectangleBorder(
+                    //                               borderRadius: BorderRadius.only(
+                    //                                 topLeft: Radius.circular(4),
+                    //                                 topRight: Radius.circular(4),
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                           child: Center(
+                    //                               child: Image.asset(
+                    //                             item.image,
+                    //                             width: 100,
+                    //                             height: 100,
+                    //                           )),
+                    //                         ),
+                    //                         Expanded(
+                    //                           child: Container(
+                    //                             width: 160,
+                    //                             decoration: ShapeDecoration(
+                    //                               color: Color(0xFFF3F4F6),
+                    //                               shape: RoundedRectangleBorder(
+                    //                                 side: BorderSide(
+                    //                                     width: 1,
+                    //                                     color: Color(0xFFE5E7EB)
+                    //                                         .withOpacity(0.5)),
+                    //                                 borderRadius: BorderRadius.only(
+                    //                                   bottomLeft:
+                    //                                       Radius.circular(4),
+                    //                                   bottomRight:
+                    //                                       Radius.circular(4),
+                    //                                 ),
+                    //                               ),
+                    //                             ),
+                    //                             child: Padding(
+                    //                               padding:
+                    //                                   EdgeInsets.only(top: 5.0),
+                    //                               child: Padding(
+                    //                                 padding:
+                    //                                     const EdgeInsets.all(8.0),
+                    //                                 child: Column(
+                    //                                   crossAxisAlignment:
+                    //                                       CrossAxisAlignment.start,
+                    //                                   children: [
+                    //                                     SizedBox(
+                    //                                       width: 128,
+                    //                                       child: Text(
+                    //                                         item.title,
+                    //                                         overflow: TextOverflow
+                    //                                             .ellipsis,
+                    //                                         style: TextStyle(
+                    //                                           color:
+                    //                                               Color(0xFF334155),
+                    //                                           fontSize: 14,
+                    //                                           fontFamily: 'Archivo-SemiBold',
+                    //                                           fontWeight:
+                    //                                               FontWeight.w600,
+                    //                                         ),
+                    //                                       ),
+                    //                                     ),
+                    //                                     SizedBox(height: 18),
+                    //                                     Container(
+                    //                                       width:
+                    //                                           MediaQuery.of(context)
+                    //                                               .size
+                    //                                               .width,
+                    //                                       child: Row(
+                    //                                         mainAxisAlignment:
+                    //                                             MainAxisAlignment
+                    //                                                 .spaceBetween,
+                    //                                         children: [
+                    //                                           Text(
+                    //                                               'CHF ${item.price.toStringAsFixed(2)}',
+                    //                                               style: TextStyle(
+                    //                                                 color: Color(
+                    //                                                     0xFF334155),
+                    //                                                 fontSize: 12,
+                    //                                                 fontFamily:
+                    //                                                     'Archivo-Medium',
+                    //                                                 fontWeight:
+                    //                                                     FontWeight
+                    //                                                         .w500,
+                    //                                                 height: 0.12,
+                    //                                               )),
+                    //                                           Text(
+                    //                                             'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                    //                                             style: TextStyle(
+                    //                                               color: Color(
+                    //                                                   0xFF66758C),
+                    //                                               fontSize: 10,
+                    //                                               fontFamily:
+                    //                                                   'Archivo-Regular',
+                    //                                               fontWeight:
+                    //                                                   FontWeight
+                    //                                                       .w400,
+                    //                                               decoration:
+                    //                                                   TextDecoration
+                    //                                                       .lineThrough,
+                    //                                               height: 0.14,
+                    //                                             ),
+                    //                                           ),
+                    //                                         ],
+                    //                                       ),
+                    //                                     ),
+                    //                                   ],
+                    //                                 ),
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                     Visibility(
+                    //                       visible: items[index].isChecked,
+                    //                       child: Container(
+                    //                           height: 40,
+                    //                           width: 50,
+                    //                           child: Image.asset(
+                    //                               "assets/product_details/icon_sale.png")),
+                    //                     ),
+                    //                     Positioned(
+                    //                       top: 19,
+                    //                       left: 10,
+                    //                       child: Visibility(
+                    //                         visible: items[index].isChecked,
+                    //                         child: Text(
+                    //                           'Sale',
+                    //                           style: TextStyle(
+                    //                             color: Color(0xFF0F172A),
+                    //                             fontSize: 10,
+                    //                             fontFamily: 'Archivo-Medium',
+                    //                             fontWeight: FontWeight.w500,
+                    //                             height: 0.15,
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                     )
+                    //                   ],
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           },
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 25.0, right: 25),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GridView.count(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              crossAxisCount: 2,
+                              // Number of items per row
+                              mainAxisSpacing: 20,
+                              // Adjust the spacing between items vertically
+                              crossAxisSpacing: 18,
+                              childAspectRatio: 0.76,
+                              // Adjust the aspect ratio of items
+                              children: List.generate(
+                                filteredItems.length,
+                                (index) {
+                                  final item = filteredItems[index];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      navigateToNextPage(context,ProductDetails());
+
+                                    },
+                                    child: Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      // Set width to half of screen width
+                                      height: 250,
+                                      child: Stack(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Container(
+                                                width: double.infinity,
+                                                // Full width of container
+                                                height: 152,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(4),
+                                                      topRight:
+                                                          Radius.circular(4),
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Center(
+                                                  child: Image.asset(
+                                                    item.image,
+                                                    width: 100,
+                                                    height: 100,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  // Full width of container
+                                                  decoration: ShapeDecoration(
+                                                    color: Color(0xFFF3F4F6),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                          width: 1,
+                                                          color:
+                                                              Color(0xFFE5E7EB)
+                                                                  .withOpacity(
+                                                                      0.5)),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(4),
+                                                        bottomRight:
+                                                            Radius.circular(4),
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(height: 18),
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                            'CHF ${item.price.toStringAsFixed(2)}',
-                                                            style: TextStyle(
-                                                              color: Color(
-                                                                  0xFF334155),
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'Archivo-Medium',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              height: 0.12,
-                                                            )),
-                                                        Text(
-                                                          'CHF ${item.originalPrice.toStringAsFixed(2)}',
-                                                          style: TextStyle(
-                                                            color: Color(
-                                                                0xFF66758C),
-                                                            fontSize: 10,
-                                                            fontFamily:
-                                                                'Archivo-Regular',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w400,
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .lineThrough,
-                                                            height: 0.14,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 5.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          SizedBox(
+                                                            width: 128,
+                                                            child: Text(
+                                                              item.title,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xFF334155),
+                                                                fontSize: 14,
+                                                                fontFamily:
+                                                                    'Archivo-SemiBold',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          SizedBox(height: 18),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                'CHF ${item.price.toStringAsFixed(2)}',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xFF334155),
+                                                                  fontSize: 12,
+                                                                  fontFamily:
+                                                                      'Archivo-Medium',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  height: 0.12,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                'CHF ${item.originalPrice.toStringAsFixed(2)}',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xFF66758C),
+                                                                  fontSize: 10,
+                                                                  fontFamily:
+                                                                      'Archivo-Regular',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .lineThrough,
+                                                                  height: 0.14,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ],
+                                                ),
                                               ),
+                                            ],
+                                          ),
+                                          Visibility(
+                                            visible: items[index].isChecked,
+                                            child: Container(
+                                              height: 40,
+                                              width: 50,
+                                              child: Image.asset(
+                                                  "assets/product_details/icon_sale.png"),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Visibility(
-                                    visible: items[index].isChecked,
-                                    child: Container(
-                                        height: 40,
-                                        width: 50,
-                                        child: Image.asset(
-                                            "assets/product_details/icon_sale.png")),
-                                  ),
-                                  Positioned(
-                                    top: 19,
-                                    left: 10,
-                                    child: Visibility(
-                                      visible: items[index].isChecked,
-                                      child: Text(
-                                        'Sale',
-                                        style: TextStyle(
-                                          color: Color(0xFF0F172A),
-                                          fontSize: 10,
-                                          fontFamily: 'Archivo-Medium',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.15,
-                                        ),
+                                          Positioned(
+                                            top: 19,
+                                            left: 10,
+                                            child: Visibility(
+                                              visible: items[index].isChecked,
+                                              child: Text(
+                                                'Sale',
+                                                style: TextStyle(
+                                                  color: Color(0xFF0F172A),
+                                                  fontSize: 10,
+                                                  fontFamily: 'Archivo-Medium',
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 0.15,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  )
-                                ],
+                                  );
+                                },
                               ),
                             ),
-                          );
-                        },
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+
+                    SizedBox(height: 200),
+                  ],
                 ),
               ),
-              SizedBox(height: 200),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -695,7 +1044,6 @@ class _ShopPageState extends State<ShopPage> {
   Widget _buildSearchBar() {
     return Container(
       color: Color(0xFFF6F6F6),
-
       child: Padding(
         padding: const EdgeInsets.only(left: 22.0, right: 22),
         child: Row(
@@ -783,39 +1131,66 @@ class _ShopPageState extends State<ShopPage> {
   }
 
   Widget appBar() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 22.0, right: 22.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            height: 80,
-            child: Text(
-              'Let’s get your\nfavourite products',
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 20,
-                fontFamily: 'Kanit-Medium',
-                fontWeight: FontWeight.w600,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.15,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(16),
+          bottomRight: Radius.circular(16),
+        ),
+        border: Border(
+          left: BorderSide(
+            color: Colors.white.withOpacity(0.10999999940395355),
+          ),
+          top: BorderSide(
+            color: Colors.white.withOpacity(0.10999999940395355),
+          ),
+          right: BorderSide(
+            color: Colors.white.withOpacity(0.10999999940395355),
+          ),
+          bottom: BorderSide(
+            width: 1,
+            color: Colors.white.withOpacity(0.10999999940395355),
+          ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 22.0, right: 22.0, top: 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              height: 80,
+              child: Text(
+                'Let’s get your\nfavourite products',
+                style: TextStyle(
+                  color: Color(0xFF334155),
+                  fontSize: 20,
+                  fontFamily: 'Kanit-Medium',
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          Row(
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => WishList()),
-                    );
-                  },
-                  child:
-                      buildIconContainer("assets/shophome/icon_wishlist.png")),
-              SizedBox(width: 16),
-              buildIconContainer("assets/shophome/icon_shopping_cart.png"),
-            ],
-          ),
-        ],
+            Row(
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      navigateToNextPage(context, WishList());
+
+                    },
+                    child: buildIconContainer(
+                        "assets/shophome/icon_wishlist.png")),
+                SizedBox(width: 16),
+                GestureDetector(
+                    onTap: (){
+                      navigateToNextPage(context, Cart001());
+                    },
+                    child: buildIconContainer("assets/shophome/icon_shopping_cart.png")),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

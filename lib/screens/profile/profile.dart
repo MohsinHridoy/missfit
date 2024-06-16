@@ -15,6 +15,7 @@ import 'package:miss_fit/screens/personalinfo/personal_info.dart';
 import 'package:miss_fit/screens/review_list_profile/review_list_profile.dart';
 import 'package:miss_fit/screens/settings/settings.dart';
 import 'package:miss_fit/screens/termsconditions/terms_conditions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -45,76 +46,170 @@ class _ProfileState extends State<Profile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
-                children: [
-                  SizedBox(
-                    height: 50,),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15.0),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: (){
-                            navigateToNextPage(context,Settings());
+              Container(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            onTap: (){
+                              navigateToNextPage(context,Settings());
 
 
 
-                          },
-                          child: Image.asset(
-                            "assets/profile/icon_gearbox.png",
-                            scale: 1.8,
+                            },
+                            child: Image.asset(
+                              "assets/profile/icon_gearbox.png",
+                              scale: 1.8,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 25.0),
-                        child: Container(
-                          width: 150,
-                          height: 150,
-                          child: Stack(
-                            children: [
-                              Container(
-                                width: 110,
-                                height: 110,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFE5E7EB),
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1.20,
-                                      color: Colors.white.withOpacity(0.5),
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: _image == null
-                                    ? Image.asset(
-                                  "assets/review/icon_girl.png",
-                                  fit: BoxFit.cover,
-                                )
-                                    : ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.file(
-                                    _image!,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 28,
-                                left: 80,
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 30.0),
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 110,
+                                  height: 110,
                                   decoration: ShapeDecoration(
-                                    color: Color(0xFFF6F6F6),
-                                    shape: OvalBorder(),
+                                    color: Color(0xFFE5E7EB),
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        width: 1.20,
+                                        color: Colors.white.withOpacity(0.5),
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
-                                  child: Image.asset(
-                                    "assets/profile/icon_camera.png",
-                                    scale: 2.1,
+                                  child: _image == null
+                                      ? Image.asset(
+                                    "assets/review/icon_girl.png",
+                                    fit: BoxFit.cover,
+                                  )
+                                      : ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.file(
+                                      _image!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 28,
+                                  left: 80,
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              ListTile(
+                                                leading: Icon(Icons.photo_library),
+                                                title: Text(
+                                                  'Choose from Gallery',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF334155),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  getImageFromGallery();
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                              ListTile(
+                                                leading: Icon(Icons.camera_alt),
+                                                title: Text(
+                                                  'Take a Photo',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF334155),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  getImageFromCamera();
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFFF6F6F6),
+                                        shape: OvalBorder(),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/profile/icon_camera.png",
+                                        scale: 2.1,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Helen Hanf',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontFamily: 'Kanit-Medium',
+                          fontWeight: FontWeight.w500,
+                          height: 0.05,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          navigateToNextPage(context,DashBoard(number: 2,));
+                        },
+                        child: Container(
+                          width: 174,
+                          height: 36,
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFFA142),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4)),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset("assets/profile/icon_manage_subscription.png"),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 3.0),
+                                child: Text(
+                                  'Buy Subscription',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.09,
                                   ),
                                 ),
                               ),
@@ -122,60 +217,12 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ),
-                    ),
-                    Text(
-                      'Helen Hanf',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 0.05,
+                      SizedBox(
+                        height: 30,
                       ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        navigateToNextPage(context,DashBoard(number: 2,));
-                      },
-                      child: Container(
-                        width: 174,
-                        height: 36,
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFFA142),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                        child: Row(
-                          children: [
-                            Image.asset("assets/profile/icon_manage_subscription.png"),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 3.0),
-                              child: Text(
-                                'Buy Subscription',
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 16,
-                                  fontFamily: 'Archivo-Regular',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.09,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
 
-                ],
+                  ],
+                ),
               ),
 
               Container(
@@ -286,7 +333,23 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+  Future getImageFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
 
+  Future getImageFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
   Widget _buildIndicatorTitleText(String text) {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, top: 30, bottom: 10),
@@ -307,7 +370,7 @@ class _ProfileState extends State<Profile> {
       BuildContext context, String imgPath, String title, Widget page) {
     return Padding(
       padding:
-          const EdgeInsets.only(left: 20.0, right: 20, top: 15, bottom: 15),
+          const EdgeInsets.only(left: 20.0, right: 20, top: 5, bottom: 20),
       child: GestureDetector(
         onTap: (){
           navigateToNextPage(context,page);
@@ -419,7 +482,10 @@ class _ProfileState extends State<Profile> {
                         MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
+
+
+
                               Navigator.pop(
                                   context); // Close the modal when tapped
                             },
@@ -452,12 +518,13 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
                               // setState(() {
                               //   paymentItems.removeAt(index);
                               //
                               // });
-
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setBool('isLoggedOut', true);
                               navigateToNextPage(context,LoginPage(status: 'profile',));
                             },
                             child: Container(

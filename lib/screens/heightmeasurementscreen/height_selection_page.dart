@@ -21,7 +21,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
   int currentPageIndex = 24; // Set initialPageIndex to 24
   int selectedValue = 0;
   String selectedUnit = 'kgs';
-  bool selectedUnitForMesurements=false;
+  bool selectedUnitForMesurements=true;
   int? feet;
   int? inch;
   late SharedPreferences _prefs;
@@ -272,9 +272,12 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                   child: Text(
                     'CM',
                     style: TextStyle(
-                      color: selectedUnit == 'CM'
-                          ? Color(0xFFE88E32)
-                          : Color(0xFF9CA3AF),
+                      // color: selectedUnit == 'CM'
+                      //     ? Color(0xFFE88E32)
+                      //     : Color(0xFF9CA3AF),
+
+                      color: Color(0xFFE88E32)
+                        ,
                       fontSize: 20,
                       fontFamily: 'Archivo-Medium',
                       fontWeight: FontWeight.w400,
@@ -293,7 +296,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
               child:  GestureDetector(
                 onTap: () async{
                   if(widget.status == 'profile')
-                    navigateToNextPage(context,DashBoard(number: 3,));
+                    navigateToNextPage(context,DashBoard(number: 2,));
                   await _saveIndex(currentPageIndex!);
                   print(currentPageIndex);
 

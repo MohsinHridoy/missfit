@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/servicedetails/service_details.dart';
 class ServiceSelectionScreen extends StatefulWidget {
   const ServiceSelectionScreen({Key? key}) : super(key: key);
@@ -104,12 +105,9 @@ class _ServiceSelectionScreenState extends State<ServiceSelectionScreen> {
                     padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 20),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ServiceDetails(),
-                          ),
-                        );
+
+                        navigateToNextPage(context,ServiceDetails());
+
                       },
                       child: Container(
                         width: 320,

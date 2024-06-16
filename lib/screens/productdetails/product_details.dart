@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
+import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key});
@@ -1050,7 +1052,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     GestureDetector(
                       onTap: (){
                         print("Some things");
-                        Navigator.pop(context);
+                        navigateToNextPage(context, WishList());
 
                       },
                       child: Container(

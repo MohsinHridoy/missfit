@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class EventDetails extends StatefulWidget {
-  const EventDetails({super.key});
+  final dynamic item;
+  String? status;
+
+  EventDetails({required this.item,this.status});
 
   @override
   State<EventDetails> createState() => _EventDetailsState();
@@ -64,7 +67,7 @@ class _EventDetailsState extends State<EventDetails> {
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width / 3.6),
                     Text(
-                      'Event Details',
+                      widget.status=='event' ? 'Event Details' : 'Group Class',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -90,7 +93,7 @@ class _EventDetailsState extends State<EventDetails> {
                         height: 180,
                         decoration: ShapeDecoration(
                           image: DecorationImage(
-                            image: AssetImage("assets/eventdetails/img.png"),
+                            image: AssetImage(widget.item.imagePath),
                             fit: BoxFit.cover,
                           ),
                           shape: RoundedRectangleBorder(
@@ -106,7 +109,7 @@ class _EventDetailsState extends State<EventDetails> {
                       child: SizedBox(
                         width: 208,
                         child: Text(
-                          'Fitness Decathlon',
+                          widget.item.title,
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 20,
@@ -363,6 +366,7 @@ class _EventDetailsState extends State<EventDetails> {
                     SizedBox(
                       height: 20,
                     ),
+                    widget.status=='event'?
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, top: 15),
                       child: SizedBox(
@@ -378,11 +382,11 @@ class _EventDetailsState extends State<EventDetails> {
                           ),
                         ),
                       ),
-                    ),
+                    ):SizedBox(),
                     SizedBox(
                       height: 30,
                     ),
-                    Padding(
+                    widget.status=='event'?  Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: Container(
                         height: 110,
@@ -433,7 +437,7 @@ class _EventDetailsState extends State<EventDetails> {
                           },
                         ),
                       ),
-                    ),
+                    ):SizedBox(),
 
                     SizedBox(height: 70,),
                     GestureDetector(

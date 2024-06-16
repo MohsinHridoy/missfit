@@ -5,6 +5,7 @@ import 'package:miss_fit/screens/billingaddress/billing_address.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:miss_fit/screens/paymentmethod/payment_method.dart';
+import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/subscription_history/subscription_history.dart';
 
 
@@ -696,7 +697,7 @@ class _RenewSubscriptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        navigateToNextPage(context,DashBoard(number: 2,));
+        navigateToNextPage(context,Subscription());
       },
       child: Container(
         width: double.infinity,

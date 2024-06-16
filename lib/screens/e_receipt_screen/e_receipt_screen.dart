@@ -230,7 +230,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
               _buildSummeryText1('Transaction Number', '#ES0329321'),
               Spacer(),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20),
+                padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20,right: 20),
                 child: GestureDetector(
                   onTap: (){
                     // Navigator.pushReplacement(
@@ -243,8 +243,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                   child: Container(
                     width: 370,
                     height: 52,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 112, vertical: 17),
+
                     decoration: ShapeDecoration(
                       color: Color(0xFFFF4343),
                       shape: RoundedRectangleBorder(
@@ -256,7 +255,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          fontFamily: 'Archivo',
+                          fontFamily: 'Archivo-SemiBold',
                           fontWeight: FontWeight.w600,
                           height: 0.09,
                         ),

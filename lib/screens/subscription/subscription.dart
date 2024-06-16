@@ -38,17 +38,15 @@ class _SubscriptionState extends State<Subscription> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
-                      child: Visibility(
-                        visible: false,
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
+                      child: Image.asset(
+                        "assets/cart/icon_left_arrow.png",
+                        scale: 2,
+                      )
+
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.1),
+                    SizedBox(width: MediaQuery.of(context).size.width / 3.6),
                     Text(
                       'Subscription',
                       textAlign: TextAlign.center,

@@ -373,6 +373,8 @@ class _AddNewCardState extends State<AddNewCard> {
                                                   setState(() {
                                                     paymentItems.removeAt(index);
 
+                                                    Navigator.pop(context);
+
                                                   });
 
                                                 },

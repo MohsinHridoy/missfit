@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/filterbrandsselectionpage/brandsselectionpage.dart';
 import 'package:miss_fit/screens/filterdiscountselectionpage/filter_discount_selection_page.dart';
 import 'package:miss_fit/screens/filterflavourselectionpage/filter_flavour_selection_page.dart';
@@ -262,14 +263,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           context,
                           'Sort By',
                           _fetchSort.isNotEmpty ? '${_fetchSort[0]}' : '',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => SortByPage()),
-                            );
-                          },
+                            SortByPage()
                         ),
                       ),
                       Padding(
@@ -280,15 +274,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchCategories.isNotEmpty
                               ? '${_fetchCategories[0]}, ${_fetchCategories.length > 1 ? _fetchCategories[1] : ''}...+${_fetchCategories.length}'
                               : 'No categories selected',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CategorySelectionPage()),
-                            );
-                          },
+                            CategorySelectionPage()
                         ),
                       ),
                       Padding(
@@ -299,14 +285,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchBrands.isNotEmpty
                               ? '${_fetchBrands[0]}, ${_fetchBrands.length > 1 ? _fetchBrands[1] : ''}...+${_fetchBrands.length > 2 ? _fetchBrands.length - 2 : ''}'
                               : 'No Brands selected',
-                          () {
-                            // Navigate to the brands selection page
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BrandsSelectionPage()),
-                            );
-                          },
+                            BrandsSelectionPage()
                         ),
                       ),
                       Padding(
@@ -317,14 +296,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchColours.isNotEmpty
                               ? '${_fetchColours[0]}, ${_fetchColours.length > 1 ? _fetchColours[1] : ''}...+${_fetchColours.length > 2 ? _fetchColours.length - 2 : ''}'
                               : '',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ColourSelectionPage()),
-                            );
-                          },
+                            ColourSelectionPage()
                         ),
                       ),
                       Padding(
@@ -335,15 +307,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchSize.isNotEmpty
                               ? '${_fetchSize[0]}, ${_fetchSize.length > 1 ? _fetchSize[1] : ''}...+${_fetchSize.length > 2 ? _fetchSize.length - 2 : ''}'
                               : '',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SizeSelectionPage()),
-                            );
-                          },
+                            SizeSelectionPage()
                         ),
                       ),
                       Padding(
@@ -354,14 +318,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchReviews.isNotEmpty
                               ? '${_fetchReviews[0]}, ${_fetchReviews.length > 1 ? _fetchReviews[1] : ''}...+${_fetchReviews.length > 2 ? _fetchReviews.length - 2 : ''}'
                               : '',
-                          () {
-                            // Navigate to the sort by page or any other appropriate page
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ReviewSelectionPage()),
-                            );
-                          },
+                            ReviewSelectionPage()
                         ),
                       ),
                       Padding(
@@ -372,14 +329,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchMeasurements.isNotEmpty
                               ? '${_fetchMeasurements[0]}, ${_fetchMeasurements.length > 1 ? _fetchMeasurements[1] : ''}...+${_fetchMeasurements.length > 2 ? _fetchMeasurements.length - 2 : ''}'
                               : '',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => MeasurementsSelectionPage()),
-                            );
-                          },
+                            MeasurementsSelectionPage()
                         ),
                       ),
                       Padding(
@@ -390,14 +340,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchFlavour.isNotEmpty
                               ? '${_fetchFlavour[0]}, ${_fetchFlavour.length > 1 ? _fetchFlavour[1] : ''}...+${_fetchFlavour.length > 2 ? _fetchFlavour.length - 2 : ''}'
                               : '',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => FlavourSelectionPage()),
-                            );
-                          },
+                          FlavourSelectionPage()
                         ),
                       ),
                       Padding(
@@ -408,14 +351,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           _fetchDiscounts.isNotEmpty
                               ? '${_fetchDiscounts[0]}, ${_fetchDiscounts.length > 1 ? _fetchDiscounts[1] : ''}...+${_fetchDiscounts.length > 2 ? _fetchDiscounts.length - 2 : ''}'
                               : '',
-                          () {
-                            // Navigate to the category selection page
-                            // _navigateToPage(context, CategorySelectionPage());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => DiscountSelectionPage()),
-                            );
-                          },
+                            DiscountSelectionPage()
                         ),
                       ),
                       SizedBox(height: 20),
@@ -688,10 +624,15 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           _buildRangeTextItem('${_lowerValue.round()} '),
-                          _buildRangeText('to'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12.0,right: 12),
+                            child: _buildRangeText('to'),
+                          ),
                           _buildRangeTextItem('${_upperValue.round()} ')
                         ],
                       ),
+                      SizedBox(height: 45),
+
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Row(
@@ -700,8 +641,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                             Container(
                               width: 150,
                               height: 44,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 32, vertical: 17),
+
                               decoration: ShapeDecoration(
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide(width: 1, color: Color(0xFFFF4343)),
@@ -714,7 +654,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                                   style: TextStyle(
                                     color: Color(0xFFFF4343),
                                     fontSize: 14,
-                                    fontFamily: 'Archivo',
+                                    fontFamily: 'Archivo-SemiBold',
                                     fontWeight: FontWeight.w600,
                                     height: 0.10,
                                   ),
@@ -726,10 +666,8 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                                 // Navigator.push(                        //   context,
                                 //   MaterialPageRoute(builder: (context) => SortByPage()),
                                 // );
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ShopPage()),
-                                );
+                                navigateToNextPage(context,ShopPage());
+
                               },
                               child: Container(
                                 width: 150,
@@ -745,7 +683,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
-                                      fontFamily: 'Archivo',
+                                      fontFamily: 'Archivo-SemiBold',
                                       fontWeight: FontWeight.w600,
                                       height: 0.10,
                                     ),
@@ -777,69 +715,72 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
   }
 
   Widget _buildCategorySection(
-      BuildContext context, String title, String subtitle, VoidCallback onTap) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0, bottom: 15),
-            child: Row(
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 16,
-                    fontFamily: 'Archivo-Regular',
-                    fontWeight: FontWeight.w400,
-                    height: 0.09,
-                  ),
-                ),
-                const SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    subtitle,
-                    textAlign: TextAlign.right,
+      BuildContext context, String title, String subtitle, Widget page) {
+    return GestureDetector(
+      onTap: (){
+        navigateToNextPage(context,page);
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        color: Color(0xFFF6F6F6),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 15),
+              child: Row(
+                children: [
+                  Text(
+                    title,
                     style: TextStyle(
-                      color: Color(0xFF475569),
+                      color: Color(0xFF334155),
                       fontSize: 16,
                       fontFamily: 'Archivo-Regular',
                       fontWeight: FontWeight.w400,
                       height: 0.09,
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: onTap,
-                  child: Icon(Icons.keyboard_arrow_right),
-                )
-              ],
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Text(
+                      subtitle,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Color(0xFF475569),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-Regular',
+                        fontWeight: FontWeight.w400,
+                        height: 0.09,
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.keyboard_arrow_right)
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 1,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                    color: Color(0xFFE5E7EB),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      strokeAlign: BorderSide.strokeAlignCenter,
+                      color: Color(0xFFE5E7EB),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildRangeTextItem(String text) {
     return Container(
-      width: 117,
+      width: 130,
       height: 40,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
       clipBehavior: Clip.antiAlias,
@@ -856,7 +797,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
             style: TextStyle(
               color: Color(0xFF334155),
               fontSize: 16,
-              fontFamily: 'Archivo',
+              fontFamily: 'Archivo-Regular',
               fontWeight: FontWeight.w400,
               height: 0.09,
             ),
@@ -874,7 +815,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
       style: TextStyle(
         color: Color(0xFF334155),
         fontSize: 16,
-        fontFamily: 'Archivo',
+        fontFamily: 'Archivo-Regular',
         fontWeight: FontWeight.w400,
         height: 0.09,
       ),

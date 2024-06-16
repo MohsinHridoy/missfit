@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/timeselectionscreen/select_time_screen.dart';
 
 class ServiceDetails extends StatelessWidget {
@@ -175,10 +176,8 @@ class ServiceDetails extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => TImeSelectionScreen()),
-                          );
+                          navigateToNextPage(context,TImeSelectionScreen());
+
                         },
                         child: Container(
                           width: 370,
@@ -196,7 +195,7 @@ class ServiceDetails extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontFamily: 'Archivo',
+                                fontFamily: 'Archivo-SemiBold',
                                 fontWeight: FontWeight.w600,
                                 height: 0.09,
                               ),

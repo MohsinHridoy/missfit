@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 
 import '../reviewsummery/review_summery_screen.dart';
 
@@ -66,7 +67,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Handle back button tap
+                        Navigator.pop(context);
                       },
                       child: Image.asset(
                         "assets/cart/icon_left_arrow.png",
@@ -231,19 +232,18 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20),
+              padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20,right: 20),
               child: GestureDetector(
                 onTap: (){
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => ReviewSummary()),
-                  );
+
+
+                  navigateToNextPage(context,ReviewSummary());
+
                 },
                 child: Container(
                   width: 370,
                   height: 52,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 112, vertical: 17),
+
                   decoration: ShapeDecoration(
                     color: Color(0xFFFF4343),
                     shape: RoundedRectangleBorder(
@@ -255,7 +255,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
-                        fontFamily: 'Archivo',
+                        fontFamily: 'Archivo-SemiBold',
                         fontWeight: FontWeight.w600,
                         height: 0.09,
                       ),

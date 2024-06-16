@@ -60,7 +60,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         scale: 2,
                       ),
                     ),
-                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.3):SizedBox(width: MediaQuery.of(context).size.width / 4.2),
+                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.7):SizedBox(width: MediaQuery.of(context).size.width / 4.2),
                     Text(
                       widget.status=='subscription' ?'Checkout':'Delivary Address',
                       textAlign: TextAlign.center,
@@ -149,10 +149,13 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        _isAllFieldsFilled ? _saveData() : null;
                         if (widget.status == 'subscription') {
 
                           navigateToNextPage(context, ReviewSummary1());
+
+                        }
+                        else {
+                          _isAllFieldsFilled ? _saveData() : null;
 
                         }
                       },
@@ -210,7 +213,13 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
   }
 
   Future<void> _saveData() async {
-    if (_isAllFieldsFilled) {
+
+    if(widget.status=='profile')
+      {
+        Navigator.pop(context);
+
+      }
+    else if (_isAllFieldsFilled) {
       final prefs = await SharedPreferences.getInstance();
       final data = {
         'firstName': _firstNameController.text,
@@ -229,7 +238,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
       // Optionally navigate to another page or show a message
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BillingDeliavryAddress()),
+        MaterialPageRoute(builder: (context) => BillingDeliavryAddress(status: widget.status,)),
       );
     } else {
       // Handle the case where not all fields are filled

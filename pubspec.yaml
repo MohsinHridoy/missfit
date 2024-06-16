@@ -139,6 +139,12 @@ flutter:
       fonts:
         - asset: fonts/inter/Inter-Bold.ttf
         - asset: fonts/inter/Inter-Regular.ttf
+
+    - family: poppins
+      fonts:
+        - asset: fonts/poppins/Poppins-Regular.ttf
+        - asset: fonts/poppins/Poppins-SemiBold.ttf
+
     - family: Inter-Medium
       fonts:
         - asset: fonts/inter/Inter-Medium.ttf
@@ -152,6 +158,6 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_icons:
-  image_path: "assets/home/missfiticon.png"
+  image_path: "assets/home/missfiticon_black.png"
   android: true
   ios: true

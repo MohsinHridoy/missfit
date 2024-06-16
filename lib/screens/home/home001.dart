@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/coachbookingscreen/coach_booking_screen.dart';
 import 'package:miss_fit/screens/eventdetails/event_details_screen.dart';
 import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
+import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
 import 'package:miss_fit/widgets/circular_progress_bar.dart';
 
@@ -14,6 +16,20 @@ class WorkoutItem {
   final String category;
 
   WorkoutItem({
+    required this.imagePath,
+    required this.title,
+    required this.duration,
+    required this.category,
+  });
+}
+
+class GroupClass {
+  final String imagePath;
+  final String title;
+  final String duration;
+  final String category;
+
+  GroupClass({
     required this.imagePath,
     required this.title,
     required this.duration,
@@ -110,6 +126,44 @@ class _HomeState extends State<Home> {
     ),
     // Add more WorkoutItem objects as needed
   ];
+  List<GroupClass> groupClassItems = [
+    GroupClass(
+      imagePath: 'assets/home/img_group_class.png',
+      title: 'Groupe Classe 01',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    GroupClass(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    GroupClass(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    GroupClass(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    GroupClass(
+      imagePath: 'assets/home/img_upcoming_event.png',
+      title: 'Calorie torcher',
+      duration: '2h 30min',
+      category: 'Full body',
+    ),
+    // Add more WorkoutItem objects as needed
+  ];
+
+
+
+
+
   List<BlogItem> blogItems = [
     BlogItem(
       imagePath: 'assets/home/img_blog_item.png',
@@ -224,7 +278,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 150,
+                    height: 160,
                   ),
 
                   // _build_Plan_Status(),
@@ -301,20 +355,16 @@ class _HomeState extends State<Home> {
                     height: 40,
                   ),
 
-                  _textTitle('New Workout'),
-                  _buildListWorkOutItem(),
+                  // _textTitle('New Workout'),
+                  // _buildListWorkOutItem(),
                   SizedBox(
                     height: 25,
                   ),
-                  _textTitle('Upcoming Event'),
-                  _buildListUpcomingEventListItem(),
-
-                  SizedBox(
-                    height: 30,
-                  ),
+                  _textTitle('Group Class'),
+                  _buildListUpcomingEventListItem(groupClassItems,'class'),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    padding: const EdgeInsets.only(left: 20.0, right: 20,top: 20,bottom: 20),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -330,8 +380,8 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                             image:
-                                AssetImage("assets/home/img_book_service.png"),
-                            fit: BoxFit.cover,
+                            AssetImage("assets/home/img_book_service.png"),
+                            fit: BoxFit.fill,
                           ),
                         ),
                         child: Padding(
@@ -397,6 +447,13 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
+
+                  SizedBox(
+                    height: 25,
+                  ),
+                  _textTitle('Upcoming Event'),
+
+                  _buildListUpcomingEventListItem(upcomingEventsItems,'event'),
                   SizedBox(
                     height: 20,
                   ),
@@ -479,17 +536,77 @@ class _HomeState extends State<Home> {
 
                   Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 194,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/home/img.png'),
-                          // Your asset image path here
-                          fit: BoxFit.fill,
+                    child: GestureDetector(
+                      onTap: (){
+                        navigateToNextPage(context,Subscription());
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 194,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/home/img_subscription.png'),
+                            // Your asset image path here
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12.0,left: 22),
+                              child: SizedBox(
+                                width: 200,
+                                height: 127,
+                                child: Text(
+                                  'Obtenir votre Abonnement aujourd hui',
+                                  textAlign: TextAlign.start, // Adjust alignment as needed
+
+                                  style: TextStyle(
+                                color: Colors.white,
+                                  fontSize: 22,
+                                  fontFamily: 'Kanit-Medium',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                                                  ),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 45.0),
+                              child: Text(
+                                'Commence à partir de',
+                                style: TextStyle(
+                                  color: Color(0xFFF8FAFC),
+                                  fontSize: 12,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.12,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+
+                            Padding(
+                              padding: const EdgeInsets.only(left: 25.0),
+                              child: SizedBox(
+                                width: 108,
+                                child: Text(
+                                  'CHF 79/mois',
+                                  style: TextStyle(
+                                    color: Color(0xFFF8FAFC),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0.09,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -1155,8 +1272,11 @@ class _HomeState extends State<Home> {
   Widget _buildEventItem() {
     return Container(
       height: 136,
+      // width: 380,
+
       child: PageView.builder(
-        controller: PageController(viewportFraction: 0.9),
+        // controller: PageController(),
+        controller: PageController(viewportFraction: 0.97),
         itemCount: headerItems.length,
         onPageChanged: (int page) {
           setState(() {
@@ -1228,7 +1348,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                   color: Color(0xFF66758C),
                   fontSize: 14,
-                  fontFamily: 'Archivo',
+                  fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
                   height: 0.10,
                 ),
@@ -1545,27 +1665,27 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _buildListUpcomingEventListItem() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EventDetails(),
-          ),
-        );
-      },
-      child: Container(
-        height: 235,
-        child: ListView.builder(
-          itemCount: upcomingEventsItems.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
-            WorkoutItem item = upcomingEventsItems[index];
-            return Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+  Widget _buildListUpcomingEventListItem(List<dynamic> upcomingEventItsems,String status) {
+    return Container(
+      height: 235,
+      child: ListView.builder(
+        itemCount: upcomingEventItsems.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          dynamic item = upcomingEventItsems[index];
+          return Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EventDetails(item: upcomingEventItsems[index],status: status,),
+                  ),
+                );
+              },
               child: Container(
-                width: 280,
+                width: 300,
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
@@ -1583,7 +1703,7 @@ class _HomeState extends State<Home> {
                               fit: BoxFit.fill,
                             )),
                         Container(
-                          width: 280,
+                          width: 300,
                           height: 75,
                           padding: const EdgeInsets.only(
                             top: 10,
@@ -1621,12 +1741,12 @@ class _HomeState extends State<Home> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 5.0, left: 2),
+                                        top: 15.0, left: 2),
                                     child: Row(
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(right: 5.0),
+                                          const EdgeInsets.only(right: 5.0),
                                           child: Container(
                                             width: 2,
                                             height: 12,
@@ -1634,7 +1754,7 @@ class _HomeState extends State<Home> {
                                               color: Color(0xFFFF4343),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(4),
+                                                BorderRadius.circular(4),
                                               ),
                                             ),
                                           ),
@@ -1703,7 +1823,7 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                   color: Color(0xFFE88E32),
                                   fontSize: 14,
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Poppins-SemiBold',
                                   fontWeight: FontWeight.w600,
                                   height: 0.07,
                                   letterSpacing: -0.28,
@@ -1715,7 +1835,7 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                   color: Color(0xFFE88E32),
                                   fontSize: 14,
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Poppins-Regular',
                                   fontWeight: FontWeight.w400,
                                   height: 0.11,
                                 ),
@@ -1728,9 +1848,9 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

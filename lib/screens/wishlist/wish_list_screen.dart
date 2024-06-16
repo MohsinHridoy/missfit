@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
@@ -139,6 +140,7 @@ class _WishListState extends State<WishList> {
                         child: Container(
                           // width: labelText == 'All' ? 48 :  textWidth + 30,
                           height: 36,
+
                           alignment: Alignment.center,
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
@@ -204,7 +206,7 @@ class _WishListState extends State<WishList> {
                           final item = filteredItems[index];
 
                           return Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(top: 12.0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 110,
@@ -351,6 +353,18 @@ class _WishListState extends State<WishList> {
                                                     return Container(
                                                       height: 215,
                                                       // Adjust the height as necessary
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  20.0),
+                                                        ),
+                                                      ),
                                                       width:
                                                           MediaQuery.of(context)
                                                               .size
@@ -359,7 +373,7 @@ class _WishListState extends State<WishList> {
                                                         children: <Widget>[
                                                           SizedBox(height: 50),
                                                           Text(
-                                                            'Delete Existing Card',
+                                                            'Delete Existing wish list!',
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
@@ -376,7 +390,7 @@ class _WishListState extends State<WishList> {
                                                           ),
                                                           SizedBox(height: 30),
                                                           Text(
-                                                            'Do you want to delete this card?',
+                                                            'Do you want to delete this items?',
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
@@ -528,7 +542,7 @@ class _WishListState extends State<WishList> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 15,
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
@@ -558,10 +572,7 @@ class _WishListState extends State<WishList> {
               padding: const EdgeInsets.all(20.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Cart001()),
-                  );
+                  navigateToNextPage(context, Cart001());
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

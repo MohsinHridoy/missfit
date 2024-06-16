@@ -219,7 +219,7 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                         padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15,top: 50),
                         child: GestureDetector(
                           onTap: (){
-                            navigateToNextPage(context,DashBoard());
+                            navigateToNextPage(context,DashBoard(number: 2,));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,

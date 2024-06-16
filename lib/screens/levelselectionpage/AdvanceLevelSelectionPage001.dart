@@ -94,7 +94,7 @@ class _AdvanceLevelSelectionPageState001
 
                     child: GestureDetector(
                       onTap: (){
-                        navigateToNextPage(context,DashBoard(number: 3,));
+                        navigateToNextPage(context,DashBoard(number: 2,));
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,

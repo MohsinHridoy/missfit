@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/billingaddress/billing_address.dart';
+import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -166,8 +169,8 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                       ),
                     ),
                     SizedBox(height: 5),
-                    _buildDelivaryStatusTextItem('Shipping Address','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber'),
-                    _buildDelivaryStatusTextItem('Billing Address','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1'),
+                    _buildDelivaryStatusTextItem('Shipping Address','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
+                    _buildDelivaryStatusTextItem('Billing Address','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
                     Padding(
                       padding: const EdgeInsets.all(25.0),
                       child: Text(
@@ -464,7 +467,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
     );
   }
 
-  Widget _buildDelivaryStatusTextItem(String title,String name,String phoneNumber,String Email) {
+  Widget _buildDelivaryStatusTextItem(String title,String name,String phoneNumber,String Email,Widget page) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
@@ -497,7 +500,13 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                       ),
                     ),
 
-                    Image.asset("assets/order/icon_edit.png",scale: 2.1,)
+                    GestureDetector(
+                      onTap: (){
+                        navigateToNextPage(context, page);
+                      },
+                        child: Image.asset("assets/order/icon_edit.png",scale: 2.1,)
+
+                    )
                   ],
                 ),
               ),

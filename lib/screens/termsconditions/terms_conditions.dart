@@ -137,7 +137,7 @@ class TermConditions extends StatelessWidget {
 
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               itemCount: terms.length,
               itemBuilder: (context, index) {
                 final term = terms[index];
@@ -155,7 +155,7 @@ class TermConditions extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 10),
                       Text(
                         term.details,
                         style: const TextStyle(

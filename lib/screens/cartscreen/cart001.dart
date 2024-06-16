@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/checkout/checkout.dart';
 
 class CartItem {
@@ -181,12 +182,8 @@ class _Cart001State extends State<Cart001> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CheckOut()),
-                                );
+                                navigateToNextPage(context,CheckOut());
+
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),

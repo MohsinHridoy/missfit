@@ -34,8 +34,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
   @override
   void initState() {
     super.initState();
-    if(widget.status=='profile')
-    _loadData();
+    if (widget.status == 'profile') _loadData();
   }
 
   Future<void> _loadData() async {
@@ -54,7 +53,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
         _streetAddressController.text = userData['streetAddress'];
         _cityController.text = userData['city'];
         _addressController.text = userData['address'];
-        _isAllFieldsFilled=true;
+        _isAllFieldsFilled = true;
       });
     }
   }
@@ -90,9 +89,12 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 4.2),
+                    widget.status == 'profile'|| widget.status == 'cart'
+                        ?SizedBox(width: MediaQuery.of(context).size.width / 4.2):SizedBox(width: MediaQuery.of(context).size.width / 3.4),
                     Text(
-                     widget.status!='profile'? 'Delivary Address':'Payment Method',
+                      widget.status == 'profile'|| widget.status == 'cart'
+                          ? 'Delivary Address'
+                          : 'CheckOut',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -114,21 +116,27 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                     SizedBox(
                       height: 30,
                     ),
-                    widget.status!='profile' ?Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        'Add Billing Address',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
-                    ):SizedBox(),
-                    SizedBox(height: 10,),
-                    widget.status!='profile' ?_buildSelectAllCheckbox():SizedBox(),
+                    widget.status == 'profile'
+                        ? Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              'Add Billing Address',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Kanit-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 0.06,
+                              ),
+                            ),
+                          )
+                        : SizedBox(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    widget.status == 'profile'|| widget.status == 'cart'
+                        ? _buildSelectAllCheckbox()
+                        : SizedBox(),
                     SizedBox(
                       height: 30,
                     ),
@@ -198,7 +206,9 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                           ),
                           child: Center(
                             child: Text(
-                              widget.status!='profile' ? 'Save & Continue':'Save',
+                              widget.status != 'profile'
+                                  ? 'Save & Continue'
+                                  : 'Save',
                               style: TextStyle(
                                 color: _isAllFieldsFilled
                                     ? Colors.white
@@ -263,11 +273,10 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap:(){
+                onTap: () {
                   setState(() {
-                    _copyShippingToBilling=!_copyShippingToBilling;
+                    _copyShippingToBilling = !_copyShippingToBilling;
                     _loadData();
-
                   });
                 },
                 child: Container(
@@ -277,11 +286,11 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                   decoration: ShapeDecoration(
                     color: Colors.grey,
                     shape: RoundedRectangleBorder(
-
-                      borderRadius: BorderRadius.circular(12), // Half of width or height
+                      borderRadius:
+                          BorderRadius.circular(12), // Half of width or height
                     ),
                   ),
-                  child:Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Visibility(
@@ -298,7 +307,6 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                       ),
                       Visibility(
                         visible: _copyShippingToBilling,
-
                         child: Container(
                           width: 16,
                           height: 16,
@@ -348,15 +356,13 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
       };
       final jsonData = jsonEncode(data);
       await prefs.setString('billing_address', jsonData);
-       if(widget.status=='profile')
-         {
-           navigateToNextPage(context,MySubscription());
-         }
-       else
-         {
-           navigateToNextPage(context,CheckOutAddress());
-
-         }
+      if (widget.status == 'profile') {
+        Navigator.pop(context);
+      } else if (widget.status == 'subscription') {
+        navigateToNextPage(context, MySubscription());
+      } else {
+        navigateToNextPage(context, CheckOutAddress());
+      }
     } else {
       // Handle the case where not all fields are filled
       // Possibly show an alert dialog or a snackbar
