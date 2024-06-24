@@ -11,7 +11,8 @@ class WorkoutItem {
   String? videoUrl; // Add a video URL field
   VideoPlayerController? controller;
 
-  WorkoutItem({this.name, this.durationInSeconds, this.details, this.videoUrl}) {
+  WorkoutItem(
+      {this.name, this.durationInSeconds, this.details, this.videoUrl}) {
     controller = VideoPlayerController.asset(videoUrl!)
       ..initialize().then((_) {
         // Ensure the listener updates to display the video when initialized
@@ -19,6 +20,7 @@ class WorkoutItem {
       });
   }
 }
+
 class WorkoutPage003 extends StatefulWidget {
   @override
   _WorkoutPage003State createState() => _WorkoutPage003State();
@@ -26,16 +28,45 @@ class WorkoutPage003 extends StatefulWidget {
 
 class _WorkoutPage003State extends State<WorkoutPage003> {
   List<WorkoutItem> _workoutItems = [
-    WorkoutItem(name: 'Exercise 1', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
-    WorkoutItem(name: 'Exercise 2', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
-    WorkoutItem(name: 'Exercise 3', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
-    WorkoutItem(name: 'Exercise 3', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
-    WorkoutItem(name: 'Exercise 3', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
-    WorkoutItem(name: 'Exercise 4', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
-    WorkoutItem(name: 'Exercise 5', durationInSeconds: 10, details: 'Details for Exercise 1', videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 1',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 2',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 3',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 3',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 3',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 4',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
+    WorkoutItem(
+        name: 'Exercise 5',
+        durationInSeconds: 10,
+        details: 'Details for Exercise 1',
+        videoUrl: 'assets/workout/www.mp4'),
     // Add other items similarly...
   ];
-  ScrollController _scrollController = ScrollController(initialScrollOffset: 0.0);
+  ScrollController _scrollController =
+      ScrollController(initialScrollOffset: 0.0);
 
   List<bool> _itemStarted = [];
   List<double> _progressValues = [];
@@ -43,6 +74,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
   int _currentIndex = 0;
   bool _isPaused = false;
   late Timer _timer;
+  bool _isRestDialogVisible = false;
 
   bool _isWorkoutStarted = false;
 
@@ -70,6 +102,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
     //   });
     // }
   }
+
   @override
   void dispose() {
     _timer.cancel();
@@ -85,6 +118,65 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
     _secondsRemainingList = List<int>.filled(_workoutItems.length, 0);
   }
 
+  // void _startTimer() {
+  //   const oneSec = Duration(seconds: 1);
+  //   _timer = Timer.periodic(oneSec, (timer) {
+  //     if (!_isPaused) {
+  //       setState(() {
+  //         if (_secondsRemainingList[_currentIndex] > 0) {
+  //           _secondsRemainingList[_currentIndex]--;
+  //           _progressValues[_currentIndex] =
+  //               (_workoutItems[_currentIndex].durationInSeconds! - _secondsRemainingList[_currentIndex]) /
+  //                   _workoutItems[_currentIndex].durationInSeconds!;
+  //         } else if (_currentIndex < _workoutItems.length - 1) {
+  //           _nextItem();
+  //         }
+  //       });
+  //     }
+  //   });
+  //
+  //   if (!_itemStarted[_currentIndex]) {
+  //     _itemStarted[_currentIndex] = true;
+  //     _progressValues[_currentIndex] = 0.0;
+  //     _secondsRemainingList[_currentIndex] = _workoutItems[_currentIndex].durationInSeconds!;
+  //   }
+  // }
+  void _showRestDialog() {
+    setState(() {
+      _isRestDialogVisible = true;
+    });
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Rest Time'),
+          content: Text('Rest for 45 seconds'),
+          // Adjust as per your requirement
+          actions: <Widget>[
+            TextButton(
+              child: Text('Skip'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                _nextItem(); // Skip to the next exercise
+              },
+            ),
+            TextButton(
+              child: Text('Next Exercise Image'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                // Navigate or display the next exercise's image as required
+                setState(() {
+                  _isRestDialogVisible = false;
+                });
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _startTimer() {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(oneSec, (timer) {
@@ -93,10 +185,12 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
           if (_secondsRemainingList[_currentIndex] > 0) {
             _secondsRemainingList[_currentIndex]--;
             _progressValues[_currentIndex] =
-                (_workoutItems[_currentIndex].durationInSeconds! - _secondsRemainingList[_currentIndex]) /
+                (_workoutItems[_currentIndex].durationInSeconds! -
+                        _secondsRemainingList[_currentIndex]) /
                     _workoutItems[_currentIndex].durationInSeconds!;
           } else if (_currentIndex < _workoutItems.length - 1) {
             _nextItem();
+            _showRestDialog(); // Show rest dialog when exercise completes
           }
         });
       }
@@ -105,7 +199,8 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
     if (!_itemStarted[_currentIndex]) {
       _itemStarted[_currentIndex] = true;
       _progressValues[_currentIndex] = 0.0;
-      _secondsRemainingList[_currentIndex] = _workoutItems[_currentIndex].durationInSeconds!;
+      _secondsRemainingList[_currentIndex] =
+          _workoutItems[_currentIndex].durationInSeconds!;
     }
   }
 
@@ -140,7 +235,9 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
         _restoreRemainingTime(_currentIndex);
       });
       _timer.cancel(); // Cancel the current timer
-      _startTimer(); // Start a new timer for the next exercise
+
+      // Start a new timer for the next exercise
+      _startTimer();
 
       // Initialize and play the video for the next item
       _workoutItems[_currentIndex].controller!.play();
@@ -158,6 +255,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
       });
     }
   }
+
   void _previousItem() {
     if (_currentIndex > 0) {
       _saveRemainingTime(_currentIndex);
@@ -169,7 +267,8 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
       _startTimer(); // Start a new timer for the previous exercise
 
       // Calculate the scroll offset based on the index of the current exercise
-      double scrollOffset = (_currentIndex) * ((MediaQuery.of(context).size.width / 3.6) + (2 * 8.0) + (2 * 8.0));
+      double scrollOffset = (_currentIndex) *
+          ((MediaQuery.of(context).size.width / 3.6) + (2 * 8.0) + (2 * 8.0));
 
       // Scroll to the calculated offset
       WidgetsBinding.instance!.addPostFrameCallback((_) {
@@ -189,13 +288,20 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
   void _restoreRemainingTime(int index) {
     _secondsRemainingList[_currentIndex] = _secondsRemainingList[index];
   }
+
   void _togglePause() {
     setState(() {
-      _isPaused = !_isPaused;
-      if (_isPaused) {
+      if (_isRestDialogVisible) {
+        // If rest dialog is visible, pause the video
         _workoutItems[_currentIndex].controller!.pause();
       } else {
-        _workoutItems[_currentIndex].controller!.play();
+        // Otherwise, toggle play/pause based on _isPaused
+        _isPaused = !_isPaused;
+        if (_isPaused) {
+          _workoutItems[_currentIndex].controller!.pause();
+        } else {
+          _workoutItems[_currentIndex].controller!.play();
+        }
       }
     });
   }
@@ -207,7 +313,8 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
     });
 
     // Calculate the scroll offset based on the selected index
-    double scrollOffset = (_currentIndex) * (MediaQuery.of(context).size.width / 3.6 + 2 * 8.0);
+    double scrollOffset =
+        (_currentIndex) * (MediaQuery.of(context).size.width / 3.6 + 2 * 8.0);
 
     // Scroll to the calculated offset
     _scrollController.animateTo(
@@ -218,7 +325,8 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
 
     if (!_itemStarted[_currentIndex]) {
       _itemStarted[_currentIndex] = true;
-      _secondsRemainingList[_currentIndex] = _workoutItems[_currentIndex].durationInSeconds!;
+      _secondsRemainingList[_currentIndex] =
+          _workoutItems[_currentIndex].durationInSeconds!;
       _progressValues[_currentIndex] = 0.0;
     }
 
@@ -257,7 +365,9 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                         value: _progressValues[index],
                         backgroundColor: Colors.white,
                         valueColor: AlwaysStoppedAnimation<Color>(
-                          index == _currentIndex ? Colors.green : Colors.grey, // Change color for current item
+                          index == _currentIndex
+                              ? Colors.green
+                              : Colors.grey, // Change color for current item
                         ),
                       ),
                     ),
@@ -266,14 +376,12 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
               ),
             ),
           ),
-
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               controller: _scrollController,
               itemCount: _workoutItems.length,
               itemBuilder: (context, index) {
-
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -282,7 +390,9 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                       value: _progressValues[index],
                       backgroundColor: Colors.white,
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        index == _currentIndex ? Colors.green : Colors.grey, // Change color for current item
+                        index == _currentIndex
+                            ? Colors.green
+                            : Colors.grey, // Change color for current item
                       ),
                     ),
                   ),
@@ -294,28 +404,44 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
             child: Center(
               child: Card(
                 child: Container(
-
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(_workoutItems[_currentIndex].name!),
-                      Text('Duration: ${_workoutItems[_currentIndex].durationInSeconds} seconds'),
+                      Text(
+                          'Duration: ${_workoutItems[_currentIndex].durationInSeconds} seconds'),
                       Text('Details: ${_workoutItems[_currentIndex].details}'),
-                      if (_workoutItems[_currentIndex].controller!.value.isInitialized) // Check if the video is initialized
-                        Container(
-                          height: 100,
-                          child: AspectRatio(
-                            aspectRatio: _workoutItems[_currentIndex].controller!.value.aspectRatio,
-                            child: VideoPlayer(_workoutItems[_currentIndex].controller!),
+                      if (_workoutItems[_currentIndex]
+                          .controller!
+                          .value
+                          .isInitialized) // Check if the video is initialized
+                        if (_workoutItems[_currentIndex]
+                                .controller!
+                                .value
+                                .isInitialized &&
+                            !_isRestDialogVisible)
+                          Container(
+                            height: 100,
+                            child: AspectRatio(
+                              aspectRatio: _workoutItems[_currentIndex]
+                                  .controller!
+                                  .value
+                                  .aspectRatio,
+                              child: VideoPlayer(
+                                  _workoutItems[_currentIndex].controller!),
+                            ),
                           ),
-                        ),
                       Text(_itemStarted[_currentIndex]
                           ? _secondsRemainingList[_currentIndex] > 0
-                          ? 'Time Remaining: ${_secondsRemainingList[_currentIndex]} seconds'
-                          : 'Completed'
+                              ? 'Time Remaining: ${_secondsRemainingList[_currentIndex]} seconds'
+                              : 'Completed'
                           : 'Not Started'),
-                      if (_workoutItems[_currentIndex].controller!.value.isInitialized)
-                        Text('Video Duration: ${_workoutItems[_currentIndex].controller!.value.duration.inSeconds} seconds'),
+                      if (_workoutItems[_currentIndex]
+                          .controller!
+                          .value
+                          .isInitialized)
+                        Text(
+                            'Video Duration: ${_workoutItems[_currentIndex].controller!.value.duration.inSeconds} seconds'),
                     ],
                   ),
                 ),
@@ -361,7 +487,9 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                         value: _progressValues[index],
                         backgroundColor: Colors.white,
                         valueColor: AlwaysStoppedAnimation<Color>(
-                          index == _currentIndex ? Colors.green : Colors.grey, // Change color for current item
+                          index == _currentIndex
+                              ? Colors.green
+                              : Colors.grey, // Change color for current item
                         ),
                       ),
                     ],
