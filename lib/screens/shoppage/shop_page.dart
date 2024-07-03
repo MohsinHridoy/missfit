@@ -4,6 +4,8 @@ import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class AllItemsShopPage extends StatefulWidget {
   String? status;
    AllItemsShopPage({super.key,this.status});
@@ -120,7 +122,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                 )
             ),
             Padding(
-              padding: const EdgeInsets.only(left:5,right: 12.0),
+              padding: const EdgeInsets.only(left:5,right: 12.0,top: 8),
               child: Text(
                 item,
                 style: TextStyle(
@@ -147,46 +149,13 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
         child: Column(
 
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.6),
-                    Text(
-                     widget.status!='newarrival' ?'All Products':'New Arrival',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+
+            CustomAppBar(
+              title: widget.status!='newarrival' ?'All Products':'New Arrival',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.6, // Custom iconSpacing value
             ),
             SizedBox(height: 20,),
 
@@ -198,43 +167,18 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
 
                     _buildSearchBar(),
                     SizedBox(height: 20,),
-                    Container(
-                      child: Wrap(
-                        spacing: 12.0, // Spacing between items
-                        runSpacing: 12.0, // Spacing between lines
-                        children: chipitems.map((chipitems) => _buildItem(chipitems,chipitems.indexOf(chipitems))).toList(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0,right: 20),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Wrap(
+                          spacing: 12.0, // Spacing between items
+                          runSpacing: 12.0, // Spacing between lines
+                          children: chipitems.map((chipitems) => _buildItem(chipitems,chipitems.indexOf(chipitems))).toList(),
+                        ),
                       ),
                     ),
 
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 22.0,right: 22),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [
-                    //       Text(
-                    //         'All Products',
-                    //         style: TextStyle(
-                    //           color: Color(0xFF334155),
-                    //           fontSize: 20,
-                    //           fontFamily: 'Kanit-SemiBold',
-                    //           fontWeight: FontWeight.w600,
-                    //           height: 0.06,
-                    //         ),
-                    //       ),
-                    //       Text(
-                    //         'See All',
-                    //         textAlign: TextAlign.right,
-                    //         style: TextStyle(
-                    //           color: Color(0xFFFF4343),
-                    //           fontSize: 14,
-                    //           fontFamily: 'Archivo-Medium',
-                    //           fontWeight: FontWeight.w500,
-                    //           height: 0.10,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Padding(
@@ -454,123 +398,179 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
     );
   }
 
+  // Widget _buildSearchBar() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 22.0),
+  //     child: Row(
+  //       children: [
+  //         Expanded(
+  //           child: Container(
+  //             height: 40,
+  //             padding: const EdgeInsets.symmetric(horizontal: 12.0),
+  //             decoration: BoxDecoration(
+  //               color: Colors.white.withOpacity(0.05),
+  //               borderRadius: BorderRadius.circular(4),
+  //               border: Border.all(width: 1, color: Color(0xFFD1D5DB)),
+  //             ),
+  //             child: Row(
+  //               children: [
+  //                 Padding(
+  //                   padding: const EdgeInsets.only(right: 8.0),
+  //                   child: Image.asset(
+  //                     "assets/shophome/icon_search.png",
+  //                     width: 20,
+  //                     height: 20,
+  //                   ),
+  //                 ),
+  //                 Expanded(
+  //                   child: TextFormField(
+  //                     controller: _controller,
+  //                     focusNode: _focusNode,
+  //                     onChanged: (value) {
+  //                       setState(() {
+  //                         filteredItems = items
+  //                             .where((item) =>
+  //                             item.title.toLowerCase().contains(value.toLowerCase()))
+  //                             .toList();
+  //                       });
+  //                     },
+  //                     onEditingComplete: () {
+  //                       _focusNode.unfocus();
+  //                       final value = _controller.text;
+  //                       if (value.isNotEmpty && !searchHistory.contains(value)) {
+  //                         searchHistory.insert(0, value);
+  //                         if (searchHistory.length > 3) {
+  //                           searchHistory.removeLast();
+  //                         }
+  //                       }
+  //                     },
+  //                     style: TextStyle(
+  //                       color: Color(0xFF9CA3AF),
+  //                       fontSize: 14,
+  //                       fontFamily: 'Archivo-Regular',
+  //                       fontWeight: FontWeight.w400,
+  //                       height: 0.15,
+  //                     ),
+  //                     decoration: InputDecoration(
+  //                       hintText: _focusNode.hasFocus ? '' : 'Search',
+  //                       hintStyle: TextStyle(
+  //                         color: Color(0xFF9CA3AF),
+  //                         fontSize: 14,
+  //                         fontFamily: 'Archivo-Regular',
+  //                         fontWeight: FontWeight.w400,
+  //                         height: 0.15
+  //                       ),
+  //                       border: InputBorder.none,
+  //                       contentPadding: EdgeInsets.zero,
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //         SizedBox(width: 10),
+  //         GestureDetector(
+  //           onTap: () {
+  //             Navigator.of(context).push(
+  //               MaterialPageRoute(
+  //                 builder: (context) => FilterShopScreen(),
+  //               ),
+  //             );
+  //           },
+  //           child: Container(
+  //             width: 40,
+  //             height: 40,
+  //             padding: const EdgeInsets.all(8),
+  //             decoration: BoxDecoration(
+  //               color: Colors.white.withOpacity(0.05),
+  //               borderRadius: BorderRadius.circular(4),
+  //               border: Border.all(width: 1, color: Color(0xFFD1D5DB)),
+  //             ),
+  //             child: Center(
+  //               child: Image.asset(
+  //                 'assets/shophome/icon_filter.png',
+  //                 width: 24,
+  //                 height: 24,
+  //                 fit: BoxFit.cover,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
   Widget _buildSearchBar() {
     return Padding(
-      padding: const EdgeInsets.only(left: 22.0, right: 22),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              height: 40,
-              padding: const EdgeInsets.only(
-                top: 8,
-                left: 12,
-                right: 8,
-                bottom: 8,
+      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(width: 1, color: Color(0xFFD1D5DB)),
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0, right: 8.0),
+              child: Image.asset(
+                "assets/shophome/icon_search.png",
+                width: 20,
+                height: 20,
               ),
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.05),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-                  borderRadius: BorderRadius.circular(4),
+            ),
+            Expanded(
+              child: TextFormField(
+                controller: _controller,
+                focusNode: _focusNode,
+                onChanged: (value) {
+                  setState(() {
+                    filteredItems = items
+                        .where((item) =>
+                        item.title.toLowerCase().contains(value.toLowerCase()))
+                        .toList();
+                  });
+                },
+                onEditingComplete: () {
+                  _focusNode.unfocus();
+                  final value = _controller.text;
+                  if (value.isNotEmpty && !searchHistory.contains(value)) {
+                    searchHistory.insert(0, value);
+                    if (searchHistory.length > 3) {
+                      searchHistory.removeLast();
+                    }
+                  }
+                },
+                cursorColor: Colors.red, // Set your desired cursor color
+                style: TextStyle(
+                  color: Color(0xFF9CA3AF),
+                  fontSize: 14,
+                  fontFamily: 'Archivo-Regular',
+                  fontWeight: FontWeight.w400,
+                  height: 1.5, // Adjusted height for better spacing
                 ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset("assets/shophome/icon_search.png"),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: TextFormField(
-                        controller: _controller,
-                        focusNode: _focusNode, // Assign the focus node to the text field
-
-                        onChanged: (value) {
-                          setState(() {
-                            filteredItems = items
-                                .where((item) => item.title
-                                .toLowerCase()
-                                .contains(value.toLowerCase()))
-                                .toList();
-                          });
-                        },
-                          onEditingComplete: () {
-                            _focusNode.unfocus(); // Unfocus the text field when editing is complete
-                            final value = _controller.text;
-                            if (value.isNotEmpty && !searchHistory.contains(value)) {
-                              // setState(() {
-                              //   searchHistory.add(value);
-                              // });
-                              searchHistory.insert(0, value);
-                              // Limit the list to 3 items
-                              if (searchHistory.length > 3) {
-                                searchHistory.removeLast();
-                              }
-                            }
-                          },
-                        style: TextStyle(
-                          color: Color(0xFF9CA3AF),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 0.10,
-                        ),
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Search',
-                          hintStyle: TextStyle(
-                            color: Color(0xFF9CA3AF),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 0.10,
-                          ),
-                        ),
-                      ),
-                    ),
+                decoration: InputDecoration(
+                  hintText: _focusNode.hasFocus ? '' : 'Search',
+                  hintStyle: TextStyle(
+                    color: Color(0xFF9CA3AF),
+                    fontSize: 14,
+                    fontFamily: 'Archivo-Regular',
+                    fontWeight: FontWeight.w400,
+                    height: 1.5, // Adjusted height for better spacing
                   ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(width: 10),
-          GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => FilterShopScreen(),
-                ),
-              );
-            },
-            child: Container(
-              width: 40,
-              height: 40,
-              padding: const EdgeInsets.all(8),
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.05),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/shophome/icon_filter.png',
-                  // Replace 'your_image.png' with the actual path to your image asset
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.cover, // Adjust the fit as needed
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                  // Customize cursor and selection color
+                 // Set your desired selection color
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
+
 }

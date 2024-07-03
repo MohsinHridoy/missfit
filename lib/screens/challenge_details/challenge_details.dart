@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:miss_fit/screens/programdetails/programme_details.dart';
+import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
+import '../../common_utils.dart';
 import '../shophomepage/shop_home_page.dart';
+import '../workout_viewer_screen/workout_viewer_screen-test_002.dart';
 
 class ChallengesDetails extends StatefulWidget {
-  const ChallengesDetails({Key? key}) : super(key: key);
+  String? status;
+   // ChallengesDetails({Key? key}) : super(key: key,this.status);
+  ChallengesDetails({super.key,this.status});
 
   @override
   State<ChallengesDetails> createState() => _ChallengesDetailsState();
@@ -626,6 +632,92 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         ],
                       ),
                     ),
+                     if(widget.status=='followprogramme')
+
+                       Container(
+                         child: ListView.builder(
+                           itemCount: 3, // Replace with your item count
+                           physics: NeverScrollableScrollPhysics(),
+                           shrinkWrap: true,
+
+                           itemBuilder: (context, index) {
+                             return Padding(
+                               padding: const EdgeInsets.all(0.0),
+                               child: GestureDetector(
+                                 onTap: (){
+                                   navigateToNextPage(context,ProgrammeDetails());
+
+                                 },
+                                 child: Padding(
+                                   padding: const EdgeInsets.only(right: 20.0,bottom: 20),
+                                   child: Container(
+                                     color: Colors.white,
+
+                                     child: Column(
+                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                       children: [
+                                         Container(
+                                           width: MediaQuery.of(context).size.width,
+                                           height: 147,
+
+                                           child: ClipRRect(
+                                             borderRadius: BorderRadius.only(
+                                               topLeft: Radius.circular(20),
+                                               topRight: Radius.circular(20),
+                                             ),                          child: Image.asset(
+                                             'assets/takechallenge/programme_image_items.png',
+                                             fit: BoxFit.cover,
+                                           ),
+                                           ),
+                                         ),
+                                         const SizedBox(height: 16),
+                                         Padding(
+                                           padding: const EdgeInsets.only(left: 22.0,top: 8),
+                                           child: SizedBox(
+                                             width: 256,
+                                             child: Text(
+                                               'Entraînement musculaire du corps',
+                                               style: TextStyle(
+                                                 color: Color(0xFF334155),
+                                                 fontSize: 16,
+                                                 fontFamily: 'Archivo',
+                                                 fontWeight: FontWeight.w600,
+                                                 height: 0.09,
+                                               ),
+                                             ),
+                                           ),
+                                         ),
+                                         const SizedBox(height: 20),
+                                         Padding(
+                                           padding: const EdgeInsets.only(left: 22.0,right: 75,bottom: 22),
+                                           child: Row(
+                                             children: [
+                                               _buildLabelWithIcon(
+                                                   'assets/takechallenge/icon_level.png',
+                                                   'Intermediate'),
+                                               Expanded(
+                                                 child: Padding(
+                                                   padding: const EdgeInsets.only(left: 20.0),
+                                                   child: _buildLabelWithIcon(
+                                                       'assets/takechallenge/icon_time.png', '25 min'),
+                                                 ),
+                                               ),
+                                               _buildLabelWithIcon(
+                                                   'assets/takechallenge/icon_flame.png', '247 cal'),
+                                             ],
+                                           ),
+                                         ),
+                                       ],
+                                     ),
+                                   ),
+                                 ),
+                               ),
+                             );
+                           },
+                         ),
+                       ),
+                    SizedBox(height: 35),
+
                     SizedBox(height: 20),
                     Container(
                       width: 320,
@@ -663,28 +755,32 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 78, bottom: 25),
+                      padding: const EdgeInsets.only(top: 78, bottom: 25,right: 25),
                       // Added bottom padding
-                      child: Container(
-                        width: 370,
-                        height: 52,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 112, vertical: 17),
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFF4343),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                      child: GestureDetector(
+                        onTap: (){
+                          navigateToNextPage(context,ChallengeScreen());
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 52,
+
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFF4343),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Start Now',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 0.09,
+                          child: Center(
+                            child: Text(
+                              'Start Now',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 0.09,
+                              ),
                             ),
                           ),
                         ),
@@ -729,9 +825,9 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        print("Some things");
-                        Navigator.pop(context);
-
+                        // print("Some things");
+                        // Navigator.pop(context);
+                        navigateToNextPage(context,WishList());
                       },
                       child: Container(
                         width: 40,
@@ -759,6 +855,28 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
           ],
         ),
       ),
+    );
+  }
+  Widget _buildLabelWithIcon(String assetPath, String label) {
+    return Row(
+      children: [
+        Image.asset(
+          assetPath,
+          width: 16,
+          height: 16,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          label,
+          style: TextStyle(
+            color: Color(0xFF66758C),
+            fontSize: 14,
+            fontFamily: 'Archivo-Regular',
+            fontWeight: FontWeight.w400,
+            height: 1.2,
+          ),
+        ),
+      ],
     );
   }
 

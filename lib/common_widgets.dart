@@ -26,20 +26,44 @@ Widget buildNextButton(BuildContext context) {
 }
 
 
+Widget title_textView(String title){
+  return Text(
+    title,
+    textAlign: TextAlign.center,
+    style: TextStyle(
+      color: Color(0xFF1E293B),
+      fontSize: 18,
+      fontFamily: 'Kanit-Medium',
+      fontWeight: FontWeight.w500,
+    ),
+  );
+}
 
 
-Widget txt_headline(String txt){
-  return SizedBox(
-    width: 320,
-    child: Text(
-      txt,
-      style: TextStyle(
-        color: Color(0xFF334155),
-        fontSize: 24,
-        fontFamily: 'Kanit-Medium',
-        fontWeight: FontWeight.w500,
-        height: 1.3,
-      ),
+
+
+
+Widget item_txt_Archvo_M_500(String title,Color colour){
+ return  Text(
+    title,
+    style: TextStyle(
+      color: colour,
+      fontSize: 18,
+      fontFamily: 'Archivo-Medium',
+      fontWeight: FontWeight.w500,
+      height: 1.08,
+    ),
+  );
+}
+Widget subItem_txt_Archvo_R_400(String title){
+  return  Text(
+    title,
+    style: TextStyle(
+      color: Color(0xFF475569),
+      fontSize: 14,
+      fontFamily: 'Archivo-Regular',
+      fontWeight: FontWeight.w400,
+      height: 1.11,
     ),
   );
 }

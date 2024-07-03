@@ -63,7 +63,7 @@ class _AdvanceLevelSelectionPageState001
                   SizedBox(height: 5),
                   SizedBox(
                       width: 50,
-                      child: txt_headline(
+                      child: title_textView(
                           'How long do you like to \nworkout for?')),
                   SizedBox(height: 30),
                   buildLevelContainer(
@@ -281,27 +281,12 @@ class _AdvanceLevelSelectionPageState001
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color: titleColor,
-                  fontSize: 18,
-                  fontFamily: 'Archivo-Medium',
-                  fontWeight: FontWeight.w500,
-                  height: 1.08,
-                ),
-              ),
+
+
+              item_txt_Archvo_M_500(title,titleColor),
               SizedBox(height: 10),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  color: Color(0xFF475569),
-                  fontSize: 14,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 1.11,
-                ),
-              ),
+              subItem_txt_Archvo_R_400(subtitle),
+
             ],
           ),
         ),

@@ -160,7 +160,7 @@ class _TestScrollState extends State<TestScroll> {
   final List<int> meterValues = List.generate(155, (index) => index + 1);
   PageController? _pageController;
   int? currentPageIndex = 24; // Set initialPageIndex to 9 for the 10th item
-  int? selectedValue = 0;
+  int? selectedValue=25 ;
   String selectedUnit = 'kgs';
   late SharedPreferences _prefs;
   late int _savedIndex;
@@ -173,7 +173,9 @@ class _TestScrollState extends State<TestScroll> {
         initialPage: currentPageIndex!,
         keepPage: true);
     _pageController!.addListener(_pageListener);
-    selectedValue = meterValues[currentPageIndex!];
+
+    print(currentPageIndex);
+    // selectedValue = meterValues[currentPageIndex!];
   }
 // Initialize SharedPreferences
   void _initPrefs() async {
@@ -182,11 +184,11 @@ class _TestScrollState extends State<TestScroll> {
     _savedIndex = _prefs.getInt('currentIndex') ?? 0;
 
     setState(() {
-      _pageController = PageController(
-        viewportFraction: 0.042,
-        initialPage: _savedIndex,
-        keepPage: true,
-      );
+      // _pageController = PageController(
+      //   viewportFraction: 0.042,
+      //   initialPage: _savedIndex,
+      //   keepPage: true,
+      // );
       _pageController!.addListener(_pageListener);
       currentPageIndex = _savedIndex;
       selectedValue = meterValues[currentPageIndex!];
@@ -245,7 +247,7 @@ class _TestScrollState extends State<TestScroll> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: '$selectedValue',
+                            text: currentPageIndex == 0 ? '24' : '$selectedValue',
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 48,

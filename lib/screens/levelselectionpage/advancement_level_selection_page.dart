@@ -143,7 +143,7 @@ class _AdvanceLevelSelectionPageState extends State<AdvanceLevelSelectionPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(height: 20),
-                SizedBox(width:50,child: txt_headline('What is your advacement \nlevel?')),
+                SizedBox(width:50,child: title_textView('What is your advacement \nlevel?')),
                 SizedBox(height: 50),
                             buildLevelContainer(0, 'Beginner', 'I am new to the gym'),
             buildLevelContainer(1, 'Intermediate', 'I know my way around a gym'),

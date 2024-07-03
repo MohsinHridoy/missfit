@@ -110,16 +110,7 @@ class _BasicInfoState extends State<BasicInfo> {
                         ),
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width / 4.1),
-                      Text(
-                        'Basic Information',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF1E293B),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      title_textView('Basic Information'),
                       Spacer(),
                     ],
                   ),
@@ -135,17 +126,7 @@ class _BasicInfoState extends State<BasicInfo> {
                   SizedBox(height: 34),
                   Visibility(
                     visible: widget.status != "profile",
-                    child: Text(
-                      'Basic Information',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 24,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 0.05,
-                      ),
-                    ),
+                    child: title_textView('Basic Information')
                   ),
                   SizedBox(height: widget.status != "profile"?50:0),
                   Visibility(

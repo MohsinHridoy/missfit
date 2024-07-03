@@ -4,6 +4,8 @@ import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/otp/otp001.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../strings.dart';
+
 class LoginPage extends StatefulWidget {
   final String? status;
 
@@ -79,14 +81,18 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
-              child: Text(
-                'Login to your account',
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 24,
-                  fontFamily: 'Kanit-Medium',
-                  fontWeight: FontWeight.w600,
-                  height: 0.05,
+              child: SizedBox(
+                width: 320,
+
+                child: Text(
+                  loginToYourAccountText_fr,
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 24,
+                    fontFamily: 'Kanit-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 1.2,
+                  ),
                 ),
               ),
             ),
@@ -113,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
-                    labelText: _isEmailFocused || _emailOrPhoneNumberController.text.isNotEmpty ? 'Email' : 'Enter your email address',
+                    labelText: _isEmailFocused || _emailOrPhoneNumberController.text.isNotEmpty ? 'Email' : '${enterYourEmailAddressText_fr}',
                     labelStyle: TextStyle(
                       color: Color(0xFF334155),
                       fontSize: 16,
@@ -145,10 +151,10 @@ class _LoginPageState extends State<LoginPage> {
                         : null;
                   }
                   else
-                    {
-                      loadSharedData();
-                      _navigateToDashboard(context);
-                    }
+                  {
+                    loadSharedData();
+                    _navigateToDashboard(context);
+                  }
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

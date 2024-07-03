@@ -17,50 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _checkLoggedInStatus(context);
+    _checkLoggedInStatus();
   }
 
-  // void _navigateToNextScreen() {
-  //   Timer(Duration(seconds: 3), () {
-  //     Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => OnboardingScreen(),
-  //       ),
-  //     );
-  //   });
-  // }
-
-
-  // void _checkLoggedInStatus(BuildContext context) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-  //   bool isLoggedOut = prefs.getBool('isLoggedOut') ?? false;
-  //
-  //   // Simulate a splash screen delay
-  //   await Future.delayed(Duration(seconds: 3));
-  //
-  //   if (isLoggedOut) {
-  //     //       // Clear login status and navigate to OnboardingScreen or LoginScreen
-  //     // prefs.setBool('isLoggedOut', false);
-  //
-  //     Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => LoginPage()),
-  //     );
-  //   } else {
-  //     // Navigate to Dashboard if logged in
-  //     Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => isLoggedIn ? DashBoard() : OnboardingScreen()),
-  //     );
-  //   }
-  // }
-
-
-  void _checkLoggedInStatus(BuildContext context) async {
+  void _checkLoggedInStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isFirstLaunch = prefs.getBool('isLoggedIn') ?? true;
+    bool isFirstLaunch = prefs.getBool('first_launch') ?? true;
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
     // Simulate a splash screen delay
@@ -68,28 +30,30 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (isFirstLaunch) {
       // First launch, navigate to OnboardingScreen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => OnboardingScreen()),
-      );
       await prefs.setBool('first_launch', false); // Set first launch to false
+
+
+      navigateToNextPage(context,OnboardingScreen());
+
     } else {
+     print("+++++++++++++++++++++++++");
+      print(isLoggedIn);
       // Not the first launch
       if (isLoggedIn) {
         // Navigate to Dashboard if logged in
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => DashBoard()),
-        );
+
+        navigateToNextPage(context,DashBoard());
+
       } else {
         // Navigate to LoginScreen if not logged in
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
-        );
+
+
+        navigateToNextPage(context,LoginPage());
+
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -179,7 +179,7 @@ class _DashBoardState extends State<DashBoard> {
       //   return _buildIcon('assets/dashboard/icon_shop.png', iconColor);
 
       case 2:
-        return _buildIcon('assets/dashboard/icon_profile.png', iconColor);
+        return _buildIcon(isSelected ?'assets/dashboard/icon_profile_fill.png':'assets/dashboard/icon_profile.png', iconColor);
       default:
         return Container(); // Return a placeholder if index is out of bounds
     }

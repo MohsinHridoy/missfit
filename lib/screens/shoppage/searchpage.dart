@@ -4,6 +4,8 @@ import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class AllItemsSearchPage extends StatefulWidget {
   const AllItemsSearchPage({super.key});
 
@@ -175,47 +177,15 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.1),
-                    Text(
-                      'Search',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+
+            CustomAppBar(
+              title: 'Search',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.1, // Custom iconSpacing value
             ),
+
             SizedBox(
               height: 20,
             ),
@@ -498,28 +468,21 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
                       child: TextFormField(
                         controller: _controller,
                         focusNode: _focusNode,
-                        // Assign the focus node to the text field
                         autofocus: true,
                         onChanged: (value) {
                           setState(() {
                             filteredItems = items
                                 .where((item) => item.title
-                                    .toLowerCase()
-                                    .contains(value.toLowerCase()))
+                                .toLowerCase()
+                                .contains(value.toLowerCase()))
                                 .toList();
                           });
                         },
                         onEditingComplete: () {
-                          _focusNode
-                              .unfocus(); // Unfocus the text field when editing is complete
+                          _focusNode.unfocus();
                           final value = _controller.text;
-                          if (value.isNotEmpty &&
-                              !searchHistory.contains(value)) {
-                            // setState(() {
-                            //   searchHistory.add(value);
-                            // });
+                          if (value.isNotEmpty && !searchHistory.contains(value)) {
                             searchHistory.insert(0, value);
-                            // Limit the list to 3 items
                             if (searchHistory.length > 3) {
                               searchHistory.removeLast();
                             }
@@ -533,7 +496,7 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
                           height: 0.10,
                         ),
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Search',
+                          hintText: _focusNode.hasFocus ? null : 'Search', // Show hint only if not focused
                           hintStyle: TextStyle(
                             color: Color(0xFF9CA3AF),
                             fontSize: 14,
@@ -573,10 +536,9 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
               child: Center(
                 child: Image.asset(
                   'assets/shophome/icon_filter.png',
-                  // Replace 'your_image.png' with the actual path to your image asset
                   width: 24,
                   height: 24,
-                  fit: BoxFit.cover, // Adjust the fit as needed
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

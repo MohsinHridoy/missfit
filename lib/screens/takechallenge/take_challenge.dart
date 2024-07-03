@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/challenge_details/challenge_details.dart';
 
+import '../../common_utils.dart';
+
 class Challenge {
   final String name;
   final String imagePath;
@@ -9,7 +11,9 @@ class Challenge {
 }
 
 class TakeChallenge extends StatefulWidget {
-  const TakeChallenge({super.key});
+  String? status;
+
+   TakeChallenge({super.key,this.status});
 
   @override
   _TakeChallengeState createState() => _TakeChallengeState();
@@ -127,7 +131,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                   ),
                   isAdded!? SizedBox(width: MediaQuery.of(context).size.width / 4):SizedBox(width: MediaQuery.of(context).size.width / 2.8),
                   Text(
-                    isAdded!?'Take A Challenge': 'Filter',
+                    isAdded!? (widget.status == 'workout' ? 'Entraînement' : 'Relever un défi') : 'Filter',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF1E293B),
@@ -179,24 +183,28 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                               ),
                                             ),
                                             child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 Image.asset("assets/takechallenge/icon_search.png",scale: 2,),
 
                                                 const SizedBox(width: 8),
                                                 Expanded(
                                                   child: Center(
-                                                    child: TextField(
-                                                      controller: searchController,
-                                                      decoration: InputDecoration(
-                                                        hintText: 'Search',
-                                                        hintStyle: TextStyle(
-                                                          color: Color(0xFF9CA3AF),
-                                                          fontSize: 14,
-                                                          fontFamily: 'Archivo-Regular',
-                                                          fontWeight: FontWeight.w400,
-                                                          height: 1.5,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.only(bottom: 7.0),
+                                                      child: TextField(
+                                                        controller: searchController,
+                                                        decoration: InputDecoration(
+                                                          hintText: 'Search',
+                                                          hintStyle: TextStyle(
+                                                            color: Color(0xFF9CA3AF),
+                                                            fontSize: 14,
+                                                            fontFamily: 'Archivo-Regular',
+                                                            fontWeight: FontWeight.w400,
+                                                            height: 1.5,
+                                                          ),
+                                                          border: InputBorder.none,
                                                         ),
-                                                        border: InputBorder.none,
                                                       ),
                                                     ),
                                                   ),
@@ -368,7 +376,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                   child: Column(
                                     children: List.generate(filteredChallenges.length, (index) {
                                       final challenge = filteredChallenges[index];
-                                      return ChallengeCard(challenge: challenge);
+                                      return ChallengeCard(challenge: challenge,status: widget.status,);
                                     }),
                                   ),
                                 )
@@ -689,14 +697,16 @@ class LinearProgressBar extends StatelessWidget {
 }
 class ChallengeCard extends StatelessWidget {
   final Challenge challenge;
+  String? status;
 
-  const ChallengeCard({super.key, required this.challenge});
+   ChallengeCard({super.key, required this.challenge,this.status});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ChallengesDetails()));
+
+        navigateToNextPage(context,ChallengesDetails(status: status,));
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 20.0,right: 20),

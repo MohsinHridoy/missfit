@@ -66,7 +66,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
               padding: const EdgeInsets.only(left: 20.0),
               child: SizedBox(
                 width: 320,
-                child: txt_headline("What is your current gym goal?"),
+                child: title_textView("What is your current gym goal?"),
               ),
             ),
             SizedBox(height: 20),

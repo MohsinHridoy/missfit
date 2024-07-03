@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
 
+import '../../strings.dart';
+
 class OnboardingScreen extends StatefulWidget {
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
@@ -12,21 +14,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
   List<Widget> _pages = [
     OnboardingPage(
-      title: 'Welcome to Missfit',
-      description:
-      'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.',
+      title: '${onboardingPage_fr}',
+      description: ''
+          '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
       image: 'assets/onboarding/img_onboarding_4.png',
     ),
     OnboardingPage(
-      title: 'Challenge with Friends',
+      title: '${onboardingPage_fr2}',
       description:
-      'Lorem ipsum dolor sit amet consectetur. Sed    \n magnis tortor metus morbi ante e.',
+      '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
       image: 'assets/onboarding/img_onboarding_5.png',
     ),
     OnboardingPage(
-      title: 'Achieve Your Goals',
+      title: '${'Atteint tes objectifs'}',
       description:
-      'TLorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.',
+      '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
       image: 'assets/onboarding/img_onbaording_6.png',
     ),
   ];
@@ -52,7 +54,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
             ),
           ),
-
           if (_currentPage != 2)
             Positioned(
               bottom: 35,
@@ -78,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: 30,
                           width: 50,
                           color: Colors.transparent,
-                          child: Center(child: skip_text("Skip"))),
+                          child: Center(child: skip_text('${'Sauter'}'))),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -109,7 +110,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-
           if (_currentPage != 0 && _currentPage != 1)
             Positioned(
               bottom: 35,
@@ -117,7 +117,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               right: 27,
               child: GestureDetector(
                 onTap: () {
-                  navigateToPage(context, LoginPage(status: 'onboarding',));
+                  navigateToPage(
+                      context,
+                      LoginPage(
+                        status: 'onboarding',
+                      ));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -135,7 +139,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Get Started',
+                        '${'Commencer'}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -149,7 +153,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-
           Positioned(
             top: MediaQuery.of(context).size.height *
                 0.71, // Adjusted top position based on screen height
@@ -168,8 +171,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
     );
   }
-
-
 
   Widget buildIndicator(int index) {
     return Container(
@@ -232,7 +233,7 @@ class OnboardingPage extends StatelessWidget {
         ),
         SizedBox(height: 11.0),
         Padding(
-          padding: EdgeInsets.only(left: 1,right: 1),
+          padding: EdgeInsets.only(left: 1, right: 1),
           child: Container(
             width: MediaQuery.of(context).size.width,
             child: Text(

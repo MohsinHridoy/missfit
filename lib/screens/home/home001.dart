@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/coachbookingscreen/coach_booking_screen.dart';
 import 'package:miss_fit/screens/eventdetails/event_details_screen.dart';
@@ -295,18 +296,16 @@ class _HomeState extends State<Home> {
 
                   _textTitle('Select Activity'),
                   Padding(
-                    padding: const EdgeInsets.only(left: 22.0, right: 22.0),
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TakeChallenge()),
-                        );
+
+                        navigateToNextPage(context,TakeChallenge());
+
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 150,
+                        width: ScreenUtil().setWidth(320),
+                        height: ScreenUtil().setHeight(135),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
@@ -322,7 +321,7 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 50,
+                                height: 70,
                               ),
                               Text(
                                 'Take a Challenge',
@@ -352,30 +351,28 @@ class _HomeState extends State<Home> {
                   ),
                   _buildActivityItem(),
                   SizedBox(
-                    height: 40,
+                    height: 55,
                   ),
 
                   // _textTitle('New Workout'),
                   // _buildListWorkOutItem(),
-                  SizedBox(
-                    height: 25,
-                  ),
+
                   _textTitle('Group Class'),
+                  SizedBox(
+                    height: 5,
+                  ),
                   _buildListUpcomingEventListItem(groupClassItems,'class'),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20,top: 20,bottom: 20),
+                    padding: const EdgeInsets.only(left: 20.0, right: 20,top: 45,bottom: 20),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CoachListScreen()),
-                        );
+
+                        navigateToNextPage(context,CoachListScreen());
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 156,
+                        height: 180,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
@@ -418,15 +415,16 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 40,
                               ),
+
+
                               Container(
-                                width: 104,
-                                height: 36,
-                                decoration: ShapeDecoration(
+                                width: 161,
+                                height: 40,
+                                decoration: BoxDecoration(
                                   color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Center(
                                   child: Text(
@@ -436,11 +434,10 @@ class _HomeState extends State<Home> {
                                       fontSize: 14,
                                       fontFamily: 'Archivo-SemiBold',
                                       fontWeight: FontWeight.w600,
-                                      height: 0.10,
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -1476,7 +1473,7 @@ class _HomeState extends State<Home> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 20.0, bottom: 40),
+        padding: const EdgeInsets.only(left: 25.0, bottom: 23),
         child: Text(
           title,
           style: TextStyle(
@@ -1667,7 +1664,7 @@ class _HomeState extends State<Home> {
 
   Widget _buildListUpcomingEventListItem(List<dynamic> upcomingEventItsems,String status) {
     return Container(
-      height: 235,
+      height: 213,
       child: ListView.builder(
         itemCount: upcomingEventItsems.length,
         scrollDirection: Axis.horizontal,
@@ -1694,17 +1691,19 @@ class _HomeState extends State<Home> {
                   children: [
                     Column(
                       children: [
-                        ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0)),
-                            child: Image.asset(
-                              item.imagePath,
-                              fit: BoxFit.fill,
-                            )),
                         Container(
-                          width: 300,
-                          height: 75,
+                          height: 140,
+                          width: MediaQuery.of(context).size.width,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0)),
+                              child: Image.asset(
+                                item.imagePath,
+                                fit: BoxFit.fill,
+                              )),
+                        ),
+                        Container(
                           padding: const EdgeInsets.only(
                             top: 10,
                             left: 16,
@@ -1716,8 +1715,8 @@ class _HomeState extends State<Home> {
                             // Set color to transparent
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(4),
-                                bottomRight: Radius.circular(4),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
                               ),
                             ),
                           ),
@@ -1741,57 +1740,39 @@ class _HomeState extends State<Home> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 15.0, left: 2),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.only(right: 5.0),
-                                          child: Container(
-                                            width: 2,
-                                            height: 12,
-                                            decoration: ShapeDecoration(
-                                              color: Color(0xFFFF4343),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(4),
+                                        top: 15.0, left: 2,bottom: 15),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.only(right: 7.0,bottom: 4,),
+                                            child: Container(
+                                              width: 2,
+                                              height: 12,
+                                              decoration: ShapeDecoration(
+                                                color: Color(0xFFFF4343),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(4),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Text(
-                                          item.duration,
-                                          style: TextStyle(
-                                            color: Color(0xFF334155),
-                                            fontSize: 10,
-                                            fontFamily: 'Archivo-Regular',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.14,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 4.0, right: 4.0),
-                                          child: Container(
-                                            width: 4,
-                                            height: 4,
-                                            decoration: ShapeDecoration(
-                                              color: Color(0xFF9CA3AF),
-                                              shape: OvalBorder(),
+
+                                          Text(
+                                            '18.00 - 23.00 PM',
+                                            style: TextStyle(
+                                              color: Color(0xFF475569),
+                                              fontSize: 12,
+                                              fontFamily: 'Archivo-Regular',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0.12,
                                             ),
-                                          ),
-                                        ),
-                                        Text(
-                                          '18.00 - 23.00 PM',
-                                          style: TextStyle(
-                                            color: Color(0xFF475569),
-                                            fontSize: 12,
-                                            fontFamily: 'Archivo-Regular',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.12,
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ],
@@ -1860,14 +1841,25 @@ class _HomeState extends State<Home> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10.0, top: 20, right: 15),
-          child: activityCard(
-              'assets/home/img_workout.png', 'Start a workout', '200 Workouts'),
+          padding: const EdgeInsets.only(left: 22.0, top: 15, right: 15),
+          child: GestureDetector(
+            onTap: (){
+              navigateToNextPage(context,TakeChallenge(status: 'workout',));
+            },
+            child: activityCard(
+                'assets/home/img_workout.png', 'Start a workout', '200 Workouts'),
+          ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 10.0, top: 20),
-          child: activityCard('assets/home/img_follow_programme.png',
-              'Follow a program', '11 Active programs'),
+          padding: const EdgeInsets.only(right: 22.0, top: 15),
+          child: GestureDetector(
+            onTap: (){
+              navigateToNextPage(context,TakeChallenge(status: 'followprogramme',));
+
+            },
+            child: activityCard('assets/home/img_follow_programme.png',
+                'Follow a program', '11 Active programs'),
+          ),
         )
       ],
     );
@@ -1875,8 +1867,8 @@ class _HomeState extends State<Home> {
 
   Widget activityCard(String img, String title, String subtitle) {
     return Container(
-      width: 170,
-      height: 146,
+      width: ScreenUtil().setWidth(154),
+      height: ScreenUtil().setHeight(135),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
@@ -1885,13 +1877,13 @@ class _HomeState extends State<Home> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 12.0),
+        padding: const EdgeInsets.only(left: 15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 60,
+              height: 100,
             ),
             Text(
               title,
@@ -1902,6 +1894,9 @@ class _HomeState extends State<Home> {
                 fontWeight: FontWeight.w500,
                 height: 1.09,
               ),
+            ),
+            SizedBox(
+              height: 3,
             ),
             Text(
               subtitle,
