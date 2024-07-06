@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../screens/shophomepage/shop_home_page.dart';
+
 class ProductItem extends StatelessWidget {
   final Function? onTap;
-  final String? image;
-  final String? title;
-  final double? price;
-  final double? originalPrice;
-  final bool? isChecked;
+
+  final CustomItem item;
 
   const ProductItem({
     Key? key,
     this.onTap,
-    this.image,
-    this.title,
-    this.price,
-    this.originalPrice,
-    this.isChecked,
+    required this.item,
+    // this.image,
+    // this.title,
+    // this.price,
+    // this.originalPrice,
+    // this.isChecked,
   }) : super(key: key);
 
   @override
@@ -44,7 +44,7 @@ class ProductItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: Image.asset(
-                      image!,
+                      item.image!,
                       width: 100,
                       height: 100,
                     ),
@@ -76,7 +76,7 @@ class ProductItem extends StatelessWidget {
                             SizedBox(
                               width: 128,
                               child: Text(
-                                title!,
+                                item.title!,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Color(0xFF334155),
@@ -91,7 +91,7 @@ class ProductItem extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'CHF ${price!.toStringAsFixed(2)}',
+                                  'CHF ${item.price!.toStringAsFixed(2)}',
                                   style: TextStyle(
                                     color: Color(0xFF334155),
                                     fontSize: 12,
@@ -101,7 +101,7 @@ class ProductItem extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'CHF ${originalPrice!.toStringAsFixed(2)}',
+                                  'CHF ${item.originalPrice!.toStringAsFixed(2)}',
                                   style: TextStyle(
                                     color: Color(0xFF66758C),
                                     fontSize: 10,
@@ -123,7 +123,7 @@ class ProductItem extends StatelessWidget {
               ],
             ),
             Visibility(
-              visible: isChecked ?? false,
+              visible: item.isChecked ?? false,
               child: Container(
                 height: 40,
                 width: 50,
@@ -134,7 +134,7 @@ class ProductItem extends StatelessWidget {
               top: 19,
               left: 10,
               child: Visibility(
-                visible: isChecked ?? false,
+                visible: item.isChecked ?? false,
                 child: Text(
                   'Sale',
                   style: TextStyle(

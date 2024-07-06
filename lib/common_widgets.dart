@@ -25,7 +25,69 @@ Widget buildNextButton(BuildContext context) {
   );
 }
 
+Widget textAmW5S16(String title){
 
+  return SizedBox(
+    width: 300,
+    child: Text(
+      title,
+      style: TextStyle(
+        color: Color(0xFF334155),
+        fontSize: 16,
+        fontFamily: 'Archivo-Medium',
+        fontWeight: FontWeight.w500,
+        height: 0.09,
+      ),
+    ),
+  );
+
+}
+Widget  buildDivider(BuildContext context){
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    decoration: ShapeDecoration(
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          width: 1,
+          strokeAlign: BorderSide.strokeAlignCenter,
+          color: Color(0xFFE5E7EB),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget textVwSeeAll(String title){
+  return SizedBox(
+    width: 50,
+    height: 30,
+    child: Center(
+      child: Text(
+        title,
+        textAlign: TextAlign.right,
+        style: TextStyle(
+          color: Color(0xFFFF4343),
+          fontSize: 14,
+          fontFamily: 'Archivo-Medium',
+          fontWeight: FontWeight.w500,
+          height: 0.10,
+        ),
+      ),
+    ),
+  );
+}
+Widget title_textView_Kt_SBld(String title){
+  return Text(
+    title,
+    style: TextStyle(
+      color: Color(0xFF334155),
+      fontSize: 20,
+      fontFamily: 'Kanit-SemiBold',
+      fontWeight: FontWeight.w600,
+      height: 0.06,
+    ),
+  );
+}
 Widget title_textView(String title){
   return Text(
     title,

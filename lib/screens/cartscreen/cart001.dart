@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/checkout/checkout.dart';
 
+import '../../common_widgets.dart';
+import '../../widgets/custom_app_bar.dart';
+
 class CartItem {
   final String title;
   int quantity;
@@ -30,17 +33,17 @@ class _Cart001State extends State<Cart001> {
 
   List<CartItem> cartItems = [
     CartItem(
-        title: 'Dumbbells',
+        title: 'Dumbbells1',
         quantity: 1,
         image: 'assets/cart/cart_items.png',
         weight: 0.5),
     CartItem(
-        title: 'Dumbbells',
-        quantity: 1,
+        title: 'Dumbbells2',
+        quantity: 2,
         image: 'assets/cart/cart_items.png',
         weight: 0.7),
     CartItem(
-        title: 'Dumbbells',
+        title: 'Dumbbells3',
         quantity: 1,
         image: 'assets/cart/cart_items.png',
         weight: 0.6),
@@ -48,52 +51,159 @@ class _Cart001State extends State<Cart001> {
 
   List<CartItem> removedItems = [];
 
+  bool isVoucherCodeValid = false;
+  FocusNode _voucherCodeFocusNode = FocusNode();
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Color(0xFFF6F6F6),
-        child: Column(
-          children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context); // This will pop the current screen off the navigation stack and return to the previous screen
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
+  void initState() {
+    super.initState();
+    _voucherCodeController.addListener(_validateVoucherCode);
+  }
+
+  void _validateVoucherCode() {
+    setState(() {
+      isVoucherCodeValid = _voucherCodeController.text.length > 3;
+    });
+  }
+
+  @override
+  void dispose() {
+    _voucherCodeController.dispose();
+    _voucherCodeFocusNode.dispose();
+    super.dispose();
+  }
+  void _removeSelectedItems() {
+    // Create a list to store names of removed items
+    List<String> removedItemNames = [];
+
+    setState(() {
+      // Collect items to be removed and their names
+      removedItemNames.addAll(cartItems.where((item) => item.isChecked).map((item) => item.title));
+
+      // Filter and remove items from cartItems
+      cartItems.removeWhere((item) => item.isChecked);
+
+      // Determine the message to display in the Snackbar
+      String snackbarMessage;
+      if (removedItemNames.length == 1) {
+        // If only one item was removed, show its name
+        snackbarMessage = 'Item removed from cart: ${removedItemNames.first}';
+      } else if (removedItemNames.length > 1) {
+        // If multiple items were removed, show the count of items
+        snackbarMessage = '${removedItemNames.length} items removed from cart';
+      } else {
+        // If no items were removed (edge case, though cartItems.isNotEmpty check should cover this)
+        snackbarMessage = 'All items removed from cart';
+      }
+      // Show a Snackbar to indicate items removed
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.white,
+          content: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                  child: Text(
+                    // Display names of removed items in the Snackbar
+                    snackbarMessage,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.09,
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 2.8),
-                    Text(
-                      'Cart',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
+                  ),
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  // Implement undo logic here
+                  setState(() {
+                    // Restore items back to cartItems
+                    for (String itemName in removedItemNames) {
+                      cartItems.add(
+                        CartItem(
+                          title: itemName,
+                          quantity: 1, // Adjust quantity as needed
+                          image: 'assets/cart/cart_items.png', // Example image path
+                          weight: 0.0, // Example weight
+                        ),
+                      );
+                    }
+                    removedItemNames.clear(); // Clear removedItemNames after undo
+
+                    // Dismiss the current Snackbar
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+                    // Optionally, show a message indicating undo success
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.white,
+                        content: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Items added back to cart',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.09,
+                            ),
+                          ),
+                        ),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Container(
+                    width: 60,
+                    height: 40,
+                    color: Colors.transparent,
+                    child: Center(
+                      child: Text(
+                        'Undo',
+                        style: TextStyle(
+                          color: Color(0xFFEF4444),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0.11,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        backgroundColor:Color(0xFFF6F6F6) ,
+        body: Column(
+          children: [
+            CustomAppBar(
+              title: 'Cart',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 2.8,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -126,92 +236,11 @@ class _Cart001State extends State<Cart001> {
                       height: 20,
                     ),
                     _buildSummeryItemText('Subtotal', 'CHF 140'),
-                    _buildRemovedItemsList(),
+                    // _buildRemovedItemsList(),
                     _buildOrderSummeryItem(),
                     SizedBox(
                       height: 100,
                     ),
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 76,
-
-                        decoration: ShapeDecoration(
-                          color: Colors.white.withOpacity(0.05000000074505806),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              color:
-                                  Colors.white.withOpacity(0.10999999940395355),
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25.0,left: 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total price',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 10,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.14,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    'CHF 210',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.09,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                navigateToNextPage(context,CheckOut());
-
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Container(
-                                  width: 150,
-                                  height: 44,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFFF4343),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Checkout',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.10,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
 
                     // SizedBox(
                     //   height: 100,
@@ -220,6 +249,93 @@ class _Cart001State extends State<Cart001> {
                 ),
               ),
             ),
+
+            Container(
+                width: MediaQuery.of(context).size.width,
+                height: 76,
+
+                decoration: ShapeDecoration(
+                  color: Colors.white.withOpacity(0.05000000074505806),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      color:
+                      Colors.white.withOpacity(0.10999999940395355),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25.0,left: 25),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Total price',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 10,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.14,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'CHF 210',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.09,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        navigateToNextPage(context,CheckOut());
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          width: 150,
+                          height: 44,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFF4343),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                'Checkout',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+
           ],
         ),
       ),
@@ -301,82 +417,96 @@ class _Cart001State extends State<Cart001> {
   }
 
   Widget _buildVoucherCode() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Add promo code or voucher',
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 20,
-              fontFamily: 'Kanit-Medium',
-              fontWeight: FontWeight.w500,
-              height: 0.06,
+    return GestureDetector(
+      onTap: () {
+        // Dismiss the keyboard when tapping outside of the text field
+        FocusScope.of(context).unfocus();
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add promo code or voucher',
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 20,
+                fontFamily: 'Kanit-Medium',
+                fontWeight: FontWeight.w500,
+                height: 0.06,
+              ),
             ),
-          ),
-          SizedBox(height: 35),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 44,
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4)),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: TextField(
-                      controller: _voucherCodeController,
-                      decoration: InputDecoration(
-                        labelText: 'Voucher code',
-                        border: InputBorder.none,
-                        labelStyle: TextStyle(
-                          color: Color(0xFF66758C),
-                          fontSize: 12,
+            SizedBox(height: 35),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 44,
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0,bottom: 2),
+                      child: TextField(
+                        controller: _voucherCodeController,
+                        style: TextStyle(
+                          color: Color(0xFF9CA3AF),
+                          fontSize: 14,
                           fontFamily: 'Archivo-Regular',
                           fontWeight: FontWeight.w400,
-                          height: 0.12,
+                          height: 1.5,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: _voucherCodeFocusNode.hasFocus ?'': 'Voucher code',
+                          hintStyle: TextStyle(
+                            color: Color(0xFF9CA3AF),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 1.5,
+                          ),
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(vertical: 12.0),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  width: 93.47,
-                  height: 44,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFF6B7280),
-                    shape: RoundedRectangleBorder(
+                  Container(
+                    width: 93.47,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color:_voucherCodeController.text.length>3 ?  Color(0xFFFF4343):Color(0xFF6B7280),
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(4),
                         bottomRight: Radius.circular(4),
                       ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Apply',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.10,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          'Apply',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.10,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -526,7 +656,7 @@ class _Cart001State extends State<Cart001> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Dumbbells',
+                                        cartItems[index].title,
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 16,
@@ -588,7 +718,7 @@ class _Cart001State extends State<Cart001> {
                                           ),
                                           clipBehavior: Clip.antiAlias,
                                           decoration: BoxDecoration(
-                                            color: Color(0xFF94A3B8),
+                                            color:item.quantity>1?Color(0xFFFF4343):Color(0xFF94A3B8),
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
@@ -600,7 +730,7 @@ class _Cart001State extends State<Cart001> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 10.0, right: 10.0),
+                                            left: 10.0, right: 10.0,top: 5),
                                         child: SizedBox(
                                           width: 20,
                                           child: Center(
@@ -653,17 +783,9 @@ class _Cart001State extends State<Cart001> {
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+                          buildDivider(context)
+
                         ],
                       ),
                     ),
@@ -748,13 +870,13 @@ class _Cart001State extends State<Cart001> {
             )));
   }
 
-  void _removeSelectedItems() {
-    setState(() {
-      removedItems.addAll(cartItems.where((item) => item.isChecked));
-      cartItems.removeWhere((item) => item.isChecked);
-    });
-  }
+
+
+
 }
+
+
+
 class DashedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

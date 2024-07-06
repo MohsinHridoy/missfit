@@ -5,6 +5,7 @@ import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
 import '../../common_utils.dart';
 import '../shophomepage/shop_home_page.dart';
+import '../wishlist/wishlist_screen.dart';
 import '../workout_viewer_screen/workout_viewer_screen-test_002.dart';
 
 class ChallengesDetails extends StatefulWidget {

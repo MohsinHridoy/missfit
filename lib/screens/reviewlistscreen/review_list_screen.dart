@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class ReviewItem {
   final String reviewText;
   final String details;
@@ -35,47 +37,12 @@ class _ReviewListState extends State<ReviewList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                height: 97,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                  border: Border.all(color: Colors.white.withOpacity(0.11)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 3),
-                      Text(
-                        'Review',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF1E293B),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-
-                    ],
-                  ),
-                ),
+              CustomAppBar(
+                title: 'Review',
+                onBackTap: () {
+                  Navigator.pop(context);
+                },
+                iconSpacing: 3,
               ),
               SizedBox(height: 15,),
               Padding(
@@ -83,7 +50,7 @@ class _ReviewListState extends State<ReviewList> {
                 child: Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(bottom: 11.0,right: 5,left: 4),
                       child: Image.asset("assets/review/icon_star.png",scale: 1.7,),
                     ),
                     Text.rich(
@@ -172,18 +139,17 @@ class HorizontalListView extends StatelessWidget {
                   //   color: index == selectedIndex ? Colors.blue : Colors.grey[300],
                   //   borderRadius: BorderRadius.circular(10.0),
                   // ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                        color: index == selectedIndex ? Color(0xFFFFA142):Color(0xFFD1D5DB),
-                      ),
-                      borderRadius: BorderRadius.circular(4),
+                  decoration: BoxDecoration(
+                    color: index == selectedIndex ? Colors.white : Colors.transparent,
+                    borderRadius: BorderRadius.circular(4.0),
+                    border: Border.all(
+                      width: 1,
+                      color: index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFD1D5DB),
                     ),
                   ),
                   child: Center(
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
 
                         SizedBox(width: 15,),
@@ -192,15 +158,18 @@ class HorizontalListView extends StatelessWidget {
                         SizedBox(width:index == 0 ? 0:5,),
 
 
-                        Text(
-                          labelText,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            labelText,
 
-                          style: TextStyle(
-                            color: index == selectedIndex ?Color(0xFFE88E32): Color(0xFF334155),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 0.10,
+                            style: TextStyle(
+                              color: index == selectedIndex ?Color(0xFFE88E32): Color(0xFF334155),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 0.10,
+                            ),
                           ),
                         ),
                       ],
@@ -264,7 +233,7 @@ class ReviewListView extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
           child: Container(
             decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.withOpacity(0.5))),
+              border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +257,7 @@ class ReviewListView extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0,left: 10),
+                          padding: const EdgeInsets.only(top: 12.0,left: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -302,7 +271,7 @@ class ReviewListView extends StatelessWidget {
                                   height: 0.09,
                                 ),
                               ),
-                              SizedBox(height: 15,),
+                              SizedBox(height: 8,),
 
 
                               if (index >= 0) ...[

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 
+import '../../common_widgets.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart001.dart';
 
 class CartItem {
@@ -54,45 +56,12 @@ class _CheckOutState extends State<CheckOut> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.2),
-                    Text(
-                      'Checkout',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title: 'Checkout',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.2,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -102,16 +71,7 @@ class _CheckOutState extends State<CheckOut> {
                     SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: Text(
-                        'Delivery Location',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child: title_textView_Kt_SBld('Delivery Location')
                     ),
                     SizedBox(height: 10),
 

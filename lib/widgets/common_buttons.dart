@@ -35,24 +35,28 @@ Widget buttonLightGrey(BuildContext context, String buttonText) {
 }
 
 Widget customButtonRed(BuildContext context, String buttonText, {VoidCallback? onPressed}) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    height: 52,
-    padding: const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
-    decoration: BoxDecoration(
-      color: Color(0xFFFF4343),
-      borderRadius: BorderRadius.circular(8),
-    ),
-    child: TextButton(
-      onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontFamily: 'Archivo',
-          fontWeight: FontWeight.w600,
-          height: 0.09,
+  return GestureDetector(
+    onTap: onPressed,
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 52,
+      decoration: BoxDecoration(
+        color: Color(0xFFFF4343),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0), // Adjust vertical padding as needed
+          child: Text(
+            buttonText,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontFamily: 'Archivo',
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     ),

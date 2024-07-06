@@ -7,6 +7,9 @@ import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
+import '../../common_widgets.dart';
+import '../wishlist/wishlist_screen.dart';
+
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key});
 
@@ -63,20 +66,19 @@ class _ProductDetailsState extends State<ProductDetails> {
   late ScrollController _controller;
   bool isVisible = true;
 
-
-
-
   void _scrollListener() {
     if (_controller.position.userScrollDirection == ScrollDirection.reverse) {
       setState(() {
         isVisible = false;
       });
-    } else if (_controller.position.userScrollDirection == ScrollDirection.forward) {
+    } else if (_controller.position.userScrollDirection ==
+        ScrollDirection.forward) {
       setState(() {
         isVisible = true;
       });
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -96,11 +98,13 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   late String firstPart;
   late String trimmedText;
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     // Determine number of items to display
@@ -111,9 +115,6 @@ class _ProductDetailsState extends State<ProductDetails> {
         color: Color(0xFFE2E8F0),
         child: Stack(
           children: [
-
-
-
             SingleChildScrollView(
               controller: _controller,
               child: Column(
@@ -128,10 +129,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                           child: selectedImageUrl == null
                               ? const Placeholder()
                               : SizedBox(
-                              width: 280,
-                              height: 180,
-                              child: Image.asset(selectedImageUrl!,
-                                  fit: BoxFit.contain)),
+                                  width: 280,
+                                  height: 180,
+                                  child: Image.asset(selectedImageUrl!,
+                                      fit: BoxFit.contain)),
                         ),
                         SizedBox(height: 20),
                         Container(
@@ -148,20 +149,26 @@ class _ProductDetailsState extends State<ProductDetails> {
                             child: Row(
                               children: [
                                 for (int index = 0;
-                                index < (imageUrls.length >= 4 && !showAll ? 5 : imageUrls.length);
-                                index++)
+                                    index <
+                                        (imageUrls.length >= 4 && !showAll
+                                            ? 5
+                                            : imageUrls.length);
+                                    index++)
                                   if (index == 4 && !showAll)
                                     GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          showAll = true; // Expand to show all items
+                                          showAll =
+                                              true; // Expand to show all items
                                         });
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
-                                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 8),
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           color: Colors.black.withOpacity(0.4),
                                         ),
                                         width: 36,
@@ -185,11 +192,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         });
                                       },
                                       child: Container(
-                                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 8),
                                         width: 36,
                                         height: 36,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           color: Colors.white,
                                         ),
                                         child: Center(
@@ -217,7 +226,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: Color(0xFFF6F6F6),
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                        BorderRadius.only(topRight: Radius.circular(40)),
+                            BorderRadius.only(topRight: Radius.circular(40)),
                       ),
                     ),
                     child: Column(
@@ -225,14 +234,18 @@ class _ProductDetailsState extends State<ProductDetails> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 10.0, right: 20, top: 20, bottom: 20),
+                              left: 18.0, right: 20, top: 30, bottom: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.only(
+                                        bottom: 10.0, right: 5),
                                     child: Image.asset(
                                       "assets/review/icon_star.png",
                                       scale: 2,
@@ -255,7 +268,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           text: '(12 Reviews)',
                                           style: TextStyle(
                                             color: Color(0xFF334155),
-                                            fontSize: 12,
+                                            fontSize: 16,
                                             fontFamily: 'Archivo-Regular',
                                             fontWeight: FontWeight.w400,
                                             height: 0.12,
@@ -315,7 +328,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 18,
-                                          fontFamily: 'Archivo',
+                                          fontFamily: 'Archivo-Medium',
                                           fontWeight: FontWeight.w500,
                                           height: 0.08,
                                         ),
@@ -325,7 +338,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 22,
-                                          fontFamily: 'Archivo',
+                                          fontFamily: 'Archivo-Medium',
                                           fontWeight: FontWeight.w500,
                                           height: 0.06,
                                         ),
@@ -335,10 +348,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         style: TextStyle(
                                           color: Color(0xFF66758C),
                                           fontSize: 12,
-                                          fontFamily: 'Archivo',
+                                          fontFamily: 'Archivo-Regular',
                                           fontWeight: FontWeight.w400,
                                           decoration:
-                                          TextDecoration.lineThrough,
+                                              TextDecoration.lineThrough,
                                           // Correct property is `decoration`, not `textDecoration`
                                           height: 0.12,
                                         ),
@@ -357,8 +370,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       });
                                     },
                                     child: Container(
-                                      width: 24,
-                                      height: 24,
+                                      width: 32,
+                                      height: 32,
                                       padding: const EdgeInsets.only(
                                         top: 4.50,
                                         left: 4,
@@ -368,18 +381,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       clipBehavior: Clip.antiAlias,
                                       decoration: BoxDecoration(
                                         color: Color(0xFFFF4343),
-                                        borderRadius:
-                                        BorderRadius.circular(4),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       child: Center(
                                         child: Image.asset(
-                                            "assets/cart/icon_minus.png"),
+                                          "assets/cart/icon_minus.png",
+                                          scale: 2,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 4.0, right: 4.0),
+                                        left: 4.0, right: 4.0, top: 5),
                                     child: SizedBox(
                                       width: 20,
                                       child: Center(
@@ -388,7 +402,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           style: TextStyle(
                                             color: Color(0xFF334155),
                                             fontSize: 14,
-                                            fontFamily: 'Archivo',
+                                            fontFamily: 'Archivo-Regular',
                                             fontWeight: FontWeight.w400,
                                             height: 0.10,
                                           ),
@@ -403,8 +417,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       });
                                     },
                                     child: Container(
-                                      width: 24,
-                                      height: 24,
+                                      width: 32,
+                                      height: 32,
                                       padding: const EdgeInsets.only(
                                         top: 4.50,
                                         left: 4,
@@ -414,12 +428,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       clipBehavior: Clip.antiAlias,
                                       decoration: BoxDecoration(
                                         color: Color(0xFFFF4343),
-                                        borderRadius:
-                                        BorderRadius.circular(4),
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
                                       child: Center(
                                         child: Image.asset(
-                                            "assets/cart/icon_add.png"),
+                                          "assets/cart/icon_add.png",
+                                          scale: 2,
+                                        ),
                                       ),
                                     ),
                                   )
@@ -431,111 +446,79 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           height: 5,
                         ),
-                        _buildDivider(),
+                        buildDivider(context),
+                        SizedBox(
+                          height: 45,
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: textAmW5S16('Variants')),
                         SizedBox(
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: SizedBox(
-                            width: 63,
-                            child: Text(
-                              'Variants',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Medium',
-                                fontWeight: FontWeight.w500,
-                                height: 0.09,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          height: 36, // Fixed height for the container
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 4, // Assume 10 items for the example
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedIndex =
-                                        index; // Update selected index on tap
-                                    // Optional: print the selected index to console
-                                    print('Selected Item $index');
-                                  });
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Container(
+                            height: 36, // Fixed height for the container
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 4, // Assume 10 items for the example
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedIndex =
+                                          index; // Update selected index on tap
+                                      // Optional: print the selected index to console
+                                      print('Selected Item $index');
+                                    });
+                                  },
                                   child: Container(
-                                      width: 58,
-                                      height: 36,
-                                      margin:
-                                      EdgeInsets.symmetric(horizontal: 8),
-                                      // Add margin for spacing between items
-                                      decoration: ShapeDecoration(
-                                        color: Colors.white,
-                                        // Background color of the container
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                            width: 1,
-                                            color: selectedIndex == index
-                                                ? Color(0xFFE88E32)
-                                                : Color(0xFFD1D5DB),
-                                            // Conditional border color
-                                            strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                          ),
-                                          borderRadius:
-                                          BorderRadius.circular(4),
-                                        ),
+                                    width: 58,
+                                    height: 36,
+                                    margin: EdgeInsets.symmetric(horizontal: 8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      // Background color of the container
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: selectedIndex == index
+                                            ? Color(0xFFE88E32)
+                                            : Color(0xFFD1D5DB),
+                                        // Conditional border color based on selectedIndex
                                       ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        '$index kg',
-                                        style: TextStyle(
-                                          color: selectedIndex == index
-                                              ? Color(0xFFE88E32)
-                                              : Color(0xFF334155),
-                                          fontSize: 14,
-                                          fontFamily: 'Archivo',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0.10,
-                                        ),
-                                      ) // Text to identify the item
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '$index kg',
+                                      style: TextStyle(
+                                        color: selectedIndex == index
+                                            ? Color(0xFFE88E32)
+                                            : Color(0xFF334155),
+                                        fontSize: 14,
+                                        fontFamily: 'Archivo-Regular',
+                                        fontWeight: FontWeight.w400,
+                                        height:
+                                            1.0, // Adjust line height if needed
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        _buildDivider(),
+                        buildDivider(context),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: SizedBox(
-                            width: 150,
-                            child: Text(
-                              'Specification',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Regualr',
-                                fontWeight: FontWeight.w500,
-                                height: 1.09,
-                              ),
-                            ),
-                          ),
-                        ),
+                            padding: const EdgeInsets.only(left: 20.0, top: 45),
+                            child: textAmW5S16('Specification')),
                         Padding(
-                          padding:
-                          const EdgeInsets.only(left: 20.0, right: 20),
+                          padding: const EdgeInsets.only(
+                              left: 20.0, right: 20, top: 35),
                           child: LayoutBuilder(
                             builder: (BuildContext context,
                                 BoxConstraints constraints) {
@@ -552,7 +535,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   style: TextStyle(
                                     color: Color(0xFF334155),
                                     fontSize: 14,
-                                    fontFamily: 'Archivo',
+                                    fontFamily: 'Archivo-Regular',
                                     fontWeight: FontWeight.w400,
                                     height: 0.11,
                                   ),
@@ -609,29 +592,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           height: 20,
                         ),
-                        _buildDivider(),
+                        buildDivider(context),
                         SizedBox(
                           height: 40,
                         ),
                         Padding(
                           padding:
-                          const EdgeInsets.only(left: 20.0, right: 20.0),
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                width: 177,
-                                child: Text(
-                                  'Service & Return Policy',
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-Medium',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.09,
-                                  ),
-                                ),
-                              ),
+                              textAmW5S16('Service & Return Policy'),
                               Image.asset(
                                 "assets/cart/icon_right_arrow.png",
                                 scale: 2,
@@ -647,7 +618,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             '100% Authenic from trusted brands'),
                         _buildServicePolicyItem('2 months warranty'),
                         SizedBox(
-                          height: 40,
+                          height: 25,
                         ),
                         _buildDivider(),
                         SizedBox(
@@ -655,31 +626,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                         Padding(
                           padding:
-                          const EdgeInsets.only(left: 20.0, right: 20.0),
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                width: 97,
-                                child: Text(
-                                  'Review',
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-Medium',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.09,
-                                  ),
-                                ),
-                              ),
+                              textAmW5S16('Review'),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ReviewList(),
-                                    ),
-                                  );
+
+                                  navigateToNextPage(context, ReviewList());
+
                                 },
                                 child: SizedBox(
                                   height: 10,
@@ -703,14 +659,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 12.0),
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.only(
+                                    bottom: 10.0, right: 10, left: 5),
                                 child: Image.asset(
                                   "assets/review/icon_star.png",
                                   scale: 2,
@@ -752,266 +709,175 @@ class _ProductDetailsState extends State<ProductDetails> {
                           child: Column(
                             children: reviews
                                 .map((item) => Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20.0, right: 20, bottom: 15),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          color: Colors.grey
-                                              .withOpacity(0.5))),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context)
-                                          .size
-                                          .width,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: 40,
-                                            height: 40,
-                                            clipBehavior:
-                                            Clip.antiAlias,
-                                            decoration:
-                                            ShapeDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/review/icon_girl.png"),
-                                                fit: BoxFit.fill,
-                                              ),
-                                              shape:
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      4)),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                              const EdgeInsets
-                                                  .only(
-                                                  top: 8.0,
-                                                  left: 10),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment
-                                                    .start,
+                                      padding: const EdgeInsets.only(
+                                          left: 20.0, right: 20, bottom: 15),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color:  Color(0xFFE5E7EB)
+                                                      )),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 40,
+                                              child: Row(
                                                 children: [
-                                                  Text(
-                                                    'Rhaenyra',
-                                                    style: TextStyle(
-                                                      color: Color(
-                                                          0xFF334155),
-                                                      fontSize: 16,
-                                                      fontFamily:
-                                                      'Archivo-Regular',
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .w400,
-                                                      height: 0.09,
+                                                  Container(
+                                                    width: 40,
+                                                    height: 40,
+                                                    clipBehavior:
+                                                        Clip.antiAlias,
+                                                    decoration: ShapeDecoration(
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            "assets/review/icon_girl.png"),
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4)),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                      height: 15),
-                                                  if (item.stars !=
-                                                      null) ...[
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            ...(item.stars !=
-                                                                null
-                                                                ? List.generate(
-                                                                item.stars!,
-                                                                    (i) => Padding(
-                                                                  padding: EdgeInsets.symmetric(horizontal: 0.5),
-                                                                  child: Image.asset("assets/review/icon_star.png", scale: 2.2),
-                                                                ))
-                                                                : []),
-                                                          ],
-                                                        ),
-                                                        Text(
-                                                          '5 days ago',
-                                                          textAlign:
-                                                          TextAlign
-                                                              .right,
-                                                          style:
-                                                          TextStyle(
-                                                            color: Color(
-                                                                0xFF66758C),
-                                                            fontSize:
-                                                            12,
-                                                            fontFamily:
-                                                            'Archivo',
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w400,
-                                                            height:
-                                                            0.12,
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 8.0,
+                                                              left: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Rhaenyra',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF334155),
+                                                              fontSize: 16,
+                                                              fontFamily:
+                                                                  'Archivo-Regular',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              height: 0.09,
+                                                            ),
                                                           ),
-                                                        )
-                                                      ],
+                                                          SizedBox(height: 15),
+                                                          if (item.stars !=
+                                                              null) ...[
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Row(
+                                                                  children: [
+                                                                    ...(item.stars !=
+                                                                            null
+                                                                        ? List.generate(
+                                                                            item.stars!,
+                                                                            (i) => Padding(
+                                                                                  padding: EdgeInsets.symmetric(horizontal: 0.5),
+                                                                                  child: Image.asset("assets/review/icon_star.png", scale: 2.2),
+                                                                                ))
+                                                                        : []),
+                                                                  ],
+                                                                ),
+                                                                Text(
+                                                                  '5 days ago',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Color(
+                                                                        0xFF66758C),
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontFamily:
+                                                                        'Archivo',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    height:
+                                                                        0.12,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ],
+                                                  ),
                                                 ],
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 15),
-                                    SizedBox(
-                                      height: 66,
-                                      child: Text(
-                                        item.reviewText,
-                                        style: TextStyle(
-                                          color: Color(0xFF475569),
-                                          fontSize: 14,
-                                          fontFamily:
-                                          'Archivo-Regular',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        maxLines: 3,
-                                        overflow:
-                                        TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    // Text(
-                                    //   item.details,
-                                    //   style: TextStyle(color: Colors.grey),
-                                    // ),
-                                    // SizedBox(height: 5),
-                                    // Text(
-                                    //   'By: ${item.name}',
-                                    //   style: TextStyle(fontWeight: FontWeight.bold),
-                                    // ),
-                                    if (item.imageUrls !=
-                                        null) // Check if image URLs exist
-                                      SingleChildScrollView(
-                                        scrollDirection:
-                                        Axis.horizontal,
-                                        child: Row(
-                                          children: item.imageUrls
-                                              ?.map((imageUrl) {
-                                            return Padding(
-                                              padding:
-                                              const EdgeInsets
-                                                  .all(8.0),
-                                              child: Image.asset(
-                                                  imageUrl,
-                                                  width: 50,
-                                                  height: 50),
-                                            );
-                                          }).toList() ??
-                                              [], // Use an empty list if imageUrls is null
+                                            SizedBox(height: 15),
+                                            SizedBox(
+                                              height: 66,
+                                              child: Text(
+                                                item.reviewText,
+                                                style: TextStyle(
+                                                  color: Color(0xFF475569),
+                                                  fontSize: 14,
+                                                  fontFamily: 'Archivo-Regular',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                                maxLines: 3,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                            SizedBox(height: 5),
+                                            // Text(
+                                            //   item.details,
+                                            //   style: TextStyle(color: Colors.grey),
+                                            // ),
+                                            // SizedBox(height: 5),
+                                            // Text(
+                                            //   'By: ${item.name}',
+                                            //   style: TextStyle(fontWeight: FontWeight.bold),
+                                            // ),
+                                            if (item.imageUrls !=
+                                                null) // Check if image URLs exist
+                                              SingleChildScrollView(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                child: Row(
+                                                  children: item.imageUrls
+                                                          ?.map((imageUrl) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Image.asset(
+                                                              imageUrl,
+                                                              width: 50,
+                                                              height: 50),
+                                                        );
+                                                      }).toList() ??
+                                                      [], // Use an empty list if imageUrls is null
+                                                ),
+                                              ),
+                                          ],
                                         ),
                                       ),
-                                  ],
-                                ),
-                              ),
-                            ))
+                                    ))
                                 .toList(),
                           ),
                         ),
                         Spacer(),
-                        Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 76,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 16),
-                            decoration: ShapeDecoration(
-                              color: Colors.white
-                                  .withOpacity(0.05000000074505806),
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  color: Colors.white
-                                      .withOpacity(0.10999999940395355),
-                                ),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Total price',
-                                        style: TextStyle(
-                                          color: Color(0xFF334155),
-                                          fontSize: 10,
-                                          fontFamily: 'Archivo-Medium',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.14,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Text(
-                                        'CHF 210',
-                                        style: TextStyle(
-                                          color: Color(0xFF334155),
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo-Medium',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.09,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Cart001()),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 150,
-                                    height: 44,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFFF4343),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(8)),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'Checkout',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontFamily: 'Archivo-SemiBold',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0.10,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ))
                       ],
                     ),
                   )
@@ -1021,16 +887,16 @@ class _ProductDetailsState extends State<ProductDetails> {
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 60),
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 500), // Adjust the duration as needed
+                duration: Duration(milliseconds: 500),
+                // Adjust the duration as needed
                 opacity: isVisible ? 1.0 : 0.0,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         print("Some things");
                         Navigator.pop(context);
-
                       },
                       child: Container(
                         width: 40,
@@ -1050,10 +916,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         print("Some things");
                         navigateToNextPage(context, WishList());
-
                       },
                       child: Container(
                         width: 40,
@@ -1076,7 +941,94 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
             ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 76,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  decoration: ShapeDecoration(
+                    color: Colors.white.withOpacity(0.05000000074505806),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 1,
+                        color: Colors.white.withOpacity(0.10999999940395355),
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
+
+                            Text(
+                              'CHF 210',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.09,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                                'CHF 32.00',
+                                style: TextStyle(
+                                  color: Color(0xFF66758C),
+                                  fontSize: 10,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.lineThrough, // Apply line-through decoration
+                                  height: 0.14,
+                                )
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          navigateToNextPage(context, Cart001());
+                        },
+                        child: Container(
+                          width: 150,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFF4343),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                'Checkout',
+                                textAlign: TextAlign.center,
+                                // Ensure text alignment is centered
+
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+            )
           ],
         ),
       ),
@@ -1085,15 +1037,18 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   Widget _buildServicePolicyItem(String text) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, top: 20),
+      padding: const EdgeInsets.only(left: 20.0, top: 5),
       child: Row(
         children: [
-          Container(
-            width: 8,
-            height: 8,
-            decoration: ShapeDecoration(
-              color: Color(0xFFD1D5DB),
-              shape: OvalBorder(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Container(
+              width: 8,
+              height: 8,
+              decoration: ShapeDecoration(
+                color: Color(0xFFD1D5DB),
+                shape: OvalBorder(),
+              ),
             ),
           ),
           Padding(
