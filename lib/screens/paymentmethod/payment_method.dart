@@ -118,10 +118,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 4),
+                    SizedBox(width: MediaQuery.of(context).size.width / 4.5),
 
                     Text(
-                      'Payment Method',
+                      'Mode de paiement',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),

@@ -90,9 +90,9 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                           scale: 2,
                         ),
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 3.4),
+                      SizedBox(width: MediaQuery.of(context).size.width / 4.2),
                       Text(
-                        'E-Receipt',
+                        'Reçu électronique',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF1E293B),
@@ -154,18 +154,18 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Premium Plan',
+                                    'Forfait Premium',
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 16,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
                                       height: 0.08,
                                     ),
                                   ),
                                   const SizedBox(height: 15),
                                   Text(
-                                    'Annual Subscription',
+                                    'Souscription annuelle',
                                     style: TextStyle(
                                       color: Color(0xFF66758C),
                                       fontSize: 12,
@@ -187,19 +187,19 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                       const SizedBox(height: 16),
                       // Add any additional widgets or SizedBoxes here
                       // Add more widgets here if needed
-                      _buildSummeryText('Duration', '12 months'),
-                      _buildSummeryText('Start Date', '09-05-24'),
-                      _buildSummeryText('Expire Date', '09-05-25'),
+                      _buildSummeryText('Durée', '12 months'),
+                      _buildSummeryText('Date de début', '09-05-24'),
+                      _buildSummeryText("Date d'expiration", '09-05-25'),
                       const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildDivider(context),
                       ),
                       const SizedBox(height: 20),
-                      _buildSummeryText1('Subscription', 'CHF 990'),
-                      _buildSummeryText1('Registration Fee', 'CHF 59'),
-                      _buildSummeryText1('Promo Code', 'CHF 59'),
-                      _buildSummeryText1('Locker Rental', 'CHF 59'),
+                      _buildSummeryText1('Abonnement', 'CHF 990'),
+                      _buildSummeryText1("Frais d'inscription", 'CHF 59'),
+                      _buildSummeryText1('Code promo', 'CHF 59'),
+                      _buildSummeryText1('Location de casier', 'CHF 59'),
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -207,10 +207,10 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                       ),
 
                       const SizedBox(height: 20),
-                      _buildSummeryText1('Name', 'Jhon Lennon'),
-                      _buildSummeryText1('Phone Number', '+243 555-0108'),
-                      _buildSummeryText1('Payment Method', 'Stripe'),
-                      _buildSummeryText1('Transaction Number', '#ES0329321'),
+                      _buildSummeryText1('Nom', 'Jhon Lennon'),
+                      _buildSummeryText1('Numéro de téléphone', '+243 555-0108'),
+                      _buildSummeryText1('Mode de paiement', 'Stripe'),
+                      _buildSummeryText1('Numéro de transaction', '#ES0329321'),
                       const SizedBox(height: 10),
 
                       const SizedBox(height: 16),
@@ -219,7 +219,13 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                         padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15,top: 50),
                         child: GestureDetector(
                           onTap: (){
-                            navigateToNextPage(context,DashBoard(number: 2,));
+                            // navigateToNextPage(context,DashBoard(number: 2,));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Downloading e-receipt...'),
+                                duration: Duration(seconds: 2), // Adjust duration as needed
+                              ),
+                            );
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -231,14 +237,17 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                                   borderRadius: BorderRadius.circular(8)),
                             ),
                             child: Center(
-                              child: Text(
-                                'Download E-Receipt',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.09,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  'Télécharger le reçu électronique',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.09,
+                                  ),
                                 ),
                               ),
                             ),

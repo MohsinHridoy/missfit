@@ -8,6 +8,8 @@ import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../common_widgets.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart001.dart';
 
 class CartItem {
@@ -109,115 +111,50 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.2),
-                    Text(
-                      'Checkout',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+
+            CustomAppBar(
+              title: 'Checkout',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.3,
             ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: Text(
-                        'Delivery Location',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0,top: 25),
+                        child: title_textView_Kt_SBld('Delivery Location')
+
+                    ),
                     _buildDelivaryStatusTextItem('Shipping Address','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
                     _buildDelivaryStatusTextItem('Billing Address','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
+                    SizedBox(height: 10),
+
+
                     Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: Text(
-                        'Delivery Time',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child: title_textView_Kt_SBld( 'Delivery Time')
                     ),
                     _buildEsrtimatedDateStatus(),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        'Product Details ',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      padding: const EdgeInsets.only(left: 25.0,top: 25),
+                      child: title_textView_Kt_SBld('Product Details ')
                     ),
                     SizedBox(height: 25),
 
                     _buildCartItemsList(),
-                    SizedBox(height: 40),
-                    SizedBox(
-                      height: 50,
-                    ),
+                    SizedBox(height: 25),
+
 
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,bottom: 10),
-                      child: Text(
-                        'Order Summary',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                        child: title_textView_Kt_SBld( 'Order Summary')
+
+
                     ),
 
                     SizedBox(
@@ -313,96 +250,96 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                     //       ],
                     //     ))
 
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 76,
-
-                        decoration: ShapeDecoration(
-                          color: Colors.white.withOpacity(0.05000000074505806),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              color:
-                              Colors.white.withOpacity(0.10999999940395355),
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25.0,left: 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total price',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 10,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.14,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    'CHF 210',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.09,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PaymentScreen()),
-                                );
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Container(
-                                  width: 150,
-                                  height: 44,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFFF4343),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Checkout',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.10,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ))
 
                   ],
                 ),
               ),
             ),
+
+            Container(
+                width: MediaQuery.of(context).size.width,
+                height: 76,
+
+                decoration: ShapeDecoration(
+                  color: Colors.white.withOpacity(0.05000000074505806),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      color:
+                      Colors.white.withOpacity(0.10999999940395355),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25.0,left: 25),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Total price',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 10,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.14,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'CHF 210',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.09,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        navigateToNextPage(context,PaymentScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          width: 150,
+                          height: 44,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFF4343),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                'Checkout',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ))
+
           ],
         ),
       ),
@@ -410,7 +347,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
   }
   Widget _buildEsrtimatedDateStatus() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(left: 23.0,right: 23,bottom: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 48,
@@ -469,7 +406,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
 
   Widget _buildDelivaryStatusTextItem(String title,String name,String phoneNumber,String Email,Widget page) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(left: 20.0,right: 20,top: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 175,
@@ -907,17 +844,9 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+                          buildDivider(context),
+
                         ],
                       ),
                     ),

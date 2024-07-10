@@ -3,6 +3,8 @@ import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 
+import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
 import '../cartscreen/cart.dart';
 
 enum CancelOrderStatusEnum { Processing,CANCELLED, Placed, Packed, Shipped, Packed1 }
@@ -121,7 +123,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                                       style: TextStyle(
                                         color: Color(0xFF334155),
                                         fontSize: 14,
-                                        fontFamily: 'Archivo',
+                                        fontFamily: 'Archivo-Medium',
                                         fontWeight: FontWeight.w500,
                                         height: 0.10,
                                       ),
@@ -136,7 +138,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 12,
-                                      fontFamily: 'Archivo',
+                                      fontFamily: 'Archivo-Regular',
                                       fontWeight: FontWeight.w400,
                                       height: 0.12,
                                     ),
@@ -144,19 +146,8 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                                 ),
                                 SizedBox(height: 20),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Container(
-                                    width: 288,
-                                    decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                          width: 1,
-                                          strokeAlign: BorderSide.strokeAlignCenter,
-                                          color: Color(0xFFE5E7EB),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  padding: const EdgeInsets.only(left: 10.0,right: 10.0),
+                                  child: buildDivider(context),
                                 ),
 
                                 SizedBox(height: 40),
@@ -213,47 +204,24 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                       ),
                     ),
 
+
                     _buildCartItemsList(),
 
-                    Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: GestureDetector(
-                        onTap: (){
-                          navigateToNextPage(context, DashBoard(number: 1,));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 44,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 17),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side:
-                              BorderSide(width: 1, color: Color(0xFFFF4343)),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-
-                          child: Center(
-                            child: Text(
-                              'Back to Shopping',
-                              style: TextStyle(
-                                color: Color(0xFFFF4343),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.10,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
 
                   ],
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: GestureDetector(
+                onTap: (){
+                  navigateToNextPage(context, DashBoard(number: 1,));
+                },
+                child: outlineButton(context, 'Back to Shopping'),
+              ),
+            )
+
           ],
         ),
       ),
@@ -536,17 +504,17 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
       height: height,
       width: 2,
       child: CustomPaint(
-        painter: DashedLinePainter(),
+        painter: DashedLinePainter1(),
       ),
     );
   }
 }
 
-class DashedLinePainter extends CustomPainter {
+class DashedLinePainter1 extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.red
+      ..color = Colors.grey
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.square;

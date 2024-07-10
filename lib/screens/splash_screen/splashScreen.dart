@@ -42,6 +42,8 @@ class _SplashScreenState extends State<SplashScreen> {
       if (isLoggedIn) {
         // Navigate to Dashboard if logged in
 
+        print(isLoggedIn);
+
         navigateToNextPage(context,DashBoard());
 
       } else {

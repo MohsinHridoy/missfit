@@ -285,8 +285,15 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
       body: GestureDetector(
         onTap: () {
           // Handle tapping outside the text field to unfocus the keyboard
-          if (_focusNode.hasFocus) {
+          if (_focusNode.hasFocus ) {
             _focusNode.unfocus();
+            // setState(() {
+            //   filteredItems = items
+            //       .where((item) => item.title
+            //       .toLowerCase()
+            //       .contains(value.toLowerCase()))
+            //       .toList();
+            // });
           }
         },
         child: Container(
@@ -330,9 +337,9 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
                                 gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  crossAxisSpacing: 18.5,
+                                  crossAxisSpacing: 12,
                                   mainAxisSpacing: 20,
-                                  childAspectRatio: 0.78,
+                                  childAspectRatio: 0.73,
                                 ),
                                 itemCount: filteredItems.length,
                                 itemBuilder: (context, index) {

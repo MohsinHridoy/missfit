@@ -3,6 +3,10 @@ import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/returnproduct/return_product.dart';
 
+import '../../common_utils.dart';
+import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart.dart';
 
 enum OrderStatusEnum { Processing, Placed, Packed, Shipped, Packed1 }
@@ -48,47 +52,13 @@ class _OrderStatusState extends State<OrderStatus> {
 
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width /3.5),
-                    Text(
-                      'Order Status',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title:  'Order Status',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.5,
             ),
-
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -144,19 +114,8 @@ class _OrderStatusState extends State<OrderStatus> {
                                 ),
                                 SizedBox(height: 20),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Container(
-                                    width: 288,
-                                    decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                          width: 1,
-                                          strokeAlign: BorderSide.strokeAlignCenter,
-                                          color: Color(0xFFE5E7EB),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  padding: const EdgeInsets.only(left: 10.0,right: 15),
+                                  child: buildDivider(context)
                                 ),
                                 SizedBox(height: 20),
 
@@ -214,106 +173,89 @@ class _OrderStatusState extends State<OrderStatus> {
 
 
 
-                    if(widget.navigationStatus=='Processing')
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
 
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
-                                },
-                                child: Container(
-                                  height: 52,
-                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Return',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF4343),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 20),
-                            Expanded(
-                              child: Container(
-                                height: 52,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Buy Again',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0.09,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    else
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: GestureDetector(
-                          onTap: (){
-                            _showBottomSheet(context);
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 44,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 32, vertical: 17),
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side:
-                                BorderSide(width: 1, color: Color(0xFFFF4343)),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
 
-                            child: Center(
+                  ],
+                ),
+              ),
+            ),
+            if(widget.navigationStatus=='Processing')
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
+                        },
+                        child: Container(
+                          height: 52,
+                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                'Cancel Order',
+                                'Return',
                                 style: TextStyle(
                                   color: Color(0xFFFF4343),
-                                  fontSize: 14,
+                                  fontSize: 16,
                                   fontFamily: 'Archivo-SemiBold',
                                   fontWeight: FontWeight.w600,
-                                  height: 0.10,
+                                  height: 0.09,
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: Container(
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFF4343),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:7.0),
+                            child: Text(
+                              'Buy Again',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 0.09,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
+              )
+            else
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: GestureDetector(
+                    onTap: (){
+                      _showBottomSheet(context);
+                    },
+                    child: outlineButton(context, 'View Order Status')
+                ),
               ),
-            ),
+
           ],
         ),
       ),
@@ -327,14 +269,22 @@ class _OrderStatusState extends State<OrderStatus> {
           builder: (BuildContext context, StateSetter setState) {
             return Container(
               padding: EdgeInsets.only(top: 20, left: 15),
-              height: isInitialViewVisible ? 300 : 250,
+              decoration: BoxDecoration(
+                color: Colors.white, // Replace with your desired color
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              height: isInitialViewVisible ? 400 : 250,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: isInitialViewVisible
+                child: isInitialViewVisible ==true
                     ? Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    SizedBox(height: 25,),
                     SizedBox(
                       width: 288,
                       child: Text(
@@ -380,16 +330,99 @@ class _OrderStatusState extends State<OrderStatus> {
                                   }
                                   itemSelection[i] =
                                   true; // Select current item
-                                  isInitialViewVisible =
-                                  false; // Hide initial view
                                 });
                               },
                               child: _buildBottomSheetText(
                                   _getBottomSheetItemText(i)),
                             ), // Get text based on index
+
                           ],
                         ),
                       ),
+                    SizedBox(height: 25,),
+
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 5.0, right: 5, bottom: 1, top: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(
+                                    context); // Close the modal when tapped
+                              },
+                              child: Container(
+                                height: 52,
+
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1, color: Color(0xFFFF4343)),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      'No',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF4343),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 20,),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isInitialViewVisible =
+                                  false; //// Select current item
+                                });
+
+
+                              },
+                              child: Container(
+                                width: 150,
+                                height: 52,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFF4343),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      'Yes',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+
                   ],
                 )
                     : Column(
@@ -422,65 +455,74 @@ class _OrderStatusState extends State<OrderStatus> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(
-                                  context); // Close the modal when tapped
-                              isInitialViewVisible = true;
-                            },
-                            child: Container(
-                              width: 150,
-                              height: 52,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 32, vertical: 17),
-                              decoration: ShapeDecoration(
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                      width: 1, color: Color(0xFFFF4343)),
-                                  borderRadius: BorderRadius.circular(8),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(
+                                    context); // Close the modal when tapped
+                                isInitialViewVisible = true;
+                              },
+                              child: Container(
+                                height: 52,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 32, vertical: 17),
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1, color: Color(0xFFFF4343)),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'No',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF4343),
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.09,
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      'No',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF4343),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    CancelOrderStatus(
-                                      status: CancelOrderStatusEnum.CANCELLED,
+                          SizedBox(width: 20,),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+
+                                navigateToNextPage(context, CancelOrderStatus(
+                                  status: CancelOrderStatusEnum.CANCELLED,
+                                ),);
+
+                              },
+                              child: Container(
+                                width: 150,
+                                height: 52,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFF4343),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      'Yes',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
                                     ),
-                              ));
-                            },
-                            child: Container(
-                              width: 150,
-                              height: 52,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFFF4343),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(8)),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Yes',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.09,
                                   ),
                                 ),
                               ),
@@ -893,7 +935,7 @@ class DashedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.red
+      ..color = Colors.grey.withOpacity(0.7)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.square;

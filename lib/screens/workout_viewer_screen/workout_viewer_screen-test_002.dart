@@ -95,7 +95,7 @@ class _RestPageState extends State<RestPage> {
             SizedBox(
               width: 320,
               child: Text(
-                'Rest',
+                'Repos',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF334155),
@@ -142,14 +142,17 @@ class _RestPageState extends State<RestPage> {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       child: Center(
-                        child: Text(
-                          '+20s',
-                          style: TextStyle(
-                            color: Color(0xFF334155),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 0.10,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            '+20s',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.10,
+                            ),
                           ),
                         ),
                       ),
@@ -172,14 +175,17 @@ class _RestPageState extends State<RestPage> {
                               borderRadius: BorderRadius.circular(8)),
                         ),
                         child: Center(
-                          child: Text(
-                            'Skip',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.10,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              'Sauter',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.10,
+                              ),
                             ),
                           ),
                         ),
@@ -198,7 +204,7 @@ class _RestPageState extends State<RestPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: Text(
-                      'Next ${widget.index}/${widget.totalListLength}',
+                      'Suivante  ${widget.index}/${widget.totalListLength}',
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         color: Color(0xFF334155),
@@ -1133,7 +1139,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                           child: SizedBox(
                             width: 320,
                             child: Text(
-                              'Workout List',
+                            "Liste d'entraînement",
                               style: TextStyle(
                                 color: Color(0xFF334155),
                                 fontSize: 20,
@@ -1275,7 +1281,7 @@ class WorkoutListItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.green.withOpacity(0.5),
+                    color: progressValue==0?Colors.transparent:Colors.green.withOpacity(0.5),
                     blurRadius: 8,
                     spreadRadius: 5,
                     offset: Offset(0, 1),
@@ -1294,11 +1300,11 @@ class WorkoutListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 12),
+                    padding: const EdgeInsets.only(top: 12.0, bottom: 12),
                     child: Text(
                       title,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: progressValue==0?Color(0xFF334155):Colors.white,
                         fontSize: 16,
                         fontFamily: 'Archivo-Medium',
                         fontWeight: FontWeight.w500,
@@ -1310,7 +1316,7 @@ class WorkoutListItem extends StatelessWidget {
                   Text(
                     duration,
                     style: TextStyle(
-                      color: Colors.white,
+                      color:progressValue==0?Color(0xFF334155): Colors.white,
                       fontSize: 12,
                       fontFamily: 'Archivo-Regular',
                       fontWeight: FontWeight.w400,

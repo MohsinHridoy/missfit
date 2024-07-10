@@ -4,6 +4,7 @@ import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_buttons.dart';
 import '../dashboard/dashboard.dart';
 
 class AdvanceLevelSelectionPage001 extends StatefulWidget {
@@ -62,15 +63,14 @@ class _AdvanceLevelSelectionPageState001
                 children: [
                   SizedBox(height: 5),
                   SizedBox(
-                      width: 50,
                       child: title_textView(
-                          'How long do you like to \nworkout for?')),
+                          'Pendant combien de temps  aimez-vous vous entraîner ?')),
                   SizedBox(height: 30),
                   buildLevelContainer(
-                      0, 'Light Activity', 'About 10-20 minutes'),
+                      0,'Activité légère', 'Environ 10-20 minutes'),
                   buildLevelContainer(
-                      1, 'Moderate Activity', 'About 30-40 minutes'),
-                  buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
+                      1, 'Activité modérée', 'Environ 30 - 40 minutes'),
+                  buildLevelContainer(2, 'Activité professionnelle', 'Environ 40 - 60 minutes'),
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -89,38 +89,18 @@ class _AdvanceLevelSelectionPageState001
                       ),
                     ),
                   ),
-                  Visibility(
-                    visible: widget.status == 'profile',
 
-                    child: GestureDetector(
-                      onTap: (){
-                        navigateToNextPage(context,DashBoard(number: 2,));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 52,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 112, vertical: 17),
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFF4343),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 0.09,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
+                  Visibility(
+                    visible: widget.status == "profile",
+
+                    child:  customButtonRed(context, 'Save', onPressed: () {
+                      navigateToNextPage(context,DashBoard(number: 3,));
+
+                    }),
+
+
+
+                  ),
                 ],
               ),
             ),
@@ -169,7 +149,7 @@ class _AdvanceLevelSelectionPageState001
                       SizedBox(
                         width: 320,
                         child: Text(
-                          'Congratulations !',
+                          'Toutes nos félicitations !',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF334155),
@@ -185,7 +165,7 @@ class _AdvanceLevelSelectionPageState001
                         child: SizedBox(
                           width: 320,
                           child: Text(
-                            'You Have successfullly registerd',
+                            'Vous vous êtes inscrit avec succès',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF334155).withOpacity(0.9),
@@ -215,7 +195,7 @@ class _AdvanceLevelSelectionPageState001
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width,
-                              height: 44,
+                              height: 52,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 32, vertical: 12),
                               decoration: BoxDecoration(
@@ -224,7 +204,7 @@ class _AdvanceLevelSelectionPageState001
                               ),
                               child: Center(
                                 child: Text(
-                                  'Continue',
+                                  'Continuer',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,

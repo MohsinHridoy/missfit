@@ -30,6 +30,7 @@ class CustomSearchBar extends StatelessWidget {
   List<String>? searchHistory; // Replace with your actual search history list
   final Function(List<CustomItem>) onItemsFiltered;
   Widget? page;
+  final VoidCallback? onTapFilter;
 
    CustomSearchBar({
     Key? key,
@@ -38,8 +39,10 @@ class CustomSearchBar extends StatelessWidget {
     required this.items,
     this.searchHistory,
     required this.onItemsFiltered,
-    this.page,
-  }) : super(key: key);
+    required this.page,
+     this.onTapFilter,
+
+   }) : super(key: key);
 
   void navigateToNextPage(BuildContext context, Widget page) {
     // Implement your navigation logic here
@@ -121,9 +124,8 @@ class CustomSearchBar extends StatelessWidget {
           ),
           SizedBox(width: 5),
           GestureDetector(
-            onTap: () {
-              navigateToNextPage(context, page!);
-            },
+            onTap: onTapFilter,
+
             child: Container(
               width: 42,
               height: 42,

@@ -227,7 +227,7 @@ class _TestScrollState extends State<TestScroll> {
             Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 30),
               child: Text(
-                'What is your weight?',
+                'Quel est votre poids?',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 24,
@@ -271,24 +271,24 @@ class _TestScrollState extends State<TestScroll> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 30),
-                    child:  Container(
-                      width: 227,
-                      height: 1,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            width: 0.5,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                      child: CustomPaint(
-                        painter: DashedLinePainter(),
-                      ),
-                    ),
-                  )
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10.0, top: 30),
+                  //   child:  Container(
+                  //     width: 227,
+                  //     height: 1,
+                  //     decoration: ShapeDecoration(
+                  //       shape: RoundedRectangleBorder(
+                  //         side: BorderSide(
+                  //           width: 0.5,
+                  //           color: Colors.grey,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     child: CustomPaint(
+                  //       painter: DashedLinePainter(),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -418,18 +418,16 @@ class _TestScrollState extends State<TestScroll> {
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 44,
+                    height: 52,
                     decoration: ShapeDecoration(
                       color: Color(0xFFFF4343),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
                           widget.status == 'profile'?'Save & Next':'Next',
                           style: TextStyle(
                             color: Colors.white,
@@ -439,7 +437,7 @@ class _TestScrollState extends State<TestScroll> {
                             height: 0.09,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

@@ -7,6 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_buttons.dart';
+import '../../widgets/custom_app_bar.dart';
+
 class BasicInfo extends StatefulWidget {
   final VoidCallback onNextPressed;
   String? status;
@@ -85,53 +88,28 @@ class _BasicInfoState extends State<BasicInfo> {
           children: [
             Visibility(
               visible: widget.status == "profile",
-              child: Container(
-                height: 97,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16)),
-                  border: Border.all(color: Colors.white.withOpacity(0.11)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 4.1),
-                      title_textView('Basic Information'),
-                      Spacer(),
-                    ],
-                  ),
-                ),
+              child: CustomAppBar(
+                title:  'Basic Information',
+                onBackTap: () {
+                  Navigator.pop(context);
+                },
+                iconSpacing: 4.2,
               ),
             ),
+
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 34),
-                  Visibility(
-                    visible: widget.status != "profile",
-                    child: title_textView('Basic Information')
-                  ),
+                  SizedBox(height: widget.status != "profile"? 34:0),
+                  widget.status != "profile"?title_textView('Informations de base'):SizedBox(),
                   SizedBox(height: widget.status != "profile"?50:0),
                   Visibility(
                     visible: widget.status != "profile",
-        
+
                     child: Text(
                       'Upload Profile Picture',
                       style: TextStyle(
@@ -242,7 +220,14 @@ class _BasicInfoState extends State<BasicInfo> {
                     height: 50,
                     child: TextFormField(
                       controller: _fullNameController,
+
                       keyboardType: TextInputType.text,
+                      style: TextStyle( // <-- Add this to change the text color
+                        color: Color(0xFF334155),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-Medium',
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
                         labelText: 'Full Name',
                         labelStyle: TextStyle(
@@ -268,6 +253,12 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: TextFormField(
                       controller: _ageController,
                       keyboardType: TextInputType.number,
+                      style: TextStyle( // <-- Add this to change the text color
+                        color: Color(0xFF334155),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-Medium',
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
                         labelText: 'Age',
                         labelStyle: TextStyle(
@@ -287,14 +278,14 @@ class _BasicInfoState extends State<BasicInfo> {
                       ),
                     ),
                   ),
-        
-                  SizedBox(height: widget.status == "profile" ? MediaQuery.of(context).size.height / 1.8 : MediaQuery.of(context).size.height / 3.3),
-        
-        
+
+                  SizedBox(height: widget.status == "profile" ? MediaQuery.of(context).size.height / 1.7 : MediaQuery.of(context).size.height / 3.3),
+
+
                   GestureDetector(
                     onTap: _isButtonEnabled ? _login : _login2,
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.only(bottom: 15.0),
                       child: Visibility(
                         visible: widget.status != "profile",
                         child: Container(
@@ -307,14 +298,19 @@ class _BasicInfoState extends State<BasicInfo> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                color: _isButtonEnabled
-                                    ? Colors.white
-                                    : Color(0xFF334155),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                'Suivante',
+                                style: TextStyle(
+                                  color: _isButtonEnabled
+                                      ? Colors.white
+                                      : Color(0xFF334155),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.09,
+
+                                ),
                               ),
                             ),
                           ),
@@ -324,36 +320,17 @@ class _BasicInfoState extends State<BasicInfo> {
                   ),
                   Visibility(
                     visible: widget.status == "profile",
-        
-                    child: GestureDetector(
-                      onTap: (){
-                        navigateToNextPage(context,DashBoard(number: 2,));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 52,
 
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFF4343),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                        ),
+                    child:  customButtonRed(context, 'Save Change', onPressed: () {
+                      navigateToNextPage(context,DashBoard(number: 3,));
 
-                        child: Center(
-                          child: Text(
-                            'Save Change',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 0.09,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
+                    }),
+
+
+
+                  ),
+
+
                 ],
               ),
             ),

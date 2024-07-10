@@ -6,8 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:miss_fit/screens/activityselectiondashboard/activityselectiondashboard.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
+import 'package:miss_fit/screens/allblogitem/all_blog_item.dart';
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
+import 'package:miss_fit/screens/blogdetails/blog_details.dart';
 import 'package:miss_fit/screens/cartscreen/cart.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/checkout/checkout.dart';
@@ -60,6 +62,7 @@ import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
 import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/subscription_history/subscription_history.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
+import 'package:miss_fit/screens/subscriptionprice/subscription_price1.dart';
 import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
 import 'package:miss_fit/screens/timeselectionscreen/select_time_screen.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
@@ -144,7 +147,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:Cart001(),
+      child:SplashScreen(),
     );
   }
 }

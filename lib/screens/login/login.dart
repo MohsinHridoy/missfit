@@ -107,11 +107,11 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _emailOrPhoneNumberController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: true,
-                  // focusNode: _emailOrPhoneNumberFocusNode,
+                  focusNode: _emailOrPhoneNumberFocusNode,
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 16,
-                    fontFamily: 'Archivo',
+                    fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
                     height: 1.09,
                   ),
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFFD1D5DB)),
                     ),
-                    labelText: _isEmailFocused || _emailOrPhoneNumberController.text.isNotEmpty ? 'Email' : '${enterYourEmailAddressText_fr}',
+                    labelText: _emailOrPhoneNumberFocusNode.hasFocus ? 'Email' : '${enterYourEmailAddressText_fr}',
                     labelStyle: TextStyle(
                       color: Color(0xFF334155),
                       fontSize: 16,
@@ -143,17 +143,21 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: (){
                   if(widget.status=='profile') {
                     loadSharedData();
-                    _navigateToDashboard(context);
+                    _isValidEmail ?
+
+                    _navigateToDashboard(context):null;
                   } else if(widget.status=='onboarding') {
                     loadSharedData();
                     _isValidEmail ?
-                    navigateToNextPage(context, Otp001(email: _emailOrPhoneNumberController.text,))
+                    navigateToNextPage(context, Otp001(email: _emailOrPhoneNumberController.text,status: 'onboarding',))
                         : null;
                   }
                   else
                   {
                     loadSharedData();
-                    _navigateToDashboard(context);
+                    _isValidEmail ?
+
+                    _navigateToDashboard1(context):null;
                   }
                 },
                 child: Container(
@@ -202,7 +206,16 @@ class _LoginPageState extends State<LoginPage> {
     // Unfocus the text field
     // FocusManager.instance.primaryFocus!.unfocus();
     FocusScope.of(context).unfocus();
-    navigateToNextPage(context,DashBoard());
+    navigateToNextPage(context,Otp001(email:  _emailOrPhoneNumberController.text,status: 'profile',));
+
+
+  }
+
+  void _navigateToDashboard1(BuildContext context) async {
+    // Unfocus the text field
+    // FocusManager.instance.primaryFocus!.unfocus();
+    FocusScope.of(context).unfocus();
+    navigateToNextPage(context,Otp001(email:  _emailOrPhoneNumberController.text,status: 'profile',));
 
 
   }

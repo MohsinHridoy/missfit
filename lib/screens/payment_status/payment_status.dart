@@ -44,7 +44,7 @@ class PaymentStatus extends StatelessWidget {
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width / 3.2),
                       Text(
-                        'Payment',
+                        'Paiement',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF1E293B),
@@ -79,7 +79,7 @@ class PaymentStatus extends StatelessWidget {
               SizedBox(
                 width: 320,
                 child: Text(
-                  'Payment Successfull',
+                  'Paiement réussi',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF334155),
@@ -151,7 +151,7 @@ class PaymentStatus extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Back To Home',
+                          'Afficher le reçu électronique',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -187,14 +187,17 @@ class PaymentStatus extends StatelessWidget {
                       ),
                     ),
                     child: Center(
-                      child: Text(
-                        'View E-Receipt',
-                        style: TextStyle(
-                          color: Color(0xFFFF4343),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          'De retour à la maison',
+                          style: TextStyle(
+                            color: Color(0xFFFF4343),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.09,
+                          ),
                         ),
                       ),
                     ),

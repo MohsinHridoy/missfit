@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../common_utils.dart';
 
 class CustomDotIndicator extends StatefulWidget {
   @override
@@ -38,9 +42,10 @@ class _CustomDotIndicatorState extends State<CustomDotIndicator> {
 }
 
 class Otp001 extends StatefulWidget {
-  final String? email;
+  final String email;
+  String? status;
 
-  const Otp001({super.key,  this.email});
+   Otp001({super.key,  required this.email,this.status});
 
   @override
   State<Otp001> createState() => _Otp001State();
@@ -65,8 +70,8 @@ class _Otp001State extends State<Otp001> {
   late Timer _timer;
   bool _firstTextFieldFoucs = false;
 
-  String tvSendCodeStatus = "You can request otp code in";
-  String tvDidntRcvCodeStatus = "Didn’t received any code?";
+  String tvSendCodeStatus = 'Vous pouvez demander le code OTP dans';
+  String tvDidntRcvCodeStatus = "Vous n'avez reçu aucun code ?";
 
   @override
   void initState() {
@@ -235,14 +240,14 @@ class _Otp001State extends State<Otp001> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 125,
+                  height: 100,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, left: 20),
                   child: SizedBox(
                     width: 274,
                     child: Text(
-                      'OTP Verification',
+                      'Vérification OTP',
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 24,
@@ -261,7 +266,7 @@ class _Otp001State extends State<Otp001> {
                   child: SizedBox(
                     width: 320,
                     child: Text(
-                      'We sent verification code to -',
+                      'Nous avons envoyé le code de vérification à -',
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 16,
@@ -291,11 +296,8 @@ class _Otp001State extends State<Otp001> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
+                          navigateToNextPage(context, LoginPage(status: widget.status,));
+
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0, top: 3),
@@ -493,14 +495,14 @@ class _Otp001State extends State<Otp001> {
                   ),
                 ),
                 SizedBox(
-                  height: 35,
+                  height: 30,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Row(
                     children: [
                       SizedBox(
-                        width: 220,
+                        width: 250,
                         child: Text(
                           _showResendButton
                               ? tvDidntRcvCodeStatus
@@ -511,21 +513,24 @@ class _Otp001State extends State<Otp001> {
                             fontSize: 16,
                             fontFamily: 'Archivo-Regular',
                             fontWeight: FontWeight.w400,
-                            height: 0.09,
+                            height: 1.09,
                           ),
                         ),
                       ),
                       GestureDetector(
                         onTap: _showResendButton ? resendCode : null,
-                        child: Text(
-                          _showResendButton ? 'Resend' : '',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontSize: 16,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w500,
-                            height: 1.09,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            _showResendButton ? 'Resend' : '',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w500,
+                              height: 1.09,
+                            ),
                           ),
                         ),
                       ),
@@ -549,13 +554,22 @@ class _Otp001State extends State<Otp001> {
                   height: 80,
                 ),
                 GestureDetector(
-                  onTap: _controller4.text.isNotEmpty
-                      ? () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Registration()),
-                    );
+                  onTap:  _controller4.text.isNotEmpty
+                      ? () async{
+                    //
+                    FocusManager.instance.primaryFocus!.unfocus();
+
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                   prefs.setBool('isLoggedIn', true);
+
+                    _navigateToDashboard(context);                    // navigateToNextPage(context,LoginPage(status: 'profile',));
+                    if( widget.status=='onboarding')
+
+                    _navigateToRegistration(context);
+                    else
+                      _navigateToDashboard(context);                    // navigateToNextPage(context,LoginPage(status: 'profile',));
+
+
                   }
                       : null,
                   child: Padding(
@@ -573,17 +587,20 @@ class _Otp001State extends State<Otp001> {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       child: Center(
-                        child: Text(
-                          'Verify',
-                          style: TextStyle(
-                            color: _controller4.text.isNotEmpty
-                                ? Colors.white
-                                : Color(0xFF334155),
-                            // color: Color(0xFF94A3B8),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w500,
-                            height: 0.11,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: Text(
+                            'Verify',
+                            style: TextStyle(
+                              color: _controller4.text.isNotEmpty
+                                  ? Colors.white
+                                  : Color(0xFF334155),
+                              // color: Color(0xFF94A3B8),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w500,
+                              height: 0.11,
+                            ),
                           ),
                         ),
                       ),
@@ -708,4 +725,22 @@ class _Otp001State extends State<Otp001> {
       ),
     );
   }
+
+  void _navigateToDashboard(BuildContext context) async {
+    // Unfocus the text field
+    // FocusManager.instance.primaryFocus!.unfocus();
+    FocusScope.of(context).unfocus();
+    navigateToNextPage(context,DashBoard());
+
+
+  }
+  void _navigateToRegistration(BuildContext context) async {
+    // Unfocus the text field
+    // FocusManager.instance.primaryFocus!.unfocus();
+    FocusScope.of(context).unfocus();
+    navigateToNextPage(context,Registration());
+
+
+  }
+
 }

@@ -3,6 +3,8 @@ import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price1.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class Subscription extends StatefulWidget {
   const Subscription({super.key});
 
@@ -21,46 +23,15 @@ class _SubscriptionState extends State<Subscription> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      )
 
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.6),
-                    Text(
-                      'Subscription',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title:  'Abonnement',
+              onBackTap: () {
+                Navigator.pop(context);
+                // navigateToNextPage(context, DashBoard(number: 3,));
+
+              },
+              iconSpacing:3.6,
             ),
 
             Expanded(
@@ -71,7 +42,7 @@ class _SubscriptionState extends State<Subscription> {
                     SizedBox(height: 40),
                     Center(
                       child: Text(
-                        'Select your plan',
+                        'Sélectionnez votre forfait',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF64748B),
@@ -99,13 +70,13 @@ class _SubscriptionState extends State<Subscription> {
                           }
                           else
                           {
-                            navigateToNextPage(context,SubscriptionPriceSelectionPage1());
+                            navigateToNextPage(context,VerticalProgressBar());
 
                           }
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 481,
+                          height: 500,
                           clipBehavior: Clip.antiAlias,
                           decoration: ShapeDecoration(
                             color: Colors.white,
@@ -127,7 +98,7 @@ class _SubscriptionState extends State<Subscription> {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(right: 8.0),
+                                          padding: const EdgeInsets.only(right: 8.0,bottom: 20),
                                           child: Image.asset(
                                             "assets/subscription/icon_premium.png",
                                             scale: 2,
@@ -136,7 +107,7 @@ class _SubscriptionState extends State<Subscription> {
                                         SizedBox(
                                           width: 218,
                                           child: Text(
-                                            'Premium',
+                                            'Prime',
                                             style: TextStyle(
                                               color: Color(0xFF334155),
                                               fontSize: 24,
@@ -203,9 +174,9 @@ class _SubscriptionState extends State<Subscription> {
                                 alignment: Alignment.topRight,
 
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.only(top: 25.0,right: 5),
                                   child: Text(
-                                    '20% off',
+                                    'Réduction de 20',
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       color: Color(0xFFF9FAFB),
@@ -271,14 +242,17 @@ class _SubscriptionState extends State<Subscription> {
                                         ),
                                         SizedBox(
                                           width: 218,
-                                          child: Text(
-                                            'Basic',
-                                            style: TextStyle(
-                                              color: Color(0xFF334155),
-                                              fontSize: 24,
-                                              fontFamily: 'Archivo-SemiBold',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.06,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(top: 15.0),
+                                            child: Text(
+                                              'Basic',
+                                              style: TextStyle(
+                                                color: Color(0xFF334155),
+                                                fontSize: 24,
+                                                fontFamily: 'Archivo-SemiBold',
+                                                fontWeight: FontWeight.w600,
+                                                height: 0.06,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -288,7 +262,7 @@ class _SubscriptionState extends State<Subscription> {
                                     SizedBox(
                                       width: 280,
                                       child: Text(
-                                        'CHF 990 ou CHF 89/mois',
+                                        'CHF 890 ou CHF 79/mois',
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 18,
@@ -316,12 +290,12 @@ class _SubscriptionState extends State<Subscription> {
                                     ),
                                     SizedBox(height: 15),
                                     _buildSubscriptionDetailsText(
-                                        'Accès aux Cours Collectifs & Circuits Trainings'),
+                                        'Fitness réservé aux femmes'),
                                     _buildSubscriptionDetailsText(
-                                        'Accès Preminum sur notre app (vidéo d’entrainement, conseils, etc)'),
+                                        'Espaces cardio, renforcement musculaire et poids libres'),
                                     _buildSubscriptionDetailsText(
-                                        'Accès gratuit à nos Events “Girls Only”'),
-                                    _buildSubscriptionDetailsText('Shaker & sac offerts '),
+                                        'Accès 24/7'),
+                                    _buildSubscriptionDetailsText('Introduction gratuite avec une coach'),
                                     SizedBox(height: 40),
 
                                     _buildButton('Acheter un abonnement')
@@ -339,9 +313,9 @@ class _SubscriptionState extends State<Subscription> {
                                 alignment: Alignment.topRight,
 
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.only(top: 25.0,right: 5),
                                   child: Text(
-                                    '10% off',
+                                    '10% de réduction',
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       color: Color(0xFFF9FAFB),
@@ -368,7 +342,7 @@ class _SubscriptionState extends State<Subscription> {
                         child: SizedBox(
                           width: 320,
                           child: Text(
-                            '*Registration Fees : CHF 59',
+                            "*Frais d'inscription : CHF 59",
                             style: TextStyle(
                               color: Color(0xFF64748B),
                               fontSize: 16,
@@ -410,14 +384,17 @@ class _SubscriptionState extends State<Subscription> {
           ),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Color(0xFFFF4242),
-              fontSize: 16,
-              fontFamily: 'Archivo-SemiBold',
-              fontWeight: FontWeight.w600,
-              height: 0.09,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Color(0xFFFF4242),
+                fontSize: 16,
+                fontFamily: 'Archivo-SemiBold',
+                fontWeight: FontWeight.w600,
+                height: 0.09,
+              ),
             ),
           ),
         ),
@@ -427,7 +404,7 @@ class _SubscriptionState extends State<Subscription> {
 
   Widget _buildSubscriptionDetailsText(String text) {
     return Padding(
-      padding: const EdgeInsets.only(top:8.0),
+      padding: const EdgeInsets.only(top:8.0,bottom: 12),
       child: Row(
         children: [
           Padding(
@@ -487,14 +464,17 @@ class _SubscriptionState extends State<Subscription> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Center(
-                child: Text(
-                  'Yearly',
-                  style: TextStyle(
-                    color: isSelectedYearly ? Colors.white : Color(0xFF475569),
-                    fontSize: 20,
-                    fontFamily: 'Archivo-Medium',
-                    fontWeight: FontWeight.w500,
-                    height: 0.07,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Annuelle',
+                    style: TextStyle(
+                      color: isSelectedYearly ? Colors.white : Color(0xFF475569),
+                      fontSize: 20,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.07,
+                    ),
                   ),
                 ),
               ),
@@ -516,14 +496,17 @@ class _SubscriptionState extends State<Subscription> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Center(
-                child: Text(
-                  'Monthly',
-                  style: TextStyle(
-                    color: isSelectedMonthly ? Colors.white : Color(0xFF475569),
-                    fontSize: 20,
-                    fontFamily: 'Archivo-Medium',
-                    fontWeight: FontWeight.w500,
-                    height: 0.07,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Mensuelle',
+                    style: TextStyle(
+                      color: isSelectedMonthly ? Colors.white : Color(0xFF475569),
+                      fontSize: 20,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.07,
+                    ),
                   ),
                 ),
               ),

@@ -5,6 +5,8 @@ import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class SubscriptionPriceSelectionPage extends StatefulWidget {
   const SubscriptionPriceSelectionPage({Key? key}) : super(key: key);
 
@@ -30,47 +32,15 @@ class _SubscriptionPriceSelectionPageState
             Visibility(
               child: Column(
                 children: [
-                  Container(
-                    height: 97,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(16),
-                          bottomRight: Radius.circular(16)),
-                      border: Border.all(color: Colors.white.withOpacity(0.11)),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 35.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Image.asset(
-                              "assets/cart/icon_left_arrow.png",
-                              scale: 2,
-                            ),
-                          ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width / 3.5),
-                          Text(
-                            'Subscription',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF1E293B),
-                              fontSize: 18,
-                              fontFamily: 'Kanit-Medium',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Spacer(),
-                        ],
-                      ),
-                    ),
+
+                  CustomAppBar(
+                    title:  'Abonnement',
+                    onBackTap: () {
+                      Navigator.pop(context);
+                      // navigateToNextPage(context, DashBoard(number: 3,));
+
+                    },
+                    iconSpacing:3.6,
                   ),
                   Expanded(
                     child: Padding(
@@ -78,6 +48,45 @@ class _SubscriptionPriceSelectionPageState
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0,bottom: 20),
+                                child: Image.asset(
+                                  "assets/subscription/icon_premium.png",
+                                  scale: 2,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 283,
+                                child: Text(
+                                  'Plan premium annuel',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 24,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.06,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 20,),
+                          SizedBox(
+                            width: 320,
+                            child: Text(
+                              'Sélectionnez le prix',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Kanit-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.06,
+                              ),
+                            ),
+                          ),
                           SizedBox(height: 10),
                           buildLevelContainer(0, 'Yearly Payment', 'CHF 990 '),
                           buildLevelContainer(1, 'Per Month', 'CHF 89 '),
@@ -86,11 +95,11 @@ class _SubscriptionPriceSelectionPageState
                             Column(
                               children: [
                                 _buildTextWidget(
-                                    'Commitment Period: 12 months, with no option for early termination.'),
+                                    "Période d'engagement : 12 mois, sans possibilité de résiliation anticipée."),
                                 _buildTextWidget(
-                                    'Payment Options: Monthly installments, subject to a registration fee of CHF 59. Or payment in full at the beginning of the period.'),
+                                    "Options de paiement : Versements mensuels, sous réserve de frais d'inscription de CHF 59. Ou paiement intégral en début de période. "),
                                 _buildTextWidget(
-                                    'Late Payment Consequence: Access will be temporarily restricted if payments are not made on time.'),
+                                    "Conséquence de retard de paiement : l'accès sera temporairement restreint si les paiements ne sont pas effectués à temps."),
                               ],
                             ),
                           Spacer(),
@@ -114,22 +123,24 @@ class _SubscriptionPriceSelectionPageState
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 52,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 112, vertical: 17),
+
                               decoration: ShapeDecoration(
                                 color: Color(0xFFFF4343),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
                               ),
                               child: Center(
-                                child: Text(
-                                  'Continue',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.09,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text(
+                                    'Continue',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.09,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -347,34 +358,37 @@ class _SubscriptionPriceSelectionPageState
   }
 
   Widget _buildTextWidget(String text) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 5,
-            height: 5,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: 5,
+              height: 5,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-        SizedBox(
-          width: 320,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 14,
-              fontFamily: 'Archivo-Regular',
-              fontWeight: FontWeight.w400,
+          SizedBox(
+            width: 320,
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 14,
+                fontFamily: 'Archivo-Regular',
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

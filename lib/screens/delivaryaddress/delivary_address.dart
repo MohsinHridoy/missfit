@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
 import 'package:miss_fit/screens/reviewsummery/review_summery_screen.dart';
 import 'package:miss_fit/screens/reviewsummery/review_summery_subscription_screen.dart';
@@ -60,9 +61,9 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         scale: 2,
                       ),
                     ),
-                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.7):SizedBox(width: MediaQuery.of(context).size.width / 4.2),
+                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.1):SizedBox(width: MediaQuery.of(context).size.width / 4.2),
                     Text(
-                      widget.status=='subscription' ?'Checkout':'Delivary Address',
+                      widget.status=='subscription' ?'Vérifier':'Delivary Address',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -82,7 +83,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     widget.status!='subscription' ?Padding(
                       padding: const EdgeInsets.all(20.0),
@@ -105,7 +106,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        'Personal Information',
+                        'Informations personnelles',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 18,
@@ -118,10 +119,10 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     SizedBox(
                       height: 15,
                     ),
-                    _textFormField(_firstNameController, 'First Name'),
-                    _textFormField(_lastNameController, 'Last Name'),
+                    _textFormField(_firstNameController, 'Prénom'),
+                    _textFormField(_lastNameController, 'Nom de famille'),
                     _textFormField(_emailController, 'Email'),
-                    _textFormField(_phoneNumberController, 'Phone Number'),
+                    _textFormField(_phoneNumberController, 'Numéro de téléphone''Phone Number'),
                     SizedBox(
                       height: 30,
                     ),
@@ -129,7 +130,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                       padding:
                       const EdgeInsets.only(left: 20.0, right: 20, top: 20),
                       child: Text(
-                        'Address',
+                        'Adresse',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 18,
@@ -139,62 +140,66 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         ),
                       ),
                     ),
-                    _textFormField(_regionController, 'Region'),
-                    _textFormField(_postCodeController, 'Postal Code'),
-                    _textFormField(_streetAddressController, 'Street Address'),
-                    _textFormField(_cityController, 'City'),
-                    _textFormField(_addressController, 'Address'),
+                    _textFormField(_regionController, 'Région'),
+                    _textFormField(_postCodeController, 'Code Postal'),
+                    _textFormField(_streetAddressController, 'Adresse de la rue'),
+                    _textFormField(_cityController, 'Ville'),
+                    _textFormField(_addressController, 'Adresse'),
                     SizedBox(
                       height: 40,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if (widget.status == 'subscription') {
-
-                          navigateToNextPage(context, ReviewSummary1());
-
-                        }
-                        else {
-                          _isAllFieldsFilled ? _saveData() : null;
-
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 44,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 17),
-                          decoration: ShapeDecoration(
-                            color: _isAllFieldsFilled
-                                ? Colors.red
-                                : Color(0xFFD1D5DB),
-                            // Dynamic color based on validation
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Save & Continue',
-                              style: TextStyle(
-                                color: _isAllFieldsFilled
-                                    ? Colors.white
-                                    : Color(0xFF334155),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.10,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
             ),
+            GestureDetector(
+              onTap: () {
+                if (widget.status == 'subscription') {
+
+                  navigateToNextPage(context, AddNewCard(status: 'subscription',));
+                  // navigateToNextPage(context, ReviewSummary1());
+
+                }
+                else {
+                  _isAllFieldsFilled ? _saveData() : null;
+
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+
+                  decoration: ShapeDecoration(
+                    color: _isAllFieldsFilled
+                        ? Colors.red
+                        : Color(0xFFD1D5DB),
+                    // Dynamic color based on validation
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text(
+                        'Save & Continue',
+                        style: TextStyle(
+                          color: _isAllFieldsFilled
+                              ? Colors.white
+                              : Color(0xFF334155),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.10,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+
           ],
         ),
       ),
@@ -207,6 +212,11 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
           _lastNameController.text.isNotEmpty &&
           _emailController.text.isNotEmpty &&
           _phoneNumberController.text.isNotEmpty &&
+          _regionController.text.isNotEmpty &&
+          _postCodeController.text.isNotEmpty &&
+          _streetAddressController.text.isNotEmpty &&
+          _cityController.text.isNotEmpty &&
+          _addressController.text.isNotEmpty &&
           // Add other controllers if you have more fields
           true; // This true is just to avoid syntax error, you can remove it when you add your last controller check
     });
@@ -215,10 +225,10 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
   Future<void> _saveData() async {
 
     if(widget.status=='profile')
-      {
-        Navigator.pop(context);
+    {
+      Navigator.pop(context);
 
-      }
+    }
     else if (_isAllFieldsFilled) {
       final prefs = await SharedPreferences.getInstance();
       final data = {

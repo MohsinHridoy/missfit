@@ -14,7 +14,7 @@ class ReviewItemProfile {
     required this.name,
     required this.stars,
     this.imageUrls, // Initialize the list of image URLs
-    this.isReviewed
+    this.isReviewed,
   });
 }
 
@@ -25,8 +25,9 @@ class ReviewListProfile extends StatefulWidget {
 
 class _ReviewListProfileState extends State<ReviewListProfile> {
   int selectedIndex = 0;
-  List<ReviewItemProfile> filteredReviews = []; // Items to be displayed based on the selected category
-  bool isReviewedSelected=false;
+  List<ReviewItemProfile> filteredReviews =
+  []; // Items to be displayed based on the selected category
+  bool isReviewedSelected = true; // Set to true initially
 
   final List<ReviewItemProfile> reviews = [
     ReviewItemProfile(
@@ -34,60 +35,46 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
       details: '2 stars - March 2023',
       name: 'Jane Smith',
       stars: 2,
-      isReviewed:true,
-
+      isReviewed: true,
+      imageUrls: [
+        'assets/product_details/img_dumble.png',
+        'assets/product_details/img_dumble.png'
+      ],
     ),
     ReviewItemProfile(
-        reviewText: 'Great product, highly recommended!',
-        details: '5 stars - January 2023',
-        name: 'John Doe',
-        stars: 3,
-        isReviewed:false,
-
-        imageUrls: [
-          'assets/product_details/img_dumble.png',
-          'assets/product_details/img_dumble.png'
-        ] // Example image URLs
+      reviewText: 'Great product, highly recommended!',
+      details: '5 stars - January 2023',
+      name: 'John Doe',
+      stars: 3,
+      isReviewed: false,
+      imageUrls: [
+        'assets/product_details/img_dumble.png',
+        'assets/product_details/img_dumble.png'
+      ], // Example image URLs
     ),
-
     ReviewItemProfile(
       reviewText: 'Not satisfied with the quality.',
       details: '2 stars - March 2023',
       name: 'Jane Smith',
       stars: 2,
-      isReviewed:false,
-
+      isReviewed: false,
     ),
-
     // Add more review items as needed...
   ];
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   filteredReviews = isReviewedSelected
-  //       ? reviews.where((review) => review.isReviewed == true).toList()
-  //       : reviews.where((review) => review.isReviewed == false).toList();
-  // }
 
   @override
   void initState() {
     super.initState();
-    // Filter reviews initially
-    setState(() {
-      filteredReviews = getFilteredReviews();
-    });
+    // Initialize filteredReviews to show only reviewed items initially
+    filteredReviews = getFilteredReviews();
   }
 
   @override
   Widget build(BuildContext context) {
-    filteredReviews = getFilteredReviews();
-
     return MaterialApp(
       home: Scaffold(
-
         body: Container(
           color: Color(0xFFF6F6F6),
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -128,12 +115,13 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                         ),
                       ),
                       Spacer(),
-
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
                 child: SizedBox(
@@ -142,7 +130,8 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 2, // Updated itemCount to match the options
                     itemBuilder: (context, index) {
-                      final labelText = index == 0 ? 'Reviewed' : 'Not Reviewed';
+                      final labelText =
+                      index == 0 ? 'Reviewed' : 'Not Reviewed';
                       return GestureDetector(
                         onTap: () {
                           onItemSelected(index);
@@ -167,9 +156,9 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                             child: Center(
                               child: Row(
                                 children: [
-                                  SizedBox(width: 15,),
-
-                                  SizedBox(width: index == 0 ? 0 : 5,),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
                                   Text(
                                     labelText,
                                     style: TextStyle(
@@ -182,8 +171,9 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                       height: 0.10,
                                     ),
                                   ),
-                                  SizedBox(width: 15,),
-
+                                  SizedBox(
+                                    width: 15,
+                                  ),
                                 ],
                               ),
                             ),
@@ -194,17 +184,18 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                   ),
                 ),
               ),
-
-
               Expanded(
-                child:ListView.builder(
+                child: ListView.builder(
                   itemCount: filteredReviews.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
+                      padding: const EdgeInsets.only(
+                          left: 20.0, right: 20, bottom: 15),
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: Colors.grey.withOpacity(0.5))),
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: Colors.grey.withOpacity(0.5))),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,26 +210,23 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                     height: 64,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: Colors.grey.withOpacity(0.3)
-
-                                    ),
-                                    child: Center(child: Image.asset("assets/product_details/img_dumble.png",scale: 2,)),
-                                    // decoration: ShapeDecoration(
-                                    //   image: DecorationImage(
-                                    //     image: AssetImage("assets/review/icon_girl.png"),
-                                    //     fit: BoxFit.fill,
-                                    //   ),
-                                    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                                    // ),
+                                        color: Colors.grey.withOpacity(0.3)),
+                                    child: Center(
+                                        child: Image.asset(
+                                          "assets/product_details/img_dumble.png",
+                                          scale: 2,
+                                        )),
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 8.0,left: 10),
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, left: 10),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Rhaenyra',
+                                            filteredReviews[index].name,
                                             style: TextStyle(
                                               color: Color(0xFF334155),
                                               fontSize: 16,
@@ -247,8 +235,9 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                               height: 0.09,
                                             ),
                                           ),
-                                          SizedBox(height: 25,),
-
+                                          SizedBox(
+                                            height: 25,
+                                          ),
                                           SizedBox(
                                             width: 128,
                                             child: Text(
@@ -262,10 +251,12 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                               ),
                                             ),
                                           ),
-                                          SizedBox(height: 20,),
-
+                                          SizedBox(
+                                            height: 20,
+                                          ),
                                           Visibility(
-                                            visible: filteredReviews[index].isReviewed!,
+                                            visible: filteredReviews[index]
+                                                .isReviewed!,
                                             child: SizedBox(
                                               width: 114,
                                               child: Text(
@@ -280,18 +271,18 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                               ),
                                             ),
                                           ),
-
                                         ],
                                       ),
                                     ),
                                   ),
                                   Visibility(
-                                    visible: filteredReviews[index].isReviewed!,
-
+                                    visible:
+                                    !filteredReviews[index].isReviewed!,
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 8.0,bottom: 15.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, bottom: 15.0),
                                           child: SizedBox(
                                             width: 79,
                                             child: Text(
@@ -312,8 +303,11 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                           height: 40,
                                           decoration: ShapeDecoration(
                                             shape: RoundedRectangleBorder(
-                                              side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                                              borderRadius: BorderRadius.circular(8),
+                                              side: BorderSide(
+                                                  width: 1,
+                                                  color: Color(0xFFFF4343)),
+                                              borderRadius:
+                                              BorderRadius.circular(8),
                                             ),
                                           ),
                                           child: Center(
@@ -331,22 +325,31 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                         ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
-                            SizedBox(height: 15,),
-                            if (index >= 0) ...[
+                            SizedBox(
+                              height: 15,
+                            ),
+                            if (filteredReviews[index].isReviewed == true) ...[
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
                                       ...(filteredReviews[index].stars != null
-                                          ? List.generate(filteredReviews[index].stars!, (i) => Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 0.5),
-                                        child: Image.asset("assets/review/icon_star.png", scale: 2.2),
-                                      ))
+                                          ? List.generate(
+                                          filteredReviews[index].stars!,
+                                              (i) => Padding(
+                                            padding:
+                                            EdgeInsets.symmetric(
+                                                horizontal: 0.5),
+                                            child: Image.asset(
+                                                "assets/review/icon_star.png",
+                                                scale: 2.2),
+                                          ))
                                           : []),
                                     ],
                                   ),
@@ -360,85 +363,81 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                       fontWeight: FontWeight.w400,
                                       height: 0.12,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
+                            ] else ...[
+                              SizedBox(height: 20),
+                              // Placeholder space if not reviewed
                             ],
-                            SizedBox(height: 15,),
-
                             SizedBox(
+                              height: 15,
+                            ),
+                            filteredReviews[index].isReviewed == true
+                                ? SizedBox(
                               height: 66,
                               child: Text(
-                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui,',
+                                filteredReviews[index].reviewText,
                                 style: TextStyle(
                                   color: Color(0xFF475569),
                                   fontSize: 14,
                                   fontFamily: 'Archivo-Regular',
                                   fontWeight: FontWeight.w400,
-
                                 ),
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
+                            )
+                                : SizedBox(),
+                            SizedBox(
+                              height: 5,
                             ),
-                            SizedBox(height: 5,),
 
-                            // Text(
-                            //   filteredReviews[index].reviewText,
-                            //   style: TextStyle(fontSize: 16.0),
-                            // ),
-                            // SizedBox(height: 5.0),
-                            // Text(
-                            //   filteredReviews[index].details,
-                            //   style: TextStyle(color: Colors.grey),
-                            // ),
-                            // SizedBox(height: 5.0),
-                            // Text(
-                            //   'By: ${filteredReviews[index].name}',
-                            //   style: TextStyle(fontWeight: FontWeight.bold),
-                            // ),
-                            if (filteredReviews[index].imageUrls != null) // Check if image URLs exist
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: filteredReviews[index].imageUrls?.map((imageUrl) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Image.asset(imageUrl, width: 50, height: 50),
-                                    );
-                                  }).toList() ??
-                                      [], // Use an empty list if imageUrls is null
+                            if (filteredReviews[index].isReviewed == true) ...[
+                              if (filteredReviews[index].imageUrls !=
+                                  null) // Check if image URLs exist
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: filteredReviews[index]
+                                        .imageUrls
+                                        ?.map((imageUrl) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(imageUrl,
+                                            width: 50, height: 50),
+                                      );
+                                    }).toList() ??
+                                        [],
+                                  ),
                                 ),
-                              ),
+                            ],
                           ],
                         ),
                       ),
                     );
                   },
-                )),
-
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
   void onItemSelected(int index) {
     setState(() {
       selectedIndex = index;
       isReviewedSelected = index == 0;
+      filteredReviews =
+          getFilteredReviews(); // Update filtered reviews based on selection
     });
   }
+
   List<ReviewItemProfile> getFilteredReviews() {
     return isReviewedSelected
         ? reviews.where((review) => review.isReviewed == true).toList()
         : reviews.where((review) => review.isReviewed == false).toList();
   }
-
 }
-
-
-
-
-
-

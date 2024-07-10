@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/challenge_details/challenge_details.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 
 import '../../common_utils.dart';
 
@@ -122,7 +123,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context);
+                      navigateToNextPage(context,DashBoard(number: 0,));
                     },
                     child: Image.asset(
                       "assets/cart/icon_left_arrow.png",

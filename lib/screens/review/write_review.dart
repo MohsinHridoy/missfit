@@ -14,9 +14,7 @@ class ProductReview extends StatefulWidget {
 }
 
 class _ProductReviewState extends State<ProductReview> {
-  TextEditingController textEditingController = TextEditingController(
-      text:
-      'Describe your experience (optional)');
+  TextEditingController textEditingController = TextEditingController();
   List<File> _images = [];
 
   double _rating = 3.0;
@@ -66,49 +64,57 @@ class _ProductReviewState extends State<ProductReview> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Color(0xFFF6F6F6),
 
-        child: Column(
-          children: [
-            _buildAppBar(context),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-              
-                  children: [
-                    SizedBox(height: 10,),
-                    _buildProductInfo(),
-                    SizedBox(height: 50,),
-              
-                    _buildRatingQuestion('What rating would you give this item?'),
-                    SizedBox(height: 30,),
-              
-                    _buildRatingBar(),
-                    SizedBox(height: 40,),
-              
-                    _buildRatingQuestion('Write Review'),
-                    SizedBox(height: 30,),
-              
-                    _buildReviewTextField(),
-                    SizedBox(height: 30),
-              
-                    _buildImageUploader(),
-              
-                  ],
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).requestFocus(FocusNode());
+
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          color: Color(0xFFF6F6F6),
+
+          child: Column(
+            children: [
+              _buildAppBar(context),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                    children: [
+                      SizedBox(height: 10,),
+                      _buildProductInfo(),
+                      SizedBox(height: 50,),
+
+                      _buildRatingQuestion('What rating would you give this item?'),
+                      SizedBox(height: 30,),
+
+                      _buildRatingBar(),
+                      SizedBox(height: 40,),
+
+                      _buildRatingQuestion('Write Review'),
+                      SizedBox(height: 30,),
+
+                      _buildReviewTextField(),
+                      SizedBox(height: 30),
+
+                      _buildImageUploader(),
+
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: _buildSubmitButton(),
-            )
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: _buildSubmitButton(),
+              )
 
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -347,6 +353,7 @@ class _ProductReviewState extends State<ProductReview> {
           child: TextField(
             controller: textEditingController,
             maxLines: null,
+
             style: TextStyle(
               color: Color(0xFF334155),
               fontSize: 16,
@@ -354,6 +361,13 @@ class _ProductReviewState extends State<ProductReview> {
               fontWeight: FontWeight.w500,
             ),
             decoration: InputDecoration(
+              hintText: 'Décrivez votre expérience (facultatif)', // Your hint text here
+              hintStyle: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 16,
+                fontFamily: 'Archivo-Medium',
+                fontWeight: FontWeight.w500,
+              ),
               border: InputBorder.none,
             ),
           ),
@@ -363,39 +377,45 @@ class _ProductReviewState extends State<ProductReview> {
   }
 
   Widget _buildImageUploader() {
-    return DottedBorder(
-      color: Color(0xFFFF4343),
-      strokeWidth: 2,
-      borderType: BorderType.RRect,
-      child: GestureDetector(
-        onTap: _images.length >= 5
-            ? null
-            : () {
-          _pickImage();
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 40,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/review/icon_camera.png",
-                height: 25,
-                width: 25,
-              ),
-              SizedBox(width: 10),
-              Text(
-                'Upload Photo (${_images.length}/5)',
-                style: TextStyle(
-                  color: Color(0xFFFF4343),
-                  fontSize: 14,
-                  fontFamily: 'Archivo-SemiBold',
-                  fontWeight: FontWeight.w600,
-                  height: 0.10,
+    return Padding(
+      padding: const EdgeInsets.only(left: 2.0,right: 2.0),
+      child: DottedBorder(
+        color: Color(0xFFFF4343),
+        strokeWidth: 2,
+        borderType: BorderType.RRect,
+        child: GestureDetector(
+          onTap: _images.length >= 5
+              ? null
+              : () {
+            _pickImage();
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 40,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/review/icon_camera.png",
+                  height: 25,
+                  width: 25,
                 ),
-              ),
-            ],
+                SizedBox(width: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Upload Photo (${_images.length}/5)',
+                    style: TextStyle(
+                      color: Color(0xFFFF4343),
+                      fontSize: 14,
+                      fontFamily: 'Archivo-SemiBold',
+                      fontWeight: FontWeight.w600,
+                      height: 0.10,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -410,20 +430,22 @@ class _ProductReviewState extends State<ProductReview> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 52,
-        padding: const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
         decoration: ShapeDecoration(
           color: Color(0xFFFF4343),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: Center(
-          child: Text(
-            'Submit',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: 'Archivo-Semibold',
-              fontWeight: FontWeight.w600,
-              height: 0.09,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 6.0),
+            child: Text(
+              'Submit',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'Archivo-Semibold',
+                fontWeight: FontWeight.w600,
+                height: 0.09,
+              ),
             ),
           ),
         ),

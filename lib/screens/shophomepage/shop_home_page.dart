@@ -88,7 +88,6 @@ class _ShopPageState extends State<ShopPage> {
   List<CustomItem> filteredItems =
       []; // Items to be displayed based on the selected category
   int selectedIndex = 0; // Add this line
-
   @override
   void initState() {
     // TODO: implement initState
@@ -127,13 +126,13 @@ class _ShopPageState extends State<ShopPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          title_textView_Kt_SBld('New Arrival'),
+                          title_textView_Kt_SBld('Nouvelle arrivee'),
                           InkWell(
                             onTap: () {
                               print("see all");
                               navigateToNextPage(context,AllItemsShopPage(status: 'newarrival',));
                             },
-                            child:textVwSeeAll('See All'),
+                            child:textVwSeeAll('Voir tout'),
                           ),
                         ],
                       ),
@@ -330,13 +329,13 @@ class _ShopPageState extends State<ShopPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
 
-                          title_textView_Kt_SBld('All Products'),
+                          title_textView_Kt_SBld('Tous les produits'),
                           InkWell(
                             onTap: () {
                               print("see all");
                               navigateToNextPage(context,AllItemsShopPage(status: 'allproducts',));
                             },
-                            child:textVwSeeAll('See All'),
+                            child:textVwSeeAll('Voir tout'),
                           ),
                         ],
                       ),
@@ -380,7 +379,10 @@ class _ShopPageState extends State<ShopPage> {
                                   height: 36,
                                   alignment: Alignment.center,
                                   decoration: ShapeDecoration(
+                                    color: index == selectedIndex
+                                        ? Colors.white: Colors.transparent,
                                     shape: RoundedRectangleBorder(
+
                                       side: BorderSide(
                                         width: 1,
                                         strokeAlign:
@@ -443,8 +445,8 @@ class _ShopPageState extends State<ShopPage> {
                               // Number of items per row
                               mainAxisSpacing: 20,
                               // Adjust the spacing between items vertically
-                              crossAxisSpacing: 18,
-                              childAspectRatio: 0.75,
+                              crossAxisSpacing: 12,
+                              childAspectRatio: 0.73,
                               // Adjust the aspect ratio of items
                               children: List.generate(
                                 filteredItems.length,
@@ -596,14 +598,15 @@ class _ShopPageState extends State<ShopPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              height: 80,
               child: Text(
-                'Let’s get your\nfavourite products',
+                'Prenons votre \nproduits préférés',
+                textAlign: TextAlign.start, // Align text to the left
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 20,
                   fontFamily: 'Kanit-Medium',
                   fontWeight: FontWeight.w600,
+
                 ),
               ),
             ),

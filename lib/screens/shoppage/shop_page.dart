@@ -164,14 +164,15 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
               },
               iconSpacing: 3.6, // Custom iconSpacing value
             ),
-            SizedBox(
-              height: 20,
-            ),
+
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     // _buildSearchBar(),
+                    SizedBox(
+                      height: 20,
+                    ),
                     CustomSearchBar(
                       controller: _controller,
                       focusNode: _focusNode,
@@ -183,11 +184,14 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                         });
                       },
                       page: FilterShopScreen(),
+                      onTapFilter: () {
+                        navigateToNextPage(context,FilterShopScreen());
+                      },
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    Padding(
+                    widget.status == 'filter'? Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -200,6 +204,9 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                               .toList(),
                         ),
                       ),
+                    ):SizedBox(),
+                    SizedBox(
+                      height: 10,
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -216,12 +223,12 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 // Number of items per row
-                                crossAxisSpacing: 20,
+                                crossAxisSpacing: 12,
                                 // Adjust the spacing between items horizontally
                                 mainAxisSpacing: 20,
                                 // Adjust the spacing between items vertically
                                 childAspectRatio:
-                                    0.78, // Adjust the aspect ratio of items
+                                    0.73, // Adjust the aspect ratio of items
                               ),
                               itemCount: filteredItems.length,
                               // Replace 6 with your actual item count

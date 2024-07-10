@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
 
 class WorkOutLevelSelectionPage extends StatefulWidget {
   final VoidCallback onNextPressed;
@@ -55,23 +56,24 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
+
               children: [
                 SizedBox(height: 5),
-                title_textView('What is your advacement \nlevel?'),
+                title_textView("Quel est votre niveau \nd 'avancement ?"),
                 SizedBox(height: 20),
                 // buildLevelContainer(0, 'Light Activity', 'About 10-20 minutes'),
                 // buildLevelContainer(1, 'Moderate Activity', 'About 30-40 minutes'),
                 // buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
-                buildLevelContainer(0, 'Beginner', 'I am new to the gym'),
+                buildLevelContainer(0, 'Débutante', 'Je suis nouveau à la salle de sport'),
                 buildLevelContainer(
-                    1, 'Intermediate', 'I know my way around a gym'),
-                buildLevelContainer(2, 'Advanced', 'I am an expert in the gym'),
+                    1, 'Intermédiaire', 'Je connais mon chemin dans une salle de sport'),
+                buildLevelContainer(2, 'Avance', 'Je suis un expert en salle de sport'),
                 Spacer(),
                 Visibility(
                   visible: widget.status != 'profile',
 
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
+                    padding: const EdgeInsets.only(left: 5.0,right: 5,bottom: 15),
                     child: GestureDetector(
                         onTap: () async{
                           setState(() {
@@ -85,39 +87,18 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
                     ),
                   ),
                 ),
+
                 Visibility(
-                  visible: widget.status == 'profile',
+                  visible: widget.status == "profile",
 
-                  child: GestureDetector(
-                    onTap: (){
-                      widget.onNextPressed();
+                  child:  customButtonRed(context, 'Save Change', onPressed: () {
+                    widget.onNextPressed();
 
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 52,
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFF4343),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Save Change',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.09,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+                  }),
+
+
+
+                ),
               ],
             ),
           ],

@@ -3,6 +3,8 @@ import 'package:miss_fit/screens/activityselectiondashboard/activityselectiondas
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/heightselectiondashboard/height_selection_dashboard.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 
 
 
@@ -22,47 +24,15 @@ class _PersonalInfoState extends State<PersonalInfo> {
 
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.2),
-                    Text(
-                      'Personal Info',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
-            ),
 
+            CustomAppBar(
+              title:  'Personal Info',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.8,
+            ),
+             SizedBox(height: 15,),
             _buildDelivaryStatusTextItem('Basic Information','Full Name : Helen Hanf','Age : 26','',BasicInfo(onNextPressed: () {  },status: 'profile',),),
             _buildDelivaryStatusTextItem('Weight & Height','Advacement level : Beginner','Gym goal : Building strength, Body shape improvement, Boosting libido','Workout Duration : Light Activity (About 10-20 minutes)',ActivitySelectionDashBoard()),
             _buildDelivaryStatusTextItem('Weight & Height','Weight : 56 kg','Height : 5 ft 6 inch','',HeightSelectionDashBoard()),
@@ -75,7 +45,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
 
   Widget _buildDelivaryStatusTextItem(String title,String text1,String text2,String? text3,Widget page) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(left: 20.0,right: 20,top: 10),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(5),

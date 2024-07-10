@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../common_utils.dart';
+import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart.dart';
 import '../orderstatus/order_status_screen.dart';
 
@@ -31,45 +35,13 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width /4),
-                    Text(
-                      'Order Successful',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+
+            CustomAppBar(
+              title:  'Order Successful',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 4,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -88,7 +60,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 15.0, right: 10),
+                                  const EdgeInsets.only(left: 15.0, right: 10,bottom: 10),
                               child: Image.asset(
                                 "assets/order/icon_congrates.png",
                                 height: 50,
@@ -153,16 +125,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40),
-                      child: Text(
-                        'Delivery Location',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child: title_textView_Kt_SBld('Delivery Location')
                     ),
                     SizedBox(
                       height: 15,
@@ -171,48 +134,21 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child: Text(
-                        'Delivery Time',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child: title_textView_Kt_SBld('Delivery Time')
                     ),
 
                     _buildEsrtimatedDateStatus(),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 30,bottom: 20),
-                      child: Text(
-                        'Payment Method',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child: title_textView_Kt_SBld('Payment Method')
                     ),
 
                     _buildPaymentMethodStatus(),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child: Text(
-                        'Product Details',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child: title_textView_Kt_SBld( 'Product Details')
                     ),
 
                     SizedBox(
@@ -222,60 +158,26 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                     _buildCartItemsList(),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child: Text(
-                        'Order Summery',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                      child:  title_textView_Kt_SBld('Order Summery')
+
+
                     ),
 
                     _buildOrderSummeryItem(),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => OrderStatus( status: OrderStatusEnum.Packed,)),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 44,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 17),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side:
-                                  BorderSide(width: 1, color: Color(0xFFFF4343)),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
 
-                          child: Center(
-                            child: Text(
-                              'View Order Status',
-                              style: TextStyle(
-                                color: Color(0xFFFF4343),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.10,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: GestureDetector(
+                  onTap: (){
+                    navigateToNextPage(context, OrderStatus( status: OrderStatusEnum.Packed,));
+                  },
+                  child: outlineButton(context, 'View Order Status')
+              ),
+            )
           ],
         ),
       ),
@@ -466,17 +368,8 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+                          buildDivider(context)
                         ],
                       ),
                     ),

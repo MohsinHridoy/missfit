@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 
+import '../../common_utils.dart';
+import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart001.dart';
 
 class PaymentModel {
@@ -70,62 +74,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context); // This will pop the current screen off the navigation stack and return to the previous screen
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.2),
-                    Text(
-                      'Payment',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title: 'Payment',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.2,
             ),
             SizedBox(
               height: 15,
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                'Select Payment Method',
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 20,
-                  fontFamily: 'Kanit',
-                  fontWeight: FontWeight.w600,
-                  height: 0.06,
-                ),
-              ),
-            ),
+                padding: const EdgeInsets.all(20.0),
+                child: title_textView_Kt_SBld('Select Payment Method')),
             SizedBox(
               height: 10,
             ),
@@ -137,46 +98,33 @@ class _PaymentScreenState extends State<PaymentScreen> {
               padding: const EdgeInsets.only(left: 20.0, right: 20),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AddNewCard(),
-                  ));
+
+
+                  navigateToNextPage(context, AddNewCard());
                 },
-                child:  Container(
+                child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 44,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       side: BorderSide(width: 1, color: Color(0xFFFF4343)),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                  ),// Background color
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          height: 20,
-                          width: 20,
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Image.asset(
-                              "assets/cart/icon_plus.png",
-                            ),
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'Add New Card',
-                          style: TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.10,
-                          ),
+                  ), // Background color
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 6),
+                      child: Text(
+                        'Add New Card',
+                        style: TextStyle(
+                          color: Color(0xFFFF4343),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.10,
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -185,18 +133,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25.0, bottom: 10),
-              child: Text(
-                'Order Summary',
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 20,
-                  fontFamily: 'Kanit-Medium',
-                  fontWeight: FontWeight.w600,
-                  height: 0.06,
-                ),
-              ),
-            ),
+                padding: const EdgeInsets.only(left: 25.0, bottom: 10),
+                child: title_textView_Kt_SBld('Order Summary')),
             SizedBox(
               height: 15,
             ),
@@ -204,56 +142,64 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    barrierColor: Color(0xFF111827).withOpacity(0.7),
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 215, // Adjust the height as necessary
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 50),
-                            Text(
-                              'Order Confirmation',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 18,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.08,
-                              ),
+              child: customButtonRed(context, 'Proceed to Confirm', onPressed: () {
+                showModalBottomSheet(
+                  barrierColor: Color(0xFF111827).withOpacity(0.7),
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 215, // Adjust the height as necessary
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20), // Adjust the radius as needed
+                          topRight: Radius.circular(20), // Adjust the radius as needed
+                        ),
+                        // You can add other decorations like border or shadow here if needed
+                      ),
+
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 50),
+                          Text(
+                            'Order Confirmation',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 18,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.08,
                             ),
-                            SizedBox(height: 30),
-                            Text(
-                              'Do you want to confirm order?',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Medium',
-                                fontWeight: FontWeight.w500,
-                                height: 0.09,
-                              ),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            'Do you want to confirm order?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.09,
                             ),
-                            SizedBox(height: 40),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30.0,right: 30,bottom: 1),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
+                          ),
+                          SizedBox(height: 40),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30.0, right: 30, bottom: 1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
                                     onTap: () {
                                       Navigator.pop(
                                           context); // Close the modal when tapped
                                     },
                                     child: Container(
-                                      width: 150,
                                       height: 52,
-
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
@@ -262,83 +208,64 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         ),
                                       ),
                                       child: Center(
-                                        child: Text(
-                                          'No',
-                                          style: TextStyle(
-                                            color: Color(0xFFFF4343),
-                                            fontSize: 16,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.09,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text(
+                                            'No',
+                                            style: TextStyle(
+                                              color: Color(0xFFFF4343),
+                                              fontSize: 16,
+                                              fontFamily: 'Archivo-SemiBold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 0.09,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                  GestureDetector(
-                                    onTap: (){
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => CompleteOrderPage(),
-                                      ));
+                                ),
+                                SizedBox(width: 12,),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      navigateToNextPage(context,CompleteOrderPage());
                                     },
                                     child: Container(
-                                      width: 150,
                                       height: 52,
-
                                       decoration: ShapeDecoration(
                                         color: Color(0xFFFF4343),
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(8)),
                                       ),
-
                                       child: Center(
-                                        child: Text(
-                                          'Yes',
-                                          style: TextStyle(
-                                            color:  Colors.white,
-                                            fontSize: 16,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.09,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 6.0),
+                                          child: Text(
+                                            'Yes',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontFamily: 'Archivo-SemiBold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 0.09,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                )
+                              ],
                             ),
-                            SizedBox(height: 20),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 44,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 104, vertical: 17),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Proceed to Confirm',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.10,
+                          ),
+                          SizedBox(height: 20),
+                        ],
                       ),
-                    ),
-                  ),
-                ),
-              ),
+                    );
+                  },
+                );
+              }),
             )
           ],
         ),
@@ -478,7 +405,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget _buildSummeryItemText(String title, String value) {
     return Padding(
       padding:
-      const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
+          const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
       child: Column(
         children: [
           Row(
@@ -513,7 +440,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
               )
             ],
           ),
-          SizedBox(height: 25,),
+          SizedBox(
+            height: 25,
+          ),
           Container(
             width: MediaQuery.of(context).size.width,
             height: 1,
@@ -534,6 +463,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 }
+
 class DashedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

@@ -238,7 +238,13 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                     //   MaterialPageRoute(builder: (context) => DashBoard()),
                     // );
 
-                    navigateToNextPage(context,DashBoard());
+                    // navigateToNextPage(context,DashBoard());
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Downloading e-receipt...'),
+                        duration: Duration(seconds: 2), // Adjust duration as needed
+                      ),
+                    );
                   },
                   child: Container(
                     width: 370,

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/paymentmethod/payment_method.dart';
 
+import '../../widgets/custom_app_bar.dart';
+import '../addnewcard/add_new_card_screen.dart';
+import '../payment/payment_screeen.dart';
 import '../reviewsummery/review_summery_screen.dart';
 
 
@@ -13,18 +17,18 @@ class TImeSelectionScreen extends StatefulWidget {
 class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
   int _selectedIndex = -1; // To keep track of the selected index
   final List<String> _timeSlots = [
-    "10:00 AM",
-    "10:30 AM",
-    "11:00 AM",
-    "11:30 AM",
-    "12:00 PM",
-    "12:30 PM",
-    "1:00 PM",
-    "1:30 PM",
-    "2:00 PM",
-    "2:30 PM",
-    "3:00 PM",
-    "3:30 PM"
+    "10 h",
+    "10h30",
+    "11h",
+    "11h30",
+    "12h",
+    "12h30",
+    "13h",
+    "13h30",
+    "14h",
+    "14h 30",
+    "15h",
+    "15h30"
   ];
 
   final List<String> _daysOfWeek = [
@@ -49,48 +53,14 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 4.1),
-                    Text(
-                      'Select Your Time',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
-            ),
 
+            CustomAppBar(
+              title:  'Select Your Time',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 4.1,
+            ),
             SizedBox(height: 35,),
 
             Padding(
@@ -128,8 +98,8 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                           height: 65,
                           decoration: BoxDecoration(
                             color: _selectedDayIndex == index
-                                ? Color(0xFFFFA142)
-                                : Colors.white,
+                                ? Colors.white
+                                : Colors.transparent,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
                               color: _selectedDayIndex == index
@@ -143,7 +113,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
 
                               style: TextStyle(
                                 color: _selectedDayIndex == index
-                                    ? Colors.white:Color(0xFF334155),
+                                    ? Color(0xFFFFA142):Color(0xFF334155),
                                 fontSize: 16,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
@@ -197,13 +167,15 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                         padding: const EdgeInsets.all(16),
                         decoration: _selectedIndex == index
                             ? ShapeDecoration(
-                          color: Color(0xFFFFA142),
+                          color: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
+                            side: BorderSide(
+                                width: 1, color: Color(0xFFFFA142)),
                           ),
                         )
                             : ShapeDecoration(
-                          color: Colors.white,
+                          color: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                                 width: 1, color: Color(0xFFE5E7EB)),
@@ -215,7 +187,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                             _timeSlots[index],
                             style: TextStyle(
                               color:  _selectedIndex == index
-                                  ? Colors.white
+                                  ? Color(0xFFFFA142)
                                   : Color(0xFF334155),
                               fontSize: 14,
                               fontFamily: 'Archivo-Medium',
@@ -237,7 +209,8 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                 onTap: (){
 
 
-                  navigateToNextPage(context,ReviewSummary());
+                  navigateToNextPage(context,AddNewCard(status: "mentorship",));
+                  // navigateToNextPage(context,ReviewSummary());
 
                 },
                 child: Container(

@@ -8,6 +8,8 @@ import 'package:miss_fit/screens/paymentmethod/payment_method.dart';
 import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/subscription_history/subscription_history.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 
 class MySubscription extends StatelessWidget {
   final String? title;
@@ -15,88 +17,54 @@ class MySubscription extends StatelessWidget {
   const MySubscription({Key? key,  this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.white,
-        //   elevation: 0,
-        //   centerTitle: true,
-        //   title: Text(
-        //     'My Subscription',
-        //     style: TextStyle(
-        //       color: Color(0xFF1E293B),
-        //       fontSize: 18,
-        //       fontFamily: 'Kanit',
-        //       fontWeight: FontWeight.w500,
-        //       height: 1.07, // Adjusted height to fix text height
-        //     ),
-        //   ),
-        //   toolbarHeight: 97.0,
-        // ),
-        body: Container(
-          color: Color(0xFFF6F6F6),
-          child: Column(
-            children: [
-              Container(
-                height: 97,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                  border: Border.all(color: Colors.white.withOpacity(0.11)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                            navigateToNextPage(context, DashBoard(number: 3,));
+    return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   centerTitle: true,
+      //   title: Text(
+      //     'My Subscription',
+      //     style: TextStyle(
+      //       color: Color(0xFF1E293B),
+      //       fontSize: 18,
+      //       fontFamily: 'Kanit',
+      //       fontWeight: FontWeight.w500,
+      //       height: 1.07, // Adjusted height to fix text height
+      //     ),
+      //   ),
+      //   toolbarHeight: 97.0,
+      // ),
+      body: Container(
+        color: Color(0xFFF6F6F6),
+        child: Column(
+          children: [
+            CustomAppBar(
+              title:  'Mon abonnement',
+              onBackTap: () {
+                // Navigator.pop(context);
+                // navigateToNextPage(context, DashBoard(number: 3,));
 
-                        },
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 4.2),
-                      Text(
-                        'My Subscription',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF1E293B),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
+              },
+              iconSpacing: 4.4,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _SubscriptionDetailsContainer(),
+                    _BillingInfoContainer(),
+                    _PaymentDetailsContainer(), // Added new container here
+                    SizedBox(height: 40),
+
+                    // Add more widgets here as needed
+                  ],
                 ),
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _SubscriptionDetailsContainer(),
-                      _BillingInfoContainer(),
-                      _PaymentDetailsContainer(), // Added new container here
-                      SizedBox(height: 40),
+            ),
 
-                      // Add more widgets here as needed
-                    ],
-                  ),
-                ),
-              ),
+            SizedBox(height: 50,)
 
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -185,7 +153,7 @@ class _BillingInfoContainer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0, bottom: 10),
               child: Text(
-                'Billing Information',
+                'Informations de facturation',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 16,
@@ -278,9 +246,9 @@ class _BillingInfoContainer extends StatelessWidget {
                               scale: 2.2,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
+                              padding: const EdgeInsets.only(left: 8.0,top: 8),
                               child: Text(
-                                'History',
+                                'Histoire',
                                 style: TextStyle(
                                   color: Color(0xFFFF4343),
                                   fontSize: 14,
@@ -319,9 +287,9 @@ class _BillingInfoContainer extends StatelessWidget {
                                 scale: 2.2,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: const EdgeInsets.only(left: 8.0,top: 8),
                                 child: Text(
-                                  'Modify Info',
+                                  'Modifier',
                                   style: TextStyle(
                                     color: Color(0xFFFF4343),
                                     fontSize: 14,
@@ -386,11 +354,10 @@ class _PaymentDetailsContainer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 135,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
-                              'Payment Details',
+                              'Détails de paiement',
                               style: TextStyle(
                                 color: Color(0xFF334155),
                                 fontSize: 16,
@@ -425,14 +392,17 @@ class _PaymentDetailsContainer extends StatelessWidget {
                                       'assets/mysubscription/icon_edit.png'), // Use your asset image here
                                 ),
                                 const SizedBox(width: 6),
-                                Text(
-                                  'Change',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF4343),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.10,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text(
+                                    'Changement',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF4343),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 0.10,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -602,7 +572,7 @@ class _SubscriptionInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Premium Plan',
+                'Forfait Premium',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 20,
@@ -610,6 +580,8 @@ class _SubscriptionInfo extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              SizedBox(height: 8), // Space between image and text
+
               Text(
                 'Monthly Subscription',
                 style: TextStyle(
@@ -633,14 +605,14 @@ class _SubscriptionOptions extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _OptionItem(title: 'Locket Rental', value: 'Yes'),
-        _OptionItem(title: 'Duration', value: '06 months'),
-        _OptionItem(title: 'Start Date', value: '09-05-24'),
+        _OptionItem(title: 'Location de médaillons', value: 'Yes'),
+        _OptionItem(title: 'Durée', value: '06 months'),
+        _OptionItem(title: 'Date de début', value: '09-05-24'),
         _OptionItem(
-            title: 'Expire Date',
+            title: 'Date dexpiration',
             value: '09-11-25',
             valueColor: Color(0xFFE88E32)),
-        SizedBox(height: 20),
+        SizedBox(height: 30),
         _RenewSubscriptionButton(),
       ],
     );
@@ -662,7 +634,7 @@ class _OptionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 8.0,top: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -708,7 +680,7 @@ class _RenewSubscriptionButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'Renew Subscription',
+            "Renouveler l'abonnement",
             style: TextStyle(
               color: Colors.white,
               fontSize: 14,

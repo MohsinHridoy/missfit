@@ -24,7 +24,6 @@ class ProductItem extends StatelessWidget {
       onTap: onTap != null ? () => onTap!() : null,
       child: Container(
         width: MediaQuery.of(context).size.width / 2,
-        height: 250,
         child: Stack(
           children: [
             Column(
@@ -131,7 +130,7 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 19,
+              top: 22,
               left: 10,
               child: Visibility(
                 visible: item.isChecked ?? false,

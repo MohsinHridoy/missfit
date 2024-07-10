@@ -12,9 +12,11 @@ import 'package:miss_fit/screens/filtersortscreenpage/filter_sort_screen_page.da
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/custom_app_bar.dart';
 import '../colourselectionpage/colour_selection_page.dart';
 import '../filtercategoryselectionpage/categoryselectionpage.dart';
 import '../filtermeasurementselectionpage/filter_measurements_selection_page.dart';
+import '../shoppage/shop_page.dart';
 
 class FilterShopScreen extends StatefulWidget {
   const FilterShopScreen({Key? key}) : super(key: key);
@@ -207,46 +209,13 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
           color: Color(0xFFF6F6F6),
           child: Column(
             children: [
-              Container(
-                height: 97,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                  border: Border.all(color: Colors.white.withOpacity(0.11)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context); // This will pop the current screen off the navigation stack and return to the previous screen
-                        },
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 2.9),
-                      Text(
-                        'Filter',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF1E293B),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                ),
+
+              CustomAppBar(
+                title: 'Filter',
+                onBackTap: () {
+                  Navigator.pop(context);
+                },
+                iconSpacing: 2.9,
               ),
 
               Expanded(
@@ -358,7 +327,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
 
 
                       Container(
-                        margin: EdgeInsets.only(top: 50, left: 20, right: 20),
+                        margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                         alignment: Alignment.centerLeft,
                         child: FlutterSlider(
                           values: [_lowerValue, _upperValue],
@@ -633,85 +602,94 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                       ),
                       SizedBox(height: 45),
 
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: 150,
-                              height: 44,
-
-                              decoration: ShapeDecoration(
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Clear All',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF4343),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.push(                        //   context,
-                                //   MaterialPageRoute(builder: (context) => SortByPage()),
-                                // );
-                                navigateToNextPage(context,ShopPage());
-
-                              },
-                              child: Container(
-                                width: 150,
-                                height: 44,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Apply',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0.10,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap:(){
+                          setState(() {
+                            _fetchSort.clear();
+                            _fetchCategories.clear();
+                            _fetchBrands.clear();
+                          });
+                        },
+                        child: Container(
+                          height: 44,
+
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                'Clear All',
+                                style: TextStyle(
+                                  color: Color(0xFFFF4343),
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20,),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(                        //   context,
+                          //   MaterialPageRoute(builder: (context) => SortByPage()),
+                          // );
+                          navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
+                      
+                        },
+                        child: Container(
+                          height: 44,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFF4343),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                'Apply',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+
             ],
           ),
         ),
       ),
     );
-  }
-
-  VoidCallback _navigateToPage(BuildContext context, Widget page) {
-    return () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => page),
-      );
-    };
   }
 
   Widget _buildCategorySection(
@@ -790,20 +768,23 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: Row(
-        children: [
-          Text(
-            '\$',
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 16,
-              fontFamily: 'Archivo-Regular',
-              fontWeight: FontWeight.w400,
-              height: 0.09,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 12.0),
+        child: Row(
+          children: [
+            Text(
+              '\$',
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 16,
+                fontFamily: 'Archivo-Regular',
+                fontWeight: FontWeight.w400,
+                height: 0.09,
+              ),
             ),
-          ),
-          Expanded(child: _buildRangeText(text)),
-        ],
+            Expanded(child: _buildRangeText(text)),
+          ],
+        ),
       ),
     );
   }

@@ -349,7 +349,7 @@ class _Cart001State extends State<Cart001> {
         SizedBox(
           height: 10,
         ),
-        _buildSummeryItemText('Discount', 'CHF 140'),
+        _buildSummeryItemText('Discount', '-CHF 140'),
         _buildSummeryItemText('Vat', 'CHF 140'),
         _buildSummeryItemText('Shipping Charge', 'CHF 140'),
         _buildSummeryItemText('Grand Total', 'CHF 140'),
@@ -454,6 +454,7 @@ class _Cart001State extends State<Cart001> {
                       padding: const EdgeInsets.only(left: 15.0,bottom: 2),
                       child: TextField(
                         controller: _voucherCodeController,
+                        cursorColor: Color(0xFF9CA3AF).withOpacity(0.7),
                         style: TextStyle(
                           color: Color(0xFF9CA3AF),
                           fontSize: 14,

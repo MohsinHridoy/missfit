@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 
+import '../../common_utils.dart';
+import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../reviewsummery/review_summery_screen.dart';
+import '../reviewsummery/review_summery_subscription_screen.dart';
+
 class AddNewCard extends StatefulWidget {
   String? status;
    AddNewCard({super.key,this.status});
@@ -39,63 +46,66 @@ class _AddNewCardState extends State<AddNewCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 4.2),
-                    Text(
-                     widget.status == 'profile'?'Payment Card': 'Add New Card',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title:  widget.status == 'profile'?'Payment Card': 'Add New Card',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 4.2,
             ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: Text(
-                isVisible ?  'Add Card':'My Card',
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 18,
-                  fontFamily: 'Archivo',
-                  fontWeight: FontWeight.w600,
-                  height: 0.08,
-                ),
-              ),
+              child: title_textView_Kt_SBld(isVisible ?  'Add Card':'My Card')
             ),
             Visibility(visible:!isVisible ,child: _buildListPaymentMethod()),
+           widget.status=='mentorship' || widget.status=='subscription' && isVisible==false? Padding(
+              padding: const EdgeInsets.only(left: 20.0,right: 20),
+              child: GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      if (isVisible) {
+                        _addNewPaymentMethod();  // Add new card if currently in add card mode
+                      }
+                      isVisible = !isVisible;
+                    });
+
+                  },
+                  // child: outlineButton(context,'Ajouter une nouvelle carte')
+                 child:  Container(
+                  width: MediaQuery.of(context).size.width,
+             height: 52,
+
+             decoration: ShapeDecoration(
+               shape: RoundedRectangleBorder(
+                 side:
+                 BorderSide(width: 1, color: Color(0xFFFF4343)),
+                 borderRadius: BorderRadius.circular(8),
+               ),
+             ),
+
+             child: Center(
+               child: Padding(
+                 padding: const EdgeInsets.only(top: 0.0),
+                 child: Text(
+                   'Ajouter une nouvelle carte',
+                   style: TextStyle(
+                     color: Color(0xFFFF4343),
+                     fontSize: 14,
+                     fontFamily: 'Archivo-SemiBold',
+                     fontWeight: FontWeight.w600,
+                     height: 0.10,
+                   ),
+                 ),
+               ),
+             ),
+           )
+
+              ),
+            ):SizedBox(),
+
             Visibility(
               visible:isVisible ,
               child: Column(
@@ -108,43 +118,32 @@ class _AddNewCardState extends State<AddNewCard> {
               ),
             ),
             Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: GestureDetector(
-                onTap: (){
-                  setState(() {
-                    if (isVisible) {
-                      _addNewPaymentMethod();  // Add new card if currently in add card mode
-                    }
-                    isVisible = !isVisible;  // Toggle the visibility state regardless
-                  });
 
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 44,
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 104, vertical: 17),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Add new cart',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.10,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            )
+
+
+            widget.status !='mentorship' && widget.status !='subscription'?Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: customButtonRed(context,  'Add new card', onPressed: () {
+                setState(() {
+                  if (isVisible) {
+                    _addNewPaymentMethod();  // Add new card if currently in add card mode
+                  }
+                  isVisible = !isVisible;  // Toggle the visibility state regardless
+                });
+              }),
+            ):Padding(
+             padding: const EdgeInsets.all(20.0),
+             child: customButtonRed(context, isVisible==false? 'Continue':'Ajouter une nouvelle carte', onPressed: () {
+
+               widget.status =='subscription'? navigateToNextPage(context,ReviewSummary1()):
+               isVisible==false? navigateToNextPage(context,ReviewSummary()):  setState(() {
+                 if (isVisible) {
+                   _addNewPaymentMethod();  // Add new card if currently in add card mode
+                 }
+                 isVisible = !isVisible;  // Toggle the visibility state regardless
+               });
+             }),
+           )
           ],
         ),
       ),
@@ -164,7 +163,7 @@ class _AddNewCardState extends State<AddNewCard> {
           style: TextStyle(
             color: Color(0xFF334155),
             fontSize: 16,
-            fontFamily: 'Archivo',
+            fontFamily: 'Archivo-Medium',
             fontWeight: FontWeight.w500,
             height: 1.09,
           ),
@@ -276,7 +275,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                 style: TextStyle(
                                   color: Color(0xFF334155),
                                   fontSize: 16,
-                                  fontFamily: 'Archivo',
+                                  fontFamily: 'Archivo-Regular',
                                   fontWeight: FontWeight.w400,
                                   height: 0.09,
                                 ),

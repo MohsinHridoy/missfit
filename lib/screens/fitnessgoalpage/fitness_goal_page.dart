@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common_widgets.dart';
+import '../../widgets/common_buttons.dart';
 
 class FitnessGoal extends StatefulWidget {
   final VoidCallback onNextPressed;
@@ -65,17 +66,16 @@ class _FitnessGoalState extends State<FitnessGoal> {
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: SizedBox(
-                width: 320,
-                child: title_textView("What is your current gym goal?"),
+                child: title_textView("Quel est votre objectif actuel en salle de sport ?"),
               ),
             ),
             SizedBox(height: 20),
-            _buildSelectableTextContainer('Gain muscle'),
-            _buildSelectableTextContainer('Building strength'),
-            _buildSelectableTextContainer('Body shape improvement'),
-            _buildSelectableTextContainer('Improving records'),
-            _buildSelectableTextContainer('Boosting libido'),
-            _buildSelectableTextContainer('Improve physical fitness'),
+            _buildSelectableTextContainer('Gagner du muscle'),
+            _buildSelectableTextContainer('Renforcer la force'),
+            _buildSelectableTextContainer('Perdre du poids'),
+            _buildSelectableTextContainer('Amélioration de la forme du corps'),
+            _buildSelectableTextContainer('Améliorer les dossiers'),
+            _buildSelectableTextContainer('Stimuler la libido'),
             Spacer(),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20,bottom: 30),
@@ -93,41 +93,19 @@ class _FitnessGoalState extends State<FitnessGoal> {
             ),
 
             Visibility(
-              visible: widget.status == 'profile',
+              visible: widget.status == "profile",
 
-              child: GestureDetector(
-                onTap: (){
+              child:  Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: customButtonRed(context, 'Save Change', onPressed: () {
                   widget.onNextPressed();
 
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 52,
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFF4343),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Save Change',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                }),
               ),
-            )
+
+
+
+            ),
           ],
         ),
       ),

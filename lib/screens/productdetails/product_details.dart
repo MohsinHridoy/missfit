@@ -95,6 +95,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       trimmedText = '';
     }
   }
+  bool isFavourite=false;
 
   late String firstPart;
   late String trimmedText;
@@ -918,7 +919,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                     GestureDetector(
                       onTap: () {
                         print("Some things");
-                        navigateToNextPage(context, WishList());
+                        setState(() {
+                           isFavourite=!isFavourite;
+
+                        });
                       },
                       child: Container(
                         width: 40,
@@ -931,7 +935,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                         child: Center(
                           child: Image.asset(
-                            "assets/shophome/icon_wishlist.png",
+                            isFavourite==true ?  "assets/shophome/icon_wishlist_fill.png":"assets/shophome/icon_wishlist.png",
                             scale: 2,
                           ),
                         ),

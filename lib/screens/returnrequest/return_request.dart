@@ -19,9 +19,7 @@ class ReturnRequest extends StatefulWidget {
 }
 
 class _ReturnRequestState extends State<ReturnRequest> {
-  TextEditingController textEditingController = TextEditingController(
-      text:
-          'Describe your experience (optional)');
+  TextEditingController textEditingController = TextEditingController();
   List<File> _images = [];
   List<CartItem> cartItems = [
     CartItem(
@@ -95,6 +93,7 @@ bool isVisible=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF6F6F6),
       body: Container(
         color: Color(0xFFF6F6F6),
         child: Stack(
@@ -124,45 +123,48 @@ bool isVisible=false;
                         SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 48,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFFD1D5DB)),
-                              borderRadius: BorderRadius.circular(4),
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              isVisible=true;
+
+                            });
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 48,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1, color: Color(0xFFD1D5DB)),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  selectedText,
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 16,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontFamily: 'Archivo-Medium',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.09,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text(
+                                      selectedText,
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 16,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontFamily: 'Archivo-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.09,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      isVisible=true;
-
-                                    });
-                                    // _showBottomSheet(context);
-                                  },
-                                  child: Image.asset(
-                                      "assets/review/icon_dropdown.png"))
-                            ],
+                                Image.asset(
+                                    "assets/review/icon_dropdown.png")
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -291,8 +293,7 @@ bool isVisible=false;
                                       },
                                       child: Container(
                                         height: 52,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 32, vertical: 17),
+
                                         decoration: ShapeDecoration(
                                           shape: RoundedRectangleBorder(
                                             side: BorderSide(
@@ -301,14 +302,17 @@ bool isVisible=false;
                                           ),
                                         ),
                                         child: Center(
-                                          child: Text(
-                                            'Cancel',
-                                            style: TextStyle(
-                                              color: Color(0xFFFF4343),
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo-SemiBold',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.09,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(top: 8.0),
+                                            child: Text(
+                                              'Cancel',
+                                              style: TextStyle(
+                                                color: Color(0xFFFF4343),
+                                                fontSize: 16,
+                                                fontFamily: 'Archivo-SemiBold',
+                                                fontWeight: FontWeight.w600,
+                                                height: 0.09,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -332,14 +336,17 @@ bool isVisible=false;
                                               borderRadius: BorderRadius.circular(8)),
                                         ),
                                         child: Center(
-                                          child: Text(
-                                            'Continue',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo-SemiBold',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.09,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(top: 7.0),
+                                            child: Text(
+                                              'Continue',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontFamily: 'Archivo-SemiBold',
+                                                fontWeight: FontWeight.w600,
+                                                height: 0.09,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -398,7 +405,7 @@ bool isVisible=false;
   Widget _buildCartItemsList() {
     return SingleChildScrollView(
         child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 25),
+            padding: EdgeInsets.only(left: 0, right: 16),
             child: Column(
               children: List.generate(
                 cartItems.length,
@@ -413,18 +420,7 @@ bool isVisible=false;
                         children: [
                           Row(
                             children: [
-                              GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      item.isChecked = !item.isChecked;
-                                    });
-                                  },
-                                  child: Image.asset(
-                                    item.isChecked
-                                        ? "assets/cart/icon_checkbox.png"
-                                        : "assets/cart/icon_uncheck.png",
-                                    scale: 2,
-                                  )),
+
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Container(
@@ -619,22 +615,24 @@ bool isVisible=false;
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 44,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 12),
+                    height: 52,
+
                     decoration: BoxDecoration(
                       color: Color(0xFFFF4343),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w500,
-                          height: 1.11,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          'Continue',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w500,
+                            height: 1.11,
+                          ),
                         ),
                       ),
                     ),
@@ -771,6 +769,16 @@ bool isVisible=false;
         child: TextField(
           controller: textEditingController,
           maxLines: null,
+          decoration: InputDecoration(
+            hintText: 'Describe your experience (optional)', // Your hint text here
+            hintStyle: TextStyle(
+              color: Color(0xFF334155),
+              fontSize: 16,
+              fontFamily: 'Archivo-Medium',
+              fontWeight: FontWeight.w500,
+            ),
+            border: InputBorder.none,
+          ),
           style: TextStyle(
             color: Color(0xFF334155),
             fontSize: 16,
@@ -778,9 +786,7 @@ bool isVisible=false;
             fontWeight: FontWeight.w500,
             height: 0.09,
           ),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-          ),
+
         ),
       ),
     );
@@ -809,14 +815,17 @@ bool isVisible=false;
                 width: 25,
               ),
               SizedBox(width: 10),
-              Text(
-                'Upload Photo (${_images.length}/5)',
-                style: TextStyle(
-                  color: Color(0xFFFF4343),
-                  fontSize: 14,
-                  fontFamily: 'Archivo-SemiBold',
-                  fontWeight: FontWeight.w600,
-                  height: 0.10,
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  'Upload Photo (${_images.length}/5)',
+                  style: TextStyle(
+                    color: Color(0xFFFF4343),
+                    fontSize: 14,
+                    fontFamily: 'Archivo-SemiBold',
+                    fontWeight: FontWeight.w600,
+                    height: 0.10,
+                  ),
                 ),
               ),
             ],

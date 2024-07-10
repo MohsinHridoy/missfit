@@ -18,6 +18,8 @@ class ChallengesDetails extends StatefulWidget {
 }
 
 class _ChallengesDetailsState extends State<ChallengesDetails> {
+  bool isFavourite=false;
+
   List<CustomItem> items = [
     CustomItem(
         title: 'Anti-Burst Balance Ball',
@@ -126,7 +128,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                     Padding(
                       padding: const EdgeInsets.only(left: 0, top: 45),
                       child: Text(
-                        'Calorie Torcher',
+                        'Torcher de calories',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 24,
@@ -145,7 +147,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         children: [
                           _buildContainerBox( 'assets/takechallenge/icon_time.png','30 min'),
                           SizedBox(width: 10), // Add spacing between containers
-                          _buildContainerBox( 'assets/takechallenge/icon_level.png','Intermediate'),
+                          _buildContainerBox( 'assets/takechallenge/icon_level.png','Intermédiaire'),
 
                           SizedBox(width: 10), // Add spacing between containers
                           _buildContainerBox( 'assets/takechallenge/icon_flame.png','247 cal'),
@@ -157,7 +159,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         height:
                             35), // Add some spacing between text and containers
                     Text(
-                      'Overview',
+                      'Aperçu',
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 16,
@@ -184,7 +186,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         height:
                             45), // Add some spacing between text and containers
                     Text(
-                      'Exercises',
+                      'Des exercices',
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 16,
@@ -289,7 +291,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Equipment Needed',
+                          'Équipement nécessaire',
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 16,
@@ -377,7 +379,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         height:
                             35), // Add some spacing between text and containers
                     Text(
-                      'Focus Area',
+                      "Secteur d'intérêt",
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 16,
@@ -406,7 +408,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                               style: TextStyle(
                                 color: Color(0xFF334155),
                                 fontSize: 12,
-                                fontFamily: 'Archivo',
+                                fontFamily: 'Archivo-Regular',
                                 fontWeight: FontWeight.w400,
                                 height:
                                     1.2, // Adjusted to a more reasonable value
@@ -426,7 +428,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                               style: TextStyle(
                                 color: Color(0xFF334155),
                                 fontSize: 12,
-                                fontFamily: 'Archivo',
+                                fontFamily: 'Archivo-Regular',
                                 fontWeight: FontWeight.w400,
                                 height:
                                     1.2, // Adjusted to a more reasonable value
@@ -507,7 +509,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Expected Result',
+                            'Résultat attendu',
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 16,
@@ -729,7 +731,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Guidelines',
+                            'Des lignes directrices',
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 16,
@@ -761,6 +763,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                       child: GestureDetector(
                         onTap: (){
                           navigateToNextPage(context,ChallengeScreen());
+
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,
@@ -773,14 +776,17 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             ),
                           ),
                           child: Center(
-                            child: Text(
-                              'Start Now',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.09,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                'Commencez maintenant',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.09,
+                                ),
                               ),
                             ),
                           ),
@@ -828,7 +834,11 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                       onTap: (){
                         // print("Some things");
                         // Navigator.pop(context);
-                        navigateToNextPage(context,WishList());
+
+                        setState(() {
+                          isFavourite=!isFavourite;
+
+                        });
                       },
                       child: Container(
                         width: 40,
@@ -841,7 +851,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         ),
                         child: Center(
                           child: Image.asset(
-                            "assets/shophome/icon_wishlist.png",
+                            isFavourite==true ?"assets/shophome/icon_bookmark_fill.png": "assets/shophome/icon_bookmark.png",
                             color: Colors.white,
                             scale: 2,
                           ),
@@ -904,14 +914,17 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                   imgPath), // Replace 'assets/missfit/logo2_img.png' with your image path
             ),
             const SizedBox(width: 4),
-            Text(
-              title,
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 12,
-                fontFamily: 'Archivo-Regular',
-                fontWeight: FontWeight.w400,
-                height: 0.12,
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Color(0xFF334155),
+                  fontSize: 12,
+                  fontFamily: 'Archivo-Regular',
+                  fontWeight: FontWeight.w400,
+                  height: 0.12,
+                ),
               ),
             ),
           ],

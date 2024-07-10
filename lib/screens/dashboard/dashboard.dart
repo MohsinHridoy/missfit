@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/home/home001.dart';
+import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:miss_fit/screens/profile/profile.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
-import 'package:miss_fit/screens/subscription/subscription.dart';
+
 
 
 class DashBoard extends StatefulWidget {
@@ -22,7 +22,7 @@ class _DashBoardState extends State<DashBoard> {
     ShopPage(),
     // Cart001(),
     // Cart001(),
-    // Subscription(),
+    MySubscription(),
     Profile(),
   ];
 
@@ -32,14 +32,13 @@ class _DashBoardState extends State<DashBoard> {
     // if(widget)
 
     int? index;
-    if(widget.number == 2)
-      index = widget.number;
+    index = widget.number;
     _selectedIndex = index ?? 0; // Revised line
     _isSelected[_selectedIndex] = true;
 
   }
 
-  final List<bool> _isSelected = [false, false, false, ];
+  final List<bool> _isSelected = [false, false, false, false];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -123,7 +122,7 @@ class _DashBoardState extends State<DashBoard> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 30),
+                  padding: const EdgeInsets.only(left: 5.0,right: 20),
                   child: Container(
                     child: Stack(
                       children: [
@@ -175,10 +174,10 @@ class _DashBoardState extends State<DashBoard> {
 
       // case 2:
       //   return _buildIcon('assets/dashboard/icon.png', iconColor);
-      // case 2:
-      //   return _buildIcon('assets/dashboard/icon_shop.png', iconColor);
-
       case 2:
+        return _buildIcon(isSelected ?'assets/dashboard/icon_shop.png':'assets/dashboard/icon_shop.png', iconColor);
+
+      case 3:
         return _buildIcon(isSelected ?'assets/dashboard/icon_profile_fill.png':'assets/dashboard/icon_profile.png', iconColor);
       default:
         return Container(); // Return a placeholder if index is out of bounds

@@ -251,3 +251,68 @@ const String checkOut_fr9 = "Rabais";
 const String checkOut_fr10 = "Frais de port";
 const String checkOut_fr11 = "Frais de port";
 const String checkOut_fr12  = "Total";
+
+
+
+///Review Screeen
+///EN
+
+const String title_review = "Review";
+
+
+
+//Fr
+const String title_review_fr = "Revoir";
+
+
+///OrderHistory
+//EN
+const String title_OrderHistory = "Order History";
+
+
+//Fr
+
+const String title_OrderHistory_fr = "Historique des commandes";
+
+// order status
+//en
+const String order_status = "Order Status";
+
+//fr
+const String order_status_fr = "Statut de la commande";
+
+//delivary location
+//en
+const String delivary_location = "Delivery Location";
+
+//fr
+const String delivary_location_fr = "Lieu de livraison";
+
+//delivary time
+//en
+const String delivary_time = "Delivery Time";
+
+//fr
+const String delivary_time_fr = "Délai de livraison";
+
+//payment method
+//en
+// const String payment-method = "Payment Method";
+//
+// //fr
+// const String payment-method_fr = "Mode de paiement";
+
+//product details
+//en
+const String product_details = "Product Details";
+
+//fr
+const String product_details_fr = "Détails du produit";
+
+
+
+
+
+
+
+

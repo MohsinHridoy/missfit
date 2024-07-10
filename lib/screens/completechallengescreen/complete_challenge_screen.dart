@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
+
+import '../../common_utils.dart';
 
 class CompleteChallengeScreen extends StatelessWidget {
   @override
@@ -27,19 +30,21 @@ class CompleteChallengeScreen extends StatelessWidget {
             SizedBox(height: 20), // Adjust spacing as needed
 
             Text(
-              'Well Done!',
+              'Bien joué!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF334155),
                 fontSize: 24,
                 fontFamily: 'Archivo-SemiBold',
                 fontWeight: FontWeight.w600,
+                height: 0,
+
               ),
             ),
             SizedBox(height: 20), // Adjust spacing as needed
 
             Text(
-              'You have completed your challenge',
+              'Vous avez terminé votre défi',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF334155),
@@ -78,7 +83,7 @@ class CompleteChallengeScreen extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            'Burned calories',
+                            'Calories brûlées',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF66758C),
@@ -131,7 +136,7 @@ class CompleteChallengeScreen extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            'total times',
+                            'Temps total',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF66758C),
@@ -165,22 +170,30 @@ class CompleteChallengeScreen extends StatelessWidget {
             Spacer(), // Adjust spacing as needed
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: Color(0xFFFF4343),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child:Center(
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'Archivo-SemiBold',
-                      fontWeight: FontWeight.w600,
-                      height: 0.09,
+              child: GestureDetector(
+                onTap: (){
+                  navigateToNextPage(context,TakeChallenge());
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFF4343),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child:Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'Continuer',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.09,
+                        ),
+                      ),
                     ),
                   ),
                 ),

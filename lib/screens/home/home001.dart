@@ -3,12 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/allblogitem/all_blog_item.dart';
 import 'package:miss_fit/screens/coachbookingscreen/coach_booking_screen.dart';
 import 'package:miss_fit/screens/eventdetails/event_details_screen.dart';
 import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
 import 'package:miss_fit/screens/subscription/subscription.dart';
 import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
 import 'package:miss_fit/widgets/circular_progress_bar.dart';
+
+import '../blogdetails/blog_details.dart';
 
 class WorkoutItem {
   final String imagePath;
@@ -161,10 +164,6 @@ class _HomeState extends State<Home> {
     // Add more WorkoutItem objects as needed
   ];
 
-
-
-
-
   List<BlogItem> blogItems = [
     BlogItem(
       imagePath: 'assets/home/img_blog_item.png',
@@ -294,14 +293,12 @@ class _HomeState extends State<Home> {
                     height: 50,
                   ),
 
-                  _textTitle('Select Activity'),
+                  _textTitle('Sélectionnez une activité'),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                     child: GestureDetector(
                       onTap: () {
-
-                        navigateToNextPage(context,TakeChallenge());
-
+                        navigateToNextPage(context, TakeChallenge());
                       },
                       child: Container(
                         width: ScreenUtil().setWidth(320),
@@ -357,18 +354,18 @@ class _HomeState extends State<Home> {
                   // _textTitle('New Workout'),
                   // _buildListWorkOutItem(),
 
-                  _textTitle('Group Class'),
+                  _textTitle('Cours de groupe'),
                   SizedBox(
                     height: 5,
                   ),
-                  _buildListUpcomingEventListItem(groupClassItems,'class'),
+                  _buildListUpcomingEventListItem(groupClassItems, 'class'),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20,top: 45,bottom: 20),
+                    padding: const EdgeInsets.only(
+                        left: 20.0, right: 20, top: 45, bottom: 20),
                     child: GestureDetector(
                       onTap: () {
-
-                        navigateToNextPage(context,CoachListScreen());
+                        navigateToNextPage(context, CoachListScreen());
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -377,13 +374,13 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                             image:
-                            AssetImage("assets/home/img_book_service.png"),
+                                AssetImage("assets/home/img_book_service.png"),
                             fit: BoxFit.fill,
                           ),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 20.0, left: 15, bottom: 20),
+                              top: 20.0, left: 20, bottom: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -393,7 +390,7 @@ class _HomeState extends State<Home> {
                                   TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: 'Book your service\n',
+                                        text: "Réservez votre prestation\n",
                                         style: TextStyle(
                                           color: Color(0xFFFF4343),
                                           fontSize: 22,
@@ -402,7 +399,7 @@ class _HomeState extends State<Home> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: 'with our coaches',
+                                        text: 'avec nos coachs',
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 16,
@@ -415,10 +412,8 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               SizedBox(
-                                height: 40,
+                                height: 10,
                               ),
-
-
                               Container(
                                 width: 161,
                                 height: 40,
@@ -448,21 +443,22 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 25,
                   ),
-                  _textTitle('Upcoming Event'),
+                  _textTitle('Événement à venir'),
 
-                  _buildListUpcomingEventListItem(upcomingEventsItems,'event'),
+                  _buildListUpcomingEventListItem(upcomingEventsItems, 'event'),
                   SizedBox(
                     height: 20,
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.only(left: 22.0,top: 20,right: 25,bottom: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         // _textTitle('Latest Blog'),
                         Text(
-                          'Latest Blog',
+                          'Dernier blog',
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 20,
@@ -471,15 +467,20 @@ class _HomeState extends State<Home> {
                             height: 0.06,
                           ),
                         ),
-                        Text(
-                          'View all',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 1.11,
+                        GestureDetector(
+                          onTap: (){
+                            navigateToNextPage(context, AllBlogItemPage());
+                          },
+                          child: Text(
+                            'View all',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.11,
+                            ),
                           ),
                         )
                       ],
@@ -499,7 +500,7 @@ class _HomeState extends State<Home> {
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -532,10 +533,10 @@ class _HomeState extends State<Home> {
                   // _buildListSubcribeItem(),
 
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.only(left: 25.0,right: 25,bottom: 25),
                     child: GestureDetector(
-                      onTap: (){
-                        navigateToNextPage(context,Subscription());
+                      onTap: () {
+                        navigateToNextPage(context, Subscription());
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -543,7 +544,8 @@ class _HomeState extends State<Home> {
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/home/img_subscription.png'),
+                            image:
+                                AssetImage('assets/home/img_subscription.png'),
                             // Your asset image path here
                             fit: BoxFit.fill,
                           ),
@@ -553,24 +555,25 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 12.0,left: 22),
+                              padding:
+                                  const EdgeInsets.only(top: 12.0, left: 22),
                               child: SizedBox(
                                 width: 200,
                                 height: 127,
                                 child: Text(
                                   'Obtenir votre Abonnement aujourd hui',
-                                  textAlign: TextAlign.start, // Adjust alignment as needed
+                                  textAlign: TextAlign.start,
+                                  // Adjust alignment as needed
 
                                   style: TextStyle(
-                                color: Colors.white,
-                                  fontSize: 22,
-                                  fontFamily: 'Kanit-Medium',
-                                  fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontFamily: 'Kanit-Medium',
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
-                                                  ),
                             ),
-
                             Padding(
                               padding: const EdgeInsets.only(left: 45.0),
                               child: Text(
@@ -584,8 +587,9 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20,),
-
+                            SizedBox(
+                              height: 20,
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(left: 25.0),
                               child: SizedBox(
@@ -957,156 +961,163 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildBlogItem() {
-    return Container(
-      height: 200,
-      child: PageView.builder(
-        controller: PageController(viewportFraction: 0.9),
-        itemCount: blogItems.length,
-        onPageChanged: (int page) {
-          setState(() {
-            _currentPage = page; // Update the current page index
-          });
-        },
-        itemBuilder: (BuildContext context, int index) {
-          BlogItem item = blogItems[index];
-          List<String> lines = _splitTitle(item.title);
+    return GestureDetector(
+      onTap: (){
+        navigateToNextPage(context,BlogDetails());
+      },
+      child: Container(
+        height: 200,
+        child: PageView.builder(
+          controller: PageController(viewportFraction: 0.94),
+          itemCount: blogItems.length,
+          onPageChanged: (int page) {
+            setState(() {
+              _currentPage = page; // Update the current page index
+            });
+          },
+          itemBuilder: (BuildContext context, int index) {
+            BlogItem item = blogItems[index];
+            List<String> lines = _splitTitle(item.title);
 
-          print(lines.first);
+            print(lines.first);
 
-          return Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: AssetImage(item.imagePath),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        width: 55,
-                        height: 18,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 2),
-                        decoration: ShapeDecoration(
-                          color: Color(0x21FFF4E4),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(1),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Beginner',
-                            style: TextStyle(
-                              color: Color(0xFFFFA142),
-                              fontSize: 10,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.14,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+            return Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 20.0),
+              child: Container(
+                width: 288,
+                height: 220,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  image: DecorationImage(
+                    image: AssetImage(item.imagePath),
+                    fit: BoxFit.fill,
                   ),
-                  Container(
-                    height: 70,
-                    padding: const EdgeInsets.only(top: 5, left: 16),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: ShapeDecoration(
-                      color: Color(0x6618181B),
-                      // Set color to transparent
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(4),
-                          bottomRight: Radius.circular(4),
-                        ),
-                      ),
-                    ),
-                    child: Stack(
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Container(),
-                        ),
-                        // SizedBox(
-                        //   width: 268,
-                        //   height: 50,
-                        //   child: Text(
-                        //     item.title,
-                        //     textAlign: TextAlign.left, // Center align text horizontally
-                        //
-                        //     style: TextStyle(
-                        //       color: Colors.white,
-                        //       fontSize: 16,
-                        //       fontFamily: 'Archivo-Medium',
-                        //       fontWeight: FontWeight.w500,
-                        //       height: 1.4
-                        //     ),
-                        //     maxLines: 2, // Maximum lines for the text to wrap
-                        //     overflow: TextOverflow.ellipsis,
-                        //   ),
-                        // ),
-
-                        SizedBox(
-                          width: 268,
-                          height: 50,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        Container(
+                          width: 54,
+                          height: 25,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFF252323),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Image.asset("assets/home/icon_calendar.png",scale: 2,),
                               Text(
-                                lines.first, // Displaying the first line
+                                '02 Fév',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Archivo-Medium',
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.4,
+                                  fontSize: 10,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.14,
                                 ),
-                                maxLines: 1,
-                              ),
-                              SizedBox(height: 2),
-                              // Add some space between lines
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      lines.length > 1 ? lines[1] : '',
-                                      // Displaying the second line, if available
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-Medium',
-                                        fontWeight: FontWeight.w500,
-                                        height: 1.4,
-                                      ),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  SizedBox(width: 150),
-                                ],
                               ),
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              width: 55,
+                              height: 18,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 4, vertical: 2),
+                              decoration: ShapeDecoration(
+                                color: Color(0x21FFF4E4),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(1),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Beginner',
+                                  style: TextStyle(
+                                    color: Color(0xFFFFA142),
+                                    fontSize: 10,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ],
+                    Container(
+                      height: 70,
+                      padding: const EdgeInsets.only(top: 5, left: 0),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        // Set color to transparent
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              lines.first, // Displaying the first line
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.4,
+                              ),
+                              maxLines: 1,
+                            ),
+                            SizedBox(height: 2),
+                            // Add some space between lines
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    lines.length > 1 ? lines[1] : '',
+                                    // Displaying the second line, if available
+                                    style: TextStyle(
+                                      color: Color(0xFF334155),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.4,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                SizedBox(width: 150),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
@@ -1662,7 +1673,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _buildListUpcomingEventListItem(List<dynamic> upcomingEventItsems,String status) {
+  Widget _buildListUpcomingEventListItem(
+      List<dynamic> upcomingEventItsems, String status) {
     return Container(
       height: 213,
       child: ListView.builder(
@@ -1673,11 +1685,14 @@ class _HomeState extends State<Home> {
           return Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EventDetails(item: upcomingEventItsems[index],status: status,),
+                    builder: (context) => EventDetails(
+                      item: upcomingEventItsems[index],
+                      status: status,
+                    ),
                   ),
                 );
               },
@@ -1740,14 +1755,16 @@ class _HomeState extends State<Home> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 15.0, left: 2,bottom: 15),
+                                        top: 15.0, left: 2, bottom: 15),
                                     child: SizedBox(
                                       width: MediaQuery.of(context).size.width,
                                       child: Row(
                                         children: [
                                           Padding(
-                                            padding:
-                                            const EdgeInsets.only(right: 7.0,bottom: 4,),
+                                            padding: const EdgeInsets.only(
+                                              right: 7.0,
+                                              bottom: 4,
+                                            ),
                                             child: Container(
                                               width: 2,
                                               height: 12,
@@ -1755,20 +1772,22 @@ class _HomeState extends State<Home> {
                                                 color: Color(0xFFFF4343),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(4),
+                                                      BorderRadius.circular(4),
                                                 ),
                                               ),
                                             ),
                                           ),
-
-                                          Text(
-                                            '18.00 - 23.00 PM',
-                                            style: TextStyle(
-                                              color: Color(0xFF475569),
-                                              fontSize: 12,
-                                              fontFamily: 'Archivo-Regular',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0.12,
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 2.0),
+                                            child: Text(
+                                              '18.00 - 23.00 PM',
+                                              style: TextStyle(
+                                                color: Color(0xFF475569),
+                                                fontSize: 12,
+                                                fontFamily: 'Archivo-Regular',
+                                                fontWeight: FontWeight.w400,
+                                                height: 0.12,
+                                              ),
                                             ),
                                           )
                                         ],
@@ -1787,7 +1806,7 @@ class _HomeState extends State<Home> {
                       right: 10,
                       child: Container(
                         width: 42,
-                        height: 49,
+                        height: 45,
                         decoration: ShapeDecoration(
                           color: Color(0xFF252323),
                           shape: RoundedRectangleBorder(
@@ -1838,27 +1857,37 @@ class _HomeState extends State<Home> {
 
   Widget _buildActivityItem() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 22.0, top: 15, right: 15),
-          child: GestureDetector(
-            onTap: (){
-              navigateToNextPage(context,TakeChallenge(status: 'workout',));
-            },
-            child: activityCard(
-                'assets/home/img_workout.png', 'Start a workout', '200 Workouts'),
+        Expanded(
+          child: Padding( 
+            padding: const EdgeInsets.only(left: 22.0, top: 15, right: 5),
+            child:  GestureDetector(
+              onTap: () {
+                navigateToNextPage(
+                    context,
+                    TakeChallenge(
+                      status: 'workout',
+                    ));
+              },
+              child: activityCard('assets/home/img_workout.png',
+                  'Start a workout', '200 Workouts'),
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 22.0, top: 15),
-          child: GestureDetector(
-            onTap: (){
-              navigateToNextPage(context,TakeChallenge(status: 'followprogramme',));
-
-            },
-            child: activityCard('assets/home/img_follow_programme.png',
-                'Follow a program', '11 Active programs'),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 22.0, top: 15,left: 5),
+            child: GestureDetector(
+              onTap: () {
+                navigateToNextPage(
+                    context,
+                    TakeChallenge(
+                      status: 'followprogramme',
+                    ));
+              },
+              child: activityCard('assets/home/img_follow_programme.png',
+                  'Follow a program', '11 Active programs'),
+            ),
           ),
         )
       ],
@@ -1867,7 +1896,7 @@ class _HomeState extends State<Home> {
 
   Widget activityCard(String img, String title, String subtitle) {
     return Container(
-      width: ScreenUtil().setWidth(154),
+      // width: ScreenUtil().setWidth(154),
       height: ScreenUtil().setHeight(135),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

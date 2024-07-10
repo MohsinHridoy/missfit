@@ -39,7 +39,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
 
   Future<void> _loadData() async {
     final prefs = await SharedPreferences.getInstance();
-    final jsonData = prefs.getString('billing_address');
+    final jsonData = prefs.getString('shippingaddress');
     print(jsonData);
     if (jsonData != null) {
       setState(() {
@@ -90,10 +90,10 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                       ),
                     ),
                     widget.status == 'profile'|| widget.status == 'cart'
-                        ?SizedBox(width: MediaQuery.of(context).size.width / 4.2):SizedBox(width: MediaQuery.of(context).size.width / 3.4),
+                        ?SizedBox(width: MediaQuery.of(context).size.width / 7.2):SizedBox(width: MediaQuery.of(context).size.width / 3.4),
                     Text(
                       widget.status == 'profile'|| widget.status == 'cart'
-                          ? 'Delivary Address'
+                          ? 'Informations de facturation'
                           : 'CheckOut',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -114,22 +114,22 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     widget.status == 'profile'
                         ? Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Add Billing Address',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 20,
-                                fontFamily: 'Kanit-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.06,
-                              ),
-                            ),
-                          )
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        'Add Billing Address',
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 20,
+                          fontFamily: 'Kanit-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.06,
+                        ),
+                      ),
+                    )
                         : SizedBox(),
                     SizedBox(
                       height: 10,
@@ -143,7 +143,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        'Personal Information',
+                        'Informations personnelles',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 18,
@@ -156,18 +156,18 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                     SizedBox(
                       height: 15,
                     ),
-                    _textFormField(_firstNameController, 'First Name'),
-                    _textFormField(_lastNameController, 'Last Name'),
+                    _textFormField(_firstNameController, 'Prénom'),
+                    _textFormField(_lastNameController, 'Nom de famille'),
                     _textFormField(_emailController, 'Email'),
-                    _textFormField(_phoneNumberController, 'Phone Number'),
+                    _textFormField(_phoneNumberController, 'Numéro de téléphone''Phone Number'),
                     SizedBox(
                       height: 30,
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(left: 20.0, right: 20, top: 20),
+                      const EdgeInsets.only(left: 20.0, right: 20, top: 20),
                       child: Text(
-                        'Address',
+                        'Adresse',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 18,
@@ -177,56 +177,61 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                         ),
                       ),
                     ),
-                    _textFormField(_regionController, 'Region'),
-                    _textFormField(_postCodeController, 'Postal Code'),
-                    _textFormField(_streetAddressController, 'Street Address'),
-                    _textFormField(_cityController, 'City'),
-                    _textFormField(_addressController, 'Address'),
+                    _textFormField(_regionController, 'Région'),
+                    _textFormField(_postCodeController, 'Code Postal'),
+                    _textFormField(_streetAddressController, 'Adresse de la rue'),
+                    _textFormField(_cityController, 'Ville'),
+                    _textFormField(_addressController, 'Adresse'),
                     SizedBox(
                       height: 40,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        _saveData();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 44,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 17),
-                          decoration: ShapeDecoration(
-                            color: _isAllFieldsFilled
-                                ? Colors.red
-                                : Color(0xFFD1D5DB),
-                            // Dynamic color based on validation
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              widget.status != 'profile'
-                                  ? 'Save & Continue'
-                                  : 'Save',
-                              style: TextStyle(
-                                color: _isAllFieldsFilled
-                                    ? Colors.white
-                                    : Color(0xFF334155),
-                                fontSize: 14,
-                                fontFamily: 'Archivo',
-                                fontWeight: FontWeight.w600,
-                                height: 0.10,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
             ),
+
+            GestureDetector(
+              onTap: () {
+                _saveData();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32, vertical: 17),
+                  decoration: ShapeDecoration(
+                    color: _isAllFieldsFilled
+                        ? Colors.red
+                        : Color(0xFFD1D5DB),
+                    // Dynamic color based on validation
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text(
+                        widget.status != 'profile'
+                            ? 'Save & Continue'
+                            : 'Save',
+                        style: TextStyle(
+                          color: _isAllFieldsFilled
+                              ? Colors.white
+                              : Color(0xFF334155),
+                          fontSize: 14,
+                          fontFamily: 'Archivo',
+                          fontWeight: FontWeight.w600,
+                          height: 0.10,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+
           ],
         ),
       ),
@@ -256,7 +261,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                 ),
               )),
           Padding(
-            padding: const EdgeInsets.only(left: 15.0),
+            padding: const EdgeInsets.only(left: 15.0,top: 8),
             child: Text(
               'Same as Shipping Address',
               style: TextStyle(
@@ -284,10 +289,10 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                   height: 18,
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
-                    color: Colors.grey,
+                    color: _copyShippingToBilling==true ? Colors.orange[400]:Colors.grey,
                     shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(12), // Half of width or height
+                      BorderRadius.circular(12), // Half of width or height
                     ),
                   ),
                   child: Row(

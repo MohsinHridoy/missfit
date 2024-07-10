@@ -34,9 +34,9 @@ class SubscriptionHistory extends StatelessWidget {
                       scale: 2,
                     ),
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width / 4.9),
+                  SizedBox(width: MediaQuery.of(context).size.width / 7.9),
                   Text(
-                    'Subscription History',
+                    'Historique des abonnements',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF1E293B),
