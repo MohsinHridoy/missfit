@@ -10,6 +10,7 @@ import 'package:miss_fit/screens/allblogitem/all_blog_item.dart';
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
 import 'package:miss_fit/screens/blogdetails/blog_details.dart';
+import 'package:miss_fit/screens/bookmark/bookmark.dart';
 import 'package:miss_fit/screens/cartscreen/cart.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/checkout/checkout.dart';
@@ -69,7 +70,10 @@ import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen-test_002.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen.dart';
 import 'package:miss_fit/screens/workout_viewer_screen/workout_viewer_screen_test_001.dart';
+import 'package:miss_fit/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+
+import 'common_utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -147,10 +151,299 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:SplashScreen(),
+      child:DashBoard(),
     );
   }
 }
+
+
+
+
+
+
+class VerticalProgressBar1 extends StatefulWidget {
+  @override
+  _VerticalProgressBar1State createState() => _VerticalProgressBar1State();
+}
+
+class _VerticalProgressBar1State extends State<VerticalProgressBar1> with SingleTickerProviderStateMixin {
+  int progress = 1; // Initial progress value
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(begin: 1, end: 12).animate(_controller)
+      ..addListener(() {
+        setState(() {
+          progress = _animation.value.toInt();
+        });
+      });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFF6F6F6),
+      body:  Container(
+        color: Color(0xFFF6F6F6), // Set body color
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppBar(
+              title: 'Abonnement',
+              onBackTap: () {
+                Navigator.pop(context);
+                // navigateToNextPage(context, DashBoard(number: 3,));
+              },
+              iconSpacing: 3.7,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, top: 50),
+              child: SizedBox(
+                width: 320,
+                child: Text(
+                  'Sélectionnez les mois',
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 18,
+                    fontFamily: 'Kanit-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 0.07,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 60,),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '$progress',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 48,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 0.03,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' mois',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 0.08,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16),
+                    child: Container(
+                      width: 170,
+                      height: 35,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Text(
+                            'Total: CHF ${progress * 970}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF22C55E),
+                              fontSize: 18,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.08,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 40,),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(12, (index) {
+                      int number = 12 - index; // Adjusted to reverse the numbering
+                      return Container(
+                        height: 30,
+                        width: 30,
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.symmetric(vertical: 2),
+                        child: Text(
+                          '$number',
+                          style: TextStyle(
+                            color: number <= progress ? Color(0xFFFFA142) : Color(0xFF94A3B8), // Adjusted condition
+                            fontSize: 20,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 0.07,
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                  SizedBox(width: 10),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0,right: 25),
+                        child: Container(
+                          width: 40,
+                          height: 400,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0,right: 25,top: 5),
+                        child: AnimatedBuilder(
+                          animation: _controller,
+                          builder: (context, child) {
+                            return ClipPath(
+                              clipper: WaveClipper(progress, _controller.value),
+                              child: Container(
+                                width: 40,
+                                height: 390,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFF4343),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            // Adding space between widgets
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    navigateToNextPage(context, VerticalProgressBar());
+                  });
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+                  decoration: ShapeDecoration(
+                    color: Colors.grey[300],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'Continuer',
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Semibold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.09,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WaveClipper extends CustomClipper<Path> {
+  final int progress;
+  final double waveValue;
+
+  WaveClipper(this.progress, this.waveValue);
+
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    final heightFactor = progress / 12;
+
+    path.moveTo(0, size.height * (1 - heightFactor));
+    path.lineTo(size.width, size.height * (1 - heightFactor));
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

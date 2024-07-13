@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
@@ -111,7 +112,7 @@ bool isVisible=false;
                         SizedBox(
                           height: 30,
                         ),
-                        _buildRatingQuestion('Return Product'),
+                        _buildRatingQuestion('Retourner le produit'),
                         SizedBox(
                           height: 30,
                         ),
@@ -119,7 +120,7 @@ bool isVisible=false;
                         SizedBox(
                           height: 30,
                         ),
-                        _buildRatingQuestion('Return Reason'),
+                        _buildRatingQuestion('Raison du retour'),
                         SizedBox(
                           height: 30,
                         ),
@@ -170,7 +171,7 @@ bool isVisible=false;
                         SizedBox(
                           height: 50,
                         ),
-                        _buildRatingQuestion('Add Photo'),
+                        _buildRatingQuestion('Ajouter une photo'),
                         SizedBox(
                           height: 30,
                         ),
@@ -178,7 +179,7 @@ bool isVisible=false;
                         SizedBox(
                           height: 50,
                         ),
-                        _buildRatingQuestion('Notes'),
+                        _buildRatingQuestion("Remarques"),
                         SizedBox(
                           height: 30,
                         ),
@@ -224,7 +225,7 @@ bool isVisible=false;
                               child: SizedBox(
                                 width: 288,
                                 child: Text(
-                                  'Select Reason',
+                                  "J'ai reçu le mauvais article",
                                   style: TextStyle(
                                     color: Color(0xFF334155),
                                     fontSize: 18,
@@ -381,7 +382,7 @@ bool isVisible=false;
           fontSize: 14,
           fontFamily: 'Archivo-Regular',
           fontWeight: FontWeight.w400,
-          height: 0.10,
+          height: 1.10,
         ),
       ),
     );
@@ -390,13 +391,13 @@ bool isVisible=false;
   String _getBottomSheetItemText(int index) {
     switch (index) {
       case 0:
-        return "I received the wrong item.";
+        return "J'ai reçu le mauvais article.";
       case 1:
-        return "Item does not match description or picture.";
+        return "L'article ne correspond pas à la description ou à l'image.";
       case 2:
-        return "Item or accessories missing in the package";
+        return "Article ou accessoires manquant dans le colis";
       case 3:
-        return "Item does not fit me";
+        return "L'article ne me convient pas";
       default:
         return "";
     }
@@ -550,7 +551,7 @@ bool isVisible=false;
       builder: (BuildContext context) {
         return Container(
           width: MediaQuery.of(context).size.width,
-          height: 320,
+          height: 270.h,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -576,7 +577,7 @@ bool isVisible=false;
               SizedBox(
                 width: 320,
                 child: Text(
-                  'Your Return Request Submitted',
+                  'Votre demande de retour soumise',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF334155),
@@ -592,7 +593,7 @@ bool isVisible=false;
                 child: SizedBox(
                   width: 340,
                   child: Text(
-                    'We received your return request. As soon as possible, we will solve your problem.',
+                    'Nous avons reçu votre demande de retour. Dans les plus brefs délais, nous résoudrons votre problème.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF66758C),
@@ -607,10 +608,10 @@ bool isVisible=false;
                 padding: const EdgeInsets.only(left: 20.0, right: 20, top: 8),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context); // Close the bottom sheet
+                    // Navigator.pop(context); // Close the bottom sheet
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DashBoard()),
+                      MaterialPageRoute(builder: (context) => DashBoard(number: 3,)),
                     );
                   },
                   child: Container(
@@ -622,17 +623,14 @@ bool isVisible=false;
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          'Continue',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w500,
-                            height: 1.11,
-                          ),
+                      child: Text(
+                        'Continue',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w500,
+                          height: 1.11,
                         ),
                       ),
                     ),
@@ -670,9 +668,9 @@ bool isVisible=false;
                 scale: 2,
               ),
             ),
-            SizedBox(width: MediaQuery.of(context).size.width / 3.8),
+            SizedBox(width: MediaQuery.of(context).size.width / 4.8),
             Text(
-              'Return Request',
+              'Demande de retour',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF1E293B),
@@ -849,15 +847,18 @@ bool isVisible=false;
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: Center(
-          child: Text(
-            selectedText == 'Select Reason'?'Continue':'Confirm Request',
-           style: TextStyle(
-              color:selectedText == 'Select Reason'? Color(0xFF66758C):Colors.white,
-          fontSize: 16,
-          fontFamily: 'Archivo-SemiBold',
-          fontWeight: FontWeight.w600,
-          height: 0.09,
-        ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              selectedText == 'Select Reason'?'Continue':'Confirm Request',
+             style: TextStyle(
+                color:selectedText == 'Select Reason'? Color(0xFF66758C):Colors.white,
+            fontSize: 16,
+            fontFamily: 'Archivo-SemiBold',
+            fontWeight: FontWeight.w600,
+            height: 0.09,
+                    ),
+            ),
           ),
         ),
       ),

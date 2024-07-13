@@ -33,19 +33,18 @@ class _TakeChallengeState extends State<TakeChallenge> {
   ];
 
   final List<String> chipItemsChallenges = [
-    'Lose Weight',
-    'Calorie Burn',
-    'Cardio',
-    'Strength',
-    'Six Pack',
-    'Yoga',
+    'Perdre du poids',
+    'Brûlure de calories',
+    'Cadio',
+    'Force',
+    'Pack de six',
     'Yoga',
   ];
 
   final List<String> chipItemsDifficulty = [
-    'Beginner',
-    'Intermediate',
-    'Advanced',
+    'Débutante',
+    'Intermédiaire',
+    'Avance',
   ];
 
   final List<String> chipItemsDuration = [
@@ -192,11 +191,19 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                                 Expanded(
                                                   child: Center(
                                                     child: Padding(
-                                                      padding: const EdgeInsets.only(bottom: 7.0),
+                                                      padding: const EdgeInsets.only(bottom: 8.0),
                                                       child: TextField(
                                                         controller: searchController,
+                                                        cursorColor: Color(0xFF9CA3AF),
+                                                        style: TextStyle(
+                                                          color: Color(0xFF9CA3AF), // Set the typed text color to black
+                                                          fontSize: 14,
+                                                          fontFamily: 'Archivo-Regular',
+                                                          fontWeight: FontWeight.w400,
+                                                          height: 1.5,
+                                                        ),
                                                         decoration: InputDecoration(
-                                                          hintText: 'Search',
+                                                          hintText: 'Recherche',
                                                           hintStyle: TextStyle(
                                                             color: Color(0xFF9CA3AF),
                                                             fontSize: 14,
@@ -227,7 +234,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                             height: 40,
                                             padding: const EdgeInsets.all(8),
                                             decoration: ShapeDecoration(
-                                              color: Colors.white,
+                                              color: Colors.transparent,
                                               shape: RoundedRectangleBorder(
                                                 side: const BorderSide(width: 1, color: Color(0xFFD1D5DB)),
                                                 borderRadius: BorderRadius.circular(4),
@@ -247,7 +254,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20.0),
                                   child: Text(
-                                    'Challenges',
+                                    'Défis',
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 20,
@@ -306,7 +313,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                                           height: 1.2,
                                                         ),
                                                       ),
-                                                      const SizedBox(height: 10),
+                                                      const SizedBox(height: 14),
 
                                                       Text(
                                                         '64%',
@@ -318,7 +325,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                                           height: 0.10,
                                                         ),
                                                       ),
-                                                      const SizedBox(height: 20),
+                                                      const SizedBox(height: 10),
                                                       LinearProgressBar(progress: 0.44),
 
                                                     ],
@@ -400,11 +407,11 @@ class _TakeChallengeState extends State<TakeChallenge> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 25.0,top: 30),
-                                child: _buildTitle('Challenge Type'),
+                                child: _buildTitle('Type de défi'),
                               ),
                               SizedBox(height: 20),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 15),
+                                padding: const EdgeInsets.only(left: 25.0,top: 15,right: 25),
                                 child: Wrap(
                                   spacing: 12.0, // Spacing between items
                                   runSpacing: 12.0, // Spacing between lines
@@ -425,8 +432,8 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 35),
-                                child: _buildTitle('Difficulty'),
+                                padding: const EdgeInsets.only(left: 25.0,top: 35,right: 25),
+                                child: _buildTitle('Difficulté'),
                               ),
                               SizedBox(height: 30),
                               Padding(
@@ -460,8 +467,8 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 25),
-                                child: _buildTitle('Duration'),
+                                padding: const EdgeInsets.only(left: 25.0,top: 35),
+                                child: _buildTitle('Durée'),
                               ),
                               SizedBox(height: 20),
                               Padding(
@@ -511,14 +518,17 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                     ),
                                     child: Center(
-                                      child: Text(
-                                        'Apply',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo-Semibold',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0.09,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                          'Apply',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontFamily: 'Archivo-Semibold',
+                                            fontWeight: FontWeight.w600,
+                                            height: 0.09,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -578,7 +588,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 5, right: 12.0),
+              padding: const EdgeInsets.only(left: 5, right: 12.0,top:6),
               child: Text(
                 item,
                 style: TextStyle(
@@ -632,7 +642,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 5, right: 12.0),
+              padding: const EdgeInsets.only(left: 5, right: 12.0,top: 6),
               child: Text(
                 item,
                 style: TextStyle(
@@ -754,7 +764,7 @@ class ChallengeCard extends StatelessWidget {
                             height: 1.2,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 17),
                         Row(
                           children: [
                             _buildLabelWithIcon('assets/takechallenge/icon_level.png', 'Intermediate'),

@@ -97,7 +97,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
 
               child:  Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: customButtonRed(context, 'Save Change', onPressed: () {
+                child: customButtonRed(context, 'Enregistrer et suivant', onPressed: () {
                   widget.onNextPressed();
 
                 }),

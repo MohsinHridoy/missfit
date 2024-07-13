@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 // Model class to represent each term and condition item
 class TermItem {
   final String title;
@@ -89,50 +91,13 @@ class TermConditions extends StatelessWidget {
       backgroundColor: Color(0xFFF6F6F6),
       body: Column(
         children: [
-          Container(
-            height: 97,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(16),
-              ),
-              border: Border.all(color: Colors.white.withOpacity(0.11)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 35.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset(
-                      "assets/cart/icon_left_arrow.png",
-                      scale: 2,
-                    ),
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width / 4.5),
-                  Text(
-                    'Terms & Conditions',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF1E293B),
-                      fontSize: 18,
-                      fontFamily: 'Kanit-Medium',
-                      fontWeight: FontWeight.w500,
-                      height: 0.07,
-
-                    ),
-                  ),
-                  Spacer(),
-                ],
-              ),
-            ),
+          CustomAppBar(
+            title: 'Termes et conditions',
+            onBackTap: () {
+              Navigator.pop(context);
+            },
+            iconSpacing: 4.9,
           ),
-
           SizedBox(height: 15,),
 
           Expanded(
@@ -153,6 +118,8 @@ class TermConditions extends StatelessWidget {
                           fontSize: 18,
                           fontFamily: 'Archivo-Semibold',
                           fontWeight: FontWeight.w600,
+                          height: 1.10,
+
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -163,6 +130,8 @@ class TermConditions extends StatelessWidget {
                           fontSize: 18,
                           fontFamily: 'Archivo-Regular',
                           fontWeight: FontWeight.w400,
+                          height: 1.7,
+
                         ),
                       ),
                     ],

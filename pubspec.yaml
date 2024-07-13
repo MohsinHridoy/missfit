@@ -38,11 +38,13 @@ dependencies:
   shared_preferences: ^2.0.8
   image_picker: ^1.0.7
   provider: ^6.1.2
-  video_player: ^2.8.5
+  video_player: ^2.9.1
   dotted_border: ^2.1.0
   flutter_xlider: ^3.5.0
   flutter_rating_bar: ^4.0.0
   flutter_screenutil: ^5.9.3
+  video_thumbnail: ^0.5.0
+
 
 
 
@@ -98,6 +100,7 @@ flutter:
     - assets/coachbooking/
     - assets/search/
     - assets/subscription/
+    - assets/bookmark/
     - assets/takechallenge/
     - assets/workout/www.mp4
 

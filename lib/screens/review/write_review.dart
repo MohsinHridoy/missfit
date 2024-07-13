@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 
@@ -85,21 +86,21 @@ class _ProductReviewState extends State<ProductReview> {
                     crossAxisAlignment: CrossAxisAlignment.start,
 
                     children: [
-                      SizedBox(height: 10,),
+                      SizedBox(height: 10.h,),
                       _buildProductInfo(),
-                      SizedBox(height: 50,),
+                      SizedBox(height: 50.h,),
 
-                      _buildRatingQuestion('What rating would you give this item?'),
-                      SizedBox(height: 30,),
+                      _buildRatingQuestion('Quelle note donneriez-vous à cet article ?'),
+                      SizedBox(height: 25.h,),
 
                       _buildRatingBar(),
-                      SizedBox(height: 40,),
+                      SizedBox(height: 30.h,),
 
-                      _buildRatingQuestion('Write Review'),
-                      SizedBox(height: 30,),
+                      _buildRatingQuestion('Ecrire une critique'),
+                      SizedBox(height: 25.h,),
 
                       _buildReviewTextField(),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20.h),
 
                       _buildImageUploader(),
 
@@ -133,7 +134,6 @@ class _ProductReviewState extends State<ProductReview> {
         return Container(
           width: MediaQuery.of(context).size.width,
           height: 320,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -143,6 +143,8 @@ class _ProductReviewState extends State<ProductReview> {
           ),
           child: Column(
             children: [
+              SizedBox(height: 10.h,),
+
               SizedBox(
                 height: 100,
                 width: 100,
@@ -154,10 +156,11 @@ class _ProductReviewState extends State<ProductReview> {
                   repeat: false, // Play animation only once
                 ),
               ),
+              SizedBox(height: 20.h,),
               SizedBox(
                 width: 320,
                 child: Text(
-                  'Review Submitted',
+                  'Avis soumis',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF334155),
@@ -171,9 +174,9 @@ class _ProductReviewState extends State<ProductReview> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
-                  width: 340,
+                  width: 340.h,
                   child: Text(
-                    'Thank you for your review. Your insights will help other customer make good purchase.',
+                    'Merci pour votre avis. Vos informations aideront d’autres clients à faire un bon achat.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF66758C),
@@ -196,7 +199,7 @@ class _ProductReviewState extends State<ProductReview> {
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 44,
+                    height: 52,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 32, vertical: 12),
                     decoration: BoxDecoration(
@@ -248,9 +251,9 @@ class _ProductReviewState extends State<ProductReview> {
                 scale: 2,
               ),
             ),
-            SizedBox(width: MediaQuery.of(context).size.width / 3.8),
+            SizedBox(width: MediaQuery.of(context).size.width / 4.8),
             Text(
-              'Write Review',
+              'Ecrire une critique',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF1E293B),
@@ -307,7 +310,7 @@ class _ProductReviewState extends State<ProductReview> {
         fontSize: 18,
         fontFamily: 'Kanit-Medium',
         fontWeight: FontWeight.w500,
-        height: 0.07,
+        height: 1.07,
       ),
     );
   }
@@ -361,6 +364,7 @@ class _ProductReviewState extends State<ProductReview> {
               fontWeight: FontWeight.w500,
             ),
             decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(left: 15,top: 10),
               hintText: 'Décrivez votre expérience (facultatif)', // Your hint text here
               hintStyle: TextStyle(
                 color: Color(0xFF334155),
@@ -404,7 +408,7 @@ class _ProductReviewState extends State<ProductReview> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    'Upload Photo (${_images.length}/5)',
+                    'Télécharger une photo(${_images.length}/5)',
                     style: TextStyle(
                       color: Color(0xFFFF4343),
                       fontSize: 14,
@@ -436,9 +440,9 @@ class _ProductReviewState extends State<ProductReview> {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 6.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: Text(
-              'Submit',
+              'Soumettre',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/activityselectiondashboard/activityselectiondashboard.dart';
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/heightselectiondashboard/height_selection_dashboard.dart';
@@ -26,16 +27,16 @@ class _PersonalInfoState extends State<PersonalInfo> {
           children: [
 
             CustomAppBar(
-              title:  'Personal Info',
+              title:  'Informations personnelles',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 3.8,
+              iconSpacing: 7.0,
             ),
              SizedBox(height: 15,),
-            _buildDelivaryStatusTextItem('Basic Information','Full Name : Helen Hanf','Age : 26','',BasicInfo(onNextPressed: () {  },status: 'profile',),),
-            _buildDelivaryStatusTextItem('Weight & Height','Advacement level : Beginner','Gym goal : Building strength, Body shape improvement, Boosting libido','Workout Duration : Light Activity (About 10-20 minutes)',ActivitySelectionDashBoard()),
-            _buildDelivaryStatusTextItem('Weight & Height','Weight : 56 kg','Height : 5 ft 6 inch','',HeightSelectionDashBoard()),
+            _buildDelivaryStatusTextItem('Informations de base','Full Name : Helen Hanf','Age : 26','',BasicInfo(onNextPressed: () {  },status: 'profile',),),
+            _buildDelivaryStatusTextItem('Objectif et activité','Niveau avancé : Débutant','Objectif gym : Renforcement de la force, Amélioration de la silhouette, Stimulation de la libido',"Durée de l'entraînement : activité légère (environ 10 à 20 minutes)",ActivitySelectionDashBoard()),
+            _buildDelivaryStatusTextItem('Poids et taille','Poids : 56 kg','Hauteur : 5 pieds 6 pouces','',HeightSelectionDashBoard()),
           ],
         ),
       ),
@@ -66,7 +67,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   children: [
 
                     SizedBox(
-                      width: 135,
+                      width: 200.h,
                       child: Text(
                         title,
                         style: TextStyle(

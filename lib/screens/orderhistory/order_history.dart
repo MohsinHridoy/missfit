@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 import 'package:miss_fit/screens/review/write_review.dart';
@@ -43,7 +44,7 @@ class OrderHistory extends StatefulWidget {
 
 class _OrderHistoryState extends State<OrderHistory> {
   int selectedIndex = 0;
-  List<String> categoryItems = ['All', 'Processing', 'Delivered', 'Cancelled'];
+  List<String> categoryItems = ['Toute', 'Traitement', 'Livré', 'Annulé'];
   List<OrderHistoryItem> orderHistoryItems = [
     OrderHistoryItem(
       reviewText: 'Not satisfied with the quality.',
@@ -134,14 +135,14 @@ class _OrderHistoryState extends State<OrderHistory> {
           children: [
             // Header Section
             CustomAppBar(
-              title:  'Order History',
+              title:  'Historique des commandes',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 3.8,
+              iconSpacing: 6.8,
             ),
             SizedBox(
-              height: 15,
+              height: 15.h,
             ),
             // Rating Section
             // Horizontal List View Section
@@ -150,7 +151,7 @@ class _OrderHistoryState extends State<OrderHistory> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 10),
               child: SizedBox(
-                height: 45.0,
+                height: 40.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -195,7 +196,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                           ),
                           child: Center(
                             child:  Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.only(left: 15.0,right: 15,top: 8),
                               child: Text(
                                 categoryItems[index],
                                 style: TextStyle(
@@ -466,7 +467,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text(
-                                        'View Details',
+                                        'Voir les détails',
                                         style: TextStyle(
                                           color: Color(0xFFFF4343),
                                           fontSize: 14,
@@ -487,7 +488,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 Expanded(
                                   child: GestureDetector(
                                     onTap:(){
-                                      navigateToNextPage(context,OrderStatus(status: OrderStatusEnum.Packed1,navigationStatus:'Processing'));
+                                      navigateToNextPage(context,OrderStatus(status: OrderStatusEnum.Packed1,navigationStatus:'Delivered'));
 
                                     },
                                     child: Container(
@@ -504,7 +505,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 8.0),
                                           child: Text(
-                                            'View Details',
+                                            'Voir les détails',
                                             style: TextStyle(
                                               color: Color(0xFFFF4343),
                                               fontSize: 14,
@@ -535,14 +536,17 @@ class _OrderHistoryState extends State<OrderHistory> {
                                             borderRadius: BorderRadius.circular(8)),
                                       ),
                                       child: Center(
-                                        child: Text(
-                                          'Write Review',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 8.0),
+                                          child: Text(
+                                            'Ecrire une critique',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontFamily: 'Archivo-SemiBold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 0.10,
+                                            ),
                                           ),
                                         ),
                                       ),

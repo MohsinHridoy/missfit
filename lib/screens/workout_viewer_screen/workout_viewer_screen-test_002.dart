@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/completechallengescreen/complete_challenge_screen.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 import '../../common_utils.dart';
 
@@ -1342,6 +1344,61 @@ class WorkoutListItem extends StatelessWidget {
   }
 }
 
+
+
+class VideoThumbnailView extends StatefulWidget {
+  final String videoPath;
+
+  VideoThumbnailView({required this.videoPath});
+
+  @override
+  _VideoThumbnailViewState createState() => _VideoThumbnailViewState();
+}
+
+class _VideoThumbnailViewState extends State<VideoThumbnailView> {
+  Uint8List? _thumbnailBytes;
+
+  @override
+  void initState() {
+    super.initState();
+    _generateThumbnail();
+  }
+
+  Future<void> _generateThumbnail() async {
+    final thumbnailBytes = await VideoThumbnail.thumbnailData(
+      video: widget.videoPath,
+      imageFormat: ImageFormat.JPEG,
+      maxWidth: 128, // specify the width of the thumbnail, you can change this
+      quality: 25,
+    );
+
+    setState(() {
+      _thumbnailBytes = thumbnailBytes;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _thumbnailBytes != null
+        ? Image.memory(_thumbnailBytes!)
+        : Center(child: CircularProgressIndicator());
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class ChallengeScreen extends StatefulWidget {
   @override
   _ChallengeScreenState createState() => _ChallengeScreenState();
@@ -1350,13 +1407,27 @@ class ChallengeScreen extends StatefulWidget {
 class _ChallengeScreenState extends State<ChallengeScreen> {
   int _timerDuration = 8; // Initial timer duration in seconds
   late Timer _timer;
+  Uint8List? thumbnailBytes;
 
   @override
   void initState() {
     super.initState();
+    _generateThumbnail();
+
     startTimer();
   }
+  Future<void> _generateThumbnail() async {
+     thumbnailBytes = await VideoThumbnail.thumbnailData(
+      video: 'assets/workout/www.mp4',
+      imageFormat: ImageFormat.JPEG,
+      maxWidth: 128, // specify the width of the thumbnail, you can change this
+      quality: 25,
+    );
 
+    setState(() {
+      thumbnailBytes = thumbnailBytes;
+    });
+  }
   void startTimer() {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(oneSec, (timer) {
@@ -1395,6 +1466,10 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+
+          VideoThumbnailView(
+            videoPath: 'assets/workout/www.mp4', // Your video path
+          ),
           Positioned(
             bottom: 50,
             left: 20,

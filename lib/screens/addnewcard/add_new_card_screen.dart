@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 
 import '../../common_utils.dart';
@@ -47,18 +48,18 @@ class _AddNewCardState extends State<AddNewCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomAppBar(
-              title:  widget.status == 'profile'?'Payment Card': 'Add New Card',
+              title:  widget.status == 'profile'?'Carte de paiement': 'Ajouter une nouvelle carte',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 4.2,
+              iconSpacing: 4.8,
             ),
             SizedBox(
-              height: 15,
+              height: 15.h,
             ),
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: title_textView_Kt_SBld(isVisible ?  'Add Card':'My Card')
+              child: title_textView_Kt_SBld(isVisible ?  'Ajouter une carte':'Ma carte')
             ),
             Visibility(visible:!isVisible ,child: _buildListPaymentMethod()),
            widget.status=='mentorship' || widget.status=='subscription' && isVisible==false? Padding(
@@ -110,9 +111,9 @@ class _AddNewCardState extends State<AddNewCard> {
               visible:isVisible ,
               child: Column(
                 children: [
-                  _textFormField(_cardNumberController,'Card Number'),
-                  _textFormField(_cardHolderCOntroller,'Card Holder'),
-                  _textFormField(_expiredDateController,'Expired Date'),
+                  _textFormField(_cardNumberController,'Numéro de carte'),
+                  _textFormField(_cardHolderCOntroller,'Titulaire de la carte'),
+                  _textFormField(_expiredDateController,"Date d'expiration"),
                   _textFormField(_cvvCodeController,'CVV Code'),
                 ],
               ),
@@ -123,7 +124,7 @@ class _AddNewCardState extends State<AddNewCard> {
 
             widget.status !='mentorship' && widget.status !='subscription'?Padding(
               padding: const EdgeInsets.all(20.0),
-              child: customButtonRed(context,  'Add new card', onPressed: () {
+              child: customButtonRed(context,  'Ajouter une nouvelle carte', onPressed: () {
                 setState(() {
                   if (isVisible) {
                     _addNewPaymentMethod();  // Add new card if currently in add card mode
@@ -307,7 +308,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                       children: <Widget>[
                                         SizedBox(height: 50),
                                         Text(
-                                          'Delete Existing Card',
+                                          'Supprimer la carte existante',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Color(0xFF334155),
@@ -319,7 +320,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                         ),
                                         SizedBox(height: 30),
                                         Text(
-                                          'Do you want to delete this card?',
+                                          'Voulez-vous supprimer cette carte ?',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Color(0xFF334155),
@@ -335,67 +336,76 @@ class _AddNewCardState extends State<AddNewCard> {
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pop(
-                                                      context); // Close the modal when tapped
-                                                },
-                                                child: Container(
-                                                  width: 150,
-                                                  height: 52,
-                                                  padding: const EdgeInsets.symmetric(
-                                                      horizontal: 32, vertical: 17),
-                                                  decoration: ShapeDecoration(
-                                                    shape: RoundedRectangleBorder(
-                                                      side: BorderSide(
-                                                          width: 1, color: Color(0xFFFF4343)),
-                                                      borderRadius: BorderRadius.circular(8),
+                                              Expanded(
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.pop(
+                                                        context); // Close the modal when tapped
+                                                  },
+                                                  child: Container(
+                                                    height: 52,
+                                                    padding: const EdgeInsets.symmetric(
+                                                        horizontal: 32, vertical: 17),
+                                                    decoration: ShapeDecoration(
+                                                      shape: RoundedRectangleBorder(
+                                                        side: BorderSide(
+                                                            width: 1, color: Color(0xFFFF4343)),
+                                                        borderRadius: BorderRadius.circular(8),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'No',
-                                                      style: TextStyle(
-                                                        color: Color(0xFFFF4343),
-                                                        fontSize: 16,
-                                                        fontFamily: 'Archivo',
-                                                        fontWeight: FontWeight.w600,
-                                                        height: 0.09,
+                                                    child: Center(
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.only(top: 8.0),
+                                                        child: Text(
+                                                          'Non',
+                                                          style: TextStyle(
+                                                            color: Color(0xFFFF4343),
+                                                            fontSize: 16,
+                                                            fontFamily: 'Archivo',
+                                                            fontWeight: FontWeight.w600,
+                                                            height: 0.09,
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                              GestureDetector(
-                                                onTap: (){
+                                              SizedBox(width: 15,),
+                                              Expanded(
+                                                child: GestureDetector(
+                                                  onTap: (){
 
-                                                  setState(() {
-                                                    paymentItems.removeAt(index);
+                                                    setState(() {
+                                                      paymentItems.removeAt(index);
 
-                                                    Navigator.pop(context);
+                                                      Navigator.pop(context);
 
-                                                  });
+                                                    });
 
-                                                },
-                                                child: Container(
-                                                  width: 150,
-                                                  height: 52,
+                                                  },
+                                                  child: Container(
+                                                    height: 52,
 
-                                                  decoration: ShapeDecoration(
-                                                    color: Color(0xFFFF4343),
-                                                    shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(8)),
-                                                  ),
+                                                    decoration: ShapeDecoration(
+                                                      color: Color(0xFFFF4343),
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(8)),
+                                                    ),
 
-                                                  child: Center(
-                                                    child: Text(
-                                                      'Yes',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 16,
-                                                        fontFamily: 'Archivo-SemiBold',
-                                                        fontWeight: FontWeight.w600,
-                                                        height: 0.09,
+                                                    child: Center(
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.only(top: 8.0),
+                                                        child: Text(
+                                                          'Oui',
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontFamily: 'Archivo-SemiBold',
+                                                            fontWeight: FontWeight.w600,
+                                                            height: 0.09,
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

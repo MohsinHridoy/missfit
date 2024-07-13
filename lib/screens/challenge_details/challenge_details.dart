@@ -317,7 +317,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                     ),
                     const SizedBox(height: 40),
                     Container(
-                      width: 392,
+                      width: MediaQuery.of(context).size.width,
                       height: 172,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -543,15 +543,18 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                       ),
                                       const SizedBox(width: 12),
                                       Expanded(
-                                        child: SizedBox(
-                                          child: Text(
-                                            'Stronger and explosive lower body',
-                                            style: TextStyle(
-                                              color: Color(0xFF475569),
-                                              fontSize: 14,
-                                              fontFamily: 'Archivo-Medium',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 8.0),
+                                          child: SizedBox(
+                                            child: Text(
+                                              'Stronger and explosive lower body',
+                                              style: TextStyle(
+                                                color: Color(0xFF475569),
+                                                fontSize: 14,
+                                                fontFamily: 'Archivo-Medium',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0.10,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -578,15 +581,18 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                       ),
                                       const SizedBox(width: 12),
                                       Expanded(
-                                        child: SizedBox(
-                                          child: Text(
-                                            'Better body Balance',
-                                            style: TextStyle(
-                                              color: Color(0xFF475569),
-                                              fontSize: 14,
-                                              fontFamily: 'Archivo-Medium',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 8.0),
+                                          child: SizedBox(
+                                            child: Text(
+                                              'Better body Balance',
+                                              style: TextStyle(
+                                                color: Color(0xFF475569),
+                                                fontSize: 14,
+                                                fontFamily: 'Archivo-Medium',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0.10,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -613,15 +619,18 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                       ),
                                       const SizedBox(width: 12),
                                       Expanded(
-                                        child: SizedBox(
-                                          child: Text(
-                                            'Athlete-like physique',
-                                            style: TextStyle(
-                                              color: Color(0xFF475569),
-                                              fontSize: 14,
-                                              fontFamily: 'Archivo-Medium',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 8.0),
+                                          child: SizedBox(
+                                            child: Text(
+                                              'Athlete-like physique',
+                                              style: TextStyle(
+                                                color: Color(0xFF475569),
+                                                fontSize: 14,
+                                                fontFamily: 'Archivo-Medium',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0.10,
+                                              ),
                                             ),
                                           ),
                                         ),

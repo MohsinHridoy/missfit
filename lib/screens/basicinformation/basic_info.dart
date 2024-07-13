@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -89,11 +90,11 @@ class _BasicInfoState extends State<BasicInfo> {
             Visibility(
               visible: widget.status == "profile",
               child: CustomAppBar(
-                title:  'Basic Information',
+                title:  'Informations de base',
                 onBackTap: () {
                   Navigator.pop(context);
                 },
-                iconSpacing: 4.2,
+                iconSpacing: 5,
               ),
             ),
 
@@ -229,7 +230,7 @@ class _BasicInfoState extends State<BasicInfo> {
                         fontWeight: FontWeight.w500,
                       ),
                       decoration: InputDecoration(
-                        labelText: 'Full Name',
+                        labelText: 'Nom et prénom',
                         labelStyle: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 16,
@@ -260,7 +261,7 @@ class _BasicInfoState extends State<BasicInfo> {
                         fontWeight: FontWeight.w500,
                       ),
                       decoration: InputDecoration(
-                        labelText: 'Age',
+                        labelText: 'Âge',
                         labelStyle: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 16,
@@ -279,56 +280,47 @@ class _BasicInfoState extends State<BasicInfo> {
                     ),
                   ),
 
-                  SizedBox(height: widget.status == "profile" ? MediaQuery.of(context).size.height / 1.7 : MediaQuery.of(context).size.height / 3.3),
+                  SizedBox(height: widget.status == "profile" ? 430.h : 333.3.h),
 
-
+                  widget.status != "profile"?
                   GestureDetector(
                     onTap: _isButtonEnabled ? _login : _login2,
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 15.0),
-                      child: Visibility(
-                        visible: widget.status != "profile",
-                        child: Container(
-                          width: double.infinity,
-                          height: 52,
-                          decoration: BoxDecoration(
-                            color: _isButtonEnabled
-                                ? Color(0xFFFF4343)
-                                : Color(0xFFD1D5DB),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                'Suivante',
-                                style: TextStyle(
-                                  color: _isButtonEnabled
-                                      ? Colors.white
-                                      : Color(0xFF334155),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.09,
+                      child:Container(
+                        width: double.infinity,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          color: _isButtonEnabled
+                              ? Color(0xFFFF4343)
+                              : Color(0xFFD1D5DB),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              'Suivante',
+                              style: TextStyle(
+                                color: _isButtonEnabled
+                                    ? Colors.white
+                                    : Color(0xFF334155),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                height: 0.09,
 
-                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Visibility(
-                    visible: widget.status == "profile",
+                  ):
+                  customButtonRed(context, 'Sauvegarder les modifications', onPressed: () {
+                    navigateToNextPage(context,DashBoard(number: 3,));
 
-                    child:  customButtonRed(context, 'Save Change', onPressed: () {
-                      navigateToNextPage(context,DashBoard(number: 3,));
+                  })
 
-                    }),
-
-
-
-                  ),
 
 
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/returnproduct/return_product.dart';
@@ -53,11 +54,11 @@ class _OrderStatusState extends State<OrderStatus> {
         child: Column(
           children: [
             CustomAppBar(
-              title:  'Order Status',
+              title:  'Statut de la commande',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 3.5,
+              iconSpacing: 5.5,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -120,14 +121,14 @@ class _OrderStatusState extends State<OrderStatus> {
                                 SizedBox(height: 20),
 
                                 _buildStatusItem(OrderStatusEnum.Processing,
-                                    'Order Processing', 'Tuesday, 26 March, 09:13 AM'),
-                                _buildStatusItem(OrderStatusEnum.Placed, 'Order Placed',
+                                    'Commande en cours de traitement', 'Tuesday, 26 March, 09:13 AM'),
+                                _buildStatusItem(OrderStatusEnum.Placed, 'Commande passée',
                                     'Tuesday, 26 March, 09:15 AM'),
-                                _buildStatusItem(OrderStatusEnum.Packed, 'Order Packed',
+                                _buildStatusItem(OrderStatusEnum.Packed,'Emballée',
                                     'Tuesday, 26 March, 10:00 AM'),
-                                _buildStatusItem(OrderStatusEnum.Shipped, 'Order Shipped',
+                                _buildStatusItem(OrderStatusEnum.Shipped,'Expédié',
                                     'Wednesday, 27 March, 08:00 AM'),
-                                _buildStatusItem(OrderStatusEnum.Packed1, 'Second Packing',
+                                _buildStatusItem(OrderStatusEnum.Packed1, 'Emballée',
                                     'Wednesday, 27 March, 11:00 AM',
                                     isLast: true),
                               ],
@@ -140,7 +141,7 @@ class _OrderStatusState extends State<OrderStatus> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40),
                       child: Text(
-                        'Delivery Location',
+                        'Lieu de livraison',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -158,7 +159,7 @@ class _OrderStatusState extends State<OrderStatus> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
                       child: Text(
-                        'Product Details',
+                        'Détails du produit',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -284,22 +285,18 @@ class _OrderStatusState extends State<OrderStatus> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    SizedBox(height: 25,),
-                    SizedBox(
-                      width: 288,
-                      child: Text(
-                        'Why are you canceling this order?',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.07,
-                        ),
+                    SizedBox(height: 2.h,),
+                    Text(
+                      'Pourquoi annulez-vddddddddddous cette comande ?',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 18,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10.h,
                     ),
                     for (int i = 0; i < 4; i++) // Build items dynamically
                       Padding(
@@ -339,7 +336,7 @@ class _OrderStatusState extends State<OrderStatus> {
                           ],
                         ),
                       ),
-                    SizedBox(height: 25,),
+                    SizedBox(height: 15.h,),
 
                     Padding(
                       padding: const EdgeInsets.only(
@@ -367,7 +364,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
-                                      'No',
+                                      'Non',
                                       style: TextStyle(
                                         color: Color(0xFFFF4343),
                                         fontSize: 16,
@@ -405,7 +402,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
-                                      'Yes',
+                                      'Oui',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
@@ -433,25 +430,25 @@ class _OrderStatusState extends State<OrderStatus> {
                       scale: 2,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.only(left: 20.0,right: 20,),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
-                          'Are you sure to cancel this order?',
+                          "Etes-vous sûr d'annuler cette \ncommande ?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 18,
                             fontFamily: 'Archivo',
                             fontWeight: FontWeight.w600,
-                            height: 0.08,
+                            height: 1.08,
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 5.0, right: 5, bottom: 1, top: 15),
+                          left: 5.0, right: 5, bottom: 1, top: 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -475,9 +472,9 @@ class _OrderStatusState extends State<OrderStatus> {
                                 ),
                                 child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
+                                    padding: const EdgeInsets.only(top: 8.0),
                                     child: Text(
-                                      'No',
+                                      'Non',
                                       style: TextStyle(
                                         color: Color(0xFFFF4343),
                                         fontSize: 16,
@@ -512,9 +509,9 @@ class _OrderStatusState extends State<OrderStatus> {
                                 ),
                                 child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
+                                    padding: const EdgeInsets.only(top: 8.0),
                                     child: Text(
-                                      'Yes',
+                                      'Oui',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
@@ -561,13 +558,13 @@ class _OrderStatusState extends State<OrderStatus> {
   String _getBottomSheetItemText(int index) {
     switch (index) {
       case 0:
-        return "Need to change delivery address";
+        return "Besoin de changer l'adresse de livraison";
       case 1:
-        return "I made the mistake of choosing wrong quantity of products.";
+        return "J'ai fait l'erreur de choisir une mauvaise quantité de produits.";
       case 2:
-        return "Modify existing order (Color, size, coupon code etc.)";
+        return "Modifier la commande existante (Couleur, taille, code promo etc.)";
       case 3:
-        return "Others";
+        return "Autres";
       default:
         return "";
     }

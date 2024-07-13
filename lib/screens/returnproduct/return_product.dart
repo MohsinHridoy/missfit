@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/returnrequest/return_request.dart';
 
 import '../../common_widgets.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart.dart';
 
 
@@ -56,60 +58,26 @@ class _ReturnProductState extends State<ReturnProduct> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.8),
-                    Text(
-                      'Return Product',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title:  'Retourner le produit',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 5.5,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 5.h),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: SizedBox(
                 width: 320,
                 child: Text(
-                  'Select Item You Want to Return',
+                  "Sélectionnez l'article que vous souhaitez retourner",
                   style: TextStyle(
                     color: Color(0xFF334155),
                     fontSize: 20,
                     fontFamily: 'Kanit-Semibold',
                     fontWeight: FontWeight.w600,
-                    height: 0.06,
+                    height: 1.06,
                   ),
                 ),
               ),

@@ -18,7 +18,7 @@ Widget outlineButton(BuildContext context,String title){
 
     child: Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 5.0),
+        padding: const EdgeInsets.only(top: 8.0),
         child: Text(
           title,
           style: TextStyle(

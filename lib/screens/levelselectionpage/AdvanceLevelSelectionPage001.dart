@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
@@ -93,7 +94,7 @@ class _AdvanceLevelSelectionPageState001
                   Visibility(
                     visible: widget.status == "profile",
 
-                    child:  customButtonRed(context, 'Save', onPressed: () {
+                    child:  customButtonRed(context, 'Sauvegarder', onPressed: () {
                       navigateToNextPage(context,DashBoard(number: 3,));
 
                     }),
@@ -246,7 +247,7 @@ class _AdvanceLevelSelectionPageState001
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Container(
-          width: 320,
+          width: 320.h,
           height: 84,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           clipBehavior: Clip.antiAlias,
@@ -264,7 +265,7 @@ class _AdvanceLevelSelectionPageState001
 
 
               item_txt_Archvo_M_500(title,titleColor),
-              SizedBox(height: 10),
+              SizedBox(height: 10.h),
               subItem_txt_Archvo_R_400(subtitle),
 
             ],

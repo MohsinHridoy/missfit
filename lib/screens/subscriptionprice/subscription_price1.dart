@@ -682,19 +682,19 @@ class _VerticalProgressBarState extends State<VerticalProgressBar> with SingleTi
                             textAlign: TextAlign.center,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0,right: 8.0,bottom: 16),
+                            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16),
                             child: Container(
                               width: 170,
-                              height: 31,
+                              height: 35,
                               decoration: ShapeDecoration(
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                               ),
                               child: Center(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
+                                  padding: const EdgeInsets.only(top: 12.0),
                                   child: Text(
-                                    'Total: CHF  ${progress*970}  ',
+                                    'Total: CHF ${progress * 970}',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color(0xFF22C55E),

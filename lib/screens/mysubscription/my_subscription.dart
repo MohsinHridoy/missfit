@@ -38,14 +38,46 @@ class MySubscription extends StatelessWidget {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            CustomAppBar(
-              title:  'Mon abonnement',
-              onBackTap: () {
-                // Navigator.pop(context);
-                // navigateToNextPage(context, DashBoard(number: 3,));
 
-              },
-              iconSpacing: 4.4,
+
+            Container(
+              height: 97,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
+                ),
+                border: Border.all(color: Colors.white.withOpacity(0.11)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 35.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: false,
+                      child: Image.asset(
+                        "assets/cart/icon_left_arrow.png",
+                        scale: 2,
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width /3.6),
+                    Text(
+                      'Mon abonnement',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF1E293B),
+                        fontSize: 18,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(

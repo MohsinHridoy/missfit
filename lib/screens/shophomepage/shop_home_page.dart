@@ -162,7 +162,7 @@ class _ShopPageState extends State<ShopPage> {
                                 },
                                 child: Container(
                                   width:
-                                      MediaQuery.of(context).size.width / 2.45,
+                                      MediaQuery.of(context).size.width / 2.32,
                                   // Set width to half of screen width
                                   height: 170,
                                   padding: const EdgeInsets.only(bottom: 5),
@@ -511,7 +511,7 @@ class _ShopPageState extends State<ShopPage> {
                     SizedBox(width: 8),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
+                        padding: const EdgeInsets.only(top: 7.0),
                         child: TextFormField(
                           readOnly: true,
                           style: TextStyle(

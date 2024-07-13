@@ -17,6 +17,8 @@ import 'package:miss_fit/screens/settings/settings.dart';
 import 'package:miss_fit/screens/termsconditions/terms_conditions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../bookmark/bookmark.dart';
+
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -279,9 +281,9 @@ class _ProfileState extends State<Profile> {
                     ),
                     _buildProfileItemCategory(
                         context,
-                        "assets/profile/icon_manage_subscription.png",
+                        "assets/profile/icon_bookmark.png",
                         'Élément de signet',
-                        MySubscription()),
+                        Bookmark()),
                     _buildProfileItemCategory(
                         context,
                         "assets/profile/icons_terms_condition.png",

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/registration/registration.dart';
@@ -239,9 +240,8 @@ class _Otp001State extends State<Otp001> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 100,
-                ),
+                SizedBox(height: 110.h),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, left: 20),
                   child: SizedBox(
@@ -258,9 +258,8 @@ class _Otp001State extends State<Otp001> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 55,
-                ),
+                SizedBox(height: 40.h),
+
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: SizedBox(
@@ -277,9 +276,8 @@ class _Otp001State extends State<Otp001> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 10.h),
+
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Row(
@@ -310,9 +308,9 @@ class _Otp001State extends State<Otp001> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 45,
-                ),
+                SizedBox(height: 25.h),
+
+
                 Padding(
                   padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                   child: Row(
@@ -494,65 +492,68 @@ class _Otp001State extends State<Otp001> {
                     ],
                   ),
                 ),
+
+                SizedBox(height: 20.h),
+
                 SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 250,
-                        child: Text(
-                          _showResendButton
-                              ? tvDidntRcvCodeStatus
-                              : tvSendCodeStatus,
-                          // 'Didn’t received any code?',
+                  height: 50.h,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 270,
+                          child: Text(
+                            _showResendButton
+                                ? tvDidntRcvCodeStatus
+                                : tvSendCodeStatus,
+                            // 'Didn’t received any code?',
+                            style: TextStyle(
+                              color: Color(0xFF9CA3AF),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 1.5,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: _showResendButton ? resendCode : null,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              _showResendButton ? 'Renvoyer' : '',
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                color: Color(0xFFFF4343),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Regular',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          _secondsRemaining == 0
+                              ? ''
+                              : '00:${_secondsRemaining.toString().padLeft(2, '0')}',
+                          textAlign: TextAlign.right,
                           style: TextStyle(
-                            color: Color(0xFF9CA3AF),
+                            color: Color(0xFFFFA142),
                             fontSize: 16,
                             fontFamily: 'Archivo-Regular',
                             fontWeight: FontWeight.w400,
                             height: 1.09,
                           ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: _showResendButton ? resendCode : null,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            _showResendButton ? 'Resend' : '',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Color(0xFFFF4343),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w500,
-                              height: 1.09,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        _secondsRemaining == 0
-                            ? ''
-                            : '00:${_secondsRemaining.toString().padLeft(2, '0')}',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xFFFFA142),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 1.09,
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 80,
-                ),
+
+                SizedBox(height: 50.h),
+
                 GestureDetector(
                   onTap:  _controller4.text.isNotEmpty
                       ? () async{
@@ -588,9 +589,9 @@ class _Otp001State extends State<Otp001> {
                       ),
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 6.0),
+                          padding: const EdgeInsets.only(top: 9.0),
                           child: Text(
-                            'Verify',
+                            'Vérifier',
                             style: TextStyle(
                               color: _controller4.text.isNotEmpty
                                   ? Colors.white
@@ -609,7 +610,7 @@ class _Otp001State extends State<Otp001> {
                 )
               ],
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 20.h),
             Expanded(
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.40, // Adjust the percentage as needed

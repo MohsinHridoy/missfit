@@ -428,7 +428,7 @@ class _TestScrollState extends State<TestScroll> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
-                          widget.status == 'profile'?'Save & Next':'Next',
+                          widget.status == 'profile'?'Enregistrer et suivant':'Suivant',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,

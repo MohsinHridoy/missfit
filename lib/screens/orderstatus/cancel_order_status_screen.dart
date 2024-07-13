@@ -74,9 +74,9 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width /4.9),
+                    SizedBox(width: MediaQuery.of(context).size.width /11.9),
                     Text(
-                      'Cancel Order Status',
+                      'Annuler le statut de la commande',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -153,14 +153,14 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                                 SizedBox(height: 40),
 
                                 _buildStatusItem(CancelOrderStatusEnum.Processing,
-                                    'Order Processing', 'Tuesday, 26 March, 09:13 AM'),
-                                _buildStatusItem(CancelOrderStatusEnum.Placed, 'Order Canceled',
+                                    'Commande en cours de traitement', 'Tuesday, 26 March, 09:13 AM'),
+                                _buildStatusItem(CancelOrderStatusEnum.Placed, 'Commande annulée',
                                     'Tuesday, 26 March, 09:15 AM'),
-                                _buildStatusItem(CancelOrderStatusEnum.Placed, 'Order Placed',
+                                _buildStatusItem(CancelOrderStatusEnum.Placed, 'Commande passée',
                                     'Tuesday, 26 March, 09:15 AM'),
-                                _buildStatusItem(CancelOrderStatusEnum.Packed, 'Order Packed',
+                                _buildStatusItem(CancelOrderStatusEnum.Packed, 'Expédié',
                                     'Tuesday, 26 March, 10:00 AM'),
-                                _buildStatusItem(CancelOrderStatusEnum.Shipped, 'Order Shipped',
+                                _buildStatusItem(CancelOrderStatusEnum.Shipped, 'Emballée',
                                     'Wednesday, 27 March, 08:00 AM'),
                                 _buildStatusItem(CancelOrderStatusEnum.Packed1, 'Second Packing',
                                     'Wednesday, 27 March, 11:00 AM',
@@ -175,7 +175,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40),
                       child: Text(
-                        'Delivery Location',
+                        'Lieu de livraison',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -193,7 +193,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
                       child: Text(
-                        'Product Details',
+                        'Détails du produit',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -218,7 +218,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                 onTap: (){
                   navigateToNextPage(context, DashBoard(number: 1,));
                 },
-                child: outlineButton(context, 'Back to Shopping'),
+                child: outlineButton(context, 'Retour aux achats'),
               ),
             )
 

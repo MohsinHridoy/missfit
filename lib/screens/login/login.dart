@@ -163,18 +163,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 52,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                   decoration: ShapeDecoration(
                     color: _isValidEmail ?  Color(0xFFFF4343) :  Color(0xFFD1D5DB),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Login',
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        'Se connecter',
                         style: TextStyle(
                           color:_isValidEmail ? Colors.white.withOpacity(0.9) : Color(0xFF334155),
                           fontSize: 16,
@@ -183,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 0.09,
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),

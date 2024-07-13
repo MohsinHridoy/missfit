@@ -316,7 +316,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
-                          widget.status == 'profile'?'Save':'Next',
+                          widget.status == 'profile'?'Sauvegarder':'Suivant',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,

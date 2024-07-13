@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common_widgets.dart';
@@ -91,7 +92,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
                 Visibility(
                   visible: widget.status == "profile",
 
-                  child:  customButtonRed(context, 'Save Change', onPressed: () {
+                  child:  customButtonRed(context, 'Enregistrer et suivant', onPressed: () {
                     widget.onNextPressed();
 
                   }),
@@ -123,7 +124,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Container(
-          width: 320,
+          width: 320.h,
           height: 84,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           clipBehavior: Clip.antiAlias,
@@ -140,7 +141,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
             children: [
 
               item_txt_Archvo_M_500(title,titleColor),
-              SizedBox(height: 10),
+              SizedBox(height: 10.h),
               subItem_txt_Archvo_R_400(subtitle)
             ],
           ),
