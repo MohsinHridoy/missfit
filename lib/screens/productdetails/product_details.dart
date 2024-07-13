@@ -21,14 +21,14 @@ class _ProductDetailsState extends State<ProductDetails> {
   final List<ReviewItem> reviews = [
     ReviewItem(
       reviewText:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui",
       details: '2 stars - March 2023',
       name: 'Jane Smith',
       stars: 2,
     ),
     ReviewItem(
       reviewText:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui',
       details: '5 stars - January 2023',
       name: 'John Doe',
       stars: 3,
@@ -39,7 +39,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     ),
     ReviewItem(
       reviewText:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui',
       details: '2 stars - March 2023',
       name: 'Jane Smith',
       stars: 2,
@@ -130,10 +130,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                           child: selectedImageUrl == null
                               ? const Placeholder()
                               : SizedBox(
-                                  width: 280,
-                                  height: 180,
-                                  child: Image.asset(selectedImageUrl!,
-                                      fit: BoxFit.contain)),
+                              width: 280,
+                              height: 180,
+                              child: Image.asset(selectedImageUrl!,
+                                  fit: BoxFit.contain)),
                         ),
                         SizedBox(height: 20),
                         Container(
@@ -150,17 +150,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                             child: Row(
                               children: [
                                 for (int index = 0;
-                                    index <
-                                        (imageUrls.length >= 4 && !showAll
-                                            ? 5
-                                            : imageUrls.length);
-                                    index++)
+                                index <
+                                    (imageUrls.length >= 4 && !showAll
+                                        ? 5
+                                        : imageUrls.length);
+                                index++)
                                   if (index == 4 && !showAll)
                                     GestureDetector(
                                       onTap: () {
                                         setState(() {
                                           showAll =
-                                              true; // Expand to show all items
+                                          true; // Expand to show all items
                                         });
                                       },
                                       child: Container(
@@ -169,7 +169,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             horizontal: 8),
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(5),
+                                          BorderRadius.circular(5),
                                           color: Colors.black.withOpacity(0.4),
                                         ),
                                         width: 36,
@@ -199,7 +199,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         height: 36,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(5),
+                                          BorderRadius.circular(5),
                                           color: Colors.white,
                                         ),
                                         child: Center(
@@ -227,7 +227,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: Color(0xFFF6F6F6),
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.only(topRight: Radius.circular(40)),
+                        BorderRadius.only(topRight: Radius.circular(40)),
                       ),
                     ),
                     child: Column(
@@ -352,7 +352,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           fontFamily: 'Archivo-Regular',
                                           fontWeight: FontWeight.w400,
                                           decoration:
-                                              TextDecoration.lineThrough,
+                                          TextDecoration.lineThrough,
                                           // Correct property is `decoration`, not `textDecoration`
                                           height: 0.12,
                                         ),
@@ -453,7 +453,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                         Padding(
                             padding: const EdgeInsets.only(left: 20.0),
-                            child: textAmW5S16('Variants')),
+                            child: textAmW5S16('Variantes')),
                         SizedBox(
                           height: 20,
                         ),
@@ -501,7 +501,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         fontFamily: 'Archivo-Regular',
                                         fontWeight: FontWeight.w400,
                                         height:
-                                            1.0, // Adjust line height if needed
+                                        1.0, // Adjust line height if needed
                                       ),
                                     ),
                                   ),
@@ -516,38 +516,36 @@ class _ProductDetailsState extends State<ProductDetails> {
                         buildDivider(context),
                         Padding(
                             padding: const EdgeInsets.only(left: 20.0, top: 45),
-                            child: textAmW5S16('Specification')),
+                            child: textAmW5S16('Spécification')),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20.0, right: 20, top: 35),
+                          padding: const EdgeInsets.only(left: 20.0, right: 20, top: 35),
                           child: LayoutBuilder(
-                            builder: (BuildContext context,
-                                BoxConstraints constraints) {
+                            builder: (BuildContext context, BoxConstraints constraints) {
                               final linkText = 'see more';
                               final linkStyle = TextStyle(
                                 color: Color(0xFFFF4343),
                                 fontWeight: FontWeight.w500,
+                              );
+                              final textStyle = TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 14,
+                                fontFamily: 'Archivo-Regular',
+                                fontWeight: FontWeight.w400,
+                                height: 1.11,
                               );
 
                               // Setup the TextPainter to calculate if we need "see more"
                               final textPainter = TextPainter(
                                 text: TextSpan(
                                   text: firstPart + trimmedText,
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo-Regular',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0.11,
-                                  ),
+                                  style: textStyle,
                                 ),
                                 maxLines: 2,
                                 textDirection: TextDirection.ltr,
                               );
 
                               // Layout the painter with available width
-                              textPainter.layout(
-                                  maxWidth: constraints.maxWidth);
+                              textPainter.layout(maxWidth: constraints.maxWidth);
 
                               return Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -565,6 +563,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       child: Text.rich(
                                         TextSpan(
                                           text: firstPart,
+                                          style: textStyle, // Apply the same text style here
                                           children: [
                                             TextSpan(
                                               text: linkText,
@@ -577,13 +576,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   else
                                     Text(
                                       firstPart + trimmedText,
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo-Regular',
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.11,
-                                      ),
+                                      style: textStyle,
                                     ),
                                 ],
                               );
@@ -599,11 +592,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
+                          const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              textAmW5S16('Service & Return Policy'),
+                              textAmW5S16('Service et politique de retour'),
                               Image.asset(
                                 "assets/cart/icon_right_arrow.png",
                                 scale: 2,
@@ -614,10 +607,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           height: 10,
                         ),
-                        _buildServicePolicyItem('14 Days Return'),
+                        _buildServicePolicyItem('Retour sous 14 jours'),
                         _buildServicePolicyItem(
-                            '100% Authenic from trusted brands'),
-                        _buildServicePolicyItem('2 months warranty'),
+                            '100 % authentique de marques de confiance'),
+                        _buildServicePolicyItem('2 mois de garantie'),
                         SizedBox(
                           height: 25,
                         ),
@@ -627,11 +620,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
+                          const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              textAmW5S16('Review'),
+                              textAmW5S16('Revoir'),
                               InkWell(
                                 onTap: () {
 
@@ -643,7 +636,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   width: 50,
                                   child: Center(
                                     child: Text(
-                                      'See All',
+                                      'Voir tout',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                         color: Color(0xFFFF4343),
@@ -710,171 +703,171 @@ class _ProductDetailsState extends State<ProductDetails> {
                           child: Column(
                             children: reviews
                                 .map((item) => Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 20.0, right: 20, bottom: 15),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color:  Color(0xFFE5E7EB)
-                                                      )),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: 40,
-                                              child: Row(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 20, bottom: 15),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color:  Color(0xFFE5E7EB)
+                                      )),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context)
+                                          .size
+                                          .width,
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            height: 40,
+                                            clipBehavior:
+                                            Clip.antiAlias,
+                                            decoration: ShapeDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    "assets/review/icon_girl.png"),
+                                                fit: BoxFit.fill,
+                                              ),
+                                              shape:
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(
+                                                      4)),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets.only(
+                                                  top: 8.0,
+                                                  left: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
                                                 children: [
-                                                  Container(
-                                                    width: 40,
-                                                    height: 40,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
-                                                    decoration: ShapeDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(
-                                                            "assets/review/icon_girl.png"),
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          4)),
+                                                  Text(
+                                                    'Rhaenyra',
+                                                    style: TextStyle(
+                                                      color: Color(
+                                                          0xFF334155),
+                                                      fontSize: 16,
+                                                      fontFamily:
+                                                      'Archivo-Regular',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w400,
+                                                      height: 0.09,
                                                     ),
                                                   ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 8.0,
-                                                              left: 10),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Rhaenyra',
-                                                            style: TextStyle(
-                                                              color: Color(
-                                                                  0xFF334155),
-                                                              fontSize: 16,
-                                                              fontFamily:
-                                                                  'Archivo-Regular',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              height: 0.09,
-                                                            ),
-                                                          ),
-                                                          SizedBox(height: 15),
-                                                          if (item.stars !=
-                                                              null) ...[
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    ...(item.stars !=
-                                                                            null
-                                                                        ? List.generate(
-                                                                            item.stars!,
-                                                                            (i) => Padding(
-                                                                                  padding: EdgeInsets.symmetric(horizontal: 0.5),
-                                                                                  child: Image.asset("assets/review/icon_star.png", scale: 2.2),
-                                                                                ))
-                                                                        : []),
-                                                                  ],
-                                                                ),
-                                                                Text(
-                                                                  '5 days ago',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .right,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Color(
-                                                                        0xFF66758C),
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontFamily:
-                                                                        'Archivo',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    height:
-                                                                        0.12,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
+                                                  SizedBox(height: 15),
+                                                  if (item.stars !=
+                                                      null) ...[
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            ...(item.stars !=
+                                                                null
+                                                                ? List.generate(
+                                                                item.stars!,
+                                                                    (i) => Padding(
+                                                                  padding: EdgeInsets.symmetric(horizontal: 0.5),
+                                                                  child: Image.asset("assets/review/icon_star.png", scale: 2.2),
+                                                                ))
+                                                                : []),
                                                           ],
-                                                        ],
-                                                      ),
+                                                        ),
+                                                        Text(
+                                                          '5 days ago',
+                                                          textAlign:
+                                                          TextAlign
+                                                              .right,
+                                                          style:
+                                                          TextStyle(
+                                                            color: Color(
+                                                                0xFF66758C),
+                                                            fontSize:
+                                                            12,
+                                                            fontFamily:
+                                                            'Archivo',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            height:
+                                                            0.12,
+                                                          ),
+                                                        )
+                                                      ],
                                                     ),
-                                                  ),
+                                                  ],
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(height: 15),
-                                            SizedBox(
-                                              height: 66,
-                                              child: Text(
-                                                item.reviewText,
-                                                style: TextStyle(
-                                                  color: Color(0xFF475569),
-                                                  fontSize: 14,
-                                                  fontFamily: 'Archivo-Regular',
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                                maxLines: 3,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-                                            // Text(
-                                            //   item.details,
-                                            //   style: TextStyle(color: Colors.grey),
-                                            // ),
-                                            // SizedBox(height: 5),
-                                            // Text(
-                                            //   'By: ${item.name}',
-                                            //   style: TextStyle(fontWeight: FontWeight.bold),
-                                            // ),
-                                            if (item.imageUrls !=
-                                                null) // Check if image URLs exist
-                                              SingleChildScrollView(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                child: Row(
-                                                  children: item.imageUrls
-                                                          ?.map((imageUrl) {
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Image.asset(
-                                                              imageUrl,
-                                                              width: 50,
-                                                              height: 50),
-                                                        );
-                                                      }).toList() ??
-                                                      [], // Use an empty list if imageUrls is null
-                                                ),
-                                              ),
-                                          ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 15),
+                                    SizedBox(
+                                      height: 66,
+                                      child: Text(
+                                        item.reviewText,
+                                        style: TextStyle(
+                                          color: Color(0xFF475569),
+                                          fontSize: 14,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    // Text(
+                                    //   item.details,
+                                    //   style: TextStyle(color: Colors.grey),
+                                    // ),
+                                    // SizedBox(height: 5),
+                                    // Text(
+                                    //   'By: ${item.name}',
+                                    //   style: TextStyle(fontWeight: FontWeight.bold),
+                                    // ),
+                                    if (item.imageUrls !=
+                                        null) // Check if image URLs exist
+                                      SingleChildScrollView(
+                                        scrollDirection:
+                                        Axis.horizontal,
+                                        child: Row(
+                                          children: item.imageUrls
+                                              ?.map((imageUrl) {
+                                            return Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .all(8.0),
+                                              child: Image.asset(
+                                                  imageUrl,
+                                                  width: 50,
+                                                  height: 50),
+                                            );
+                                          }).toList() ??
+                                              [], // Use an empty list if imageUrls is null
                                         ),
                                       ),
-                                    ))
+                                  ],
+                                ),
+                              ),
+                            ))
                                 .toList(),
                           ),
                         ),
@@ -920,7 +913,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       onTap: () {
                         print("Some things");
                         setState(() {
-                           isFavourite=!isFavourite;
+                          isFavourite=!isFavourite;
 
                         });
                       },
@@ -951,7 +944,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: MediaQuery.of(context).size.width,
                   height: 76,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   decoration: ShapeDecoration(
                     color: Colors.white.withOpacity(0.05000000074505806),
                     shape: RoundedRectangleBorder(
@@ -1014,7 +1007,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                'Checkout',
+                                'Ajouter au panier',
                                 textAlign: TextAlign.center,
                                 // Ensure text alignment is centered
 

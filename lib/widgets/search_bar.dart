@@ -74,47 +74,51 @@ class CustomSearchBar extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: TextFormField(
-                      controller: controller,
-                      focusNode: focusNode,
-                      onChanged: (value) {
-                        List<CustomItem> filteredItems = items
-                            .where((item) => item.title
-                                .toLowerCase()
-                                .contains(value.toLowerCase()))
-                            .toList();
-                        onItemsFiltered(filteredItems);
-                      },
-                      onEditingComplete: () {
-                        focusNode!.unfocus();
-                        final value = controller!.text;
-                        if (value.isNotEmpty &&
-                            !searchHistory!.contains(value)) {
-                          searchHistory!.insert(0, value);
-                          if (searchHistory!.length > 3) {
-                            searchHistory!.removeLast();
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 1.0),
+                      child: TextFormField(
+                        controller: controller,
+                        focusNode: focusNode,
+                        onChanged: (value) {
+                          List<CustomItem> filteredItems = items
+                              .where((item) => item.title
+                                  .toLowerCase()
+                                  .contains(value.toLowerCase()))
+                              .toList();
+                          onItemsFiltered(filteredItems);
+                        },
+                        onEditingComplete: () {
+                          focusNode!.unfocus();
+                          final value = controller!.text;
+                          if (value.isNotEmpty &&
+                              !searchHistory!.contains(value)) {
+                            searchHistory!.insert(0, value);
+                            if (searchHistory!.length > 3) {
+                              searchHistory!.removeLast();
+                            }
                           }
-                        }
-                      },
-                      cursorColor: Color(0xFF9CA3AF).withOpacity(0.3),
-                      style: TextStyle(
-                        color: Color(0xFF9CA3AF),
-                        fontSize: 14,
-                        fontFamily: 'Archivo-Regular',
-                        fontWeight: FontWeight.w400,
-                        height: 1.5,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: focusNode!.hasFocus ? '' : 'Search',
-                        hintStyle: TextStyle(
+                        },
+                        cursorColor: Color(0xFF9CA3AF).withOpacity(0.3),
+                        style: TextStyle(
                           color: Color(0xFF9CA3AF),
                           fontSize: 14,
                           fontFamily: 'Archivo-Regular',
                           fontWeight: FontWeight.w400,
                           height: 1.5,
                         ),
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(vertical: 12.0),
+                        decoration: InputDecoration(
+                          hintText: focusNode!.hasFocus ? '' : 'Recherche',
+
+                          hintStyle: TextStyle(
+                            color: Color(0xFF9CA3AF),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 1.5,
+                          ),
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(vertical: 12.0),
+                        ),
                       ),
                     ),
                   ),

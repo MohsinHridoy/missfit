@@ -222,7 +222,7 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
           children: [
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                child: title_textView_Kt_SBld('Recent Search')
+                child: title_textView_Kt_SBld('Recherche récente')
             ),
             SizedBox(height: 10),
             Padding(
@@ -241,7 +241,7 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 8.0,top: 6),
                             child: Text(
                               historyItem,
                               style: TextStyle(
@@ -301,11 +301,11 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
           child: Column(
             children: [
               CustomAppBar(
-                title: 'Search',
+                title: 'Recherche',
                 onBackTap: () {
                   Navigator.pop(context);
                 },
-                iconSpacing: 3.1,
+                iconSpacing: 3.4,
               ),
               SizedBox(height: 20),
               Expanded(
@@ -320,7 +320,7 @@ class _AllItemsSearchPageState extends State<AllItemsSearchPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            title_textView_Kt_SBld('Popular Search')
+                            title_textView_Kt_SBld('Recherche populaire')
                           ],
                         ),
                       ),

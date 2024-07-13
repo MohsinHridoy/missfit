@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
@@ -157,12 +158,12 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
           children: [
             CustomAppBar(
               title: widget.status != 'newarrival'
-                  ? 'All Products'
-                  : 'New Arrival',
+                  ? "Tous les produits"
+                  : "Tous les produits",
               onBackTap: () {
-                Navigator.pop(context);
+                navigateToNextPage(context, DashBoard(number: 1,));
               },
-              iconSpacing: 3.6, // Custom iconSpacing value
+              iconSpacing: 4, // Custom iconSpacing value
             ),
 
             Expanded(

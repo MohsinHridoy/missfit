@@ -89,11 +89,11 @@ class _WishListState extends State<WishList> {
         child: Column(
           children: [
             CustomAppBar(
-              title: 'WishList',
+              title: 'Liste de souhaits',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 3.2,
+              iconSpacing: 4.3,
             ),
             SizedBox(height: 15),
             Padding(
@@ -383,7 +383,7 @@ class _WishListState extends State<WishList> {
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: customButtonRed(context, 'All Add to Cart', onPressed: () {
+              child: customButtonRed(context, 'Tous Ajouter au panier', onPressed: () {
 
                 navigateToNextPage(context,Cart001());
 

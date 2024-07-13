@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/custom_app_bar.dart';
-
 class ReviewItem {
   final String reviewText;
   final String details;
@@ -30,15 +29,13 @@ class _ReviewListState extends State<ReviewList> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-
         body: Container(
           color: Color(0xFFF6F6F6),
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               CustomAppBar(
-                title: 'Review',
+                title: 'Revoir',
                 onBackTap: () {
                   Navigator.pop(context);
                 },
@@ -48,35 +45,39 @@ class _ReviewListState extends State<ReviewList> {
               Padding(
                 padding: const EdgeInsets.only(left: 12.0),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 11.0,right: 5,left: 4),
                       child: Image.asset("assets/review/icon_star.png",scale: 1.7,),
                     ),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '4.2 ',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.09,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '4.2 ',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Regular',
+                                fontWeight: FontWeight.w400,
+                                height: 0.09,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: '(12 Reviews)',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 12,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.12,
+                            TextSpan(
+                              text: '(12 avis)',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 12,
+                                fontFamily: 'Archivo-Regular',
+                                fontWeight: FontWeight.w400,
+                                height: 0.12,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -130,15 +131,9 @@ class HorizontalListView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: index == 0 ?48:60,
+                  width: index == 0 ? 48 : 60,
                   height: 36,
                   alignment: Alignment.center,
-                  // margin: EdgeInsets.symmetric(horizontal: 8.0),
-                  // padding: EdgeInsets.all(10.0),
-                  // decoration: BoxDecoration(
-                  //   color: index == selectedIndex ? Colors.blue : Colors.grey[300],
-                  //   borderRadius: BorderRadius.circular(10.0),
-                  // ),
                   decoration: BoxDecoration(
                     color: index == selectedIndex ? Colors.white : Colors.transparent,
                     borderRadius: BorderRadius.circular(4.0),
@@ -149,27 +144,21 @@ class HorizontalListView extends StatelessWidget {
                   ),
                   child: Center(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-
-                        SizedBox(width: 15,),
-
-                        index == 0 ?SizedBox(): Image.asset("assets/review/icon_star.png",scale: 2,),
-                        SizedBox(width:index == 0 ? 0:5,),
-
-
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            labelText,
-
-                            style: TextStyle(
-                              color: index == selectedIndex ?Color(0xFFE88E32): Color(0xFF334155),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.10,
-                            ),
+                        if (index != 0)
+                          Image.asset("assets/review/icon_star.png", scale: 2,),
+                        if (index != 0)
+                          SizedBox(width: 5,),
+                        Text(
+                          labelText,
+                          style: TextStyle(
+                            color: index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 1.2, // Adjusted to ensure proper line height
                           ),
                         ),
                       ],
@@ -203,14 +192,12 @@ class ReviewListView extends StatelessWidget {
           'assets/product_details/img_dumble.png'
         ] // Example image URLs
     ),
-
     ReviewItem(
       reviewText: 'Not satisfied with the quality.',
       details: '2 stars - March 2023',
       name: 'Jane Smith',
       stars: 2,
     ),
-
     // Add more review items as needed...
   ];
 
@@ -230,7 +217,7 @@ class ReviewListView extends StatelessWidget {
       itemCount: filteredReviews.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
+          padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
           child: Container(
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
@@ -257,7 +244,7 @@ class ReviewListView extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 12.0,left: 10),
+                          padding: const EdgeInsets.only(top: 12.0, left: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -272,8 +259,6 @@ class ReviewListView extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 8,),
-
-
                               if (index >= 0) ...[
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,7 +266,7 @@ class ReviewListView extends StatelessWidget {
                                     Row(
                                       children: [
                                         ...(filteredReviews[index].stars != null
-                                            ? List.generate(filteredReviews[index].stars!, (i) => Padding(
+                                            ? List.generate(filteredReviews[index].stars, (i) => Padding(
                                           padding: EdgeInsets.symmetric(horizontal: 0.5),
                                           child: Image.asset("assets/review/icon_star.png", scale: 2.2),
                                         ))
@@ -302,7 +287,6 @@ class ReviewListView extends StatelessWidget {
                                   ],
                                 ),
                               ],
-
                             ],
                           ),
                         ),
@@ -311,7 +295,6 @@ class ReviewListView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 15,),
-
                 SizedBox(
                   height: 66,
                   child: Text(
@@ -321,41 +304,24 @@ class ReviewListView extends StatelessWidget {
                       fontSize: 14,
                       fontFamily: 'Archivo-Regular',
                       fontWeight: FontWeight.w400,
-
                     ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(height: 5,),
-
-                // Text(
-                //   filteredReviews[index].reviewText,
-                //   style: TextStyle(fontSize: 16.0),
-                // ),
-                // SizedBox(height: 5.0),
-                // Text(
-                //   filteredReviews[index].details,
-                //   style: TextStyle(color: Colors.grey),
-                // ),
-                // SizedBox(height: 5.0),
-                // Text(
-                //   'By: ${filteredReviews[index].name}',
-                //   style: TextStyle(fontWeight: FontWeight.bold),
-                // ),
-                if (filteredReviews[index].imageUrls != null) // Check if image URLs exist
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: filteredReviews[index].imageUrls?.map((imageUrl) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(imageUrl, width: 50, height: 50),
-                      );
-                    }).toList() ??
-                        [], // Use an empty list if imageUrls is null
+                if (filteredReviews[index].imageUrls != null)
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: filteredReviews[index].imageUrls?.map((imageUrl) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(imageUrl, width: 50, height: 50),
+                        );
+                      }).toList() ?? [], // Use an empty list if imageUrls is null
+                    ),
                   ),
-                ),
               ],
             ),
           ),

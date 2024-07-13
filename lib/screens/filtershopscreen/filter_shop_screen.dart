@@ -211,9 +211,9 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
             children: [
 
               CustomAppBar(
-                title: 'Filter',
+                title: 'Filtre',
                 onBackTap: () {
-                  Navigator.pop(context);
+                  navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
                 },
                 iconSpacing: 2.9,
               ),
@@ -405,189 +405,6 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         ),
                       ),
 
-
-                      // SizedBox(
-                      //   width: screenWidth,
-                      //   height: 50,
-                      //   child: Stack(
-                      //     children: [
-                      //       Positioned(
-                      //         top: 8,
-                      //         left: minLeft + 50,
-                      //         right: screenWidth - maxLeft + 70,
-                      //         child: Container(
-                      //           height: 5,
-                      //           color: Color(0xFF22C55E),
-                      //         ),
-                      //       ),
-                      //       Positioned(
-                      //         left: minLeft + 30,
-                      //         child: GestureDetector(
-                      //           onHorizontalDragUpdate: (details) {
-                      //             _updatePosition(details, true);
-                      //           },
-                      //           child: Container(
-                      //             width: knobSize,
-                      //             height: knobSize,
-                      //             decoration: BoxDecoration(
-                      //               borderRadius: BorderRadius.circular(knobSize / 2),
-                      //             ),
-                      //             child:
-                      //                 Image.asset("assets/order/icon_range_slider.png"),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       Positioned(
-                      //         left: maxLeft - knobSize - 50,
-                      //         // Adjust for container width
-                      //         child: GestureDetector(
-                      //           onHorizontalDragUpdate: (details) {
-                      //             _updatePosition(details, false);
-                      //           },
-                      //           child: Container(
-                      //             width: knobSize,
-                      //             height: knobSize,
-                      //             decoration: BoxDecoration(
-                      //               borderRadius: BorderRadius.circular(knobSize / 2),
-                      //             ),
-                      //             child:
-                      //                 Image.asset("assets/order/icon_range_slider.png"),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                    // SizedBox(
-                    //   width: screenWidth,
-                    //   height: 50,
-                    //   child: Stack(
-                    //     children: [
-                    //       Positioned(
-                    //         top: 8,
-                    //         left: min(max(0, minLeft + 50), screenWidth - 140), // Adjusted to prevent going out of screen
-                    //         right: max(0, screenWidth - maxLeft + 70),
-                    //         child: Container(
-                    //           height: 5,
-                    //           color: Color(0xFF22C55E),
-                    //         ),
-                    //       ),
-                    //       Positioned(
-                    //         left: min(max(0, minLeft + 30), screenWidth - 80), // Adjusted to prevent going out of screen
-                    //         child: GestureDetector(
-                    //           onHorizontalDragUpdate: (details) {
-                    //             _updatePosition(details, true);
-                    //           },
-                    //           child: Container(
-                    //             width: knobSize,
-                    //             height: knobSize,
-                    //             decoration: BoxDecoration(
-                    //               borderRadius: BorderRadius.circular(knobSize / 2),
-                    //             ),
-                    //             child: Image.asset("assets/order/icon_range_slider.png"),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       Positioned(
-                    //         left: min(max(0, maxLeft - knobSize - 50), screenWidth - 80), // Adjusted to prevent going out of screen
-                    //         // Adjust for container width
-                    //         child: GestureDetector(
-                    //           onHorizontalDragUpdate: (details) {
-                    //             _updatePosition(details, false);
-                    //           },
-                    //           child: Container(
-                    //             width: knobSize,
-                    //             height: knobSize,
-                    //             decoration: BoxDecoration(
-                    //               borderRadius: BorderRadius.circular(knobSize / 2),
-                    //             ),
-                    //             child: Image.asset("assets/order/icon_range_slider.png"),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    //   Container(
-                    //     margin: EdgeInsets.only(top: 50, left: 20, right: 20),
-                    //     alignment: Alignment.centerLeft,
-                    //     child: FlutterSlider(
-                    //       values: [_lowerValue, _upperValue],
-                    //       rangeSlider: true,
-                    //       max: 3000,
-                    //       min: 0,
-                    //       jump: true,
-                    //       trackBar: FlutterSliderTrackBar(
-                    //         activeTrackBarHeight: 3,
-                    //         activeTrackBar: BoxDecoration(color: Color(0xFF22C55E)),
-                    //       ),
-                    //       tooltip: FlutterSliderTooltip(
-                    //           textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
-                    //           boxStyle: FlutterSliderTooltipBox(
-                    //               decoration: BoxDecoration(
-                    //                   color: Colors.transparent
-                    //               )
-                    //           )
-                    //       ),
-                    //       handler: FlutterSliderHandler(
-                    //         decoration: BoxDecoration(),
-                    //         child: Container(
-                    //           height: 25,
-                    //           width: 25,
-                    //           decoration: BoxDecoration(
-                    //             color: Colors.white,
-                    //             borderRadius: BorderRadius.circular(25),
-                    //             border: Border.all(color: Color(0xFF22C55E), width: 2),
-                    //
-                    //
-                    //           ),
-                    //           padding: EdgeInsets.all(3),
-                    //           child: Container(
-                    //             height: 18,
-                    //             width: 18,
-                    //             decoration: BoxDecoration(
-                    //                 color: Color(0xFF22C55E),
-                    //                 borderRadius: BorderRadius.circular(25)),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       rightHandler: FlutterSliderHandler(
-                    //
-                    //         decoration: BoxDecoration(),
-                    //         child: Container(
-                    //           height: 25,
-                    //           width: 25,
-                    //           decoration: BoxDecoration(
-                    //             color: Colors.white,
-                    //             borderRadius: BorderRadius.circular(25),
-                    //             border: Border.all(color: Color(0xFF22C55E), width: 2),
-                    //
-                    //
-                    //           ),
-                    //           padding: EdgeInsets.all(3),
-                    //           child: Container(
-                    //             height: 18,
-                    //             width: 18,
-                    //             padding: EdgeInsets.all(3),
-                    //             decoration: BoxDecoration(
-                    //                 color: Color(0xFF22C55E),
-                    //                 borderRadius: BorderRadius.circular(25)),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       disabled: false,
-                    //       onDragging: (handlerIndex, lowerValue, upperValue) {
-                    //         setState(() {
-                    //           _lowerValue = lowerValue;
-                    //           _upperValue = upperValue;
-                    //
-                    //           print(_lowerValue);
-                    //         });
-                    //       },
-                    //     ),
-                    //   ),
-
-
                       SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -632,7 +449,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Clear All',
+                                'Tout effacer',
                                 style: TextStyle(
                                   color: Color(0xFFFF4343),
                                   fontSize: 14,
@@ -650,9 +467,8 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          // Navigator.push(                        //   context,
-                          //   MaterialPageRoute(builder: (context) => SortByPage()),
-                          // );
+
+
                           navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
                       
                         },
@@ -667,7 +483,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Apply',
+                                'Appliquer',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -719,15 +535,18 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                   ),
                   const SizedBox(width: 5),
                   Expanded(
-                    child: Text(
-                      subtitle,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: Color(0xFF475569),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Regular',
-                        fontWeight: FontWeight.w400,
-                        height: 0.09,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 7.0),
+                      child: Text(
+                        subtitle,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Color(0xFF475569),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0.09,
+                        ),
                       ),
                     ),
                   ),
