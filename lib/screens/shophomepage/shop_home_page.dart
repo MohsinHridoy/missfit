@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
@@ -430,6 +431,7 @@ class _ShopPageState extends State<ShopPage> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 5.h),
 
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,

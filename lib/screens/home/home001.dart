@@ -278,7 +278,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 160,
+                    height: 130.h,
                   ),
 
                   // _build_Plan_Status(),
@@ -321,7 +321,7 @@ class _HomeState extends State<Home> {
                                 height: 70,
                               ),
                               Text(
-                                'Take a Challenge',
+                                'Relever un défi',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -331,7 +331,7 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               Text(
-                                '12 Challenges',
+                                '12 défis',
                                 style: TextStyle(
                                   color: Color(0xFFF3F4F6),
                                   fontSize: 12,
@@ -423,7 +423,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    'Book now',
+                                    'Reserve maintenant',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
@@ -575,7 +575,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 45.0),
+                              padding: const EdgeInsets.only(left: 45.0,top: 4),
                               child: Text(
                                 'Commence à partir de',
                                 style: TextStyle(
@@ -982,7 +982,7 @@ class _HomeState extends State<Home> {
             print(lines.first);
 
             return Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 20.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Container(
                 width: 288,
                 height: 220,
@@ -999,55 +999,64 @@ class _HomeState extends State<Home> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: 54,
-                          height: 25,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFF252323),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(2)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/home/icon_calendar.png",scale: 2,),
-                              Text(
-                                '02 Fév',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontFamily: 'Archivo-Regular',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.14,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0,top: 15),
+                          child: Container(
+                            width: 54.h,
+                            height: 25,
+                            decoration: ShapeDecoration(
+                              color: Color(0xFF252323),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.asset("assets/home/icon_calendar.png",scale: 2,),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 6.0),
+                                  child: Text(
+                                    '02 Fév',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.14,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(top: 15.0,right: 15),
                           child: Align(
                             alignment: Alignment.topRight,
                             child: Container(
-                              width: 55,
-                              height: 18,
+                              width: 55.h,
+                              height: 18.h,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 4, vertical: 2),
                               decoration: ShapeDecoration(
-                                color: Color(0x21FFF4E4),
+                                color:  Color(0xFF252323),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(1),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                               child: Center(
-                                child: Text(
-                                  'Beginner',
-                                  style: TextStyle(
-                                    color: Color(0xFFFFA142),
-                                    fontSize: 10,
-                                    fontFamily: 'Archivo-Regular',
-                                    fontWeight: FontWeight.w400,
-                                    height: 0.14,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: Text(
+                                    'Beginner',
+                                    style: TextStyle(
+                                      color: Color(0xFFFFA142),
+                                      fontSize: 10,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.14,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1323,9 +1332,9 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(top: 30.0,left: 25),
               child: Text(
-                'Tomorrow, 18:00',
+                'Demain, 18h00',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 14,
@@ -1336,9 +1345,9 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(left: 25.0,top: 30),
               child: Text(
-                'Nutrition For Everybody',
+                'Nutrition pour tout le monde',
                 style: TextStyle(
                   color: Color(0xFF334155),
                   fontSize: 16,
@@ -1350,7 +1359,7 @@ class _HomeState extends State<Home> {
             ),
             Spacer(),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, bottom: 40),
+              padding: const EdgeInsets.only(left: 25.0, bottom: 30),
               child: Text(
                 'Offline Event',
                 style: TextStyle(
@@ -1423,14 +1432,17 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(6)),
                       ),
                       child: Center(
-                        child: Text(
-                          'Renew subscription',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.10,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Renew subscription',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.10,
+                            ),
                           ),
                         ),
                       ),
@@ -1697,7 +1709,7 @@ class _HomeState extends State<Home> {
                 );
               },
               child: Container(
-                width: 300,
+                width: 265.h,
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
@@ -1817,16 +1829,19 @@ class _HomeState extends State<Home> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
-                                '24',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFFE88E32),
-                                  fontSize: 14,
-                                  fontFamily: 'Poppins-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.07,
-                                  letterSpacing: -0.28,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 3.0),
+                                child: Text(
+                                  '24',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFFE88E32),
+                                    fontSize: 14,
+                                    fontFamily: 'Poppins-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.07,
+                                    letterSpacing: -0.28,
+                                  ),
                                 ),
                               ),
                               Text(
@@ -1897,7 +1912,7 @@ class _HomeState extends State<Home> {
   Widget activityCard(String img, String title, String subtitle) {
     return Container(
       // width: ScreenUtil().setWidth(154),
-      height: ScreenUtil().setHeight(135),
+      height: ScreenUtil().setHeight(130),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(

@@ -230,7 +230,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Sort By',
+                            'Trier par',
                           _fetchSort.isNotEmpty ? '${_fetchSort[0]}' : '',
                             SortByPage()
                         ),
@@ -239,7 +239,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Category',
+                            'Catégorie',
                           _fetchCategories.isNotEmpty
                               ? '${_fetchCategories[0]}, ${_fetchCategories.length > 1 ? _fetchCategories[1] : ''}...+${_fetchCategories.length}'
                               : 'No categories selected',
@@ -250,7 +250,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Brands',
+                            'Marques',
                           _fetchBrands.isNotEmpty
                               ? '${_fetchBrands[0]}, ${_fetchBrands.length > 1 ? _fetchBrands[1] : ''}...+${_fetchBrands.length > 2 ? _fetchBrands.length - 2 : ''}'
                               : 'No Brands selected',
@@ -261,7 +261,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Color',
+                            'Couleur',
                           _fetchColours.isNotEmpty
                               ? '${_fetchColours[0]}, ${_fetchColours.length > 1 ? _fetchColours[1] : ''}...+${_fetchColours.length > 2 ? _fetchColours.length - 2 : ''}'
                               : '',
@@ -272,7 +272,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Size',
+                            'Taille',
                           _fetchSize.isNotEmpty
                               ? '${_fetchSize[0]}, ${_fetchSize.length > 1 ? _fetchSize[1] : ''}...+${_fetchSize.length > 2 ? _fetchSize.length - 2 : ''}'
                               : '',
@@ -283,7 +283,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Rating',
+                            'Notation',
                           _fetchReviews.isNotEmpty
                               ? '${_fetchReviews[0]}, ${_fetchReviews.length > 1 ? _fetchReviews[1] : ''}...+${_fetchReviews.length > 2 ? _fetchReviews.length - 2 : ''}'
                               : '',
@@ -294,7 +294,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Mesurements',
+                            'La mesure',
                           _fetchMeasurements.isNotEmpty
                               ? '${_fetchMeasurements[0]}, ${_fetchMeasurements.length > 1 ? _fetchMeasurements[1] : ''}...+${_fetchMeasurements.length > 2 ? _fetchMeasurements.length - 2 : ''}'
                               : '',
@@ -305,7 +305,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                         child: _buildCategorySection(
                           context,
-                          'Flavours',
+                            'Les saveurs',
                           _fetchFlavour.isNotEmpty
                               ? '${_fetchFlavour[0]}, ${_fetchFlavour.length > 1 ? _fetchFlavour[1] : ''}...+${_fetchFlavour.length > 2 ? _fetchFlavour.length - 2 : ''}'
                               : '',
@@ -555,7 +555,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 3.0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: ShapeDecoration(

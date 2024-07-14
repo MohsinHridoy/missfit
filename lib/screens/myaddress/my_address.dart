@@ -83,7 +83,7 @@ class _MyAddressState extends State<MyAddress> {
         child: Column(
           children: [
             CustomAppBar(
-              title: 'My Address',
+              title: 'Mon adresse',
               onBackTap: () {
                 Navigator.pop(context);
               },
@@ -108,8 +108,8 @@ class _MyAddressState extends State<MyAddress> {
                         ),
                       ),
                     ),
-                    _buildDelivaryStatusTextItem('Shipping Address','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
-                    _buildDelivaryStatusTextItem('Billing Address','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
+                    _buildDelivaryStatusTextItem('Adresse de livraison','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
+                    _buildDelivaryStatusTextItem('Adresse de facturation','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
                   ],
                 ),
               ),

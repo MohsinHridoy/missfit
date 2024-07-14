@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
 
 import '../../common_utils.dart';
@@ -68,11 +69,11 @@ class _ReviewSummaryState extends State<ReviewSummary> {
         children: [
 
           CustomAppBar(
-            title:  'Review Summery',
+            title: 'Résumé des commentaires',
             onBackTap: () {
               Navigator.pop(context);
             },
-            iconSpacing: 4.2,
+            iconSpacing: 7.2,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -118,7 +119,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                       ),
                       const SizedBox(height: 15),
                       Text(
-                        'Fitness Coach',
+                        'Prof de fitness',
                         style: TextStyle(
                           color: Color(0xFF66758C),
                           fontSize: 12,
@@ -140,7 +141,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
           const SizedBox(height: 16),
           // Add any additional widgets or SizedBoxes here
           // Add more widgets here if needed
-          _buildSummeryText('Date & Hour', 'May 12, 2024 | 9:00 AM'),
+          _buildSummeryText('Date et heure', 'May 12, 2024 | 9:00 AM'),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.only(left: 20.0,right: 20.0),
@@ -177,7 +178,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
             ),
           ),
           const SizedBox(height: 20),
-          _buildSummeryText1('Duration', '1 hour'),
+          _buildSummeryText1('Date et heure', '1 hour'),
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.only(left: 20.0,right: 20.0),
@@ -185,8 +186,8 @@ class _ReviewSummaryState extends State<ReviewSummary> {
           ),
           const SizedBox(height: 16),
 
-          _buildSummeryText('Amount', 'CHF 150'),
-          _buildSummeryText1('Total', 'CHF 150'),
+          _buildSummeryText('Montante', 'CHF 150'),
+          _buildSummeryText1('Totale', 'CHF 150'),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
@@ -274,17 +275,17 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: Container(
-                              width: 68,
+                              width: 100,
                               color:Color(0xFFF6F6F6) ,
                               child: Text(
-                                'Change',
+                                'Changement',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   color: Color(0xFFFF4343),
                                   fontSize: 16,
                                   fontFamily: 'Archivo-Medium',
                                   fontWeight: FontWeight.w500,
-                                  height: 0.09,
+                                  height: 1.09,
                                 ),
                               ),
                             ),
@@ -324,7 +325,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: 'I agree with ',
+                            text: "je suis d'accord avec ",
                             style: TextStyle(
                               color: Color(0xFF66758C),
                               fontSize: 16,
@@ -334,7 +335,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                             ),
                           ),
                           TextSpan(
-                            text: 'terms & conditions',
+                            text: 'termes et conditions',
                             style: TextStyle(
                               color: Color(0xFFE88E32),
                               fontSize: 16,
@@ -361,7 +362,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                 navigateToNextPage(context,PaymentStatus());
               },
               child: Container(
-                width: 370,
+                width: 370.h,
                 height: 52,
 
                 decoration: ShapeDecoration(
@@ -371,13 +372,13 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                 ),
                 child: Center(
                   child: Text(
-                    'Continue',
+                    'Payez maintenant',
                     style: TextStyle(
                       color:isSelected ?  Colors.white:Color(0xFF66758C),
                       fontSize: 16,
                       fontFamily: 'Archivo-SemiBold',
                       fontWeight: FontWeight.w600,
-                      height: 0.09,
+                      height: 1.00,
                     ),
                   ),
                 ),

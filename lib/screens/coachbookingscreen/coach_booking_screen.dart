@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
+
+import '../../common_utils.dart';
+import '../../widgets/custom_app_bar.dart';
 
 class CoachListScreen extends StatelessWidget {
   // Define a list of data for images and names
@@ -54,47 +58,14 @@ class CoachListScreen extends StatelessWidget {
 
           child: Column(
             children: [
-              Container(
-                height: 97,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16)),
-                  border: Border.all(color: Colors.white.withOpacity(0.11)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 4.1),
-                      Text(
-                        'Select Your Coach',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF1E293B),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                ),
+              CustomAppBar(
+                title: 'Sélectionnez votre entraîneur',
+                onBackTap: () {
+                  Navigator.pop(context);
+                },
+                iconSpacing: 8.3,
               ),
-              SizedBox(height: 30,),
+              SizedBox(height: 30.h,),
               Expanded(
                 child: GridView.builder(
                   padding: EdgeInsets.all(10),
@@ -107,12 +78,8 @@ class CoachListScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ServiceSelectionScreen(),
-                          ),
-                        );
+                        navigateToNextPage(context,ServiceSelectionScreen());
+
                       },
                       child: Container(
                         width: 205,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_buttons.dart';
+
 class Category {
   final String name;
   final int itemCount;
@@ -106,9 +108,9 @@ class _SizeSelectionPageState extends State<SizeSelectionPage> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 2.8),
+                    SizedBox(width: MediaQuery.of(context).size.width / 2.9),
                     Text(
-                      'Size',
+                      'Taille',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -125,50 +127,51 @@ class _SizeSelectionPageState extends State<SizeSelectionPage> {
             ),
             SizedBox(height: 15,),
             Expanded(
-              child: AutomaticKeepAlive(
-                child: Column(
-                  children: List.generate(size.length, (index) {
-                    final category = size[index];
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          category.isSelected = !category.isSelected;
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20.0,
-                          right: 20,
-                          bottom: 5,
+              child: Column(
+                children: List.generate(size.length, (index) {
+                  final category = size[index];
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        category.isSelected = !category.isSelected;
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20.0,
+                        right: 20,
+                        bottom: 5,
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 2.0,
                         ),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 12.0,
-                            horizontal: 2.0,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey[300]!,
-                                width: 1.0,
-                              ),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey[300]!,
+                              width: 1.0,
                             ),
                           ),
-                          child: Row(
-                            children: [
-                              Container(
-                                child: category.isSelected
-                                    ? Image.asset(
-                                  "assets/registration/icon_selected_box.png",
-                                  scale: 2.0,
-                                )
-                                    : Image.asset(
-                                  "assets/registration/icon_unselected_checkbox1.png",
-                                  scale: 2.0,
-                                ),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: category.isSelected
+                                  ? Image.asset(
+                                "assets/registration/icon_selected_box.png",
+                                scale: 2.0,
+                              )
+                                  : Image.asset(
+                                "assets/registration/icon_unselected_checkbox1.png",
+                                scale: 2.0,
                               ),
-                              SizedBox(width: 16.0),
-                              Expanded(
+                            ),
+                            SizedBox(width: 16.0),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
                                 child: Text(
                                   '${category.name} (${category.itemCount})',
                                   style: TextStyle(
@@ -180,51 +183,29 @@ class _SizeSelectionPageState extends State<SizeSelectionPage> {
                                   ),
                                 ),
                               ),
-                
-                
-                
-                            ],
-                          ),
+                            ),
+
+
+
+                          ],
                         ),
                       ),
-                    );
-                  }),
-                ),
+                    ),
+                  );
+                }),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: GestureDetector(
-                onTap: () {
-                  _saveSelectedCategories();
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 44,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 104,
-                    vertical: 17,
-                  ),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Apply',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.10,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+                  onTap: () {
+                    _saveSelectedCategories();
+                  },
+                  child: customButtonRed(context, 'Appliquer', onPressed: () {
+                    _saveSelectedCategories();
+
+                  })              ),
             )
           ],
         ),

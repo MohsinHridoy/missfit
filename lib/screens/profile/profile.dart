@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
@@ -460,7 +461,7 @@ class _ProfileState extends State<Profile> {
             context: context,
             builder: (BuildContext context) {
               return Container(
-                height: 250, // Adjust the height as necessary
+                height: 230.h, // Adjust the height as necessary
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -477,16 +478,16 @@ class _ProfileState extends State<Profile> {
                       "assets/profile/icon_bottomsheet_logout.png",
                       scale: 2,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Text(
-                      'Are you sure to log out from this app?',
+                      'Êtes-vous sûr de vous déconnecter de cette application ?',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF334155),
                         fontSize: 18,
                         fontFamily: 'Archivo-SemiBold',
                         fontWeight: FontWeight.w600,
-                        height: 0.08,
+                        height: 1.08,
                       ),
                     ),
                     SizedBox(height: 40),
@@ -521,7 +522,7 @@ class _ProfileState extends State<Profile> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
-                                      'No',
+                                      'Non',
                                       style: TextStyle(
                                         color: Color(0xFFFF4343),
                                         fontSize: 16,
@@ -559,7 +560,7 @@ class _ProfileState extends State<Profile> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 6.0),
                                     child: Text(
-                                      'Yes',
+                                      'Oui',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,

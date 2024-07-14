@@ -75,7 +75,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomAppBar(
-              title: 'Payment',
+              title: 'Paiement',
               onBackTap: () {
                 Navigator.pop(context);
               },
@@ -86,7 +86,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: title_textView_Kt_SBld('Select Payment Method')),
+                child: title_textView_Kt_SBld('Sélectionnez le mode de paiement')),
             SizedBox(
               height: 10,
             ),
@@ -115,7 +115,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 6),
                       child: Text(
-                        'Add New Card',
+                        'Ajouter une nouvelle carte',
                         style: TextStyle(
                           color: Color(0xFFFF4343),
                           fontSize: 14,
@@ -134,7 +134,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             Padding(
                 padding: const EdgeInsets.only(left: 25.0, bottom: 10),
-                child: title_textView_Kt_SBld('Order Summary')),
+                child: title_textView_Kt_SBld('Récapitulatif de la commande')),
             SizedBox(
               height: 15,
             ),
@@ -142,7 +142,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: customButtonRed(context, 'Proceed to Confirm', onPressed: () {
+              child: customButtonRed(context, 'Procéder à la confirmation', onPressed: () {
                 showModalBottomSheet(
                   barrierColor: Color(0xFF111827).withOpacity(0.7),
                   context: context,
@@ -163,7 +163,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         children: <Widget>[
                           SizedBox(height: 50),
                           Text(
-                            'Order Confirmation',
+                            'Confirmation de commande',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF334155),
@@ -175,7 +175,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           ),
                           SizedBox(height: 30),
                           Text(
-                            'Do you want to confirm order?',
+                            'Voulez-vous confirmer la commande?',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF334155),
@@ -211,7 +211,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 5.0),
                                           child: Text(
-                                            'No',
+                                            'Non',
                                             style: TextStyle(
                                               color: Color(0xFFFF4343),
                                               fontSize: 16,
@@ -242,7 +242,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 6.0),
                                           child: Text(
-                                            'Yes',
+                                            'Oui',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -280,11 +280,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
         SizedBox(
           height: 10,
         ),
-        _buildSummeryItemText('Sub total', 'CHF 140'),
-        _buildSummeryItemText('Discount', 'CHF 140'),
-        _buildSummeryItemText('Vat', 'CHF 140'),
-        _buildSummeryItemText('Shipping Charge', 'CHF 140'),
-        _buildSummeryItemText('Grand Total', 'CHF 140'),
+        _buildSummeryItemText('Sous-total', 'CHF 140'),
+        _buildSummeryItemText('Rabais', 'CHF 140'),
+        _buildSummeryItemText('T.V.A', 'CHF 140'),
+        _buildSummeryItemText('Frais de port', 'CHF 140'),
+        _buildSummeryItemText('Total', 'CHF 140'),
       ],
     );
   }

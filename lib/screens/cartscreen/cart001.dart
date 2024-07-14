@@ -52,6 +52,7 @@ class _Cart001State extends State<Cart001> {
   List<CartItem> removedItems = [];
 
   bool isVoucherCodeValid = false;
+  bool isVoucherCodeResponse = false;
   FocusNode _voucherCodeFocusNode = FocusNode();
 
   @override
@@ -87,7 +88,7 @@ class _Cart001State extends State<Cart001> {
       String snackbarMessage;
       if (removedItemNames.length == 1) {
         // If only one item was removed, show its name
-        snackbarMessage = 'Item removed from cart: ${removedItemNames.first}';
+        snackbarMessage = '${removedItemNames.first} Supprimé';
       } else if (removedItemNames.length > 1) {
         // If multiple items were removed, show the count of items
         snackbarMessage = '${removedItemNames.length} items removed from cart';
@@ -199,11 +200,11 @@ class _Cart001State extends State<Cart001> {
         body: Column(
           children: [
             CustomAppBar(
-              title: 'Cart',
+              title: 'Chariot',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 2.8,
+              iconSpacing: 3.1,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -222,7 +223,7 @@ class _Cart001State extends State<Cart001> {
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0, bottom: 10),
                       child: Text(
-                        'Order Summary',
+                        'Récapitulatif de la commande',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -235,7 +236,7 @@ class _Cart001State extends State<Cart001> {
                     SizedBox(
                       height: 20,
                     ),
-                    _buildSummeryItemText('Subtotal', 'CHF 140'),
+                    _buildSummeryItemText('Sous-total', 'CHF 140'),
                     // _buildRemovedItemsList(),
                     _buildOrderSummeryItem(),
                     SizedBox(
@@ -274,7 +275,7 @@ class _Cart001State extends State<Cart001> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total price',
+                            'Prix total',
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 10,
@@ -316,9 +317,9 @@ class _Cart001State extends State<Cart001> {
                           ),
                           child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                'Checkout',
+                                'Vérifier',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -349,10 +350,10 @@ class _Cart001State extends State<Cart001> {
         SizedBox(
           height: 10,
         ),
-        _buildSummeryItemText('Discount', '-CHF 140'),
-        _buildSummeryItemText('Vat', 'CHF 140'),
-        _buildSummeryItemText('Shipping Charge', 'CHF 140'),
-        _buildSummeryItemText('Grand Total', 'CHF 140'),
+        _buildSummeryItemText('Rabais', '-CHF 140'),
+        _buildSummeryItemText('T.V.A', 'CHF 140'),
+        _buildSummeryItemText('Frais de port', 'CHF 140'),
+        _buildSummeryItemText('Total', 'CHF 140'),
       ],
     );
   }
@@ -360,7 +361,7 @@ class _Cart001State extends State<Cart001> {
   Widget _buildSummeryItemText(String title, String value) {
     return Padding(
       padding:
-          const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
+      const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
       child: Column(
         children: [
           Row(
@@ -428,16 +429,17 @@ class _Cart001State extends State<Cart001> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Add promo code or voucher',
+              "Ajouter un code promo ou un \nbon d'achat",
               style: TextStyle(
                 color: Color(0xFF334155),
                 fontSize: 20,
                 fontFamily: 'Kanit-Medium',
+                overflow: TextOverflow.ellipsis,
                 fontWeight: FontWeight.w500,
-                height: 0.06,
+                height: 1.4,
               ),
             ),
-            SizedBox(height: 35),
+            SizedBox(height: 25),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 44,
@@ -463,7 +465,7 @@ class _Cart001State extends State<Cart001> {
                           height: 1.5,
                         ),
                         decoration: InputDecoration(
-                          hintText: _voucherCodeFocusNode.hasFocus ?'': 'Voucher code',
+                          hintText: _voucherCodeFocusNode.hasFocus ?'': "Code du bon d'achat",
                           hintStyle: TextStyle(
                             color: Color(0xFF9CA3AF),
                             fontSize: 14,
@@ -477,28 +479,51 @@ class _Cart001State extends State<Cart001> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 93.47,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color:_voucherCodeController.text.length>3 ?  Color(0xFFFF4343):Color(0xFF6B7280),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(4),
-                        bottomRight: Radius.circular(4),
+                  isVoucherCodeResponse==false?  GestureDetector(
+                    onTap:()
+                    {
+                      setState(() {
+                        isVoucherCodeResponse=true;
+
+                      });
+                    },
+                    child: Container(
+                      width: 93.47,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color:_voucherCodeController.text.length>3 ?  Color(0xFFFF4343):Color(0xFF6B7280),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(4),
+                          bottomRight: Radius.circular(4),
+                        ),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Appliquer',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.10,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          'Apply',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.10,
-                          ),
+                  ):Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0,right: 20),
+                      child: Text(
+                        'Retirer',
+                        style: TextStyle(
+                          color: Color(0xFFEF4444),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-Medium',
+                          fontWeight: FontWeight.w500,
+                          height: 0.10,
                         ),
                       ),
                     ),
@@ -506,6 +531,22 @@ class _Cart001State extends State<Cart001> {
                 ],
               ),
             ),
+            SizedBox(height: 10),
+            if(isVoucherCodeResponse==true)
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Text(
+                  'Votre code promotionnel est appliqué avec succès.',
+                  style: TextStyle(
+                    color: Color(0xFF22C55E),
+                    fontSize: 14,
+                    fontFamily: 'Archivo',
+                    fontWeight: FontWeight.w500,
+                    height: 0.10,
+                  ),
+                ),
+              )
+
           ],
         ),
       ),
@@ -540,7 +581,7 @@ class _Cart001State extends State<Cart001> {
             onTap: () {
               setState(() {
                 bool newState =
-                    !isAllSelected; // Determine the new state based on the inverse of all selected
+                !isAllSelected; // Determine the new state based on the inverse of all selected
                 cartItems.forEach((item) => item.isChecked = newState);
               });
             },
@@ -555,7 +596,7 @@ class _Cart001State extends State<Cart001> {
             ),
           ),
           Text(
-            'Select All (${cartItems.length} items)',
+            'Sélectionner tout (${cartItems.length} articles)',
             style: TextStyle(
               color: Color(0xFF334155),
               fontSize: 14,
@@ -583,7 +624,7 @@ class _Cart001State extends State<Cart001> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 4.0, right: 12),
                   child: Text(
-                    'Remove',
+                    'Retirer',
                     style: TextStyle(
                       color: Color(0xFFEF4444),
                       fontSize: 14,
@@ -608,7 +649,7 @@ class _Cart001State extends State<Cart001> {
             child: Column(
               children: List.generate(
                 cartItems.length,
-                (index) {
+                    (index) {
                   final item = cartItems[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -649,12 +690,12 @@ class _Cart001State extends State<Cart001> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 10, top: 15),
+                                const EdgeInsets.only(left: 10, top: 15),
                                 child: SizedBox(
                                   height: 70,
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         cartItems[index].title,
@@ -721,7 +762,7 @@ class _Cart001State extends State<Cart001> {
                                           decoration: BoxDecoration(
                                             color:item.quantity>1?Color(0xFFFF4343):Color(0xFF94A3B8),
                                             borderRadius:
-                                                BorderRadius.circular(4),
+                                            BorderRadius.circular(4),
                                           ),
                                           child: Center(
                                             child: Image.asset(
@@ -767,7 +808,7 @@ class _Cart001State extends State<Cart001> {
                                           decoration: BoxDecoration(
                                             color: Color(0xFFFF4343),
                                             borderRadius:
-                                                BorderRadius.circular(4),
+                                            BorderRadius.circular(4),
                                           ),
                                           child: Center(
                                             child: Image.asset(
@@ -804,7 +845,7 @@ class _Cart001State extends State<Cart001> {
             child: Column(
               children: List.generate(
                 removedItems.length,
-                (index) {
+                    (index) {
                   final removedItem = removedItems[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(

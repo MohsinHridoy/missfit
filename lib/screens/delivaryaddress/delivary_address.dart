@@ -33,6 +33,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color(0xFFF6F6F6),
       body: Container(
         color: Color(0xFFF6F6F6),
         child: Column(
@@ -61,9 +62,9 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         scale: 2,
                       ),
                     ),
-                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.1):SizedBox(width: MediaQuery.of(context).size.width / 4.2),
+                    widget.status=='subscription' ?SizedBox(width: MediaQuery.of(context).size.width / 3.1):SizedBox(width: MediaQuery.of(context).size.width / 4.7),
                     Text(
-                      widget.status=='subscription' ?'Vérifier':'Delivary Address',
+                      widget.status=='subscription' ?'Vérifier':'Adresse de livraison',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -88,7 +89,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     widget.status!='subscription' ?Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
-                        'Add Shipping Address',
+                        'Ajouter une adresse de livraison',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -183,7 +184,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
-                        'Save & Continue',
+                        'Enregistrer continuer',
                         style: TextStyle(
                           color: _isAllFieldsFilled
                               ? Colors.white

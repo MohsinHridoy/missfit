@@ -48,11 +48,15 @@ class _AddNewCardState extends State<AddNewCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomAppBar(
-              title:  widget.status == 'profile'?'Carte de paiement': 'Ajouter une nouvelle carte',
+              title: widget.status == 'mentorship'
+                  ? '        Mode de paiement'
+                  : (widget.status == 'profile'
+                  ? 'Carte de paiement'
+                  : 'Ajouter une nouvelle carte'),
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 4.8,
+              iconSpacing: 7,
             ),
             SizedBox(
               height: 15.h,

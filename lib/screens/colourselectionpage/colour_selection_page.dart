@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_buttons.dart';
+
 class Category {
   final String name;
   final int itemCount;
@@ -107,9 +109,9 @@ class _ColourSelectionPageState extends State<ColourSelectionPage> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.4),
+                    SizedBox(width: MediaQuery.of(context).size.width / 3.1),
                     Text(
-                      'Colors',
+                      'Couleur',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -171,14 +173,17 @@ class _ColourSelectionPageState extends State<ColourSelectionPage> {
                                 ),
                                 SizedBox(width: 16.0),
                                 Expanded(
-                                  child: Text(
-                                    '${category.name} (${category.itemCount})',
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.09,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text(
+                                      '${category.name} (${category.itemCount})',
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-Regular',
+                                        fontWeight: FontWeight.w400,
+                                        height: 0.09,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -202,39 +207,18 @@ class _ColourSelectionPageState extends State<ColourSelectionPage> {
                 ),
               ),
             ),
+
+
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: GestureDetector(
-                onTap: () {
-                  _saveSelectedCategories();
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 44,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 104,
-                    vertical: 17,
-                  ),
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Apply',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 0.10,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+                  onTap: () {
+                    _saveSelectedCategories();
+                  },
+                  child: customButtonRed(context, 'Appliquer', onPressed: () {
+                    _saveSelectedCategories();
+
+                  })              ),
             )
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/common_widgets.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
@@ -359,9 +360,8 @@ class _SubscriptionPriceSelectionPage1State
                                         child: Container(
                                           width:
                                               MediaQuery.of(context).size.width,
-                                          height: 44,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 32, vertical: 12),
+                                          height: 52,
+
                                           decoration: BoxDecoration(
                                             color: Color(0xFFFF4343),
                                             borderRadius:
@@ -744,7 +744,7 @@ class _VerticalProgressBarState extends State<VerticalProgressBar> with SingleTi
                           ),
                           SizedBox(width: 10),
                           Container(
-                            height: 450,
+                            height: 350.h,
 
                             child: RotatedBox(
                               quarterTurns: 3,
@@ -788,7 +788,7 @@ class _VerticalProgressBarState extends State<VerticalProgressBar> with SingleTi
                           ),
                           child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 3.0),
+                              padding: const EdgeInsets.only(top: 0.0),
                               child: Text(
                                 'Continuer',
                                 style: TextStyle(
@@ -796,7 +796,7 @@ class _VerticalProgressBarState extends State<VerticalProgressBar> with SingleTi
                                   fontSize: 16,
                                   fontFamily: 'Archivo-Semibold',
                                   fontWeight: FontWeight.w600,
-                                  height: 0.09,
+                                  height: 1.09,
                                 ),
                               ),
                             ),
@@ -852,7 +852,7 @@ class _VerticalProgressBarState extends State<VerticalProgressBar> with SingleTi
                               SizedBox(
                                 width: 320,
                                 child: Text(
-                                  'Do you have any Promo Code?',
+                                  'Avez-vous un code promo ?',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Color(0xFF334155),

@@ -113,11 +113,11 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
           children: [
 
             CustomAppBar(
-              title: 'Checkout',
+              title: 'Vérifier',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 3.3,
+              iconSpacing: 3,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -127,22 +127,22 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                     SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,top: 25),
-                        child: title_textView_Kt_SBld('Delivery Location')
+                        child: title_textView_Kt_SBld('Lieu de livraison')
 
                     ),
-                    _buildDelivaryStatusTextItem('Shipping Address','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
-                    _buildDelivaryStatusTextItem('Billing Address','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
+                    _buildDelivaryStatusTextItem('Adresse de livraison','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
+                    _buildDelivaryStatusTextItem('Adresse de facturation','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
                     SizedBox(height: 10),
 
 
                     Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: title_textView_Kt_SBld( 'Delivery Time')
+                      child: title_textView_Kt_SBld( 'Délai de livraison')
                     ),
                     _buildEsrtimatedDateStatus(),
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,top: 25),
-                      child: title_textView_Kt_SBld('Product Details ')
+                      child: title_textView_Kt_SBld('Détails du produit')
                     ),
                     SizedBox(height: 25),
 
@@ -152,7 +152,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
 
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,bottom: 10),
-                        child: title_textView_Kt_SBld( 'Order Summary')
+                        child: title_textView_Kt_SBld('Récapitulatif de la commande')
 
 
                     ),
@@ -160,7 +160,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                     SizedBox(
                       height: 20,
                     ),
-                    _buildSummeryItemText('Subtotal', 'CHF 140'),
+                    _buildSummeryItemText('Sous-total', 'CHF 140'),
 
 
 
@@ -280,7 +280,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total price',
+                            'Prix total',
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 10,
@@ -323,7 +323,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Checkout',
+                                'Vérifier',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -369,7 +369,7 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
               child: Center(child: Image.asset("assets/order/icon_box.png")),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0),
+              padding: const EdgeInsets.only(left: 15.0,top: 6),
               child: SizedBox(
                 width: 122,
                 child: Text(
@@ -385,16 +385,19 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
               ),
             ),
             Spacer(),
-            SizedBox(
-              width: 90,
-              child: Text(
-                '20 Mar - 26 Mar',
-                style: TextStyle(
-                  color: Color(0xFF66758C),
-                  fontSize: 12,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 0.12,
+            Padding(
+              padding: const EdgeInsets.only(top: 6.0),
+              child: SizedBox(
+                width: 90,
+                child: Text(
+                  '20 Mar - 26 Mar',
+                  style: TextStyle(
+                    color: Color(0xFF66758C),
+                    fontSize: 12,
+                    fontFamily: 'Archivo-Regular',
+                    fontWeight: FontWeight.w400,
+                    height: 0.12,
+                  ),
                 ),
               ),
             )
@@ -510,10 +513,10 @@ class _CheckOutAddressState extends State<CheckOutAddress> {
         SizedBox(
           height: 10,
         ),
-        _buildSummeryItemText('Discount', 'CHF 140'),
-        _buildSummeryItemText('Vat', 'CHF 140'),
-        _buildSummeryItemText('Shipping Charge', 'CHF 140'),
-        _buildSummeryItemText('Grand Total', 'CHF 140'),
+        _buildSummeryItemText('Sous-total', 'CHF 140'),
+        _buildSummeryItemText('Rabais', 'CHF 140'),
+        _buildSummeryItemText('T.V.A', 'CHF 140'),
+        _buildSummeryItemText('Frais de port', 'CHF 140'),
       ],
     );
   }

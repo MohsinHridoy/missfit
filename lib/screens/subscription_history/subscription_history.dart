@@ -107,33 +107,36 @@ class SubscriptionHistory extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 10),
                                       Container(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Basic - Yearly',
-                                              style: TextStyle(
-                                                color: const Color(0xFF1E293B),
-                                                fontSize: 16,
-                                                fontFamily: 'Archivo-SemiBold',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.08,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 10.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Basic - Yearly',
+                                                style: TextStyle(
+                                                  color: const Color(0xFF1E293B),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Archivo-SemiBold',
+                                                  fontWeight: FontWeight.w600,
+                                                  height: 0.08,
+                                                ),
                                               ),
-                                            ),
-                                            const SizedBox(height: 25),
-                                            Text(
-                                              'Inv-07845',
-                                              style: TextStyle(
-                                                color: const Color(0xFF66758C),
-                                                fontSize: 14,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.09,
+                                              const SizedBox(height: 25),
+                                              Text(
+                                                'Inv-07845',
+                                                style: TextStyle(
+                                                  color: const Color(0xFF66758C),
+                                                  fontSize: 14,
+                                                  fontFamily: 'Archivo-Medium',
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 0.09,
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -162,15 +165,18 @@ class SubscriptionHistory extends StatelessWidget {
                                               ),
                                             ),
                                             const SizedBox(width: 4),
-                                            Text(
-                                              'CHF 300',
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                color: const Color(0xFF22C55E),
-                                                fontSize: 14,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.09,
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: Text(
+                                                'CHF 300',
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                  color: const Color(0xFF22C55E),
+                                                  fontSize: 14,
+                                                  fontFamily: 'Archivo-Medium',
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 0.09,
+                                                ),
                                               ),
                                             ),
                                           ],

@@ -282,7 +282,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 44,
+                  height: 52,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 104,
                     vertical: 17,
@@ -301,7 +301,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         fontSize: 14,
                         fontFamily: 'Archivo-SemiBold',
                         fontWeight: FontWeight.w600,
-                        height: 0.10,
+                        height: 1.10,
                       ),
                     ),
                   ),

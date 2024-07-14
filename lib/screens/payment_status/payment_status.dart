@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
@@ -91,7 +92,7 @@ class PaymentStatus extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 15.h,
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -111,7 +112,7 @@ class PaymentStatus extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.only(left: 30.0,right: 30,),
                 child: SizedBox(
                   width: 320,
                   child: Text(
@@ -151,12 +152,12 @@ class PaymentStatus extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Afficher le reçu électronique',
+                          'De retour à la maison',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                             fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             height: 1.11,
                           ),
                         ),
@@ -188,15 +189,16 @@ class PaymentStatus extends StatelessWidget {
                     ),
                     child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
+                        padding: const EdgeInsets.only(top: 0.0),
                         child: Text(
-                          'De retour à la maison',
+                          'Afficher le reçu électronique',
+
                           style: TextStyle(
                             color: Color(0xFFFF4343),
                             fontSize: 16,
                             fontFamily: 'Archivo-SemiBold',
                             fontWeight: FontWeight.w600,
-                            height: 0.09,
+                            height: 1.00,
                           ),
                         ),
                       ),

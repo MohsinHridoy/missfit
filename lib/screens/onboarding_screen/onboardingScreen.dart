@@ -133,22 +133,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${'Commencer'}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
-                        ),
+                  child:Center(
+                    child: Text(
+                      '${'Commencer'}',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w600,
+                        height: 1.09,
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -263,7 +258,7 @@ Widget skip_text(String text) {
       fontSize: 16,
       fontFamily: 'Archivo',
       fontWeight: FontWeight.w600,
-      height: 0.09,
+      height: 1.09,
     ),
   );
 }

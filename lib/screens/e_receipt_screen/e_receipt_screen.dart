@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
+
+import '../../widgets/custom_app_bar.dart';
 
 class EReceiptScreen extends StatefulWidget {
   const EReceiptScreen({Key? key}) : super(key: key);
@@ -65,47 +68,13 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
           color: Color(0xFFF6F6F6),
           child: Column(
             children: [
-              Container(
-                height: 97,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16)),
-                  border: Border.all(color: Colors.white.withOpacity(0.11)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(
-                          "assets/cart/icon_left_arrow.png",
-                          scale: 2,
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 3.4),
-                      Text(
-                        'E-Receipt',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF1E293B),
-                          fontSize: 18,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                ),
+              CustomAppBar(
+                title: 'Reçu électronique',
+                onBackTap: () {
+                  Navigator.pop(context);
+                },
+                iconSpacing: 4.6,
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 // Adjust the padding as needed
@@ -172,7 +141,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
               const SizedBox(height: 16),
               // Add any additional widgets or SizedBoxes here
               // Add more widgets here if needed
-              _buildSummeryText('Date & Hour', 'May 12, 2024 | 9:00 AM'),
+              _buildSummeryText('Date et heure', 'May 12, 2024 | 9:00 AM'),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0,right: 20.0),
@@ -209,7 +178,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              _buildSummeryText1('Duration', '1 hour'),
+              _buildSummeryText1('Durée', '1 hour'),
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0,right: 20.0),
@@ -217,17 +186,17 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
               ),
               const SizedBox(height: 16),
 
-              _buildSummeryText('Amount', 'CHF 150'),
-              _buildSummeryText1('Total', 'CHF 150'),
+              _buildSummeryText('Montante', 'CHF 150'),
+              _buildSummeryText1('Totale', 'CHF 150'),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0,right: 20.0),
                 child: _buildDivider(context),
               ),
               const SizedBox(height: 16),
-              _buildSummeryText('Name', 'Jhon Lennon'),
-              _buildSummeryText1('Phone Number', '+243 555-0108'),
-              _buildSummeryText1('Payment Method', 'Stripe'),
-              _buildSummeryText1('Transaction Number', '#ES0329321'),
+              _buildSummeryText('Nom', 'Jhon Lennon'),
+              _buildSummeryText1('Numéro de téléphone', '+243 555-0108'),
+              _buildSummeryText1('Mode de paiement', 'Stripe'),
+              _buildSummeryText1('Numéro de transaction', '#ES0329321'),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20,right: 20),
@@ -247,7 +216,7 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                     );
                   },
                   child: Container(
-                    width: 370,
+                    width: 370.h,
                     height: 52,
 
                     decoration: ShapeDecoration(
@@ -257,13 +226,13 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        'Download e-receipt',
+                        'Télécharger le reçu électronique',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontFamily: 'Archivo-SemiBold',
                           fontWeight: FontWeight.w600,
-                          height: 0.09,
+                          height: 1.09,
                         ),
                       ),
                     ),

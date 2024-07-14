@@ -151,6 +151,7 @@ class _AllBlogItemPageState extends State<AllBlogItemPage> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: filteredItems.length,
+                    padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       BlogItem item = filteredItems[index];
                       // return GestureDetector(
@@ -302,23 +303,19 @@ class _AllBlogItemPageState extends State<AllBlogItemPage> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 15.0,top: 25),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          child: Text(
-                                            '5 exercices essentiels pour un tronc plus fort',
-                                            style: TextStyle(
-                                              color: Color(0xFF334155),
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.09,
-                                            ),
-                                          ),
-                                        )
-                                      ],
+                                    padding: const EdgeInsets.only(left: 15.0,top: 10),
+                                    child: Text(
+                                      '5 exercices essentiels poursun tronc plus fort',
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-Medium',
+                                        fontWeight: FontWeight.w500,
+
+                                        height: 1.1,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ),

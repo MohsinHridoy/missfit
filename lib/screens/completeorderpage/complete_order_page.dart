@@ -37,11 +37,11 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
           children: [
 
             CustomAppBar(
-              title:  'Order Successful',
+              title:  'Commande réussie',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 4,
+              iconSpacing: 4.5,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -76,7 +76,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                                   child: SizedBox(
                                     height: 20,
                                     child: Text(
-                                      'Congrats! Your Order is Submitted',
+                                      'Bravo! Votre commande est soumise',
                                       style: TextStyle(
                                         color: Color(0xFF334155),
                                         fontSize: 16,
@@ -93,7 +93,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                                     TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'Your order no is ',
+                                          text: 'Votre numéro de commande est',
                                           style: TextStyle(
                                             color: Color(0xFF334155),
                                             fontSize: 14,
@@ -125,7 +125,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40),
-                      child: title_textView_Kt_SBld('Delivery Location')
+                      child: title_textView_Kt_SBld('Lieu de livraison')
                     ),
                     SizedBox(
                       height: 15,
@@ -134,21 +134,21 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child: title_textView_Kt_SBld('Delivery Time')
+                      child: title_textView_Kt_SBld('Délai de livraison')
                     ),
 
                     _buildEsrtimatedDateStatus(),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 30,bottom: 20),
-                      child: title_textView_Kt_SBld('Payment Method')
+                      child: title_textView_Kt_SBld('Mode de paiement')
                     ),
 
                     _buildPaymentMethodStatus(),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child: title_textView_Kt_SBld( 'Product Details')
+                      child: title_textView_Kt_SBld( 'Détails du produit')
                     ),
 
                     SizedBox(
@@ -158,7 +158,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                     _buildCartItemsList(),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child:  title_textView_Kt_SBld('Order Summery')
+                      child:  title_textView_Kt_SBld('Récapitulatif de la commande')
 
 
                     ),
@@ -175,7 +175,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                   onTap: (){
                     navigateToNextPage(context, OrderStatus( status: OrderStatusEnum.Packed,));
                   },
-                  child: outlineButton(context, 'View Order Status')
+                  child: outlineButton(context, 'Afficher le statut de la commande')
               ),
             )
           ],
@@ -386,10 +386,10 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
         SizedBox(
           height: 10,
         ),
-        _buildSummeryItemText('Discount', 'CHF 140'),
-        _buildSummeryItemText('Vat', 'CHF 140'),
-        _buildSummeryItemText('Shipping Charge', 'CHF 140'),
-        _buildSummeryItemText('Grand Total', 'CHF 140'),
+        _buildSummeryItemText('Sous-total', 'CHF 140'),
+        _buildSummeryItemText('Rabais', 'CHF 140'),
+        _buildSummeryItemText('T.V.A', 'CHF 140'),
+        _buildSummeryItemText('Frais de port', 'CHF 140'),
       ],
     );
   }

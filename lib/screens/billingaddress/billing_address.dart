@@ -89,12 +89,19 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                         scale: 2,
                       ),
                     ),
-                    widget.status == 'profile'|| widget.status == 'cart'
-                        ?SizedBox(width: MediaQuery.of(context).size.width / 7.2):SizedBox(width: MediaQuery.of(context).size.width / 3.4),
+                    SizedBox(
+                      width: widget.status == 'cart'
+                          ? MediaQuery.of(context).size.width / 5.2
+                          : (widget.status == 'profile'
+                          ? MediaQuery.of(context).size.width / 7.2
+                          : MediaQuery.of(context).size.width / 3.4),
+                    ),
                     Text(
-                      widget.status == 'profile'|| widget.status == 'cart'
+                      widget.status == 'cart'
+                          ? 'Adresse de livraison'
+                          : (widget.status == 'profile'
                           ? 'Informations de facturation'
-                          : 'CheckOut',
+                          : 'CheckOut'),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -214,7 +221,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                       padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
                         widget.status != 'profile'
-                            ? 'Save & Continue'
+                            ? 'Enregistrer continuer'
                             : 'Save',
                         style: TextStyle(
                           color: _isAllFieldsFilled
@@ -263,7 +270,7 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
           Padding(
             padding: const EdgeInsets.only(left: 15.0,top: 8),
             child: Text(
-              'Same as Shipping Address',
+              "Même que l'adresse d'expédition",
               style: TextStyle(
                 color: Color(0xFF334155),
                 fontSize: 14,

@@ -387,7 +387,7 @@ class _PaymentDetailsContainer extends StatelessWidget {
                       children: [
                         SizedBox(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(top: 12.0),
                             child: Text(
                               'Détails de paiement',
                               style: TextStyle(
@@ -425,7 +425,7 @@ class _PaymentDetailsContainer extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 6),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
+                                  padding: const EdgeInsets.only(top: 5.0),
                                   child: Text(
                                     'Changement',
                                     style: TextStyle(

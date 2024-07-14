@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/paymentmethod/payment_method.dart';
 
@@ -32,13 +33,13 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
   ];
 
   final List<String> _daysOfWeek = [
-    "Sat",
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
+    "Lun",
+    "Mar",
+    "Mer",
+    "Jer",
+    "Ven",
+    "Sam",
+    "Dim",
   ];
 
   int _selectedDayIndex = 0; // To keep track of the selected day index
@@ -55,18 +56,18 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
           children: [
 
             CustomAppBar(
-              title:  'Select Your Time',
+              title:  'Sélectionnez votre heure',
               onBackTap: () {
                 Navigator.pop(context);
               },
-              iconSpacing: 4.1,
+              iconSpacing: 6.1,
             ),
             SizedBox(height: 35,),
 
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                'Day',
+                'Jour',
                 style: TextStyle(
                   color: Color(0xFF1E293B),
                   fontSize: 18,
@@ -133,7 +134,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                'Time',
+                'Temps',
                 style: TextStyle(
                   color: Color(0xFF1E293B),
                   fontSize: 18,
@@ -214,7 +215,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
 
                 },
                 child: Container(
-                  width: 370,
+                  width: 370.h,
                   height: 52,
 
                   decoration: ShapeDecoration(
@@ -225,12 +226,13 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                   child: Center(
                     child: Text(
                       'Continue',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontFamily: 'Archivo-SemiBold',
                         fontWeight: FontWeight.w600,
-                        height: 0.09,
+                        height: 1.0,
                       ),
                     ),
                   ),

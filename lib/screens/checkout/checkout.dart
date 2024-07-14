@@ -32,6 +32,7 @@ class CheckOut extends StatefulWidget {
 
 class _CheckOutState extends State<CheckOut> {
   TextEditingController _voucherCodeController = TextEditingController();
+  bool isVoucherCodeResponse = false;
 
   List<CartItem> cartItems = [
     CartItem(
@@ -44,7 +45,7 @@ class _CheckOutState extends State<CheckOut> {
         quantity: 1,
         image: 'assets/cart/cart_items.png',
         weight: 0.7),
-  
+
   ];
 
   List<CartItem> removedItems = [];
@@ -90,8 +91,8 @@ class _CheckOutState extends State<CheckOut> {
                   children: [
                     SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: title_textView_Kt_SBld('Delivery Location')
+                        padding: const EdgeInsets.all(25.0),
+                        child: title_textView_Kt_SBld('Lieu de livraison')
                     ),
                     SizedBox(height: 10),
 
@@ -111,29 +112,20 @@ class _CheckOutState extends State<CheckOut> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ), // Background color
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                  height: 20,
-                                  width: 20,
-                                  child: Image.asset(
-                                    "assets/cart/icon_plus1.png",color: Color(0xFFFF4343) ,)
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0,top: 8),
-                                child: Text(
-                                  'Add Delivery Address',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF4343),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.10,
-                                  ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                'Ajouter une adresse de livraison',
+                                style: TextStyle(
+                                  color: Color(0xFFFF4343),
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.10,
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
@@ -151,7 +143,7 @@ class _CheckOutState extends State<CheckOut> {
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0,bottom: 10),
                       child: Text(
-                        'Order Summary',
+                        'Récapitulatif de la commande',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 20,
@@ -164,7 +156,7 @@ class _CheckOutState extends State<CheckOut> {
                     SizedBox(
                       height: 25,
                     ),
-                    _buildSummeryItemText('Subtotal', 'CHF 140'),
+                    _buildSummeryItemText('Sous-total', 'CHF 140'),
 
                     _buildOrderSummeryItem(),
                     SizedBox(
@@ -285,7 +277,7 @@ class _CheckOutState extends State<CheckOut> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total price',
+                            'Prix total',
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 10,
@@ -328,7 +320,7 @@ class _CheckOutState extends State<CheckOut> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Checkout',
+                                'Vérifier',
                                 style: TextStyle(
                                   color: Color(0xFF66758C),
                                   fontSize: 14,
@@ -359,10 +351,10 @@ class _CheckOutState extends State<CheckOut> {
         SizedBox(
           height: 10,
         ),
-        _buildSummeryItemText('Discount', '-CHF 140'),
-        _buildSummeryItemText('Vat', 'CHF 140'),
-        _buildSummeryItemText('Shipping Charge', 'CHF 140'),
-        _buildSummeryItemText('Grand Total', 'CHF 140'),
+        _buildSummeryItemText('Rabais', '-CHF 140'),
+        _buildSummeryItemText('T.V.A', 'CHF 140'),
+        _buildSummeryItemText('Frais de port', 'CHF 140'),
+        _buildSummeryItemText('Total', 'CHF 140'),
       ],
     );
   }
@@ -438,16 +430,17 @@ class _CheckOutState extends State<CheckOut> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Add promo code or voucher',
+              "Ajouter un code promo ou un \nbon d'achat",
               style: TextStyle(
                 color: Color(0xFF334155),
                 fontSize: 20,
                 fontFamily: 'Kanit-Medium',
+                overflow: TextOverflow.ellipsis,
                 fontWeight: FontWeight.w500,
-                height: 0.06,
+                height: 1.4,
               ),
             ),
-            SizedBox(height: 35),
+            SizedBox(height: 25),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 44,
@@ -465,7 +458,6 @@ class _CheckOutState extends State<CheckOut> {
                       child: TextField(
                         controller: _voucherCodeController,
                         cursorColor: Color(0xFF9CA3AF).withOpacity(0.7),
-
                         style: TextStyle(
                           color: Color(0xFF9CA3AF),
                           fontSize: 14,
@@ -474,7 +466,7 @@ class _CheckOutState extends State<CheckOut> {
                           height: 1.5,
                         ),
                         decoration: InputDecoration(
-                          hintText: _voucherCodeFocusNode.hasFocus ?'': 'Voucher code',
+                          hintText: _voucherCodeFocusNode.hasFocus ?'': "Code du bon d'achat",
                           hintStyle: TextStyle(
                             color: Color(0xFF9CA3AF),
                             fontSize: 14,
@@ -488,28 +480,51 @@ class _CheckOutState extends State<CheckOut> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 93.47,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color:_voucherCodeController.text.length>3 ?  Color(0xFFFF4343):Color(0xFF6B7280),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(4),
-                        bottomRight: Radius.circular(4),
+                  isVoucherCodeResponse==false?  GestureDetector(
+                    onTap:()
+                    {
+                      setState(() {
+                        isVoucherCodeResponse=true;
+
+                      });
+                    },
+                    child: Container(
+                      width: 93.47,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color:_voucherCodeController.text.length>3 ?  Color(0xFFFF4343):Color(0xFF6B7280),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(4),
+                          bottomRight: Radius.circular(4),
+                        ),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Appliquer',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.10,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          'Apply',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.10,
-                          ),
+                  ):Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0,right: 20),
+                      child: Text(
+                        'Retirer',
+                        style: TextStyle(
+                          color: Color(0xFFEF4444),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-Medium',
+                          fontWeight: FontWeight.w500,
+                          height: 0.10,
                         ),
                       ),
                     ),
@@ -517,6 +532,22 @@ class _CheckOutState extends State<CheckOut> {
                 ],
               ),
             ),
+            SizedBox(height: 10),
+            if(isVoucherCodeResponse==true)
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Text(
+                  'Votre code promotionnel est appliqué avec succès.',
+                  style: TextStyle(
+                    color: Color(0xFF22C55E),
+                    fontSize: 14,
+                    fontFamily: 'Archivo',
+                    fontWeight: FontWeight.w500,
+                    height: 0.10,
+                  ),
+                ),
+              )
+
           ],
         ),
       ),
@@ -886,5 +917,4 @@ class _CheckOutState extends State<CheckOut> {
       removedItems.addAll(cartItems.where((item) => item.isChecked));
       cartItems.removeWhere((item) => item.isChecked);
     });
-  }
-}
+  }}

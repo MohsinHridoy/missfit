@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../widgets/custom_app_bar.dart';
 
@@ -91,8 +92,8 @@ class BlogDetails extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Container(
-                        width: 365,
-                        height: 145,
+                        width: 365.h,
+                        height: 130.h,
                         clipBehavior: Clip.antiAlias,
                         decoration: ShapeDecoration(
                           color: Color(0xFFE5E7EB),
@@ -104,24 +105,15 @@ class BlogDetails extends StatelessWidget {
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 356,
-                              height: 188,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/home/img_blog_item.png"), // Update to use asset image
-                                  fit: BoxFit.fill,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/home/img_blog_item.png"), // Update to use asset image
+                              fit: BoxFit.fill,
                             ),
-                          ],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
                       ),
                     ),
