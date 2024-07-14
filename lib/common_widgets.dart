@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget buildNextButton(BuildContext context) {
   return Container(
@@ -31,7 +32,7 @@ Widget buildNextButton(BuildContext context) {
 Widget textAmW5S16(String title){
 
   return SizedBox(
-    width: 300,
+    width: 235.h,
     child: Text(
       title,
       style: TextStyle(

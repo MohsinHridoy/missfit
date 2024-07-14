@@ -633,7 +633,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 },
                                 child: SizedBox(
                                   height: 10,
-                                  width: 50,
                                   child: Center(
                                     child: Text(
                                       'Voir tout',

@@ -125,7 +125,7 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Container(
           width: 320.h,
-          height: 84,
+          height: 80.h,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(

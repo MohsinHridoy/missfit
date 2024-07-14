@@ -271,11 +271,10 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                         Spacer(),
 
                         Padding(
-                          padding: const EdgeInsets.only(left: 15.0,top:15,right: 15),
+                          padding: const EdgeInsets.only(left: 15.0,top:20),
                           child: Align(
                             alignment: Alignment.bottomCenter,
                             child: Container(
-                              width: 100,
                               color:Color(0xFFF6F6F6) ,
                               child: Text(
                                 'Changement',

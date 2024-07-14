@@ -303,7 +303,7 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                   widget.onNextPressed();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 30),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 52,
@@ -313,17 +313,14 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                           borderRadius: BorderRadius.circular(8)),
                     ),
                     child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          widget.status == 'profile'?'Sauvegarder':'Suivant',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w500,
-                            height: 0.09,
-                          ),
+                      child: Text(
+                        widget.status == 'profile'?'Sauvegarder':'Suivant',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w500,
+                          height: 1.0,
                         ),
                       ),
                     ),

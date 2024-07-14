@@ -25,6 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isFirstLaunch = prefs.getBool('first_launch') ?? true;
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
+    // Log the values for debugging
+    print("isFirstLaunch: $isFirstLaunch");
+    print("isLoggedIn: $isLoggedIn");
     // Simulate a splash screen delay
     await Future.delayed(Duration(seconds: 3));
 
