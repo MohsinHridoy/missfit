@@ -497,9 +497,11 @@ class _Otp001State extends State<Otp001> {
 
                 SizedBox(
                   height: 50.h,
+                  width: double.infinity,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
+                    padding: const EdgeInsets.only(left: 20.0,right: 23),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
                           width: 270,
@@ -517,28 +519,24 @@ class _Otp001State extends State<Otp001> {
                             ),
                           ),
                         ),
-                        GestureDetector(
+                        _showResendButton ? GestureDetector(
                           onTap: _showResendButton ? resendCode : null,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              _showResendButton ? 'Renvoyer' : '',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Color(0xFFFF4343),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w500,
-                                height: 1.09,
-                              ),
+                          child: Text(
+                            _showResendButton ? 'Renvoyer' : '',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.0,
                             ),
                           ),
-                        ),
-                        Text(
+                        ): Text(
                           _secondsRemaining == 0
                               ? ''
                               : '00:${_secondsRemaining.toString().padLeft(2, '0')}',
-                          textAlign: TextAlign.right,
+                          textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Color(0xFFFFA142),
                             fontSize: 16,
@@ -546,7 +544,8 @@ class _Otp001State extends State<Otp001> {
                             fontWeight: FontWeight.w400,
                             height: 1.09,
                           ),
-                        )
+                        ),
+
                       ],
                     ),
                   ),
@@ -588,20 +587,17 @@ class _Otp001State extends State<Otp001> {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 9.0),
-                          child: Text(
-                            'Vérifier',
-                            style: TextStyle(
-                              color: _controller4.text.isNotEmpty
-                                  ? Colors.white
-                                  : Color(0xFF334155),
-                              // color: Color(0xFF94A3B8),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w500,
-                              height: 0.11,
-                            ),
+                        child: Text(
+                          'Vérifier',
+                          style: TextStyle(
+                            color: _controller4.text.isNotEmpty
+                                ? Colors.white
+                                : Color(0xFF334155),
+                            // color: Color(0xFF94A3B8),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w500,
+                            height: 1.0,
                           ),
                         ),
                       ),
@@ -635,7 +631,7 @@ class _Otp001State extends State<Otp001> {
                 ),
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(bottom: 8.0, left: 10, right: 10),
+                  const EdgeInsets.only(bottom: 0.0, left: 10, right: 10),
                   child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -664,7 +660,7 @@ class _Otp001State extends State<Otp001> {
                                     fontSize: 22,
                                     fontFamily: 'Inter-Medium',
                                     fontWeight: FontWeight.w500,
-                                    height: 0.05,
+                                    height: 1.05,
                                   ),
                                 ),
                               ),
@@ -704,6 +700,8 @@ class _Otp001State extends State<Otp001> {
                                     color: Color(0xFF334155),
                                     fontWeight: FontWeight.w500,
                                     fontSize: 22,
+                                    fontFamily: 'Inter-Medium',
+                                    height: 1.05,
                                   ),
                                 ),
                               )

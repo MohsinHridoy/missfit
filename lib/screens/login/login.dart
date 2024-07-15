@@ -168,17 +168,14 @@ class _LoginPageState extends State<LoginPage> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
                   child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        'Se connecter',
-                        style: TextStyle(
-                          color:_isValidEmail ? Colors.white.withOpacity(0.9) : Color(0xFF334155),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
-                        ),
+                    child: Text(
+                      'Se connecter',
+                      style: TextStyle(
+                        color:_isValidEmail ? Colors.white.withOpacity(0.9) : Color(0xFF334155),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 1.09,
                       ),
                     ),
                   ),

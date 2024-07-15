@@ -129,8 +129,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 52,
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
+
                   decoration: ShapeDecoration(
                     color: Color(0xFFFF4343),
                     shape: RoundedRectangleBorder(
@@ -144,7 +143,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         fontSize: 16,
                         fontFamily: 'Archivo',
                         fontWeight: FontWeight.w600,
-                        height: 1.09,
+                        height: 1.0,
                       ),
                     ),
                   ),

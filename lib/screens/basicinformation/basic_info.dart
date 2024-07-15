@@ -264,7 +264,7 @@ class _BasicInfoState extends State<BasicInfo> {
                       ),
                     ),
                   ),
-                  SizedBox(height: widget.status == "profile" ? 430.h : 220.3.h),
+                  SizedBox(height: widget.status == "profile" ? 430.h : 240.3.h),
                   widget.status != "profile"
                       ? GestureDetector(
                     onTap: _isButtonEnabled ? _login : _login2,
@@ -280,18 +280,15 @@ class _BasicInfoState extends State<BasicInfo> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              'Suivante',
-                              style: TextStyle(
-                                color: _isButtonEnabled
-                                    ? Colors.white
-                                    : Color(0xFF334155),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                height: 0.09,
-                              ),
+                          child:  Text(
+                            'Suivante',
+                            style: TextStyle(
+                              color: _isButtonEnabled
+                                  ? Colors.white
+                                  : Color(0xFF334155),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              height: 1.00,
                             ),
                           ),
                         ),
