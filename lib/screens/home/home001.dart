@@ -506,7 +506,7 @@ class _HomeState extends State<Home> {
                       children: [
                         // _textTitle('Latest Blog'),
                         Text(
-                          'Get Subscribed',
+                          "S'abonner",
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 20,

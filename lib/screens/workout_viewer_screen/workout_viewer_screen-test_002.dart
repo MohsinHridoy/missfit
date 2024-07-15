@@ -929,7 +929,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                               fontSize: 14,
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
-                              height: 0.10,
+                              height: 1.10,
                             ),
                           ),
                         ),

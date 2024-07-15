@@ -701,7 +701,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                          ),
                                          const SizedBox(height: 20),
                                          Padding(
-                                           padding: const EdgeInsets.only(left: 22.0,right: 75,bottom: 22),
+                                           padding: const EdgeInsets.only(left: 22.0,right: 50,bottom: 22),
                                            child: Row(
                                              children: [
                                                _buildLabelWithIcon(

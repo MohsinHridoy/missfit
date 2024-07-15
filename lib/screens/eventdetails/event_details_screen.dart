@@ -67,9 +67,11 @@ class _EventDetailsState extends State<EventDetails> {
                         scale: 2,
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 3.6),
+                    widget.status=='event' ?
+                    SizedBox(width: MediaQuery.of(context).size.width / 4.9):
+                    SizedBox(width: MediaQuery.of(context).size.width / 3.9),
                     Text(
-                      widget.status=='event' ? 'Event Details' : 'Group Class',
+                      widget.status=='event' ? "Détails de l'évènement" : 'Cours de groupe',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF1E293B),
@@ -224,64 +226,51 @@ class _EventDetailsState extends State<EventDetails> {
                     SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20),
-                      child: LayoutBuilder(
-                        builder:
-                            (BuildContext context, BoxConstraints constraints) {
-                          final linkText = 'Read more ...';
-                          final linkStyle = TextStyle(
-                            color: Color(0xFFFF4343),
-                            fontWeight: FontWeight.w500,
-                          );
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20),
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      final linkText = 'Read more ...';
+                      final linkStyle = TextStyle(
+                        color: Color(0xFFFF4343),
+                        fontWeight: FontWeight.w500,
+                      );
 
-                          // Setup the TextPainter to calculate if we need "see more"
-                          final textPainter = TextPainter(
-                            text: TextSpan(
-                              text: firstPart + trimmedText,
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 0.11,
-                              ),
-                            ),
-                            maxLines: 2,
-                            textDirection: TextDirection.ltr,
-                          );
+                      // Setup the TextPainter to calculate if we need "see more"
+                      final textPainter = TextPainter(
+                        text: TextSpan(
+                          text: firstPart + trimmedText,
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 1.11,
+                          ),
+                        ),
+                        maxLines: 2,
+                        textDirection: TextDirection.ltr,
+                      );
 
-                          // Layout the painter with available width
-                          textPainter.layout(maxWidth: constraints.maxWidth);
+                      // Layout the painter with available width
+                      textPainter.layout(maxWidth: constraints.maxWidth);
 
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (!isExpanded)
-                                GestureDetector(
-                                  onTap: () {
-                                    if (trimmedText.isNotEmpty) {
-                                      setState(() {
-                                        isExpanded = true;
-                                      });
-                                    }
-                                  },
-                                  child: Text.rich(
-                                    TextSpan(
-                                      text: firstPart,
-                                      children: [
-                                        TextSpan(
-                                          text: linkText,
-                                          style: linkStyle,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              else
-                                Text(
-                                  firstPart + trimmedText,
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (!isExpanded)
+                            GestureDetector(
+                              onTap: () {
+                                if (trimmedText.isNotEmpty) {
+                                  setState(() {
+                                    isExpanded = true;
+                                  });
+                                }
+                              },
+                              child: RichText(
+                                text: TextSpan(
+                                  text: firstPart,
                                   style: TextStyle(
                                     color: Color(0xFF334155),
                                     fontSize: 14,
@@ -289,12 +278,32 @@ class _EventDetailsState extends State<EventDetails> {
                                     fontWeight: FontWeight.w400,
                                     height: 1.11,
                                   ),
+                                  children: [
+                                    TextSpan(
+                                      text: linkText,
+                                      style: linkStyle,
+                                    ),
+                                  ],
                                 ),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
+                              ),
+                            )
+                          else
+                            Text(
+                              firstPart + trimmedText,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 14,
+                                fontFamily: 'Archivo-Regular',
+                                fontWeight: FontWeight.w400,
+                                height: 1.11,
+                              ),
+                            ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, top: 40),
                       child: SizedBox(
@@ -507,7 +516,7 @@ class _EventDetailsState extends State<EventDetails> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child:
-                  customButtonRed(context, widget.status=='event' ?'Book Event':'Book Now', onPressed: () {
+                  customButtonRed(context, widget.status=='event' ?'Événement de livre':'Reserve maintenant', onPressed: () {
                     _showBottomSheet(context);
 
                   })
@@ -631,7 +640,7 @@ class _EventDetailsState extends State<EventDetails> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Do you want to confirm your seat?',
+                            'Voulez-vous confirmer votre place?',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF334155),
@@ -723,7 +732,7 @@ class _EventDetailsState extends State<EventDetails> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 5.0),
                                           child: Text(
-                                            'No',
+                                            'Non',
                                             style: TextStyle(
                                               color: Color(0xFFFF4343),
                                               fontSize: 16,
@@ -759,7 +768,7 @@ class _EventDetailsState extends State<EventDetails> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(top: 5.0),
                                           child: Text(
-                                            'Confirm',
+                                            'Confirmer',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,

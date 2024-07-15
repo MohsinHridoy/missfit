@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:miss_fit/screens/home/home001.dart';
 import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:miss_fit/screens/profile/profile.dart';
@@ -57,52 +58,60 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
 
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          _widgetOptions.elementAt(_selectedIndex), // Removed Expanded widget here
-          Positioned(
-            bottom: 10,
-            left: 10,
-            right: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                height: 64,
-                width: MediaQuery.of(context).size.width,
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 1,
-                      color: Colors.white.withOpacity(0.10999999940395355),
+    return WillPopScope(
+      onWillPop: () async {
+        // Exit the app when the back button is pressed
+        SystemNavigator.pop();
+
+        return true;
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            _widgetOptions.elementAt(_selectedIndex), // Removed Expanded widget here
+            Positioned(
+              bottom: 10,
+              left: 10,
+              right: 10,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  height: 64,
+                  width: MediaQuery.of(context).size.width,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 1,
+                        color: Colors.white.withOpacity(0.10999999940395355),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    borderRadius: BorderRadius.circular(8),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x2B171717),
+                        blurRadius: 15,
+                        offset: Offset(0, 4),
+                        spreadRadius: -6,
+                      )
+                    ],
                   ),
-                  shadows: [
-                    BoxShadow(
-                      color: Color(0x2B171717),
-                      blurRadius: 15,
-                      offset: Offset(0, 4),
-                      spreadRadius: -6,
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(
-                      _widgetOptions.length,
-                          (index) =>_buildNavBarItem(index),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(
+                        _widgetOptions.length,
+                            (index) =>_buildNavBarItem(index),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

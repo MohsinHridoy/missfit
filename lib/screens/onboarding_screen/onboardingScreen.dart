@@ -79,7 +79,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: 30,
                           width: 50,
                           color: Colors.transparent,
-                          child: Center(child: skip_text('${'Sauter'}'))),
+                          child: Center(child: Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: skip_text('${'Sauter'}'),
+                          ))),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -258,7 +261,7 @@ Widget skip_text(String text) {
       fontSize: 16,
       fontFamily: 'Archivo',
       fontWeight: FontWeight.w600,
-      height: 1.09,
+      height: 1.00,
     ),
   );
 }
