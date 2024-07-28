@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:miss_fit/screens/login/login.dart';
+import 'package:miss_fit/screens/registration/registration.dart';
 
 class CustomDotIndicator extends StatefulWidget {
   @override
@@ -31,16 +31,18 @@ class _CustomDotIndicatorState extends State<CustomDotIndicator> {
     return Visibility(
       visible: isVisible,
       child: Container(
-        height: 30,
+        height: 25,
         width: 2,
-        color: Colors.blue,
+        color: Color(0xFFFFA142),
       ),
     );
   }
 }
 
 class Otp extends StatefulWidget {
-  const Otp({super.key});
+  final String email;
+
+  const Otp({super.key, required this.email});
 
   @override
   State<Otp> createState() => _OtpState();
@@ -61,11 +63,21 @@ class _OtpState extends State<Otp> {
   final FocusNode _focusNode2 = FocusNode();
   final FocusNode _focusNode3 = FocusNode();
   final FocusNode _focusNode4 = FocusNode();
+  int _secondsRemaining = 57;
+  late Timer _timer;
+  bool _firstTextFieldFoucs = false;
+
+  String tvSendCodeStatus = "You can request otp code in";
+  String tvDidntRcvCodeStatus = "Didn’t received any code?";
 
   @override
   void initState() {
     super.initState();
+    startTimer();
+    _focusNode1.addListener(() {
+      _firstTextFieldFoucs = _focusNode1.hasFocus;
 
+    });
     // Set up focus listeners to move to the next field when one is filled
     _controller1.addListener(() {
       if (_controller1.text.isNotEmpty) {
@@ -88,8 +100,9 @@ class _OtpState extends State<Otp> {
 
   void _appendToInput(int value) {
     if (_textController.text.length < 10) {
-      if (value == 0) {
+      if (value < 0) {
         // _removeLastCharacter();
+        _updateFocusedTextField(0);
       } else {
         _updateFocusedTextField(value);
       }
@@ -103,25 +116,43 @@ class _OtpState extends State<Otp> {
   }
 
   var value1 = 0;
+  var value2 = 0;
 
   void _updateFocusedTextField(int value) {
     if (_focusNode1.hasFocus) {
       _controller1.text = value.toString();
       value1 = 1;
-      setState(() {});
+      value2 = 0;
+
       FocusScope.of(context).requestFocus(_focusNode2);
+      setState(() {});
+
     } else if (_focusNode2.hasFocus) {
       _controller2.text = value.toString();
       value1 = 2;
-      setState(() {});
+      value2 = 0;
+
       FocusScope.of(context).requestFocus(_focusNode3);
+      setState(() {});
+
     } else if (_focusNode3.hasFocus) {
       value1 = 3;
+      value2 = 0;
+
 
       _controller3.text = value.toString();
       FocusScope.of(context).requestFocus(_focusNode4);
+      setState(() {});
+
     } else if (_focusNode4.hasFocus) {
+      value1 = 4;
+      value2 = 0;
+
+
       _controller4.text = value.toString();
+      FocusScope.of(context).requestFocus(_focusNode4);
+      setState(() {});
+
     }
   }
 
@@ -135,402 +166,625 @@ class _OtpState extends State<Otp> {
   );
 
   @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  bool _showResendButton = false;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (timer) {
+      if (_secondsRemaining == 0) {
+        setState(() {
+          _timer.cancel();
+          _showResendButton = true;
+        });
+      } else {
+        setState(() {
+          _secondsRemaining--;
+        });
+      }
+    });
+  }
+
+  void resendCode() {
+    setState(() {
+      _secondsRemaining = 57; // Reset timer
+      _showResendButton = false; // Hide the resend button
+      startTimer(); // Restart timer
+    });
+  }
+
+  void _removeLastCharacter() {
+    if (_controller4.text.isNotEmpty) {
+      setState(() {
+        value2 = 1;
+        _controller4.text = ''; // Clear the last text field if it has text
+        FocusScope.of(context)
+            .requestFocus(_focusNode3); // Move focus to the previous field
+      });
+    } else if (_controller3.text.isNotEmpty) {
+      setState(() {
+        value2 = 2;
+
+        _controller3.text = '';
+        FocusScope.of(context).requestFocus(_focusNode2);
+      });
+    } else if (_controller2.text.isNotEmpty) {
+      setState(() {
+        value2 = 3;
+
+        _controller2.text = '';
+        FocusScope.of(context).requestFocus(_focusNode1);
+      });
+    } else if (_controller1.text.isNotEmpty) {
+      setState(() {
+        value2 = 4;
+
+        _controller1.text = '';
+        FocusScope.of(context).requestFocus(_focusNode1);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-
-          // Positioned(
-          //   top: 0,
-          //   left: -150,
-          //   child: Container(
-          //     width: 390,
-          //     height: 390,
-          //     decoration: ShapeDecoration(
-          //       // color: Colors.red,
-          //       color: Color(0xFFB1C4EA),
-          //       shape: OvalBorder(),
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   top: -40,
-          //   right: -100,
-          //   child: Container(
-          //     width: 188,
-          //     height: 188,
-          //     decoration: ShapeDecoration(
-          //       color: Color(0xFFAAC3F3),
-          //       shape: OvalBorder(),
-          //     ),
-          //   ),
-          // ),
-          Positioned(
-            top: 0,
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              color: Color(0xFFF3F5F9).withOpacity(0.9),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Image.asset("assets/intro/login/img_8.png",
-                        width: 24, height: 24),
-                    SizedBox(
-                      height: 70,
-                    ),
-                    Row(
-                      children: [
-                        Opacity(
-                          opacity: 0.60,
-                          child: Text(
-                            'Almost there!',
-                            style: TextStyle(
-                              color: Color(0xFF171930),
-                              fontSize: 13,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              height: 0.12,
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: SizedBox(
-                        width: 274,
-                        child: Text(
-                          'Enter your \nVerification code',
-                          style: TextStyle(
-                            color: Color(0xFF171930),
-                            fontSize: 32,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            height: 1.4,
-                          ),
-                        ),
+      body: Container(
+        color: Color(0xFFF6F6F6),
+        child: Column(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 125,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0,left: 20),
+                  child: SizedBox(
+                    width: 274,
+                    child: Text(
+                      'OTP Verification',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 24,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w600,
+                        height: 0.05,
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 255,
-                      child: Opacity(
-                        opacity: 0.60,
-                        child: Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: ' We sent it to the number ',
-                                style: TextStyle(
-                                  color: Color(0xFF171930),
-                                  fontSize: 13,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.12,
-                                ),
-                              ),
-                              TextSpan(
-                                text: '01782595673',
-                                style: TextStyle(
-                                  color: Color(0xFF0052E0),
-                                  fontSize: 13,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                  ),
+                ),
+                SizedBox(
+                  height: 55,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: SizedBox(
+                    width: 320,
+                    child: Text(
+                      'We sent verification code to -',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-Regular',
+                        fontWeight: FontWeight.w400,
+                        height: 0.09,
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0.0,right: 39.0,top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: 66,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Stack(children: [
-                              Center(
-                                child: TextFormField(
-                                  controller: _controller1,
-                                  focusNode: _focusNode1,
-                                  readOnly: true,
-                                  autofocus: true,
-                                  // Set autofocus to true for the first field
-                                  decoration: InputDecoration(
-                                    // labelText: 'Input 1',
-                                    border: InputBorder.none,
-                                    focusedBorder: _focusedBorder,
-                                  ),
-                                ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        widget.email,
+                        style: TextStyle(
+                          color: Color(0xFFE88E32),
+                          fontSize: 16,
+                          fontFamily: 'Archivo',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0, top: 3),
+                          child: Image.asset(
+                            "assets/otp/icon_edit.png",
+                            scale: 1.7,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 45,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0,right: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          // borderRadius: BorderRadius.circular(8.0),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller1,
+                              focusNode: _focusNode1,
+                              readOnly: true,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
                               ),
-                              if (value1 == 0) Center(child: CustomDotIndicator())
-                            ]),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 66,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Stack(children: [
-                              TextFormField(
-                                controller: _controller2,
-                                readOnly: true,
-                                focusNode: _focusNode2,
-                                decoration: InputDecoration(
-                                  // labelText: 'Input 2',
-                                  //                               border: _defaultBorder,
-                                  border: InputBorder.none,
-                                  focusedBorder: _focusedBorder,
-                                ),
+                              autofocus: true,
+                              // Set autofocus to true for the first field
+                              decoration: InputDecoration(
+                                // labelText: 'Input 1',
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
                               ),
-                              if (value1 == 1)
-                                Center(child: CustomDotIndicator()),
-                            ]),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 66,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            child: Stack(children: [
-                              TextFormField(
-                                controller: _controller3,
-                                focusNode: _focusNode3,
-                                readOnly: true,
-                                decoration: InputDecoration(
-                                  // labelText: 'Input 3',
-                                  border: InputBorder.none,
-                                  focusedBorder: _focusedBorder,
-                                ),
+                          ),
+                          if (value1 == 0 || value2 == 4)
+                            Center(child: CustomDotIndicator())
+                        ]),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller2,
+                              readOnly: true,
+                              focusNode: _focusNode2,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
                               ),
-                              if (value1 == 2)
-                                Center(child: CustomDotIndicator()),
-                            ]),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 66,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
+                              decoration: InputDecoration(
+                                // labelText: 'Input 2',
+                                //                               border: _defaultBorder,
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
+                              ),
                             ),
+                          ),
+                          if (value1 == 1 || value2 == 3)
+                            Center(child: CustomDotIndicator()),
+                        ]),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
+                            child: TextFormField(
+                              controller: _controller3,
+                              focusNode: _focusNode3,
+                              readOnly: true,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
+                              decoration: InputDecoration(
+                                // labelText: 'Input 3',
+                                border: InputBorder.none,
+                                // focusedBorder: _focusedBorder,
+                              ),
+                            ),
+                          ),
+                          if (value1 == 2 || value2 == 2)
+                            Center(child: CustomDotIndicator()),
+                        ]),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        width: 56,
+                        height: 52,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 1,
+                                color:_firstTextFieldFoucs? Color(0xFFD1D5DB): Color(0xFF6B7280).withOpacity(0.9)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Stack(children: [
+                          Positioned(
+                            left: 20,
+                            right: 10,
+                            top: 1,
                             child: TextFormField(
                               controller: _controller4,
                               focusNode: _focusNode4,
                               readOnly: true,
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 20,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.09,
+                              ),
                               decoration: InputDecoration(
                                 // labelText: 'Input 4',
                                 border: InputBorder.none,
-                                focusedBorder: _focusedBorder,
+                                // focusedBorder: _focusedBorder,
                               ),
                             ),
                           ),
-                        ],
+                          if (value1 == 3 || value2 == 1)
+                            Center(child: CustomDotIndicator()),
+                        ]),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 77.0),
-                      child: Container(
-                        width: 335,
-                        height: 52,
-                        decoration: ShapeDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment(0.76, -0.66),
-                            end: Alignment(-0.76, 0.66),
-                            colors: [Color(0xFF266ED7), Color(0xFF4D8AEB)],
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          shadows: [
-                            BoxShadow(
-                              color: Color(0x891460D0),
-                              blurRadius: 23,
-                              offset: Offset(0, 11),
-                              spreadRadius: -11,
-                            )
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Let’s Sign in',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(0.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 30,
-                      child: Container(
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
+                SizedBox(
+                  height: 35,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 220,
+                        child: Text(
+                          _showResendButton
+                              ? tvDidntRcvCodeStatus
+                              : tvSendCodeStatus,
+                          // 'Didn’t received any code?',
+                          style: TextStyle(
+                            color: Color(0xFF9CA3AF),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 0.09,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: _showResendButton ? resendCode : null,
+                        child: Text(
+                          _showResendButton ? 'Resend' : '',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Color(0xFFFF4343),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w500,
+                            height: 1.09,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        _secondsRemaining == 0
+                            ? ''
+                            : '00:${_secondsRemaining.toString().padLeft(2, '0')}',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Color(0xFFFFA142),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 80,
+                ),
+                GestureDetector(
+                  onTap: _controller4.text.isNotEmpty
+                      ? () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Registration()),
+                    );
+                  }
+                      : null,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 44,
+                      // padding: const EdgeInsets.symmetric(
+                      //     horizontal: 0, vertical: 0),
+                      decoration: ShapeDecoration(
+                        color: _controller4.text.isNotEmpty
+                            ? Color(0xFFFF4343)
+                            : Color(0xFFD1D5DB),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Verify',
+                          style: TextStyle(
+                            color: _controller4.text.isNotEmpty
+                                ? Colors.white
+                                : Color(0xFF334155),
+                            // color: Color(0xFF94A3B8),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w500,
+                            height: 0.11,
                           ),
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          height: 230,
-                          color: Colors.white,
-                          child: GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                // crossAxisSpacing: 2.0,
-                                // mainAxisSpacing: 2.0,
-                                childAspectRatio: 2),
-                            // shrinkWrap: true,
-                            itemCount: buttonNumbers.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                onTap: () => _appendToInput(buttonNumbers[index]),
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  child: Center(
-                                    child: Opacity(
-                                      opacity: 0.9,
-                                      child: Text(
-                                        buttonNumbers[index].toString(),
-                                        style: TextStyle(
-                                          color: Color(0xFF3F4158),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 22,
-                                        ),
+                  ),
+                )
+              ],
+            ),
+            Spacer(),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Container(
+                    height: 330,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFF9FAFB),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      shadows: [
+                        BoxShadow(
+                          color: Color(0x11121315),
+                          blurRadius: 15,
+                          offset: Offset(0, -1),
+                          spreadRadius: -3,
+                        )
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 8.0, left: 10, right: 10),
+                      child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 2.0,
+                          childAspectRatio: 1.8,
+                        ),
+                        itemCount: buttonNumbers.length + 3,
+                        // Plus 3 for Menu, 0, and Back buttons
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index < buttonNumbers.length) {
+                            // Render numeric buttons
+                            return GestureDetector(
+                              onTap: () => _appendToInput(buttonNumbers[index]),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                color:Color(0xFFF9FAFB) ,
+                                child: Center(
+                                  child: Opacity(
+                                    opacity: 0.9,
+                                    child: Text(
+                                      buttonNumbers[index].toString(),
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 22,
+                                        fontFamily: 'Inter-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.05,
+
                                       ),
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.white,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 55.0,bottom: 30),
-                                child: Image.asset(
-                                  "assets/intro/login/dot.png",
-                                  width: 18,
-                                  height: 15,
+                              ),
+                            );
+                          } else {
+                            // Render Menu, 0, and Back buttons
+                            return GestureDetector(
+                              onTap: () {
+                                if (index == buttonNumbers.length) {
+                                  // Handle Menu button
+                                } else if (index == buttonNumbers.length + 1) {
+                                  // Handle 0 button
+                                  _appendToInput(0);
+                                } else if (index == buttonNumbers.length + 2) {
+                                  // Handle Back button
+                                  _removeLastCharacter();
+                                }
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: Center(
+                                  child: index == buttonNumbers.length
+                                      ? Image.asset(
+                                          "assets/otp/icon_menu.png",
+                                          width: 20,
+                                          height: 20,
+                                        )
+                                      : index == buttonNumbers.length + 1
+                                          ? Opacity(
+                                              opacity: 0.9,
+                                              child: Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  color: Color(0xFF334155),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 22,
+                                                ),
+                                              ),
+                                            )
+                                          : Image.asset(
+                                              "assets/otp/icon_back.png",
+                                              width: 20,
+                                              height: 35,
+                                            ),
                                 ),
                               ),
-                              SizedBox(width: 1,),
-                              // ElevatedButton(
-                              //   style: ButtonStyle(
-                              //     // backgroundColor: Colors.white,
-                              //   ),
-                              //   onPressed: () {
-                              //     setState(() {
-                              //       _textController.text =
-                              //           _textController.text + 0.toString();
-                              //     });
-                              //   },
-                              //   child: Text("0"),
-                              // ),
-                              Padding(
-                                padding:
-                                const EdgeInsets.only(left: 75.0, right: 45.0,bottom: 30),
-                                child: Opacity(
-                                  opacity: 0.9,
-                                  child: Text(
-                                    "0",
-                                    style: TextStyle(
-                                      color: Color(0xFF3F4158),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 22,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 30,),
-
-                              // Padding(
-                              //   padding: const EdgeInsets.only(bottom: 16.0,right: 45),
-                              //   child: IconButton(
-                              //     icon: Icon(Icons.arrow_back),
-                              //     onPressed: () {
-                              //       _removeLastCharacter();
-                              //     },
-                              //   ),
-                              // )
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 30.0,right: 55),
-                                child: Image.asset(
-                                  "assets/intro/login/img_7.png",
-                                  width: 20,
-                                  height: 15,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-
-                      ],
+                            );
+                          }
+                        },
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+
+                  // Container(
+                  //   width: MediaQuery.of(context).size.width,
+                  //   color: Color(0xFF020617),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(left: 60.0,bottom: 30,top:40),
+                  //         child: Image.asset(
+                  //           "assets/otp/icon_menu.png",
+                  //           width: 18,
+                  //           height: 15,
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //         width: 1,
+                  //       ),
+                  //       // ElevatedButton(
+                  //       //   style: ButtonStyle(
+                  //       //     // backgroundColor: Colors.white,
+                  //       //   ),
+                  //       //   onPressed: () {
+                  //       //     setState(() {
+                  //       //       _textController.text =
+                  //       //           _textController.text + 0.toString();
+                  //       //     });
+                  //       //   },
+                  //       //   child: Text("0"),
+                  //       // ),
+                  //       GestureDetector(
+                  //         onTap: (){
+                  //           setState(() {
+                  //             _appendToInput(0);
+                  //             // _textController.text += "0"; // Appending zero to the overall controller, assuming this is needed for additional logic
+                  //
+                  //             // _textController.text =
+                  //             //     _textController.text + 0.toString();
+                  //
+                  //             print(_textController.text );
+                  //           });
+                  //
+                  //         },
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.only(
+                  //               left: 75.0, right: 45.0, bottom: 30,top: 50),
+                  //           child: Opacity(
+                  //             opacity: 0.9,
+                  //             child: Text(
+                  //               "0",
+                  //               style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.w500,
+                  //                 fontSize: 22,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //         width: 30,
+                  //       ),
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(bottom: 30.0,right: 60,top:40),
+                  //         child: GestureDetector(
+                  //           onTap:(){
+                  //             // _removeLastCharacter();
+                  //             _removeLastCharacter();
+                  //           },
+                  //           child: Image.asset(
+                  //             "assets/otp/icon_back.png",
+                  //             width: 20,
+                  //             height: 35,
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                ],
               ),
-            ),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -35,6 +35,24 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  shared_preferences: ^2.0.8
+  image_picker: ^1.0.7
+  provider: ^6.1.2
+  video_player: ^2.9.1
+  dotted_border: ^2.1.0
+  flutter_xlider: ^3.5.0
+  flutter_rating_bar: ^4.0.0
+  flutter_screenutil: ^5.9.3
+  video_thumbnail: ^0.5.0
+  flutter_keyboard_visibility: ^5.0.3
+
+
+
+
+
+  lottie: ^3.1.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +64,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,6 +81,30 @@ flutter:
   assets:
     - assets/splash/
     - assets/onboarding/
+    - assets/registration/
+    - assets/home/
+    - assets/otp/
+    - assets/lottie_anim/
+    - assets/workout/
+    - assets/cart/
+    - assets/settings/
+    - assets/order/
+    - assets/product_details/
+    - assets/payment/
+    - assets/review/
+    - assets/shophome/
+    - assets/dashboard/
+    - assets/eventdetails/
+    - assets/servicedetails/
+    - assets/profile/
+    - assets/mysubscription/
+    - assets/coachbooking/
+    - assets/search/
+    - assets/subscription/
+    - assets/bookmark/
+    - assets/takechallenge/
+    - assets/workout/www.mp4
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -76,10 +119,40 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Archivo
+    - family: Archivo-Regular
       fonts:
         - asset: fonts/archivo/Archivo-Regular.ttf
+    - family: Archivo-Medium
+      fonts:
+        - asset: fonts/archivo/Archivo-Medium.ttf
+    - family: Archivo-Bold
+      fonts:
         - asset: fonts/archivo/Archivo-Bold.ttf
+    - family: Archivo-SemiBold
+      fonts:
+        - asset: fonts/archivo/Archivo-SemiBold.ttf
+    - family: Kanit-Medium
+      fonts:
+        - asset: fonts/kanit/Kanit-Medium.ttf
+    - family: Kanit-Regular
+      fonts:
+        - asset: fonts/kanit/Kanit-Regular.ttf
+    - family: Kanit-SemiBold
+      fonts:
+        - asset: fonts/kanit/Kanit-SemiBold.ttf
+    - family: Inter-Bold
+      fonts:
+        - asset: fonts/inter/Inter-Bold.ttf
+        - asset: fonts/inter/Inter-Regular.ttf
+
+    - family: poppins
+      fonts:
+        - asset: fonts/poppins/Poppins-Regular.ttf
+        - asset: fonts/poppins/Poppins-SemiBold.ttf
+
+    - family: Inter-Medium
+      fonts:
+        - asset: fonts/inter/Inter-Medium.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
@@ -89,3 +162,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  image_path: "assets/home/missfiticon_black.png"
+  android: true
+  ios: true

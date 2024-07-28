@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:miss_fit/common_utils.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
+import 'package:miss_fit/screens/login/login.dart';
 import 'dart:async';
 
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,30 +17,59 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Start a timer for 3 seconds
-    Timer(Duration(seconds: 3), () {
-      // After 3 seconds, navigate to the home screen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => OnboardingScreen1(),
-        ),
-      );
-    });
+    _checkLoggedInStatus();
+  }
+
+  void _checkLoggedInStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLaunch = prefs.getBool('first_launch') ?? true;
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+    // Log the values for debugging
+    print("isFirstLaunch: $isFirstLaunch");
+    print("isLoggedIn: $isLoggedIn");
+    // Simulate a splash screen delay
+    await Future.delayed(Duration(seconds: 3));
+
+    if (isFirstLaunch) {
+      // First launch, navigate to OnboardingScreen
+      await prefs.setBool('first_launch', false); // Set first launch to false
+
+
+      navigateToNextPage(context,OnboardingScreen());
+
+    } else {
+     print("+++++++++++++++++++++++++");
+      print(isLoggedIn);
+      // Not the first launch
+      if (isLoggedIn) {
+        // Navigate to Dashboard if logged in
+
+        print(isLoggedIn);
+
+        navigateToNextPage(context,DashBoard());
+
+      } else {
+        // Navigate to LoginScreen if not logged in
+
+
+        navigateToNextPage(context,LoginPage());
+
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Customize your splash screen UI here
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15),
-        color: Color(0xFF18181B),
-        child: Image.asset(
-          "assets/splash/splash_icon.png",
-          fit: BoxFit.contain, // Adjust image fit to contain within the container
+      backgroundColor: Color(0xFFF6F6F6),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.20),
+          child: Image.asset(
+            "assets/splash/splash_icon.png",
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );
