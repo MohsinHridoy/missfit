@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
@@ -945,7 +946,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   padding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   decoration: ShapeDecoration(
-                    color: Colors.white.withOpacity(0.05000000074505806),
+                    color: Colors.white.withOpacity(0.5000000074505806),
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
                         width: 1,
@@ -996,27 +997,24 @@ class _ProductDetailsState extends State<ProductDetails> {
                           navigateToNextPage(context, Cart001());
                         },
                         child: Container(
-                          width: 150,
-                          height: 44,
+                          width: 120.h,
+                          height: 44.h,
                           decoration: BoxDecoration(
                             color: Color(0xFFFF4343),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Ajouter au panier',
-                                textAlign: TextAlign.center,
-                                // Ensure text alignment is centered
+                            child: Text(
+                              'Ajouter au panier',
+                              textAlign: TextAlign.center,
+                              // Ensure text alignment is centered
 
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 1.00,
                               ),
                             ),
                           ),

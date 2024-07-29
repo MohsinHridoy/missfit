@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/programdetails/programme_details.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
@@ -66,6 +67,14 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
 
     // Add more items here as needed
   ];
+
+  final List<String> chipitems = [
+    'Bodyweight',
+    'Lower Body-Focused',
+    'Muscle & Strength',
+    'Low to High Intensity',
+    'Bodyweight',
+  ];
   late ScrollController _controller;
   bool isVisible = true;
   @override
@@ -94,204 +103,74 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        controller: _controller,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            controller: _controller,
 
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                'assets/takechallenge/img_challenge_items2.png',
-                width: 515,
-                height: 444,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  top: 400), // Adjust top margin to fit the image height
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xFFF6F6F6),
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40), // Adjust the radius as needed
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/takechallenge/img_challenge_items2.png',
+                    width: 515,
+                    height: 444,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 45),
-                      child: Text(
-                        'Torcher de calories',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 24,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 400), // Adjust top margin to fit the image height
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF6F6F6),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40), // Adjust the radius as needed
                     ),
-                    SizedBox(
-                        height:
-                            45), // Add some spacing between text and containers
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Row(
-                        children: [
-                          _buildContainerBox( 'assets/takechallenge/icon_time.png','30 min'),
-                          SizedBox(width: 10), // Add spacing between containers
-                          _buildContainerBox( 'assets/takechallenge/icon_level.png','Intermédiaire'),
-
-                          SizedBox(width: 10), // Add spacing between containers
-                          _buildContainerBox( 'assets/takechallenge/icon_flame.png','247 cal'),
-
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                        height:
-                            35), // Add some spacing between text and containers
-                    Text(
-                      'Aperçu',
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 0.09,
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                    SizedBox(
-                      width: 320,
-                      child: Text(
-                        'Lorem ipsum dolor sit amet consectetur. Vitae mauris pretium neque volutpat. Gravida in sed nulla lectus. Risus et mauris eget sed cum dui quam mattis porta. In eget molestie eu ut.',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 1.5,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                        height:
-                            45), // Add some spacing between text and containers
-                    Text(
-                      'Des exercices',
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 0.09,
-                      ),
-                    ),
-                    Container(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: 4, // Number of items in the list
-                        itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            margin: EdgeInsets.only(bottom: 12),
-                            width: 320,
-                            height: 80,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        height: 60,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFF6B7280),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4)),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 16),
-                                      Container(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Jumping Jack',
-                                              style: TextStyle(
-                                                color: Color(0xFF334155),
-                                                fontSize: 16,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.09,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 33),
-                                            Text(
-                                              '00:20',
-                                              style: TextStyle(
-                                                color: Color(0xFF66758C),
-                                                fontSize: 16,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.09,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 15),
-                                Container(
-                                  width: 365,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                        color: Color(0xFFE5E7EB),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                        height:
-                            35), // Add some spacing between text and containers
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, top: 45),
+                          child: Text(
+                            'Torcher de calories',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 24,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.06,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                            height:
+                            45), // Add some spacing between text and containers
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                          child: Row(
+                            children: [
+                              _buildContainerBox( 'assets/takechallenge/icon_time.png','30 min'),
+                              SizedBox(width: 10), // Add spacing between containers
+                              _buildContainerBox( 'assets/takechallenge/icon_level.png','Intermédiaire'),
+
+                              SizedBox(width: 10), // Add spacing between containers
+                              _buildContainerBox( 'assets/takechallenge/icon_flame.png','247 cal'),
+
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                            height:
+                            35), // Add some spacing between text and containers
                         Text(
-                          'Équipement nécessaire',
+                          'Aperçu',
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 16,
@@ -300,580 +179,666 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             height: 0.09,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
+                        const SizedBox(height: 25),
+                        SizedBox(
+                          width: 320,
                           child: Text(
-                            '5 Items',
+                            'Lorem ipsum dolor sit amet consectetur. Vitae mauris pretium neque volutpat. Gravida in sed nulla lectus. Risus et mauris eget sed cum dui quam mattis porta. In eget molestie eu ut.',
                             style: TextStyle(
-                              color: Color(0xFF94A3B8),
-                              fontSize: 12,
+                              color: Color(0xFF334155),
+                              fontSize: 14,
                               fontFamily: 'Archivo-Regular',
                               fontWeight: FontWeight.w400,
-                              height: 0.12,
+                              height: 1.5,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 40),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 172,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 16.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 120,
-                                  height: 120,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFE5E7EB),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
+                        SizedBox(
+                            height:
+                            35.h), // Add some spacing between text and containers
+                        Text(
+                          'Des exercices',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 0.09,
+                          ),
+                        ),
+                        SizedBox(
+                            height:
+                            15.h),
+                        Container(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: 4, // Number of items in the list
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                margin: EdgeInsets.only(bottom: 12),
+                                width: 320,
+                                height: 80,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 60,
+                                            height: 60,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFF6B7280),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(4)),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 16),
+                                          Container(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Jumping Jack',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF334155),
+                                                    fontSize: 16,
+                                                    fontFamily: 'Archivo-Medium',
+                                                    fontWeight: FontWeight.w500,
+                                                    height: 0.09,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 33),
+                                                Text(
+                                                  '00:20',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF66758C),
+                                                    fontSize: 16,
+                                                    fontFamily: 'Archivo-Medium',
+                                                    fontWeight: FontWeight.w500,
+                                                    height: 0.09,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  child: Center(
-                                    child: Container(
-                                      width: 70,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                              items[index].image),
-                                          // Change this to the appropriate asset image
-                                          fit: BoxFit.cover,
+                                    SizedBox(height: 15),
+                                    Container(
+                                      width: 365,
+                                      decoration: ShapeDecoration(
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            width: 1,
+                                            strokeAlign:
+                                            BorderSide.strokeAlignCenter,
+                                            color: Color(0xFFE5E7EB),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                const SizedBox(height: 12),
-                                SizedBox(
-                                  width: 120,
-                                  child: Text(
-                                    items[index].title,
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                            height:
+                            35), // Add some spacing between text and containers
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Équipement nécessaire',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.09,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text(
+                                '5 Items',
+                                style: TextStyle(
+                                  color: Color(0xFF94A3B8),
+                                  fontSize: 12,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 40),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 172,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 120,
+                                      height: 120,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFFE5E7EB),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(4),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: 70,
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  items[index].image),
+                                              // Change this to the appropriate asset image
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    SizedBox(
+                                      width: 120,
+                                      child: Text(
+                                        items[index].title,
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 14,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.2,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                            height:
+                            35), // Add some spacing between text and containers
+                        Text(
+                          "Secteur d'intérêt",
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 0.09,
+                          ),
+                        ),
+                        SizedBox(height: 35),
+
+                        Container(
+                          width: 320.h,
+                          child: Wrap(
+                            spacing: 10.0, // space between items horizontally
+                            runSpacing: 7.0, // space between items vertically
+                            children: chipitems.map((chipitems) {
+                              return SizedBox(
+                                height: 30.h, // Set the height of each Chip widget
+
+                                child: Chip(
+                                  backgroundColor: Color(0xFFE5E7EB),
+                                  shape:  RoundedRectangleBorder(
+                                    side: BorderSide(style: BorderStyle.none),
+                                    borderRadius: BorderRadius.circular(4)
+                                  ),
+                                  label: Text(
+                                    chipitems,
                                     style: TextStyle(
                                       color: Color(0xFF334155),
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.2,
+                                      fontSize: 12,
+                                        fontFamily: 'Archivo-Regular',
+                                        fontWeight: FontWeight.w400,
+                                        height:
+                                        1.0,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                        height:
-                            35), // Add some spacing between text and containers
-                    Text(
-                      "Secteur d'intérêt",
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 0.09,
-                      ),
-                    ),
-                    SizedBox(height: 35),
-                    Container(
-                      width: 320,
-                      child: Wrap(
-                        spacing: 12.0, // space between items horizontally
-                        runSpacing: 12.0, // space between items vertically
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFE5E7EB),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                            ),
-                            child: Text(
-                              'Bodyweight',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height:
-                                    1.2, // Adjusted to a more reasonable value
-                              ),
-                            ),
+                              );
+                            }).toList(),
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFE5E7EB),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                            ),
-                            child: Text(
-                              'Lower Body-Focused',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height:
-                                    1.2, // Adjusted to a more reasonable value
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFE5E7EB),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                            ),
-                            child: Text(
-                              'Muscle & Strength',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo',
-                                fontWeight: FontWeight.w400,
-                                height:
-                                    1.2, // Adjusted to a more reasonable value
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFE5E7EB),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                            ),
-                            child: Text(
-                              'Low to High Intensity',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo',
-                                fontWeight: FontWeight.w400,
-                                height:
-                                    1.2, // Adjusted to a more reasonable value
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFE5E7EB),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                            ),
-                            child: Text(
-                              'Bodyweight',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo',
-                                fontWeight: FontWeight.w400,
-                                height:
-                                    1.2, // Adjusted to a more reasonable value
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 35),
+                        ),
 
-                    Container(
-                      width: 320,
-                      height: 128,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Résultat attendu',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.09,
-                            ),
-                          ),
-                          const SizedBox(height: 30),
-                          Container(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                  width: 320,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 20,
-                                        height: 20,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(),
-                                        child: Image.asset(
-                                            'assets/takechallenge/icon_tikmark.png'),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 8.0),
-                                          child: SizedBox(
-                                            child: Text(
-                                              'Stronger and explosive lower body',
-                                              style: TextStyle(
-                                                color: Color(0xFF475569),
-                                                fontSize: 14,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.10,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Container(
-                                  width: 320,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 20,
-                                        height: 20,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(),
-                                        child: Image.asset(
-                                            'assets/takechallenge/icon_tikmark.png'),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 8.0),
-                                          child: SizedBox(
-                                            child: Text(
-                                              'Better body Balance',
-                                              style: TextStyle(
-                                                color: Color(0xFF475569),
-                                                fontSize: 14,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.10,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Container(
-                                  width: 320,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 20,
-                                        height: 20,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(),
-                                        child: Image.asset(
-                                            'assets/takechallenge/icon_tikmark.png'),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 8.0),
-                                          child: SizedBox(
-                                            child: Text(
-                                              'Athlete-like physique',
-                                              style: TextStyle(
-                                                color: Color(0xFF475569),
-                                                fontSize: 14,
-                                                fontFamily: 'Archivo-Medium',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.10,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                     if(widget.status=='followprogramme')
 
-                       Container(
-                         child: ListView.builder(
-                           itemCount: 3, // Replace with your item count
-                           physics: NeverScrollableScrollPhysics(),
-                           shrinkWrap: true,
+                        SizedBox(height: 35),
 
-                           itemBuilder: (context, index) {
-                             return Padding(
-                               padding: const EdgeInsets.all(0.0),
-                               child: GestureDetector(
-                                 onTap: (){
-                                   navigateToNextPage(context,ProgrammeDetails());
-
-                                 },
-                                 child: Padding(
-                                   padding: const EdgeInsets.only(right: 20.0,bottom: 20),
-                                   child: Container(
-                                     color: Colors.white,
-
-                                     child: Column(
-                                       crossAxisAlignment: CrossAxisAlignment.start,
-                                       children: [
-                                         Container(
-                                           width: MediaQuery.of(context).size.width,
-                                           height: 147,
-
-                                           child: ClipRRect(
-                                             borderRadius: BorderRadius.only(
-                                               topLeft: Radius.circular(20),
-                                               topRight: Radius.circular(20),
-                                             ),                          child: Image.asset(
-                                             'assets/takechallenge/programme_image_items.png',
-                                             fit: BoxFit.cover,
-                                           ),
-                                           ),
-                                         ),
-                                         const SizedBox(height: 16),
-                                         Padding(
-                                           padding: const EdgeInsets.only(left: 22.0,top: 8),
-                                           child: SizedBox(
-                                             width: 256,
-                                             child: Text(
-                                               'Entraînement musculaire du corps',
-                                               style: TextStyle(
-                                                 color: Color(0xFF334155),
-                                                 fontSize: 16,
-                                                 fontFamily: 'Archivo',
-                                                 fontWeight: FontWeight.w600,
-                                                 height: 0.09,
-                                               ),
-                                             ),
-                                           ),
-                                         ),
-                                         const SizedBox(height: 20),
-                                         Padding(
-                                           padding: const EdgeInsets.only(left: 22.0,right: 50,bottom: 22),
-                                           child: Row(
-                                             children: [
-                                               _buildLabelWithIcon(
-                                                   'assets/takechallenge/icon_level.png',
-                                                   'Intermediate'),
-                                               Expanded(
-                                                 child: Padding(
-                                                   padding: const EdgeInsets.only(left: 20.0),
-                                                   child: _buildLabelWithIcon(
-                                                       'assets/takechallenge/icon_time.png', '25 min'),
-                                                 ),
-                                               ),
-                                               _buildLabelWithIcon(
-                                                   'assets/takechallenge/icon_flame.png', '247 cal'),
-                                             ],
-                                           ),
-                                         ),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                               ),
-                             );
-                           },
-                         ),
-                       ),
-                    SizedBox(height: 35),
-
-                    SizedBox(height: 20),
-                    Container(
-                      width: 320,
-                      height: 128,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Des lignes directrices',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.09,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          SizedBox(
-                            width: 365,
-                            child: Text(
-                              'Lorem ipsum dolor sit amet consectetur. Vitae mauris pretium neque volutpat. Gravida in sed nulla lectus. Dictumst enim ullorper ida libero maecenas lobortis vitae. Risus et mauris eget sed cum dui quam mattis porta.',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 1.2,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 78, bottom: 25,right: 25),
-                      // Added bottom padding
-                      child: GestureDetector(
-                        onTap: (){
-                          navigateToNextPage(context,ChallengeScreen());
-
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 52,
-
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFFF4343),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Commencez maintenant',
+                        Container(
+                          width: 320,
+                          height: 128,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Résultat attendu',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color(0xFF334155),
                                   fontSize: 16,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
                                   height: 0.09,
                                 ),
                               ),
+                              const SizedBox(height: 30),
+                              Container(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      width: 320,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(),
+                                            child: Image.asset(
+                                                'assets/takechallenge/icon_tikmark.png'),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: SizedBox(
+                                                child: Text(
+                                                  'Stronger and explosive lower body',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF475569),
+                                                    fontSize: 14,
+                                                    fontFamily: 'Archivo-Medium',
+                                                    fontWeight: FontWeight.w500,
+                                                    height: 0.10,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Container(
+                                      width: 320,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(),
+                                            child: Image.asset(
+                                                'assets/takechallenge/icon_tikmark.png'),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: SizedBox(
+                                                child: Text(
+                                                  'Better body Balance',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF475569),
+                                                    fontSize: 14,
+                                                    fontFamily: 'Archivo-Medium',
+                                                    fontWeight: FontWeight.w500,
+                                                    height: 0.10,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Container(
+                                      width: 320,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(),
+                                            child: Image.asset(
+                                                'assets/takechallenge/icon_tikmark.png'),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(top: 8.0),
+                                              child: SizedBox(
+                                                child: Text(
+                                                  'Athlete-like physique',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF475569),
+                                                    fontSize: 14,
+                                                    fontFamily: 'Archivo-Medium',
+                                                    fontWeight: FontWeight.w500,
+                                                    height: 0.10,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if(widget.status=='followprogramme')
+
+                          Container(
+                            child: ListView.builder(
+                              itemCount: 3, // Replace with your item count
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(0.0),
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      navigateToNextPage(context,ProgrammeDetails());
+
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 20.0,bottom: 20),
+                                      child: Container(
+                                        color: Colors.white,
+
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context).size.width,
+                                              height: 147,
+
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  topRight: Radius.circular(20),
+                                                ),                          child: Image.asset(
+                                                'assets/takechallenge/programme_image_items.png',
+                                                fit: BoxFit.cover,
+                                              ),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 16),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 22.0,top: 8),
+                                              child: SizedBox(
+                                                width: 256,
+                                                child: Text(
+                                                  'Entraînement musculaire du corps',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF334155),
+                                                    fontSize: 16,
+                                                    fontFamily: 'Archivo',
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0.09,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 20),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 22.0,right: 50,bottom: 22),
+                                              child: Row(
+                                                children: [
+                                                  _buildLabelWithIcon(
+                                                      'assets/takechallenge/icon_level.png',
+                                                      'Intermediate'),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.only(left: 20.0),
+                                                      child: _buildLabelWithIcon(
+                                                          'assets/takechallenge/icon_time.png', '25 min'),
+                                                    ),
+                                                  ),
+                                                  _buildLabelWithIcon(
+                                                      'assets/takechallenge/icon_flame.png', '247 cal'),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        SizedBox(height: 35),
+
+                        SizedBox(height: 20),
+                        Container(
+                          width: 320,
+                          height: 128,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Des lignes directrices',
+                                style: TextStyle(
+                                  color: Color(0xFF334155),
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.09,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: 365,
+                                child: Text(
+                                  'Lorem ipsum dolor sit amet consectetur. Vitae mauris pretium neque volutpat. Gravida in sed nulla lectus. Dictumst enim ullorper ida libero maecenas lobortis vitae. Risus et mauris eget sed cum dui quam mattis porta.',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.2,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 60.h),
+
+                      ],
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 60),
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 500), // Adjust the duration as needed
+                    opacity: isVisible ? 1.0 : 0.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            print("Some things");
+                            Navigator.pop(context);
+
+                          },
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            padding: const EdgeInsets.all(10),
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.05000000074505806),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                "assets/cart/icon_left_arrow.png",
+                                color: Colors.white,
+                                scale: 2,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                        GestureDetector(
+                          onTap: (){
+                            // print("Some things");
+                            // Navigator.pop(context);
+
+                            setState(() {
+                              isFavourite=!isFavourite;
+
+                            });
+                          },
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            padding: const EdgeInsets.all(10),
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.05000000074505806),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                isFavourite==true ?"assets/shophome/icon_bookmark_fill.png": "assets/shophome/icon_bookmark.png",
+                                color: Colors.white,
+                                scale: 2,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 88,
+
+              decoration: ShapeDecoration(
+                color: Colors.white.withOpacity(0.5000000074505806),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 1,
+                    color: Colors.white.withOpacity(0.10999999940395355),
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
                 ),
               ),
-            ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 10,right: 15,left: 15),
+                  // Added bottom padding
+                  child: GestureDetector(
+                    onTap: (){
+                      navigateToNextPage(context,ChallengeScreen());
 
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 60),
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 500), // Adjust the duration as needed
-                opacity: isVisible ? 1.0 : 0.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        print("Some things");
-                        Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 52,
 
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        padding: const EdgeInsets.all(10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05000000074505806),
-                          borderRadius: BorderRadius.circular(4),
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Center(
-                          child: Image.asset(
-                            "assets/cart/icon_left_arrow.png",
+                      ),
+                      child: Center(
+                        child:  Text(
+                          'Commencez maintenant',
+                          style: TextStyle(
                             color: Colors.white,
-                            scale: 2,
+                            fontSize: 16,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.09,
                           ),
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){
-                        // print("Some things");
-                        // Navigator.pop(context);
-
-                        setState(() {
-                          isFavourite=!isFavourite;
-
-                        });
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        padding: const EdgeInsets.all(10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05000000074505806),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            isFavourite==true ?"assets/shophome/icon_bookmark_fill.png": "assets/shophome/icon_bookmark.png",
-                            color: Colors.white,
-                            scale: 2,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
               ),
             ),
+          )
 
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -923,17 +888,14 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                   imgPath), // Replace 'assets/missfit/logo2_img.png' with your image path
             ),
             const SizedBox(width: 4),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 12,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 0.12,
-                ),
+            Text(
+              title,
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 12,
+                fontFamily: 'Archivo-Regular',
+                fontWeight: FontWeight.w400,
+                height: 1.12,
               ),
             ),
           ],
