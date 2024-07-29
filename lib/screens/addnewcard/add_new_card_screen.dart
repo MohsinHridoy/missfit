@@ -52,7 +52,7 @@ class _AddNewCardState extends State<AddNewCard> {
               title: widget.status == 'mentorship'
                   ? '        Mode de paiement'
                   : (widget.status == 'profile'
-                      ? 'Carte de paiement'
+                      ? '       Carte de paiement'
                       : 'Ajouter une nouvelle carte'),
               onBackTap: () {
                 if(isVisible_outlinebutton==false)

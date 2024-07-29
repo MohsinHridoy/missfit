@@ -1284,7 +1284,7 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 200,
+                      width: 180,
                       child: Text(
                         'Your subscription is will\nbe end! Let’s renew it!',
                         style: TextStyle(
@@ -1292,6 +1292,8 @@ class _HomeState extends State<Home> {
                           fontSize: 16,
                           fontFamily: 'Archivo-SemiBold',
                           fontWeight: FontWeight.w600,
+                          height: 1.4,
+
                         ),
                       ),
                     ),
@@ -1305,17 +1307,14 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(6)),
                       ),
                       child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            'Renew subscription',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 0.10,
-                            ),
+                        child: Text(
+                          'Renew subscription',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.10,
                           ),
                         ),
                       ),
@@ -1326,12 +1325,12 @@ class _HomeState extends State<Home> {
             ),
             Container(
               height: 85,
-              width: 100,
+              width: 120,
               child: Stack(
                 children: [
                   Center(
                     child: CustomPaint(
-                      size: Size(60, 60),
+                      size: Size(70, 70),
                       painter: MyCircularProgressPainter(
                         backgroundColor: Colors.white,
                         progress: progressPercentage,
@@ -1343,16 +1342,36 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  Center(
-                    child: Text(
-                      '5',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFFF4343),
-                        fontSize: 24,
-                        fontFamily: 'Kanit',
-                        fontWeight: FontWeight.w500,
-                        height: 0.05,
+                  Positioned(
+                    top: 20,
+                    left: 35,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            '5',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 24,
+                              fontFamily: 'Kanit-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.05,
+                            ),
+                          ),
+
+                          Text(
+                            'Days left',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFFFF4343),
+                              fontSize: 12,
+                              fontFamily: 'Kanit-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 1.11,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   )

@@ -155,7 +155,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: DashBoard(),
+      child: Registration(),
     );
   }
 }

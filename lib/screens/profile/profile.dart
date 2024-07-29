@@ -458,7 +458,7 @@ class _ProfileState extends State<Profile> {
             context: context,
             builder: (BuildContext context) {
               return Container(
-                height: 230.h, // Adjust the height as necessary
+                height: 250.h, // Adjust the height as necessary
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -470,7 +470,7 @@ class _ProfileState extends State<Profile> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                     Image.asset(
                       "assets/profile/icon_bottomsheet_logout.png",
                       scale: 2,
@@ -487,7 +487,7 @@ class _ProfileState extends State<Profile> {
                         height: 1.08,
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 25.h),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 30.0, right: 30, bottom: 1),
@@ -591,17 +591,14 @@ class _ProfileState extends State<Profile> {
                       SizedBox(
                         width: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Color(0xFFEF4444),
-                            fontSize: 16,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 0.09,
-                          ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: Color(0xFFEF4444),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
                         ),
                       ),
                     ],
