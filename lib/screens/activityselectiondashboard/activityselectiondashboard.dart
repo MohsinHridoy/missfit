@@ -42,20 +42,6 @@ class _ActivitySelectionDashBoardState extends State<ActivitySelectionDashBoard>
     });
   }
 
-// Usage example:
-//   void _navigateToPreviousPage() {
-//     if (_currentPage > 0) {
-//       _indicatorColors[_currentPage] = Color(0xFFD1D5DB);
-//       if(_currentPage<0)
-//       print("Clicks");
-//
-//       _currentPage--;
-//       _pageController.previousPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
-//       // _indicatorColors[_currentPage] = Color(0xFF22C55E);
-//
-//
-//     }
-//   }
   void _navigateToPreviousPage() {
     if (_currentPage > 0) {
       _indicatorColors[_currentPage] = Color(0xFFD1D5DB);

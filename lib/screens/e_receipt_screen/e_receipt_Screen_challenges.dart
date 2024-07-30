@@ -160,7 +160,7 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                                       fontSize: 16,
                                       fontFamily: 'Archivo-SemiBold',
                                       fontWeight: FontWeight.w600,
-                                      height: 0.08,
+                                      height: 1.08,
                                     ),
                                   ),
                                   const SizedBox(height: 15),
@@ -215,45 +215,6 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
 
                       const SizedBox(height: 16),
 
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15,top: 50),
-                        child: GestureDetector(
-                          onTap: (){
-                            // navigateToNextPage(context,DashBoard(number: 2,));
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Downloading e-receipt...'),
-                                duration: Duration(seconds: 2), // Adjust duration as needed
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 52,
-
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFFF4343),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Télécharger le reçu électronique',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'Archivo-SemiBold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.09,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
 
                       // Add any additional widgets or SizedBoxes here
                       // Add more widgets here if needed
@@ -261,6 +222,62 @@ class _EReceiptScreenState extends State<EReceiptScreenSubscription> {
                   ),
                 ),
               ),
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: ShapeDecoration(
+                  color: Colors.white.withOpacity(0.01),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      color: Colors.white.withOpacity(0.10999999940395355),
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15,top: 20),
+                  child: GestureDetector(
+                    onTap: (){
+                      // navigateToNextPage(context,DashBoard(number: 2,));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Downloading e-receipt...'),
+                          duration: Duration(seconds: 2), // Adjust duration as needed
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 52,
+
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Télécharger le reçu électronique',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 0.09,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+
             ],
           )),
     );

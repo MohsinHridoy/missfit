@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/login/login.dart';
 import 'package:miss_fit/screens/splash_screen/splashScreen.dart';
 
 import '../../strings.dart';
+import '../../widgets/common_buttons.dart';
+import '../../widgets/onboardingpage.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -22,13 +25,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingPage(
       title: '${onboardingPage_fr2}',
       description:
-      '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
+          '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
       image: 'assets/onboarding/img_onboarding_5.png',
     ),
     OnboardingPage(
       title: '${'Atteint tes objectifs'}',
       description:
-      '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
+          '${'Lorem ipsum dolor sit amet consectetur. Sed   \n magnis tortor metus morbi ante e.'}',
       image: 'assets/onboarding/img_onbaording_6.png',
     ),
   ];
@@ -56,8 +59,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
           if (_currentPage != 2)
             Positioned(
-              bottom: 35,
-              left: 27,
+              bottom: 20.h,
+              left: 28,
               right: 27,
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -79,7 +82,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: 30,
                           width: 50,
                           color: Colors.transparent,
-                          child: Center(child: Padding(
+                          child: Center(
+                              child: Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: skip_text('${'Sauter'}'),
                           ))),
@@ -103,10 +107,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                         child: Center(
                             child: Image.asset(
-                              "assets/onboarding/icon_left_arrow.png",
-                              width: 30,
-                              height: 30,
-                            )),
+                          "assets/onboarding/icon_left_arrow.png",
+                          width: 30,
+                          height: 30,
+                        )),
                       ),
                     ),
                   ],
@@ -115,41 +119,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           if (_currentPage != 0 && _currentPage != 1)
             Positioned(
-              bottom: 35,
-              left: 27,
-              right: 27,
-              child: GestureDetector(
-                onTap: () {
+                bottom: 20.h,
+                left: 27,
+                right: 27,
+                child:
+                    customButtonRed(context, '${'Commencer'}', onPressed: () {
                   navigateToPage(
                       context,
                       LoginPage(
                         status: 'onboarding',
                       ));
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 52,
-
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFFF4343),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child:Center(
-                    child: Text(
-                      '${'Commencer'}',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'Archivo',
-                        fontWeight: FontWeight.w600,
-                        height: 1.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                })),
           Positioned(
             top: MediaQuery.of(context).size.height *
                 0.71, // Adjusted top position based on screen height
@@ -160,7 +140,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // Center the row horizontally
               children: List.generate(
                 _pages.length,
-                    (index) => buildIndicator(index),
+                (index) => buildIndicator(index),
               ),
             ),
           ),
@@ -191,66 +171,6 @@ void navigateToPage(BuildContext context, Widget destinationPage) {
     ),
   );
 }
-
-class OnboardingPage extends StatelessWidget {
-  final String title;
-  final String description;
-  final String image;
-
-  OnboardingPage({
-    required this.title,
-    required this.description,
-    required this.image,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          // color: Colors.red,
-          child: Image.asset(
-            image,
-            height: MediaQuery.of(context).size.height *
-                0.68, // Adjusted height based on screen height
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
-        ),
-        SizedBox(height: 55.0),
-        Text(
-          title,
-          style: TextStyle(
-            color: Color(0xFF334155).withOpacity(0.9),
-            fontSize: 24,
-            fontFamily: 'Kanit-SemiBold',
-            fontWeight: FontWeight.w600,
-            height: 1.5,
-          ),
-        ),
-        SizedBox(height: 11.0),
-        Padding(
-          padding: EdgeInsets.only(left: 1, right: 1),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              description,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF334155).withOpacity(0.9),
-                fontSize: 16,
-                fontFamily: 'Archivo-Regular',
-                fontWeight: FontWeight.w400,
-                height: 1.5,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 Widget skip_text(String text) {
   return Text(
     text,

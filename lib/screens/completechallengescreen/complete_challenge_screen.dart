@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/takechallenge/take_challenge.dart';
 
 import '../../common_utils.dart';
@@ -12,7 +13,7 @@ class CompleteChallengeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 200,),
+            SizedBox(height: 150.h,),
             Container(
               width: 120, // Adjust size as needed
               height: 120, // Adjust size as needed
@@ -182,17 +183,14 @@ class CompleteChallengeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child:Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Continuer',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
-                        ),
+                    child:Text(
+                      'Continuer',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Archivo-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 1.09,
                       ),
                     ),
                   ),

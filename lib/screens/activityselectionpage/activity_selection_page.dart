@@ -21,7 +21,7 @@ class WorkOutLevelSelectionPage extends StatefulWidget {
 }
 
 class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
-  int selectedIndex = 1;
+  int selectedIndex = 0;
   bool isVisible = false;
 
   @override
@@ -75,17 +75,23 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
 
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5.0,right: 5,bottom: 15),
-                    child: GestureDetector(
-                        onTap: () async{
-                          setState(() {
-                            isVisible=true;
-                            widget.onNextPressed();
+                    // child: GestureDetector(
+                    //     onTap: () async{
+                    //       setState(() {
+                    //         isVisible=true;
+                    //         widget.onNextPressed();
+                    //
+                    //       });
+                    //     },
+                    //     child: buildNextButton(context)
+                    //
+                    // ),
 
-                          });
-                        },
-                        child: buildNextButton(context)
+                    child:  customButtonRed(context, 'Suivante', onPressed: () async{
+                      widget.onNextPressed();
 
-                    ),
+                    }),
+
                   ),
                 ),
 

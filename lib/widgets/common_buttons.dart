@@ -17,17 +17,14 @@ Widget outlineButton(BuildContext context,String title){
     ),
 
     child: Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Color(0xFFFF4343),
-            fontSize: 14,
-            fontFamily: 'Archivo-SemiBold',
-            fontWeight: FontWeight.w600,
-            height: 0.10,
-          ),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Color(0xFFFF4343),
+          fontSize: 14,
+          fontFamily: 'Archivo-SemiBold',
+          fontWeight: FontWeight.w600,
+          height: 1.00,
         ),
       ),
     ),
@@ -47,18 +44,17 @@ Widget customButtonRed(BuildContext context, String buttonText, {VoidCallback? o
         borderRadius: BorderRadius.circular(8),
       ),
       child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0), // Adjust vertical padding as needed
-          child: Text(
-            buttonText,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: 'Archivo-SemiBold',
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
+        child:  Text(
+          buttonText,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontFamily: 'Archivo-SemiBold',
+            fontWeight: FontWeight.w600,
+            height: 1.09,
+
           ),
+          textAlign: TextAlign.center,
         ),
       ),
     ),

@@ -19,232 +19,198 @@ class _EReceiptScreenState extends State<EReceiptScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(kToolbarHeight),
-      //   child: Container(
-      //     decoration: BoxDecoration(
-      //       color: Colors.white,
-      //       borderRadius: BorderRadius.only(
-      //         bottomLeft: Radius.circular(20),
-      //         // Adjust the corner radius as needed
-      //         bottomRight:
-      //         Radius.circular(20), // Adjust the corner radius as needed
-      //       ),
-      //       boxShadow: [
-      //         BoxShadow(
-      //           color: Colors.black.withOpacity(0.1),
-      //           spreadRadius: 1,
-      //           blurRadius: 10,
-      //           offset: Offset(0, 2), // changes position of shadow
-      //         ),
-      //       ],
-      //     ),
-      //     child: AppBar(
-      //       backgroundColor: Colors.transparent,
-      //       elevation: 0,
-      //       leading: IconButton(
-      //         icon: Icon(Icons.arrow_back),
-      //         onPressed: () {
-      //           Navigator.pop(context);
-      //         },
-      //         color: Colors.black,
-      //       ),
-      //       title: Text(
-      //         'Review Summary',
-      //         textAlign: TextAlign.center,
-      //         style: TextStyle(
-      //           color: Color(0xFF1E293B),
-      //           fontSize: 18,
-      //           fontFamily: 'Kanit',
-      //           fontWeight: FontWeight.w500,
-      //           height: 0.07,
-      //         ),
-      //       ),
-      //       centerTitle: true,
-      //     ),
-      //   ),
-      // ),
-      body: Container(
-          color: Color(0xFFF6F6F6),
-          child: Column(
-            children: [
-              CustomAppBar(
-                title: 'Reçu électronique',
-                onBackTap: () {
-                  Navigator.pop(context);
-                },
-                iconSpacing: 4.6,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                // Adjust the padding as needed
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      // Adjust the padding as needed
-                      child: Container(
-                        width: 64,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                            image: AssetImage("assets/coachbooking/img_caoch2.png"),
-                            // Replace "your_image.png" with your actual image asset path
-                            fit: BoxFit.fill,
+      backgroundColor: Color(0xFFF6F6F6),
+      body: Column(
+        
+        children: [
+          CustomAppBar(
+            title: 'Reçu électronique',
+            onBackTap: () {
+              Navigator.pop(context);
+            },
+            iconSpacing: 4.4,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+               
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    // Adjust the padding as needed
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          // Adjust the padding as needed
+                          child: Container(
+                            width: 64,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                image: AssetImage("assets/coachbooking/img_caoch2.png"),
+                                // Replace "your_image.png" with your actual image asset path
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        const SizedBox(width: 5),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          // Adjust the padding as needed
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Sarah Glayre',
+                                style: TextStyle(
+                                  color: Color(0xFF334155),
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.08,
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              Text(
+                                'Fitness Coach',
+                                style: TextStyle(
+                                  color: Color(0xFF66758C),
+                                  fontSize: 12,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                  height: 1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 5),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      // Adjust the padding as needed
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sarah Glayre',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                    child: _buildDivider(context),
+                  ),
+                  const SizedBox(height: 16),
+                  // Add any additional widgets or SizedBoxes here
+                  // Add more widgets here if needed
+                  _buildSummeryText('Date et heure', 'May 12, 2024 | 9:00 AM'),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Service',
+                          style: TextStyle(
+                            color: Color(0xFF66758C),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 0.08,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 210,
+                          child: Text(
+                            'Programme d\'entraînement avec suivi',
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Color(0xFF334155),
                               fontSize: 16,
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
-                              height: 0.08,
                             ),
                           ),
-                          const SizedBox(height: 15),
-                          Text(
-                            'Fitness Coach',
-                            style: TextStyle(
-                              color: Color(0xFF66758C),
-                              fontSize: 12,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                child: _buildDivider(context),
-              ),
-              const SizedBox(height: 16),
-              // Add any additional widgets or SizedBoxes here
-              // Add more widgets here if needed
-              _buildSummeryText('Date et heure', 'May 12, 2024 | 9:00 AM'),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Service',
-                      style: TextStyle(
-                        color: Color(0xFF66758C),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Regular',
-                        fontWeight: FontWeight.w400,
-                        height: 0.08,
-                      ),
-                    ),
-                    Spacer(),
-                    SizedBox(
-                      width: 210,
-                      child: Text(
-                        'Programme d\'entraînement avec suivi',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-Medium',
-                          fontWeight: FontWeight.w500,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
+                  const SizedBox(height: 20),
+                  _buildSummeryText1('Durée', '1 hour'),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                    child: _buildDivider(context),
+                  ),
+                  const SizedBox(height: 16),
+              
+                  _buildSummeryText('Montante', 'CHF 150'),
+                  _buildSummeryText1('Totale', 'CHF 150'),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                    child: _buildDivider(context),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildSummeryText('Nom', 'Jhon Lennon'),
+                  _buildSummeryText1('Numéro de téléphone', '+243 555-0108'),
+                  _buildSummeryText1('Mode de paiement', 'Stripe'),
+                  _buildSummeryText1('Numéro de transaction', '#ES0329321'),
+                  SizedBox(height: 100.h,),
+
+              
+                  // Add any additional widgets or SizedBoxes here
+                  // Add more widgets here if needed
+                ],
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20,right: 20),
+            child: GestureDetector(
+              onTap: (){
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => DashBoard()),
+                // );
+
+                // navigateToNextPage(context,DashBoard());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Downloading e-receipt...'),
+                    duration: Duration(seconds: 2), // Adjust duration as needed
+                  ),
+                );
+              },
+              child: Container(
+                width: 370.h,
+                height: 52,
+
+                decoration: ShapeDecoration(
+                  color: Color(0xFFFF4343),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
                 ),
-              ),
-              const SizedBox(height: 20),
-              _buildSummeryText1('Durée', '1 hour'),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                child: _buildDivider(context),
-              ),
-              const SizedBox(height: 16),
-
-              _buildSummeryText('Montante', 'CHF 150'),
-              _buildSummeryText1('Totale', 'CHF 150'),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                child: _buildDivider(context),
-              ),
-              const SizedBox(height: 16),
-              _buildSummeryText('Nom', 'Jhon Lennon'),
-              _buildSummeryText1('Numéro de téléphone', '+243 555-0108'),
-              _buildSummeryText1('Mode de paiement', 'Stripe'),
-              _buildSummeryText1('Numéro de transaction', '#ES0329321'),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 25,bottom: 20,right: 20),
-                child: GestureDetector(
-                  onTap: (){
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => DashBoard()),
-                    // );
-
-                    // navigateToNextPage(context,DashBoard());
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Downloading e-receipt...'),
-                        duration: Duration(seconds: 2), // Adjust duration as needed
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: 370.h,
-                    height: 52,
-
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFF4343),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Télécharger le reçu électronique',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 1.09,
-                        ),
-                      ),
+                child: Center(
+                  child: Text(
+                    'Télécharger le reçu électronique',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'Archivo-SemiBold',
+                      fontWeight: FontWeight.w600,
+                      height: 1.09,
                     ),
                   ),
                 ),
               ),
+            ),
+          ),
 
-
-              // Add any additional widgets or SizedBoxes here
-              // Add more widgets here if needed
-            ],
-          )),
+        ],
+      ),
     );
   }
 

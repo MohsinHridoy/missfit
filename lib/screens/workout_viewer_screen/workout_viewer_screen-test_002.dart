@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/completechallengescreen/complete_challenge_screen.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -144,17 +145,14 @@ class _RestPageState extends State<RestPage> {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            '+20s',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.10,
-                            ),
+                        child: Text(
+                          '+20s',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 1.10,
                           ),
                         ),
                       ),
@@ -177,17 +175,14 @@ class _RestPageState extends State<RestPage> {
                               borderRadius: BorderRadius.circular(8)),
                         ),
                         child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              'Sauter',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontFamily: 'Archivo-Medium',
-                                fontWeight: FontWeight.w500,
-                                height: 0.10,
-                              ),
+                          child: Text(
+                            'Sauter',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.10,
                             ),
                           ),
                         ),
@@ -236,7 +231,7 @@ class _RestPageState extends State<RestPage> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height *
-                        0.5, // Set height to 60% of screen height
+                        0.48, // Set height to 60% of screen height
                     decoration: ShapeDecoration(
                       color: Color(0xFF6B7280),
                       shape: RoundedRectangleBorder(
@@ -627,6 +622,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
             padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
             child: Container(
               width: MediaQuery.of(context).size.width,
+
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -634,13 +630,15 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                     onTap: () {
                       showModalBottomSheet(
                         context: context,
+                        isScrollControlled: true, // Allows the bottom sheet to take up the full height
+
                         builder: (BuildContext context) {
                           return StatefulBuilder(
                             builder:
                                 (BuildContext context, StateSetter setState) {
                               return Container(
                                 width: MediaQuery.of(context).size.width,
-                                height: 500,
+                                height: 450.h,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30),
@@ -666,7 +664,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                           ),
                                         )),
                                     Text(
-                                      'Why give up?',
+                                      'Pourquoi abandonner ?',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xFF1E293B),
@@ -680,14 +678,15 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                       height: 15,
                                     ),
                                     SizedBox(
-                                      child: Text(
-                                        'This will help us know you better and provide the workout that is more suitable for you.',
+                                      child:  Text(
+                                        'Cela nous aidera à mieux vous connaître et à vous proposer l’entraînement qui vous convient \n le mieux.',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Color(0xFF475569),
                                           fontSize: 16,
                                           fontFamily: 'Archivo-Regular',
                                           fontWeight: FontWeight.w400,
+                                          height: 1.09,
                                         ),
                                       ),
                                     ),
@@ -695,7 +694,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                       onTap: () {
                                         setState(() {
                                           selectedReason =
-                                              'Don’t know how to do it';
+                                              'Je ne sais pas comment faire';
                                         });
                                       },
                                       child: Padding(
@@ -711,7 +710,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                               side: BorderSide(
                                                 width: 1,
                                                 color: selectedReason ==
-                                                        'Don’t know how to do it'
+                                                        'Je ne sais pas comment faire'
                                                     ? Color(0xFFFFA142)
                                                     : Color(0xFFE5E7EB),
                                               ),
@@ -732,18 +731,15 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                                   height: 24,
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 185,
-                                                child: Text(
-                                                  'Don’t know how to do it',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontFamily:
-                                                        'Archivo-Regular',
-                                                    fontWeight: FontWeight.w400,
-                                                    height: 0.09,
-                                                  ),
+                                              Text(
+                                                'Je ne sais pas comment faire',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontFamily:
+                                                  'Archivo-Regular',
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 1.09,
                                                 ),
                                               ),
                                             ],
@@ -801,7 +797,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                                     fontSize: 16,
                                                     fontFamily: 'Archivo',
                                                     fontWeight: FontWeight.w400,
-                                                    height: 0.09,
+                                                    height: 1.09,
                                                   ),
                                                 ),
                                               ),
@@ -861,7 +857,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                                     fontSize: 16,
                                                     fontFamily: 'Archivo',
                                                     fontWeight: FontWeight.w400,
-                                                    height: 0.09,
+                                                    height: 1.09,
                                                   ),
                                                 ),
                                               ),
@@ -871,9 +867,8 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                       ),
                                     ),
 
-                                    Spacer(),
                                     Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsets.only(left: 20.0,right: 20,top: 20,bottom: 20),
                                       child: GestureDetector(
                                         onTap: () {
                                           navigateToNextPage(context,DashBoard()) ;                                       },
@@ -892,13 +887,13 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              'I Want To Quit',
+                                              'Je veux arrêter',
                                               style: TextStyle(
                                                 color: Color(0xFFFF4343),
                                                 fontSize: 16,
                                                 fontFamily: 'Archivo-SemiBold',
                                                 fontWeight: FontWeight.w600,
-                                                height: 0.09,
+                                                height: 1.09,
                                               ),
                                             ),
                                           ),
@@ -989,7 +984,7 @@ class _WorkoutPage003State extends State<WorkoutPage003> {
                 //       !_isRestDialogVisible)
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 500,
+                  height: 350.h,
                   child: VideoPlayer(_workoutItems[_currentIndex].controller!),
                 ),
                 // Text(_itemStarted[_currentIndex]
@@ -1412,7 +1407,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
   @override
   void initState() {
     super.initState();
-    _generateThumbnail();
+    // _generateThumbnail();
 
     startTimer();
   }
@@ -1467,9 +1462,9 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
       body: Stack(
         children: [
 
-          VideoThumbnailView(
-            videoPath: 'assets/workout/www.mp4', // Your video path
-          ),
+          // VideoThumbnailView(
+          //   videoPath: 'assets/workout/www.mp4', // Your video path
+          // ),
           Positioned(
             bottom: 50,
             left: 20,

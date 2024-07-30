@@ -123,7 +123,7 @@ class _ShopPageState extends State<ShopPage> {
                     SizedBox(height: 30),
 
                     Padding(
-                      padding: const EdgeInsets.only(left: 22.0, right: 22),
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -154,7 +154,7 @@ class _ShopPageState extends State<ShopPage> {
                             final item = items[index];
                             return Padding(
                               padding: EdgeInsets.only(
-                                  left: index == 0 ? 22.0 : 0, right: 15),
+                                  left: index == 0 ? 25.0 : 0, right: 13),
                               // Apply left padding only to the first item
                               child: GestureDetector(
                                 onTap: () {
@@ -448,7 +448,7 @@ class _ShopPageState extends State<ShopPage> {
                               mainAxisSpacing: 20,
                               // Adjust the spacing between items vertically
                               crossAxisSpacing: 12,
-                              childAspectRatio: 0.73,
+                              childAspectRatio: 0.76,
                               // Adjust the aspect ratio of items
                               children: List.generate(
                                 filteredItems.length,
@@ -484,7 +484,7 @@ class _ShopPageState extends State<ShopPage> {
     return Container(
       color: Color(0xFFF6F6F6),
       child: Padding(
-        padding: const EdgeInsets.only(left: 22.0, right: 22),
+        padding: const EdgeInsets.only(left: 25.0, right: 25),
         child: Row(
           children: [
             Expanded(

@@ -278,7 +278,7 @@ class _BillingInfoContainer extends StatelessWidget {
                               scale: 2.2,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0,top: 8),
+                              padding: const EdgeInsets.only(left: 8.0),
                               child: Text(
                                 'Histoire',
                                 style: TextStyle(
@@ -286,7 +286,7 @@ class _BillingInfoContainer extends StatelessWidget {
                                   fontSize: 14,
                                   fontFamily: 'Archivo-SemiBold',
                                   fontWeight: FontWeight.w600,
-                                  height: 0.10,
+                                  height: 1.10,
                                 ),
                               ),
                             ),
@@ -319,7 +319,7 @@ class _BillingInfoContainer extends StatelessWidget {
                                 scale: 2.2,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0,top: 8),
+                                padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'Modifier',
                                   style: TextStyle(
@@ -327,7 +327,7 @@ class _BillingInfoContainer extends StatelessWidget {
                                     fontSize: 14,
                                     fontFamily: 'Archivo-SemiBold',
                                     fontWeight: FontWeight.w600,
-                                    height: 0.10,
+                                    height: 1.10,
                                   ),
                                 ),
                               ),
@@ -424,17 +424,14 @@ class _PaymentDetailsContainer extends StatelessWidget {
                                       'assets/mysubscription/icon_edit.png'), // Use your asset image here
                                 ),
                                 const SizedBox(width: 6),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: Text(
-                                    'Changement',
-                                    style: TextStyle(
-                                      color: Color(0xFFFF4343),
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0.10,
-                                    ),
+                                Text(
+                                  'Changement',
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.10,
                                   ),
                                 ),
                               ],

@@ -2,35 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/custom_app_bar.dart';
 
-class BookmarkList extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
+
+
+
+class BookmarkItem {
+  final String name;
+  final String imagePath;
+
+  BookmarkItem({required this.name, required this.imagePath});
+}
+
+
+
+class BookmarkList extends StatefulWidget {
   final String title;
 
   const BookmarkList({Key? key, required this.title}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final List<String> assetImages = [
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-      'assets/bookmark/bookmarklist.png', // Replace with your actual asset path
-    ];
+  _BookmarkListState createState() => _BookmarkListState();
+}
 
+class _BookmarkListState extends State<BookmarkList> {
+  List<BookmarkItem> bookmarkItems = [
+    BookmarkItem(name: 'Torche calorique', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 2', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 3', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 4', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 5', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 6', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 7', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 8', imagePath: 'assets/bookmark/bookmarklist.png'),
+    BookmarkItem(name: 'Torche calorique 9', imagePath: 'assets/bookmark/bookmarklist.png'),
+  ];
+
+  void _removeItem(int index) {
+    setState(() {
+      bookmarkItems.removeAt(index);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(bookmarkItems[index].name +'  removed'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFFF6F6F6),
+      backgroundColor: Color(0xFFF6F6F6),
       body: Column(
         children: [
           CustomAppBar(
-            title: title,
+            title: widget.title,
             onBackTap: () {
               Navigator.pop(context);
             },
-            iconSpacing:title=='Entraînement'?3.9: 4.2,
+            iconSpacing: (widget.title == 'Entraînement' || widget.title == 'Relever un défi') ? 3.9 : 4.9,
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -40,7 +73,7 @@ class BookmarkList extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: assetImages.length,
+                    itemCount: bookmarkItems.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
@@ -68,7 +101,7 @@ class BookmarkList extends StatelessWidget {
                                       ),
                                     ),
                                     child: Image.asset(
-                                      assetImages[index],
+                                      bookmarkItems[index].imagePath,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -78,7 +111,7 @@ class BookmarkList extends StatelessWidget {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Torche calorique',
+                                          bookmarkItems[index].name,
                                           style: TextStyle(
                                             color: Color(0xFF334155),
                                             fontSize: 18,
@@ -119,20 +152,23 @@ class BookmarkList extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(width: 44),
-                                  Container(
-                                    width: 36,
-                                    height: 36,
-                                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const ShapeDecoration(
-                                      color: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                                  GestureDetector(
+                                    onTap: () => _removeItem(index),
+                                    child: Container(
+                                      width: 36,
+                                      height: 36,
+                                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const ShapeDecoration(
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                                        ),
                                       ),
-                                    ),
-                                    child: Image.asset(
-                                      "assets/shophome/icon_bookmark_fill.png",
-                                      scale: 2,
+                                      child: Image.asset(
+                                        "assets/shophome/icon_bookmark_fill.png",
+                                        scale: 2,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -156,7 +192,6 @@ class BookmarkList extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 40.h),
-
                 ],
               ),
             ),

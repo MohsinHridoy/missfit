@@ -595,9 +595,9 @@ class _Otp001State extends State<Otp001> {
                                 : Color(0xFF334155),
                             // color: Color(0xFF94A3B8),
                             fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
+                            fontFamily: 'Archivo-Medium',
                             fontWeight: FontWeight.w500,
-                            height: 1.0,
+                            height: 1.09,
                           ),
                         ),
                       ),
@@ -607,116 +607,235 @@ class _Otp001State extends State<Otp001> {
               ],
             ),
             SizedBox(height: 20.h),
+            // Expanded(
+            //   child: Container(
+            //     height: MediaQuery.of(context).size.height * 0.40, // Adjust the percentage as needed
+            //     width: MediaQuery.of(context).size.width,
+            //
+            //     decoration: ShapeDecoration(
+            //       color: Color(0xFFF9FAFB),
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.only(
+            //           topLeft: Radius.circular(20),
+            //           topRight: Radius.circular(20),
+            //         ),
+            //       ),
+            //       shadows: [
+            //         BoxShadow(
+            //           color: Color(0x11121315),
+            //           blurRadius: 15,
+            //           offset: Offset(0, -1),
+            //           spreadRadius: -3,
+            //         )
+            //       ],
+            //     ),
+            //     child: Padding(
+            //       padding:
+            //       const EdgeInsets.only(bottom: 0.0, left: 10, right: 10),
+            //       child: GridView.builder(
+            //         physics: NeverScrollableScrollPhysics(),
+            //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //           crossAxisCount: 3,
+            //           crossAxisSpacing: 2.0,
+            //           childAspectRatio: 1.8,
+            //         ),
+            //         itemCount: buttonNumbers.length + 3,
+            //         // Plus 3 for Menu, 0, and Back buttons
+            //         itemBuilder: (BuildContext context, int index) {
+            //           if (index < buttonNumbers.length) {
+            //             // Render numeric buttons
+            //             return GestureDetector(
+            //               onTap: () => _appendToInput(buttonNumbers[index]),
+            //               child: Container(
+            //                 height: 40,
+            //                 width: 40,
+            //                 color: Color(0xFFF9FAFB),
+            //                 child: Center(
+            //                   child: Opacity(
+            //                     opacity: 0.9,
+            //                     child: Text(
+            //                       buttonNumbers[index].toString(),
+            //                       style: TextStyle(
+            //                         color: Color(0xFF334155),
+            //                         fontSize: 22,
+            //                         fontFamily: 'Inter-Medium',
+            //                         fontWeight: FontWeight.w500,
+            //                         height: 1.05,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             );
+            //           } else {
+            //             // Render Menu, 0, and Back buttons
+            //             return GestureDetector(
+            //               onTap: () {
+            //                 if (index == buttonNumbers.length) {
+            //                   // Handle Menu button
+            //                 } else if (index == buttonNumbers.length + 1) {
+            //                   // Handle 0 button
+            //                   _appendToInput(0);
+            //                 } else if (index == buttonNumbers.length + 2) {
+            //                   // Handle Back button
+            //                   _removeLastCharacter();
+            //                 }
+            //               },
+            //               child: Container(
+            //                 height: 40,
+            //                 width: 40,
+            //                 child: Center(
+            //                   child: index == buttonNumbers.length
+            //                       ? Image.asset(
+            //                     "assets/otp/icon_menu.png",
+            //                     width: 20,
+            //                     height: 20,
+            //                   )
+            //                       : index == buttonNumbers.length + 1
+            //                       ? Opacity(
+            //                     opacity: 0.9,
+            //                     child: Text(
+            //                       "0",
+            //                       style: TextStyle(
+            //                         color: Color(0xFF334155),
+            //                         fontWeight: FontWeight.w500,
+            //                         fontSize: 22,
+            //                         fontFamily: 'Inter-Medium',
+            //                         height: 1.05,
+            //                       ),
+            //                     ),
+            //                   )
+            //                       : Image.asset(
+            //                     "assets/otp/icon_back.png",
+            //                     width: 20,
+            //                     height: 35,
+            //                   ),
+            //                 ),
+            //               ),
+            //             );
+            //           }
+            //         },
+            //       ),
+            //     ),
+            //   ),
+            // )
+
             Expanded(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.40, // Adjust the percentage as needed
-                width: MediaQuery.of(context).size.width,
-              
-                decoration: ShapeDecoration(
-                  color: Color(0xFFF9FAFB),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  final itemHeight = (constraints.maxHeight - 20) / 5; // Assuming 5 rows
+                  final itemWidth = (constraints.maxWidth - 20) / 3; // Assuming 3 columns
+
+                  return Container(
+                    height: constraints.maxHeight,
+                    width: constraints.maxWidth,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFFF9FAFB),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      shadows: [
+                        BoxShadow(
+                          color: Color(0x11121315),
+                          blurRadius: 15,
+                          offset: Offset(0, -1),
+                          spreadRadius: -3,
+                        )
+                      ],
                     ),
-                  ),
-                  shadows: [
-                    BoxShadow(
-                      color: Color(0x11121315),
-                      blurRadius: 15,
-                      offset: Offset(0, -1),
-                      spreadRadius: -3,
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding:
-                  const EdgeInsets.only(bottom: 0.0, left: 10, right: 10),
-                  child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 2.0,
-                      childAspectRatio: 1.8,
-                    ),
-                    itemCount: buttonNumbers.length + 3,
-                    // Plus 3 for Menu, 0, and Back buttons
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index < buttonNumbers.length) {
-                        // Render numeric buttons
-                        return GestureDetector(
-                          onTap: () => _appendToInput(buttonNumbers[index]),
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            color: Color(0xFFF9FAFB),
-                            child: Center(
-                              child: Opacity(
-                                opacity: 0.9,
-                                child: Text(
-                                  buttonNumbers[index].toString(),
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 22,
-                                    fontFamily: 'Inter-Medium',
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.05,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 0.0, left: 10, right: 10),
+                      child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 2.0,
+                          mainAxisSpacing: 2.0,
+                          childAspectRatio: itemWidth / itemHeight,
+                        ),
+                        itemCount: buttonNumbers.length + 3,
+                        // Plus 3 for Menu, 0, and Back buttons
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index < buttonNumbers.length) {
+                            // Render numeric buttons
+                            return GestureDetector(
+                              onTap: () => _appendToInput(buttonNumbers[index]),
+                              child: Container(
+                                height: itemHeight,
+                                width: itemWidth,
+                                color: Color(0xFFF9FAFB),
+                                child: Center(
+                                  child: Opacity(
+                                    opacity: 0.9,
+                                    child: Text(
+                                      buttonNumbers[index].toString(),
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 22,
+                                        fontFamily: 'Inter-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.05,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        // Render Menu, 0, and Back buttons
-                        return GestureDetector(
-                          onTap: () {
-                            if (index == buttonNumbers.length) {
-                              // Handle Menu button
-                            } else if (index == buttonNumbers.length + 1) {
-                              // Handle 0 button
-                              _appendToInput(0);
-                            } else if (index == buttonNumbers.length + 2) {
-                              // Handle Back button
-                              _removeLastCharacter();
-                            }
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            child: Center(
-                              child: index == buttonNumbers.length
-                                  ? Image.asset(
-                                "assets/otp/icon_menu.png",
-                                width: 20,
-                                height: 20,
-                              )
-                                  : index == buttonNumbers.length + 1
-                                  ? Opacity(
-                                opacity: 0.9,
-                                child: Text(
-                                  "0",
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 22,
-                                    fontFamily: 'Inter-Medium',
-                                    height: 1.05,
+                            );
+                          } else {
+                            // Render Menu, 0, and Back buttons
+                            return GestureDetector(
+                              onTap: () {
+                                if (index == buttonNumbers.length) {
+                                  // Handle Menu button
+                                } else if (index == buttonNumbers.length + 1) {
+                                  // Handle 0 button
+                                  _appendToInput(0);
+                                } else if (index == buttonNumbers.length + 2) {
+                                  // Handle Back button
+                                  _removeLastCharacter();
+                                }
+                              },
+                              child: Container(
+                                height: itemHeight,
+                                width: itemWidth,
+                                child: Center(
+                                  child: index == buttonNumbers.length
+                                      ? Image.asset(
+                                    "assets/otp/icon_menu.png",
+                                    width: 20,
+                                    height: 20,
+                                  )
+                                      : index == buttonNumbers.length + 1
+                                      ? Opacity(
+                                    opacity: 0.9,
+                                    child: Text(
+                                      "0",
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 22,
+                                        fontFamily: 'Inter-Medium',
+                                        height: 1.05,
+                                      ),
+                                    ),
+                                  )
+                                      : Image.asset(
+                                    "assets/otp/icon_back.png",
+                                    width: 20,
+                                    height: 35,
                                   ),
                                 ),
-                              )
-                                  : Image.asset(
-                                "assets/otp/icon_back.png",
-                                width: 20,
-                                height: 35,
                               ),
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
             )
           ],

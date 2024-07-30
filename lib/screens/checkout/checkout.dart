@@ -113,17 +113,14 @@ class _CheckOutState extends State<CheckOut> {
                             ),
                           ), // Background color
                           child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Ajouter une adresse de livraison',
-                                style: TextStyle(
-                                  color: Color(0xFFFF4343),
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
+                            child: Text(
+                              'Ajouter une adresse de livraison',
+                              style: TextStyle(
+                                color: Color(0xFFFF4343),
+                                fontSize: 14,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 1.10,
                               ),
                             ),
                           ),
@@ -162,93 +159,6 @@ class _CheckOutState extends State<CheckOut> {
                     SizedBox(
                       height: 50,
                     ),
-                    // Container(
-                    //     width: MediaQuery.of(context).size.width,
-                    //     height: 76,
-                    //     padding: const EdgeInsets.symmetric(
-                    //         horizontal: 20, vertical: 16),
-                    //     decoration: ShapeDecoration(
-                    //       color: Colors.white.withOpacity(0.05000000074505806),
-                    //       shape: RoundedRectangleBorder(
-                    //         side: BorderSide(
-                    //           width: 1,
-                    //           color:
-                    //           Colors.white.withOpacity(0.10999999940395355),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //       crossAxisAlignment: CrossAxisAlignment.end,
-                    //       children: [
-                    //         Padding(
-                    //           padding: const EdgeInsets.only(top: 15.0),
-                    //           child: Column(
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               Text(
-                    //                 'Total price',
-                    //                 style: TextStyle(
-                    //                   color: Color(0xFF334155),
-                    //                   fontSize: 10,
-                    //                   fontFamily: 'Archivo-Medium',
-                    //                   fontWeight: FontWeight.w500,
-                    //                   height: 0.14,
-                    //                 ),
-                    //               ),
-                    //               SizedBox(
-                    //                 height: 20,
-                    //               ),
-                    //               Text(
-                    //                 'CHF 210',
-                    //                 style: TextStyle(
-                    //                   color: Color(0xFF334155),
-                    //                   fontSize: 16,
-                    //                   fontFamily: 'Archivo-Medium',
-                    //                   fontWeight: FontWeight.w500,
-                    //                   height: 0.09,
-                    //                 ),
-                    //               )
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         // GestureDetector(
-                    //         //   onTap:(){
-                    //         //     Navigator.push(
-                    //         //       context,
-                    //         //       MaterialPageRoute(
-                    //         //           builder: (context) =>
-                    //         //               DeliavryAddress()),
-                    //         //     );
-                    //         //   },
-                    //         //   child: Container(
-                    //         //     width: 150,
-                    //         //     height: 44,
-                    //         //     decoration: ShapeDecoration(
-                    //         //       color: Color(0xFFFF4343),
-                    //         //       shape: RoundedRectangleBorder(
-                    //         //           borderRadius: BorderRadius.circular(8)),
-                    //         //     ),
-                    //         //     child: Center(
-                    //         //       child: Text(
-                    //         //         'Checkout',
-                    //         //         style: TextStyle(
-                    //         //           color: Colors.white,
-                    //         //           fontSize: 14,
-                    //         //           fontFamily: 'Archivo-SemiBold',
-                    //         //           fontWeight: FontWeight.w600,
-                    //         //           height: 0.10,
-                    //         //         ),
-                    //         //       ),
-                    //         //     ),
-                    //         //   ),
-                    //         // ),
-                    //
-                    //
-                    //
-                    //       ],
-                    //     ))
-
                   ],
                 ),
               ),
@@ -317,17 +227,14 @@ class _CheckOutState extends State<CheckOut> {
                                 borderRadius: BorderRadius.circular(8)),
                           ),
                           child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                'Vérifier',
-                                style: TextStyle(
-                                  color: Color(0xFF66758C),
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
+                            child: Text(
+                              'Vérifier',
+                              style: TextStyle(
+                                color: Color(0xFF66758C),
+                                fontSize: 14,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 1.10,
                               ),
                             ),
                           ),
@@ -516,16 +423,24 @@ class _CheckOutState extends State<CheckOut> {
                     ),
                   ):Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0,right: 20),
-                      child: Text(
-                        'Retirer',
-                        style: TextStyle(
-                          color: Color(0xFFEF4444),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-Medium',
-                          fontWeight: FontWeight.w500,
-                          height: 0.10,
-                        ),
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/subscription/icon_cross.png",
+                            scale: 2,
+                          ),
+                          Text(
+                            'Retirer',
+                            style: TextStyle(
+                              color: Color(0xFFEF4444),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.10,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

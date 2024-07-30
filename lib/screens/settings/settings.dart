@@ -34,9 +34,9 @@ class Settings extends StatelessWidget {
                       scale: 2,
                     ),
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width / 3.2),
+                  SizedBox(width: MediaQuery.of(context).size.width / 3.4),
                   Text(
-                    'Settings',
+                    'Paramètres',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF1E293B),
@@ -58,7 +58,7 @@ class Settings extends StatelessWidget {
 
                 _buildSettingItem(
                   iconPath: "assets/settings/icon_berbel.png",
-                  title: 'Workout Settings',
+                  title: "Paramètres d'entraînement" ,
                 ),
                 SizedBox(height: 20),
                 _buildDivider(),
@@ -66,7 +66,7 @@ class Settings extends StatelessWidget {
 
                 _buildSettingItem(
                   iconPath: "assets/settings/icon_scale.png",
-                  title: 'Units Of Measure',
+                  title: 'Unités de mesure',
                 ),
                 SizedBox(height: 20),
                 _buildDivider(),
@@ -82,7 +82,7 @@ class Settings extends StatelessWidget {
 
                 _buildSettingItem(
                   iconPath: "assets/settings/icon_glove.png",
-                  title: 'Language',
+                  title: 'Langue',
                 ),
                 SizedBox(height: 20),
                 _buildDivider(),
@@ -91,7 +91,7 @@ class Settings extends StatelessWidget {
 
                 _buildSettingItem(
                   iconPath: "assets/settings/icons_sound.png",
-                  title: 'Sounds',
+                  title: 'Des sons',
                 ),
                 SizedBox(height: 20),
                 _buildDivider(),
@@ -123,7 +123,7 @@ class Settings extends StatelessWidget {
                   fontSize: 16,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
-                  height: 0.09,
+                  height: 1.09,
 
                 ),
               ),

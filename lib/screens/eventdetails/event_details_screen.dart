@@ -729,17 +729,14 @@ class _EventDetailsState extends State<EventDetails> {
                                         ),
                                       ),
                                       child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                            'Non',
-                                            style: TextStyle(
-                                              color: Color(0xFFFF4343),
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo-SemiBold',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.09,
-                                            ),
+                                        child: Text(
+                                          'Non',
+                                          style: TextStyle(
+                                            color: Color(0xFFFF4343),
+                                            fontSize: 16,
+                                            fontFamily: 'Archivo-SemiBold',
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.09,
                                           ),
                                         ),
                                       ),
@@ -765,17 +762,14 @@ class _EventDetailsState extends State<EventDetails> {
                                                 BorderRadius.circular(8)),
                                       ),
                                       child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                            'Confirmer',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo-SemiBold',
-                                              fontWeight: FontWeight.w600,
-                                              height: 0.09,
-                                            ),
+                                        child: Text(
+                                          'Confirmer',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontFamily: 'Archivo-SemiBold',
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.09,
                                           ),
                                         ),
                                       ),

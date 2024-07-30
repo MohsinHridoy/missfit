@@ -217,21 +217,18 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                         borderRadius: BorderRadius.circular(8)),
                   ),
                   child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Text(
-                        widget.status != 'profile'
-                            ? 'Enregistrer continuer'
-                            : 'Save',
-                        style: TextStyle(
-                          color: _isAllFieldsFilled
-                              ? Colors.white
-                              : Color(0xFF334155),
-                          fontSize: 14,
-                          fontFamily: 'Archivo',
-                          fontWeight: FontWeight.w600,
-                          height: 0.10,
-                        ),
+                    child: Text(
+                      widget.status != 'profile'
+                          ? 'Enregistrer continuer'
+                          : 'Enregistrer continuer',
+                      style: TextStyle(
+                        color: _isAllFieldsFilled
+                            ? Colors.white
+                            : Color(0xFF334155),
+                        fontSize: 14,
+                        fontFamily: 'Archivo-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 1.10,
                       ),
                     ),
                   ),

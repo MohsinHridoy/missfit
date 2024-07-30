@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
@@ -94,20 +95,20 @@ class _MyAddressState extends State<MyAddress> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: Text(
-                        'Delivery Location',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
-                    ),
+                SizedBox(height: 15.h),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(25.0),
+                    //   child: Text(
+                    //     'Delivery Location',
+                    //     style: TextStyle(
+                    //       color: Color(0xFF334155),
+                    //       fontSize: 20,
+                    //       fontFamily: 'Kanit-Medium',
+                    //       fontWeight: FontWeight.w600,
+                    //       height: 0.06,
+                    //     ),
+                    //   ),
+                    // ),
                     _buildDelivaryStatusTextItem('Adresse de livraison','$txtFirstName $txtLastName','$txtEmail','$txtPhoneNumber',DeliavryAddress(status: 'profile',)),
                     _buildDelivaryStatusTextItem('Adresse de facturation','$txtFirstName1 $txtLastName1','$txtEmail1','$txtPhoneNumber1',BillingDeliavryAddress(status: 'profile',)),
                   ],

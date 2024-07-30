@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:miss_fit/screens/programdetails/programme_details.dart';
+import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
+
+import '../../common_utils.dart';
+import '../shophomepage/shop_home_page.dart';
+import '../wishlist/wishlist_screen.dart';
+import '../workout_viewer_screen/workout_viewer_screen-test_002.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/programdetails/programme_details.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
@@ -11,7 +21,7 @@ import '../workout_viewer_screen/workout_viewer_screen-test_002.dart';
 
 class ChallengesDetails extends StatefulWidget {
   String? status;
-   // ChallengesDetails({Key? key}) : super(key: key,this.status);
+  // ChallengesDetails({Key? key}) : super(key: key,this.status);
   ChallengesDetails({super.key,this.status});
 
   @override
@@ -132,7 +142,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 25.0),
+                    padding: const EdgeInsets.only(left: 23.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -416,18 +426,18 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                 child: Chip(
                                   backgroundColor: Color(0xFFE5E7EB),
                                   shape:  RoundedRectangleBorder(
-                                    side: BorderSide(style: BorderStyle.none),
-                                    borderRadius: BorderRadius.circular(4)
+                                      side: BorderSide(style: BorderStyle.none),
+                                      borderRadius: BorderRadius.circular(4)
                                   ),
                                   label: Text(
                                     chipitems,
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 12,
-                                        fontFamily: 'Archivo-Regular',
-                                        fontWeight: FontWeight.w400,
-                                        height:
-                                        1.0,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
+                                      height:
+                                      1.0,
                                     ),
                                   ),
                                 ),

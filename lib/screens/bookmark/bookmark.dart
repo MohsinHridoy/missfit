@@ -11,7 +11,7 @@ class Bookmark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> assetImages = [
-      'assets/bookmark/img_2.png', // Replace with your actual asset path
+      'assets/bookmark/img_1.png', // Replace with your actual asset path
       'assets/bookmark/img_3.png', // Replace with your actual asset path
       'assets/bookmark/img_4.png', // Replace with your actual asset path
     ];

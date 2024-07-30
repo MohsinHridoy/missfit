@@ -80,31 +80,33 @@ class _ProductReviewState extends State<ProductReview> {
             children: [
               _buildAppBar(context),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-
-                    children: [
-                      SizedBox(height: 10.h,),
-                      _buildProductInfo(),
-                      SizedBox(height: 50.h,),
-
-                      _buildRatingQuestion('Quelle note donneriez-vous à cet article ?'),
-                      SizedBox(height: 25.h,),
-
-                      _buildRatingBar(),
-                      SizedBox(height: 30.h,),
-
-                      _buildRatingQuestion('Ecrire une critique'),
-                      SizedBox(height: 25.h,),
-
-                      _buildReviewTextField(),
-                      SizedBox(height: 20.h),
-
-                      _buildImageUploader(),
-
-                    ],
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                  
+                      children: [
+                        SizedBox(height: 10.h,),
+                        _buildProductInfo(),
+                        SizedBox(height: 50.h,),
+                  
+                        _buildRatingQuestion('Quelle note donneriez-vous à cet article ?'),
+                        SizedBox(height: 25.h,),
+                  
+                        _buildRatingBar(),
+                        SizedBox(height: 30.h,),
+                  
+                        _buildRatingQuestion('Ecrire une critique'),
+                        SizedBox(height: 25.h,),
+                  
+                        _buildReviewTextField(),
+                        SizedBox(height: 20.h),
+                  
+                        _buildImageUploader(),
+                  
+                      ],
+                    ),
                   ),
                 ),
               ),

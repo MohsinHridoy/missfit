@@ -318,9 +318,9 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
+                          fontFamily: 'Archivo-Medium',
                           fontWeight: FontWeight.w500,
-                          height: 1.0,
+                          height: 1.09,
                         ),
                       ),
                     ),

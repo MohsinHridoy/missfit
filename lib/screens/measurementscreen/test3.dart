@@ -1,150 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// class TestScroll extends StatefulWidget {
-//   const TestScroll({Key? key}) : super(key: key);
-//
-//   @override
-//   State<TestScroll> createState() => _TestScrollState();
-// }
-//
-// class _TestScrollState extends State<TestScroll> {
-//   final List<int> meterValues = List.generate(155, (index) => index + 1);
-//   PageController? _pageController;
-//   int? currentPageIndex = 24; // Set initialPageIndex to 9 for the 10th item
-//   int? selectedValue = 0;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _pageController = PageController(viewportFraction: 0.046, initialPage: currentPageIndex!, keepPage: true);
-//     _pageController!.addListener(_pageListener);
-//     selectedValue = meterValues[currentPageIndex!];
-//   }
-//
-//   @override
-//   void dispose() {
-//     _pageController?.removeListener(_pageListener);
-//     _pageController?.dispose();
-//     super.dispose();
-//   }
-//
-//   void _pageListener() {
-//     setState(() {
-//       currentPageIndex = _pageController!.page!.round();
-//       selectedValue = meterValues[currentPageIndex!];
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         color: Color(0xFF18181B),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             // Your existing UI code
-//             // ...
-//
-//
-//
-//             SizedBox(height: 100,),
-//             Expanded(
-//               child: PageView.builder(
-//                 controller: _pageController,
-//                 scrollDirection: Axis.horizontal,
-//                 itemCount: meterValues.length,
-//                 itemBuilder: (context, index) {
-//                   return MeterItem(
-//                     value: meterValues[index],
-//                     isSelected: index == currentPageIndex,
-//                   );
-//                 },
-//               ),
-//             ),
-//
-//             // Your existing UI code
-//             // ...
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-// class MeterItem extends StatelessWidget {
-//   final int value;
-//   final bool isSelected;
-//
-//   const MeterItem({
-//     Key? key,
-//     required this.value,
-//     required this.isSelected,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     double viewportFraction = 0.12;
-//     double itemWidth = 10;
-//     double itemHeight = isSelected ? 60.0 : 35.0;
-//     double itemPadding = 0;
-//
-//     if (value % 5 == 0 && value <= 150) {
-//       itemHeight += 20.0;
-//       itemWidth = 4.0;
-//
-//     }
-//
-//     if (value % 5 != 0 && value <= 150) {
-//       itemPadding = 10;
-//       itemWidth = 1.5;
-//       viewportFraction = 0.0120; // Default fraction value for non-divisible by 5 items
-//     }
-//
-//     String? underText;
-//     if (value % 5 == 0 && value <= 150) {
-//       underText = "$value";
-//     }
-//     return Container(
-//       width: itemWidth,
-//       child: Padding(
-//         padding:  isSelected ? EdgeInsets.only(top: 0) : EdgeInsets.only(top: itemPadding),
-//         child: Column(
-//           children: [
-//             Container(
-//               width: itemWidth,
-//               height: itemHeight,
-//               color: Colors.white.withOpacity(0.7),
-//             ),
-//             if (isSelected)
-//               Container(
-//                 width: 10,
-//                 height: 12,
-//                 decoration: BoxDecoration(
-//                   color: Colors.red.withOpacity(0.7),
-//                   borderRadius: BorderRadius.circular(5), // Rounded corners
-//                 ),
-//               ),
-//
-//             if (underText != null) // Display under text if it's not null
-//               Text(
-//                 underText,
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 10,
-//                 ),
-//               ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-//
-
 class TestScroll extends StatefulWidget {
   final VoidCallback onNextPressed;
 
@@ -425,17 +281,14 @@ class _TestScrollState extends State<TestScroll> {
                           borderRadius: BorderRadius.circular(8)),
                     ),
                     child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          widget.status == 'profile'?'Enregistrer et suivant':'Suivant',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w500,
-                            height: 0.09,
-                          ),
+                      child: Text(
+                        widget.status == 'profile'?'Enregistrer et suivant':'Suivant',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Medium',
+                          fontWeight: FontWeight.w500,
+                          height: 1.09,
                         ),
                       ),
                     ),

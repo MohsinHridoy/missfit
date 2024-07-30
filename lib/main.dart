@@ -37,12 +37,14 @@ import 'package:miss_fit/screens/measurementscreen/measurement_screen.dart';
 import 'package:miss_fit/screens/measurementscreen/test3.dart';
 import 'package:miss_fit/screens/myaddress/my_address.dart';
 import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
+import 'package:miss_fit/screens/notifications/notifications.dart';
 import 'package:miss_fit/screens/onboarding_screen/onboardingScreen.dart';
 import 'package:miss_fit/screens/onboarding_screen/rough.dart';
 import 'package:miss_fit/screens/orderhistory/order_history.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 import 'package:miss_fit/screens/otp/otp.dart';
+import 'package:miss_fit/screens/otp/otp001.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:miss_fit/screens/personalinfo/personal_info.dart';
 import 'package:miss_fit/screens/productdetails/product_details.dart';
@@ -138,6 +140,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
+      useInheritedMediaQuery: true,
       splitScreenMode: true,
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
@@ -152,10 +155,16 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:ProductDetails(),
+      child: SplashScreen(),
     );
   }
 }
+
+
+
+
+
+
 
 
 
@@ -691,7 +700,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   activeTrackBar: BoxDecoration(color: Color(0xFF22C55E)),
                 ),
                 tooltip: FlutterSliderTooltip(
-                  textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
+                    textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
                     boxStyle: FlutterSliderTooltipBox(
                         decoration: BoxDecoration(
                             color: Colors.transparent
@@ -704,8 +713,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 25,
                     width: 25,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
                       border: Border.all(color: Color(0xFF22C55E), width: 2),
 
 
@@ -727,8 +736,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 25,
                     width: 25,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
                       border: Border.all(color: Color(0xFF22C55E), width: 2),
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../screens/shophomepage/shop_home_page.dart';
 
@@ -30,7 +31,7 @@ class ProductItem extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 152,
+                  height: 114.h,
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
                     color: Colors.white,

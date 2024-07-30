@@ -213,7 +213,7 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Image.asset("assets/profile/icon_manage_subscription.png"),
                             Padding(
-                              padding: const EdgeInsets.only(left: 3.0,top: 8),
+                              padding: const EdgeInsets.only(left: 3.0),
                               child: Text(
                                 'Acheter un abonnement',
                                 style: TextStyle(
@@ -221,7 +221,7 @@ class _ProfileState extends State<Profile> {
                                   fontSize: 16,
                                   fontFamily: 'Archivo-Regular',
                                   fontWeight: FontWeight.w400,
-                                  height: 0.09,
+                                  height: 1.09,
                                 ),
                               ),
                             ),
@@ -405,17 +405,14 @@ class _ProfileState extends State<Profile> {
                       SizedBox(
                         width: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Color(0xFF334155),
-                            fontSize: 16,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 0.09,
-                          ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
                         ),
                       ),
                     ],
@@ -461,7 +458,7 @@ class _ProfileState extends State<Profile> {
             context: context,
             builder: (BuildContext context) {
               return Container(
-                height: 230.h, // Adjust the height as necessary
+                height: 250.h, // Adjust the height as necessary
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -473,7 +470,7 @@ class _ProfileState extends State<Profile> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                     Image.asset(
                       "assets/profile/icon_bottomsheet_logout.png",
                       scale: 2,
@@ -490,7 +487,7 @@ class _ProfileState extends State<Profile> {
                         height: 1.08,
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 25.h),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 30.0, right: 30, bottom: 1),
@@ -519,17 +516,14 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text(
-                                      'Non',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF4343),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
+                                  child:Text(
+                                    'Non',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF4343),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
                                     ),
                                   ),
                                 ),
@@ -557,17 +551,14 @@ class _ProfileState extends State<Profile> {
                                       BorderRadius.circular(8)),
                                 ),
                                 child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 6.0),
-                                    child: Text(
-                                      'Oui',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
+                                  child:  Text(
+                                    'Oui',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
                                     ),
                                   ),
                                 ),
@@ -600,17 +591,14 @@ class _ProfileState extends State<Profile> {
                       SizedBox(
                         width: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Color(0xFFEF4444),
-                            fontSize: 16,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 0.09,
-                          ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: Color(0xFFEF4444),
+                          fontSize: 16,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 1.09,
                         ),
                       ),
                     ],

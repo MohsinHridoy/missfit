@@ -316,18 +316,15 @@ class _Cart001State extends State<Cart001> {
                                 borderRadius: BorderRadius.circular(8)),
                           ),
                           child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Vérifier',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
+                            child: Text(
+                              'Vérifier',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 1.10,
                               ),
                             ),
                           ),
@@ -498,33 +495,38 @@ class _Cart001State extends State<Cart001> {
                         ),
                       ),
                       child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            'Appliquer',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 0.10,
-                            ),
+                        child: Text(
+                          'Appliquer',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.10,
                           ),
                         ),
                       ),
                     ),
                   ):Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0,right: 20),
-                      child: Text(
-                        'Retirer',
-                        style: TextStyle(
-                          color: Color(0xFFEF4444),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-Medium',
-                          fontWeight: FontWeight.w500,
-                          height: 0.10,
-                        ),
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/subscription/icon_cross.png",
+                            scale: 2,
+                          ),
+                          Text(
+                            'Retirer',
+                            style: TextStyle(
+                              color: Color(0xFFEF4444),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.10,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

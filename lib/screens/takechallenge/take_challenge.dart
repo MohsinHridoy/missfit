@@ -518,17 +518,14 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                     ),
                                     child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 5.0),
-                                        child: Text(
-                                          'Apply',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontFamily: 'Archivo-Semibold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 0.09,
-                                          ),
+                                      child: Text(
+                                        'Apply',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontFamily: 'Archivo-Semibold',
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.09,
                                         ),
                                       ),
                                     ),
@@ -588,7 +585,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 5, right: 12.0,top:6),
+              padding: const EdgeInsets.only(left: 5, right: 12.0),
               child: Text(
                 item,
                 style: TextStyle(
@@ -596,7 +593,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                   fontSize: 14,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
-                  height: 0.10,
+                  height: 1.10,
                 ),
               ),
             ),
@@ -634,7 +631,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 12.0),
+                padding: const EdgeInsets.only(left: 6.0),
                 child: Image.asset(
                   "assets/shophome/icon_delete.png",
                   scale: 1.7,
@@ -642,7 +639,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 5, right: 12.0,top: 6),
+              padding: const EdgeInsets.only(left: 5, right: 6.0),
               child: Text(
                 item,
                 style: TextStyle(
@@ -650,7 +647,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                   fontSize: 14,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
-                  height: 0.10,
+                  height: 1.10,
                 ),
               ),
             ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
@@ -54,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -215,18 +218,4 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class Test extends StatelessWidget {
-  const Test({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return FocusScope(
-      node: FocusScopeNode(),
-      child: Scaffold(
-        body: Center(
-          child: Text("Test Page"),
-        ),
-      ),
-    );
-  }
-}

@@ -59,36 +59,42 @@ class _FitnessGoalState extends State<FitnessGoal> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: SizedBox(
-                child: title_textView("Quel est votre objectif actuel en salle de sport ?"),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: SizedBox(
+                        child: title_textView("Quel est votre objectif actuel en salle de sport ?"),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    _buildSelectableTextContainer('Gagner du muscle'),
+                    _buildSelectableTextContainer('Renforcer la force'),
+                    _buildSelectableTextContainer('Perdre du poids'),
+                    _buildSelectableTextContainer('Amélioration de la forme du corps'),
+                    _buildSelectableTextContainer('Améliorer les dossiers'),
+                    _buildSelectableTextContainer('Stimuler la libido'),
+
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            _buildSelectableTextContainer('Gagner du muscle'),
-            _buildSelectableTextContainer('Renforcer la force'),
-            _buildSelectableTextContainer('Perdre du poids'),
-            _buildSelectableTextContainer('Amélioration de la forme du corps'),
-            _buildSelectableTextContainer('Améliorer les dossiers'),
-            _buildSelectableTextContainer('Stimuler la libido'),
-            Spacer(),
+
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20,bottom: 30),
               child: Visibility(
                 visible: widget.status != 'profile',
 
-                child: GestureDetector(
-                  onTap: (){
-                    widget.onNextPressed();
+                child:customButtonRed(context, 'Suivante', onPressed: () async{
+                  widget.onNextPressed();
 
-                  },
-                    child: buildNextButton(context)
-                ),
+                }),
               ),
             ),
 

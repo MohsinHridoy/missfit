@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price.dart';
 import 'package:miss_fit/screens/subscriptionprice/subscription_price1.dart';
@@ -15,7 +16,8 @@ class Subscription extends StatefulWidget {
 class _SubscriptionState extends State<Subscription> {
   bool isSelectedYearly = true;
   bool isSelectedMonthly = false;
-
+   String chf_yearly_value_prime='CHF 990 ou CHF 89/mois';
+   String chf_yearly_value_basic='CHF 890 ou CHF 79/mois';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +100,7 @@ class _SubscriptionState extends State<Subscription> {
                                     Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(right: 8.0,bottom: 20),
+                                          padding: const EdgeInsets.only(right: 8.0),
                                           child: Image.asset(
                                             "assets/subscription/icon_premium.png",
                                             scale: 2,
@@ -113,7 +115,7 @@ class _SubscriptionState extends State<Subscription> {
                                               fontSize: 24,
                                               fontFamily: 'Archivo-SemiBold',
                                               fontWeight: FontWeight.w600,
-                                              height: 0.06,
+                                              height: 1.06,
                                             ),
                                           ),
                                         ),
@@ -123,7 +125,7 @@ class _SubscriptionState extends State<Subscription> {
                                     SizedBox(
                                       width: 280,
                                       child: Text(
-                                        'CHF 990 ou CHF 89/mois',
+                                        chf_yearly_value_prime,
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 18,
@@ -206,7 +208,7 @@ class _SubscriptionState extends State<Subscription> {
                           }
                           else
                           {
-                            navigateToNextPage(context,SubscriptionPriceSelectionPage1());
+                            navigateToNextPage(context,VerticalProgressBar());
 
                           }
                         },
@@ -242,17 +244,14 @@ class _SubscriptionState extends State<Subscription> {
                                         ),
                                         SizedBox(
                                           width: 218,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 15.0),
-                                            child: Text(
-                                              'Basic',
-                                              style: TextStyle(
-                                                color: Color(0xFF334155),
-                                                fontSize: 24,
-                                                fontFamily: 'Archivo-SemiBold',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.06,
-                                              ),
+                                          child:  Text(
+                                            'Basic',
+                                            style: TextStyle(
+                                              color: Color(0xFF334155),
+                                              fontSize: 24,
+                                              fontFamily: 'Archivo-SemiBold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.06,
                                             ),
                                           ),
                                         ),
@@ -262,7 +261,7 @@ class _SubscriptionState extends State<Subscription> {
                                     SizedBox(
                                       width: 280,
                                       child: Text(
-                                        'CHF 890 ou CHF 79/mois',
+                                        chf_yearly_value_basic,
                                         style: TextStyle(
                                           color: Color(0xFF334155),
                                           fontSize: 18,
@@ -384,17 +383,14 @@ class _SubscriptionState extends State<Subscription> {
           ),
         ),
         child: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              text,
-              style: TextStyle(
-                color: Color(0xFFFF4242),
-                fontSize: 16,
-                fontFamily: 'Archivo-SemiBold',
-                fontWeight: FontWeight.w600,
-                height: 0.09,
-              ),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Color(0xFFFF4242),
+              fontSize: 16,
+              fontFamily: 'Archivo-SemiBold',
+              fontWeight: FontWeight.w600,
+              height: 1.00,
             ),
           ),
         ),
@@ -433,7 +429,7 @@ class _SubscriptionState extends State<Subscription> {
 
   Widget _buildSubscriptionPlanSelectionContainer() {
     return Container(
-      width: 260,
+      width: 240.h,
       height: 70,
       padding: const EdgeInsets.all(8),
       decoration: ShapeDecoration(
@@ -452,11 +448,12 @@ class _SubscriptionState extends State<Subscription> {
                 isSelectedYearly = true;
                 isSelectedMonthly = false;
 
-
+                 chf_yearly_value_prime='CHF 990 ou CHF 89/mois';
+                 chf_yearly_value_basic='CHF 890 ou CHF 79/mois';
               });
             },
             child: Container(
-              width: 120,
+              width: 110.h,
               height: 54,
               decoration: BoxDecoration(
                 color:
@@ -464,17 +461,14 @@ class _SubscriptionState extends State<Subscription> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Annuelle',
-                    style: TextStyle(
-                      color: isSelectedYearly ? Colors.white : Color(0xFF475569),
-                      fontSize: 20,
-                      fontFamily: 'Archivo-Medium',
-                      fontWeight: FontWeight.w500,
-                      height: 0.07,
-                    ),
+                child: Text(
+                  'Annuelle',
+                  style: TextStyle(
+                    color: isSelectedYearly ? Colors.white : Color(0xFF475569),
+                    fontSize: 20,
+                    fontFamily: 'Archivo-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 1.00,
                   ),
                 ),
               ),
@@ -485,10 +479,12 @@ class _SubscriptionState extends State<Subscription> {
               setState(() {
                 isSelectedYearly = false;
                 isSelectedMonthly = true;
+                chf_yearly_value_prime='CHF 99/mois';
+                chf_yearly_value_basic='CHF 89/mois';
               });
             },
             child: Container(
-              width: 120,
+              width: 110.h,
               height: 54,
               decoration: BoxDecoration(
                 color:
@@ -496,17 +492,14 @@ class _SubscriptionState extends State<Subscription> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Mensuelle',
-                    style: TextStyle(
-                      color: isSelectedMonthly ? Colors.white : Color(0xFF475569),
-                      fontSize: 20,
-                      fontFamily: 'Archivo-Medium',
-                      fontWeight: FontWeight.w500,
-                      height: 0.07,
-                    ),
+                child:Text(
+                  'Mensuelle',
+                  style: TextStyle(
+                    color: isSelectedMonthly ? Colors.white : Color(0xFF475569),
+                    fontSize: 20,
+                    fontFamily: 'Archivo-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 1.00,
                   ),
                 ),
               ),

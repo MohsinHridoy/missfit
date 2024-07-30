@@ -181,19 +181,16 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         borderRadius: BorderRadius.circular(8)),
                   ),
                   child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Text(
-                        'Enregistrer continuer',
-                        style: TextStyle(
-                          color: _isAllFieldsFilled
-                              ? Colors.white
-                              : Color(0xFF334155),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.10,
-                        ),
+                    child: Text(
+                      'Enregistrer continuer',
+                      style: TextStyle(
+                        color: _isAllFieldsFilled
+                            ? Colors.white
+                            : Color(0xFF334155),
+                        fontSize: 14,
+                        fontFamily: 'Archivo-SemiBold',
+                        fontWeight: FontWeight.w600,
+                        height: 1.10,
                       ),
                     ),
                   ),
