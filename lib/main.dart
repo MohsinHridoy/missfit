@@ -700,7 +700,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   activeTrackBar: BoxDecoration(color: Color(0xFF22C55E)),
                 ),
                 tooltip: FlutterSliderTooltip(
-                  textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
+                    textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
                     boxStyle: FlutterSliderTooltipBox(
                         decoration: BoxDecoration(
                             color: Colors.transparent
@@ -713,8 +713,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 25,
                     width: 25,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
                       border: Border.all(color: Color(0xFF22C55E), width: 2),
 
 
@@ -736,8 +736,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 25,
                     width: 25,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
                       border: Border.all(color: Color(0xFF22C55E), width: 2),
 
 

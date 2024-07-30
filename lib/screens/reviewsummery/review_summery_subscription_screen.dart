@@ -179,17 +179,14 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Text(
-                                        'Location de médaillons',
-                                        style: TextStyle(
-                                          color: Color(0xFF66758C),
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo-Regular',
-                                          fontWeight: FontWeight.w400,
-                                          height: 0.08,
-                                        ),
+                                    Text(
+                                      'Location de médaillons',
+                                      style: TextStyle(
+                                        color: Color(0xFF66758C),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-Regular',
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.08,
                                       ),
                                     ),
               
@@ -228,97 +225,99 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                           width: MediaQuery.of(context).size.width,
                           height: 72,
                           color: Colors.transparent,
-                          child: Column(
+                          child: Stack(
                             children: [
-                              Row(
+                              Column(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0, bottom: 6),
-                                    child: Container(
-                                      width: 55,
-                                      height: 55,
-                                      padding: const EdgeInsets.all(12),
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: ShapeDecoration(
-                                        color: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 8.0, bottom: 6),
+                                        child: Container(
+                                          width: 55,
+                                          height: 55,
+                                          padding: const EdgeInsets.all(12),
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: ShapeDecoration(
+                                            color: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: Image.asset(
+                                              'assets/payment/img_delivary_item2.png',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                      child: Center(
-                                        child: Image.asset(
-                                          'assets/payment/img_delivary_item2.png',
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: SizedBox(
-                                            width: 153,
-                                            height: 20,
-                                            child: Text(
-                                              "Stripe",
-                                              style: TextStyle(
-                                                color: Color(0xFF334155),
-                                                fontSize: 16,
-                                                fontFamily: 'Archivo-Regular',
-                                                fontWeight: FontWeight.w400,
-                                                height: 0.09,
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 15.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 5.0),
+                                              child: SizedBox(
+                                                width: 153,
+                                                height: 20,
+                                                child: Text(
+                                                  "Stripe",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF334155),
+                                                    fontSize: 16,
+                                                    fontFamily: 'Archivo-Regular',
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 0.09,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                          child: Text(
-                                            // '•••• •••• •••• ' +
-                                            //     item.cvvCode.substring(12),
-                                            "•••• •••• •••• 232323232",
-                                            style: TextStyle(
-                                              color: Color(0xFF334155),
-                                              fontSize: 16,
-                                              fontFamily: 'Archivo',
-                                              fontWeight: FontWeight.w400,
-                                              height: 0.09,
+                                            SizedBox(
+                                              height: 10,
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Spacer(),
-              
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0,top:15,right: 15),
-                                    child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Text(
-                                        'Changement',
-                                        textAlign: TextAlign.right,
-                                        style: TextStyle(
-                                          color: Color(0xFFFF4343),
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo',
-                                          fontWeight: FontWeight.w500,
-                                          height: 1.09,
+                                            SizedBox(
+                                              height: 10,
+                                              child: Text(
+                                                // '•••• •••• •••• ' +
+                                                //     item.cvvCode.substring(12),
+                                                "•••• •••• •••• 232323232",
+                                                style: TextStyle(
+                                                  color: Color(0xFF334155),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Archivo',
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 0.09,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                  )
-              
+                                      
+                                            
+                                    ],
+                                  ),
                                 ],
                               ),
+
+                              Positioned(
+                                bottom: 20,
+                                right: 10,
+                                child: Text(
+                                  'Changement',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.09,
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -346,33 +345,30 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                                     )
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "je suis d'accord avec",
-                                        style: TextStyle(
-                                          color: Color(0xFF66758C),
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.08,
-                                        ),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: "je suis d'accord avec",
+                                      style: TextStyle(
+                                        color: Color(0xFF66758C),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.08,
                                       ),
-                                      TextSpan(
-                                        text: 'termes et conditions',
-                                        style: TextStyle(
-                                          color: Color(0xFFE88E32),
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.08,
-                                        ),
+                                    ),
+                                    TextSpan(
+                                      text: 'termes et conditions',
+                                      style: TextStyle(
+                                        color: Color(0xFFE88E32),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo',
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.08,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -443,17 +439,14 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                               borderRadius: BorderRadius.circular(8)),
                         ),
                         child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              'Continue',
-                              style: TextStyle(
-                                color: isSelected ?  Colors.white:Color(0xFF66758C),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.09,
-                              ),
+                          child:Text(
+                            'Continue',
+                            style: TextStyle(
+                              color: isSelected ?  Colors.white:Color(0xFF66758C),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 1.09,
                             ),
                           ),
                         ),

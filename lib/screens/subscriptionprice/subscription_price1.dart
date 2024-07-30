@@ -728,33 +728,35 @@ class _VerticalProgressBarState extends State<VerticalProgressBar>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  children: List.generate(12, (index) {
-                    int number =
-                        12 - index; // Adjusted to reverse the numbering
-                    return Container(
-                      width: 30,
-                      alignment: Alignment.centerRight,
-                      margin: EdgeInsets.symmetric(vertical: 2),
-                      child: Text(
-                        '$number',
-                        style: TextStyle(
-                          color: number <= progress
-                              ? Color(0xFFFFA142)
-                              : Color(0xFF94A3B8),
-                          // Adjusted condition
-                          fontSize: 20,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 1.11,
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Column(
+                    children: List.generate(12, (index) {
+                      int number =
+                          12 - index; // Adjusted to reverse the numbering
+                      return Container(
+                        width: 30,
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.symmetric(vertical: 2),
+                        child: Text(
+                          '$number',
+                          style: TextStyle(
+                            color: number <= progress
+                                ? Color(0xFFFFA142)
+                                : Color(0xFF94A3B8),
+                            // Adjusted condition
+                            fontSize: 20,
+                            fontFamily: 'Archivo-Regular',
+                            fontWeight: FontWeight.w400,
+                            height: 1.31,
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 ),
                 SizedBox(width: 10),
                 Container(
-                  height: 330.h,
 
                   child: RotatedBox(
                     quarterTurns: 3,

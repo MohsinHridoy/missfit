@@ -675,7 +675,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: const EdgeInsets.only(left: 8.0,top: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -1057,7 +1057,7 @@ class _HomeState extends State<Home> {
                                     fontSize: 10,
                                     fontFamily: 'Archivo-Regular',
                                     fontWeight: FontWeight.w400,
-                                    height: 1.14,
+                                    height: 1.5,
                                   ),
                                 ),
                               ],

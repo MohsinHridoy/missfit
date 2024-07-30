@@ -182,8 +182,12 @@ class _AdvanceLevelSelectionPageState001
                         padding: const EdgeInsets.only(
                             left: 20.0, right: 20, top: 10),
                         child: GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              await prefs.setBool('first_launch', true); // Set first launch to false
+
                               setState(() {
+
                                 isVisible = true;
                                 _setLoggedIn(true);
 
