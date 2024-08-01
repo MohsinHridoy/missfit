@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glass/glass.dart';
+import 'package:glossy/glossy.dart';
 import 'package:video_player/video_player.dart';
 
 import '../shophomepage/shop_home_page.dart';
@@ -118,7 +121,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                             Center(
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width,
-                                height: 218,
+                                height: 218.h,
                                 child: VideoPlayer(_controller),
                               ),
                             )
@@ -135,26 +138,39 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                                     _controller.play();
                                   });
                                 },
-                                child: Container(
-                                  width: 165,
-                                  height: 52,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.15),
-                                    borderRadius: BorderRadius.circular(57),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Start Workout',
-                                      style: TextStyle(
-                                        color: Color(0xFFE88E32),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-Medium',
-                                        fontWeight: FontWeight.w500,
-                                        height: 0.09,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50.0),
+
+                                  child: Container(
+                                    width: 165,
+                                    height: 52,
+
+                                    color:  Colors.white.withOpacity(0.015000000596046448),
+
+
+
+                                    child: Center(
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 6.0,right: 5),
+                                            child: Image.asset("assets/bookmark/icon_play.png",scale: 2.3,),
+                                          ),
+                                          Text(
+                                            'Start Workout',
+                                            style: TextStyle(
+                                              color: Color(0xFFE88E32),
+                                              fontSize: 16,
+                                              fontFamily: 'Archivo-Medium',
+                                              fontWeight: FontWeight.w500,
+                                              height: 1.09,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
+                                  ).asGlass()
+    ,
                                 ),
                               ),
                             ),
@@ -165,7 +181,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                       height: 30,
                     ),
                     Container(
-                      height: 46, // Adjust the height as needed
+                      height: 40, // Adjust the height as needed
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: _items.length,
@@ -177,19 +193,20 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                               });
                             },
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                              padding:  EdgeInsets.only( left: index == 0 ? 18.0 : 2.0, right: 8.0),
                               child: Container(
                                 width: 105,
                                 decoration: ShapeDecoration(
                                   color: _selectedIndex == index
-                                      ? Color(0xFFFFA142)
-                                      : Colors.white,
+                                      ? Colors.white
+                                      : Colors.transparent,
                                   shape: RoundedRectangleBorder(
-                                    // side: BorderSide(
-                                    //   width: 1,
-                                    //   color: Color(0xFFE5E7EB),
-                                    // ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color:  _selectedIndex == index
+                                          ?  Color(0xFFFFA142):Color(0xFFE5E7EB),
+                                    ),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                 ),
                                 child: Center(
@@ -197,12 +214,13 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                                     _items[index],
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Color(0xFF334155),
+                                      color:_selectedIndex == index
+                                          ?Color(0xFFE88E32): Color(0xFF334155),
                                       fontSize: 16,
                                       fontFamily: 'Archivo-Medium',
                                       fontWeight: FontWeight.w500,
                                       height:
-                                      1.5, // Adjusted the height for proper text rendering
+                                      1.09, // Adjusted the height for proper text rendering
                                     ),
                                   ),
                                 ),
@@ -212,8 +230,9 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                         },
                       ),
                     ),
+
                     SizedBox(
-                      height: 40,
+                      height: 25.h,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 20),
@@ -232,7 +251,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                       ),
                     ),
                     SizedBox(
-                      height: 35,
+                      height: 25,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -268,7 +287,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 20),
                       child: Container(
                         child: ListView.builder(
                           shrinkWrap: true,
@@ -358,7 +377,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                     Padding(
                       padding: const EdgeInsets.only(left: 18.0,top: 20),
                       child: Text(
-                        'Warming Up',
+                        'Training',
                         style: TextStyle(
                           color: Color(0xFF334155),
                           fontSize: 16,
@@ -604,7 +623,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
 
 
                     Padding(
-                      padding: const EdgeInsets.only(left: 22.0,right: 22),
+                      padding: const EdgeInsets.only(left: 22.0,right: 18),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -618,17 +637,14 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                               height: 0.09,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15.0),
-                            child: Text(
-                              '5 Items',
-                              style: TextStyle(
-                                color: Color(0xFF94A3B8),
-                                fontSize: 12,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 0.12,
-                              ),
+                          Text(
+                            '5 Items',
+                            style: TextStyle(
+                              color: Color(0xFF94A3B8),
+                              fontSize: 12,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 0.12,
                             ),
                           ),
                         ],
@@ -643,7 +659,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                         itemCount: items.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.only(right: 16.0,left: 20),
+                            padding: const EdgeInsets.only(right: 2.0,left: 20),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -806,7 +822,7 @@ class _ProgrammeDetailsState extends State<ProgrammeDetails> {
                 fontSize: 12,
                 fontFamily: 'Archivo-Regular',
                 fontWeight: FontWeight.w400,
-                height: 0.12,
+                height: 1.12,
               ),
             ),
           ],

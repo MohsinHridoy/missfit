@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:glossy/glossy.dart';
 import 'package:miss_fit/screens/programdetails/programme_details.dart';
 import 'package:miss_fit/screens/wishlist/wish_list_screen.dart';
 
 import '../../common_utils.dart';
+import '../../widgets/programme_bottom_sheet_content.dart';
 import '../shophomepage/shop_home_page.dart';
 import '../wishlist/wishlist_screen.dart';
 import '../workout_viewer_screen/workout_viewer_screen-test_002.dart';
@@ -30,6 +32,14 @@ class ChallengesDetails extends StatefulWidget {
 
 class _ChallengesDetailsState extends State<ChallengesDetails> {
   bool isFavourite=false;
+  final List<String> _items = [
+    'Semaine 1',
+    'Semaine 2',
+    'Semaine 3',
+    'Semaine 4',
+    'Semaine 5',
+  ];
+  int _selectedIndex = 0; // Track the selected item
 
   List<CustomItem> items = [
     CustomItem(
@@ -437,7 +447,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                       fontFamily: 'Archivo-Regular',
                                       fontWeight: FontWeight.w400,
                                       height:
-                                      1.0,
+                                      1.12,
                                     ),
                                   ),
                                 ),
@@ -593,6 +603,60 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             ],
                           ),
                         ),
+
+
+                        SizedBox(height: 30,),
+                        if(widget.status=='followprogramme')
+                          Container(
+                            height: 40, // Adjust the height as needed
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _items.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _selectedIndex = index;
+                                    });
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 2.0, right: 8.0),
+                                    child: Container(
+                                      width: 105,
+                                      decoration: ShapeDecoration(
+                                        color: _selectedIndex == index
+                                            ? Colors.white
+                                            : Colors.transparent,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            width: 1,
+                                            color:  _selectedIndex == index
+                                                ?  Color(0xFFFFA142):Color(0xFFE5E7EB),
+                                          ),
+                                          borderRadius: BorderRadius.circular(4),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          _items[index],
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color:_selectedIndex == index
+                                                ?Color(0xFFE88E32): Color(0xFF334155),
+                                            fontSize: 16,
+                                            fontFamily: 'Archivo-Medium',
+                                            fontWeight: FontWeight.w500,
+                                            height:
+                                            1.09, // Adjusted the height for proper text rendering
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         if(widget.status=='followprogramme')
 
                           Container(
@@ -776,7 +840,6 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             child: Center(
                               child: Image.asset(
                                 isFavourite==true ?"assets/shophome/icon_bookmark_fill.png": "assets/shophome/icon_bookmark.png",
-                                color: Colors.white,
                                 scale: 2,
                               ),
                             ),
@@ -793,31 +856,25 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
 
           Positioned(
             bottom: 0,
-            child: Container(
+            child: GlossyContainer(
               width: MediaQuery.of(context).size.width,
+              // opacity:0.1,
+              color: Colors.white.withOpacity(0.04),
               height: 88,
-
-              decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.5000000074505806),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 1,
-                    color: Colors.white.withOpacity(0.10999999940395355),
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                  ),
-                ),
-              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 10,right: 15,left: 15),
                   // Added bottom padding
                   child: GestureDetector(
                     onTap: (){
-                      navigateToNextPage(context,ChallengeScreen());
-
+                      // navigateToNextPage(context,ChallengeScreen());
+                      if(widget.status!='followprogramme')
+                        navigateToNextPage(context,ChallengeScreen());
+                      else
+                        showModalBottomSheet(
+                        context: context,
+                        builder: (context) => BottomSheetContent(),
+                      );
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,

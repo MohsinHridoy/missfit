@@ -122,7 +122,11 @@ class _TakeChallengeState extends State<TakeChallenge> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      navigateToNextPage(context,DashBoard(number: 0,));
+                      setState(() {
+                        isAdded==false? isAdded=true:
+                        navigateToNextPage(context,DashBoard(number: 0,));
+                      });
+
                     },
                     child: Image.asset(
                       "assets/cart/icon_left_arrow.png",
@@ -568,6 +572,8 @@ class _TakeChallengeState extends State<TakeChallenge> {
   Widget _buildItem(String item, bool isSelected) {
     return Container(
       height: 36,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
       decoration: ShapeDecoration(
         color: isSelected ? Colors.white:Colors.transparent,
         shape: RoundedRectangleBorder(
@@ -580,21 +586,18 @@ class _TakeChallengeState extends State<TakeChallenge> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 12.0, right: 13.0),
+        padding: const EdgeInsets.only(left: 0.0, right: 0.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 5, right: 12.0),
-              child: Text(
-                item,
-                style: TextStyle(
-                  color: isSelected ?  Color(0xFFE88E32):Color(0xFF334155),
-                  fontSize: 14,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 1.10,
-                ),
+            Text(
+              item,
+              style: TextStyle(
+                color: isSelected ?  Color(0xFFE88E32):Color(0xFF334155),
+                fontSize: 14,
+                fontFamily: 'Archivo-Regular',
+                fontWeight: FontWeight.w400,
+                height: 1.10,
               ),
             ),
           ],

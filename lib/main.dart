@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:miss_fit/screens/activityselectiondashboard/activityselectiondashboard.dart';
@@ -79,7 +80,11 @@ import 'package:provider/provider.dart';
 import 'common_utils.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 // class MyApp extends StatelessWidget {
@@ -155,7 +160,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: SplashScreen(),
+      child: TakeChallenge(),
     );
   }
 }

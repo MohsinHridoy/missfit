@@ -288,6 +288,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.5.0"
+  glass:
+    dependency: "direct main"
+    description:
+      name: glass
+      sha256: "6b33f00a37f15c89b19ee29d1d234bdea221584010a7d53fd220657e475a6a3b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0+1"
+  glossy:
+    dependency: "direct main"
+    description:
+      name: glossy
+      sha256: e57a20a9883eecbb134a2495d602c75ed99f0bdf010ab09b6d56d680a6af8616
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   html:
     dependency: transitive
     description:

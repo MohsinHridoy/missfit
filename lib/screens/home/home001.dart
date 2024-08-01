@@ -1671,7 +1671,7 @@ class _HomeState extends State<Home> {
                                             ),
                                             child: Container(
                                               width: 2,
-                                              height: 5.h,
+                                              height: 10.h,
                                               decoration: ShapeDecoration(
                                                 color: Color(0xFFFF4343),
                                                 shape: RoundedRectangleBorder(
@@ -1690,7 +1690,7 @@ class _HomeState extends State<Home> {
                                                 fontSize: 12,
                                                 fontFamily: 'Archivo-Regular',
                                                 fontWeight: FontWeight.w400,
-                                                height: 0.12,
+                                                height: 0.3,
                                               ),
                                             ),
                                           )
