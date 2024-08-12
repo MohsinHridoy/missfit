@@ -173,6 +173,82 @@ class _OrderStatusState extends State<OrderStatus> {
                     _buildCartItemsList(),
 
 
+                    if(widget.navigationStatus=='Processing')
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
+                                },
+                                child: Container(
+                                  height: 52,
+                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Text(
+                                        'Return',
+                                        style: TextStyle(
+                                          color: Color(0xFFFF4343),
+                                          fontSize: 16,
+                                          fontFamily: 'Archivo-SemiBold',
+                                          fontWeight: FontWeight.w600,
+                                          height: 0.09,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: Container(
+                                height: 52,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFF4343),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top:7.0),
+                                    child: Text(
+                                      'Buy Again',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: GestureDetector(
+                            onTap: (){
+                              _showBottomSheet(context);
+                            },
+                            child: outlineButton(context, 'Annuler la commande')
+                        ),
+                      ),
 
 
 
@@ -180,82 +256,6 @@ class _OrderStatusState extends State<OrderStatus> {
                 ),
               ),
             ),
-            if(widget.navigationStatus=='Processing')
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
-                        },
-                        child: Container(
-                          height: 52,
-                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Return',
-                                style: TextStyle(
-                                  color: Color(0xFFFF4343),
-                                  fontSize: 16,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.09,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: Container(
-                        height: 52,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFF4343),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top:7.0),
-                            child: Text(
-                              'Buy Again',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 0.09,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            else
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: GestureDetector(
-                    onTap: (){
-                      _showBottomSheet(context);
-                    },
-                    child: outlineButton(context, 'Annuler la commande')
-                ),
-              ),
 
           ],
         ),
@@ -424,7 +424,7 @@ class _OrderStatusState extends State<OrderStatus> {
                       scale: 2,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0,right: 20,),
+                      padding: const EdgeInsets.only(left: 20.0,right: 20,top: 5),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Text(
@@ -465,17 +465,14 @@ class _OrderStatusState extends State<OrderStatus> {
                                   ),
                                 ),
                                 child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Text(
-                                      'Non',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF4343),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
+                                  child:  Text(
+                                    'Non',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF4343),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
                                     ),
                                   ),
                                 ),
@@ -502,17 +499,14 @@ class _OrderStatusState extends State<OrderStatus> {
                                       BorderRadius.circular(8)),
                                 ),
                                 child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Text(
-                                      'Oui',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
+                                  child: Text(
+                                    'Oui',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
                                     ),
                                   ),
                                 ),

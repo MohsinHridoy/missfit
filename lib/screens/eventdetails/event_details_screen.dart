@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glossy/glossy.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../widgets/common_buttons.dart';
@@ -15,6 +16,7 @@ class EventDetails extends StatefulWidget {
 
 class _EventDetailsState extends State<EventDetails> {
   bool isExpanded = false;
+  bool isVisible = true;
   String text =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   late String firstPart;
@@ -32,6 +34,249 @@ class _EventDetailsState extends State<EventDetails> {
       firstPart = text;
       trimmedText = '';
     }
+  }
+  void _showBottomSheet(BuildContext context, VoidCallback onContinue) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              padding: EdgeInsets.only(top: 20, left: 15),
+              height: isInitialViewVisible ? 280 : 430,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: isInitialViewVisible
+                    ? Column(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Lottie.asset(
+                        'assets/lottie_anim/tik_anim.json',
+                        height: 200,
+                        width: 200,
+                        fit: BoxFit.cover,
+                        repeat: false,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 320,
+                      child: Text(
+                        'Congratulations!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 18,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 1.08,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: SizedBox(
+                        width: 320,
+                        child: Text(
+                          'You Have successfully booked',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF334155).withOpacity(0.9),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 0.09,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10, top: 10),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                          onContinue(); // Trigger the callback to update parent state
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 52,
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFF4343),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Continue',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w500,
+                                height: 1.11,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+                    : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Voulez-vous confirmer votre place?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 18,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w600,
+                        height: 0.08,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      color: Color(0xFFF3F4F6),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 180,
+                            decoration: ShapeDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/eventdetails/img.png"),
+                                fit: BoxFit.cover,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(8),
+                                  topLeft: Radius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: SizedBox(
+                              width: 284,
+                              child: Text(
+                                'Monday, December 24, 2022',
+                                style: TextStyle(
+                                  color: Color(0xFF334155),
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.09,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              '18.00 - 23.00 PM (GMT +07:00)',
+                              style: TextStyle(
+                                color: Color(0xFF66758C),
+                                fontSize: 16,
+                                fontFamily: 'Archivo',
+                                fontWeight: FontWeight.w400,
+                                height: 0.09,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0.0, right: 0, bottom: 1, top: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                height: 52,
+                                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Non',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF4343),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 15),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isInitialViewVisible = true;
+                                });
+                              },
+                              child: Container(
+                                height: 52,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFF4343),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Confirmer',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -460,334 +705,42 @@ class _EventDetailsState extends State<EventDetails> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                // showModalBottomSheet(
-                //   context: context,
-                //   builder: (BuildContext context) {
-                //     return Container(
-                //       // Define your modal bottom sheet content here
-                //       width: MediaQuery.of(context).size.width,
-                //       child:Column(
-                //         children: [
-                //           SizedBox(
-                //             width: 320,
-                //             child: Text(
-                //               'Do you want to confirm your seat?',
-                //               textAlign: TextAlign.center,
-                //               style: TextStyle(
-                //                 color: Color(0xFF334155),
-                //                 fontSize: 18,
-                //                 fontFamily: 'Archivo',
-                //                 fontWeight: FontWeight.w600,
-                //                 height: 0.08,
-                //               ),
-                //             ),
-                //           ),
-                //
-                //           SizedBox(
-                //             height: 30,
-                //           ),
-                //
-                //           Container(
-                //             width: 320,
-                //             height: 180,
-                //             decoration: ShapeDecoration(
-                //               image: DecorationImage(
-                //                 image: NetworkImage("https://via.placeholder.com/320x180"),
-                //                 fit: BoxFit.cover,
-                //               ),
-                //               shape: RoundedRectangleBorder(
-                //                 borderRadius: BorderRadius.only(
-                //                   topLeft: Radius.circular(8),
-                //                   topRight: Radius.circular(8),
-                //                 ),
-                //               ),
-                //             ),
-                //           )
-                //         ],
-                //       ),
-                //     );
-                //   },
-                // );
-
-                _showBottomSheet(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child:
-                  customButtonRed(context, widget.status=='event' ?'Événement de livre':'Reserve maintenant', onPressed: () {
-                    _showBottomSheet(context);
-
-                  })
-
-              ),
-            )
+            if(isVisible)
+              GlossyContainer(
+                width: MediaQuery.of(context).size.width,
+                height: 76,
+                color:Colors.white.withOpacity(0.10999999940395355),
+                blendMode: BlendMode.srcATop,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 76,
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 1,
+                        color: Colors.white.withOpacity(0.10999999940395355),
+                      ),
+                    ),
+                  ),
+                  child: customButtonRed(context, widget.status=='event' ?'Événement de livre':'Reserve maintenant', onPressed: () {
+                    _showBottomSheet(context, () {
+                      setState(() {
+                        isVisible = false;
+                      });
+                    });
+                  }),
+                ),
+              )
 
           ],
         ),
       ),
+
     );
-  }
-
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc) {
-        return StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            return Container(
-              padding: EdgeInsets.only(top: 20, left: 15),
-              height: isInitialViewVisible ?280: 430,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.0), // Adjust the radius as needed
-                  topRight: Radius.circular(20.0), // Adjust the radius as needed
-                ),
-              ),              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: isInitialViewVisible
-                    ? Column(
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: Lottie.asset(
-                        'assets/lottie_anim/tik_anim.json', // Path to the Lottie JSON file in the assets folder
-                        height: 200, // Adjust height as needed
-                        width: 200, // Adjust width as needed
-                        fit: BoxFit.cover, // Adjust the fit
-                        repeat: false, // Play animation only once
-
-                      ),
-                    ),
-
-                    SizedBox(
-                      width: 320,
-                      child: Text(
-                        'Congratulations !',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 18,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 1.08,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 5,),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SizedBox(
-                        width: 320,
-                        child: Text(
-                          'You Have successfullly booked',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF334155).withOpacity(0.9),
-                            fontSize: 16,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 0.09,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left:10.0,right: 10,top: 10),
-                      child: GestureDetector(
-                          onTap: (){
-                            Navigator.pop(context);
-
-                            // setState(() {
-                            //   isVisible=true;
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(builder: (context) => DashBoard()),
-                            //   );
-                            // });
-                          },
-                          child:  Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 52,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFF4343),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Continue',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.11,
-                                ),
-                              ),
-                            ),
-                          )
-
-                      ),
-                    ),
-                  ],
-                ): Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Voulez-vous confirmer votre place?',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 18,
-                              fontFamily: 'Archivo',
-                              fontWeight: FontWeight.w600,
-                              height: 0.08,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            color: Color(0xFFF3F4F6),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 180,
-                                  decoration: ShapeDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/eventdetails/img.png"),
-                                      fit: BoxFit.cover,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(topRight:Radius.circular(8),topLeft:Radius.circular(8),)),
-                                  ),
-                                ),
 
 
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: SizedBox(
-                                    width: 284,
-                                    child: Text(
-                                      'Monday, December 24, 2022',
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Text(
-                                    '18.00 - 23.00 PM (GMT +07:00)',
-                                    style: TextStyle(
-                                      color: Color(0xFF66758C),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.09,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0.0, right: 0, bottom: 1, top: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(
-                                          context); // Close the modal when tapped
-                                    },
-                                    child: Container(
-                                      height: 52,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 32, vertical: 17),
-                                      decoration: ShapeDecoration(
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              width: 1, color: Color(0xFFFF4343)),
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Non',
-                                          style: TextStyle(
-                                            color: Color(0xFFFF4343),
-                                            fontSize: 16,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 1.09,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 15,),
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                  
-                                    // Close the modal when tapped
-                                      setState(() {
-                                        isInitialViewVisible = true;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 52,
-                                      decoration: ShapeDecoration(
-                                        color: Color(0xFFFF4343),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Confirmer',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontFamily: 'Archivo-SemiBold',
-                                            fontWeight: FontWeight.w600,
-                                            height: 1.09,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                    ,
-              ),
-            );
-          },
-        );
-      },
-    );
   }
 
   Widget _fitnessSubItem() {
@@ -877,3 +830,5 @@ class _EventDetailsState extends State<EventDetails> {
     );
   }
 }
+
+

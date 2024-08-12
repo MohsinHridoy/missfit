@@ -448,7 +448,7 @@ class _ShopPageState extends State<ShopPage> {
                               mainAxisSpacing: 20,
                               // Adjust the spacing between items vertically
                               crossAxisSpacing: 12,
-                              childAspectRatio: 0.76,
+                              childAspectRatio: 0.75,
                               // Adjust the aspect ratio of items
                               children: List.generate(
                                 filteredItems.length,
@@ -512,26 +512,23 @@ class _ShopPageState extends State<ShopPage> {
                     Image.asset("assets/shophome/icon_search.png"),
                     SizedBox(width: 8),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 7.0),
-                        child: TextFormField(
-                          readOnly: true,
-                          style: TextStyle(
+                      child: TextFormField(
+                        readOnly: true,
+                        style: TextStyle(
+                          color: Color(0xFF9CA3AF),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0.10,
+                        ),
+                        decoration: InputDecoration.collapsed(
+                          hintText: 'Recherche',
+                          hintStyle: TextStyle(
                             color: Color(0xFF9CA3AF),
                             fontSize: 14,
                             fontFamily: 'Archivo-Regular',
                             fontWeight: FontWeight.w400,
-                            height: 0.10,
-                          ),
-                          decoration: InputDecoration.collapsed(
-                            hintText: 'Recherche',
-                            hintStyle: TextStyle(
-                              color: Color(0xFF9CA3AF),
-                              fontSize: 14,
-                              fontFamily: 'Archivo-Regular',
-                              fontWeight: FontWeight.w400,
-                              height: 0.10,
-                            ),
+                            height: 1.10,
                           ),
                         ),
                       ),

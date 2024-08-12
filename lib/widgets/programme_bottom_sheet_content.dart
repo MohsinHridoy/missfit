@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
@@ -10,6 +7,9 @@ import '../screens/workout_viewer_screen/workout_viewer_screen-test_002.dart';
 import 'common_buttons.dart';
 
 class BottomSheetContent extends StatefulWidget {
+  VoidCallback? onContinue;
+  BottomSheetContent({Key? key, this.onContinue}) : super(key: key);
+
   @override
   _BottomSheetContentState createState() => _BottomSheetContentState();
 }
@@ -20,6 +20,14 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
   int selectedCount = 0;
   final TextEditingController _textController = TextEditingController();
   bool showErrorMessage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Set the current date as the default value in the text controller
+    _textController.text = "${DateTime.now().toLocal()}".split(' ')[0];
+  }
+
   void _showCongratulationsBottomSheet() {
     showModalBottomSheet(
       context: context,
@@ -28,7 +36,6 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
           topLeft: Radius.circular(40), // Adjust the radius as needed
           topRight: Radius.circular(40), // Adjust the radius as needed
         ),
-
         child: Container(
           height: 265,
           color: Colors.white,
@@ -40,11 +47,10 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                 width: 100,
                 child: Lottie.asset(
                   'assets/lottie_anim/tik_anim.json',
-                  // Path to the Lottie JSON file in the assets folder
-                  height: 200, // Adjust height as needed
-                  width: 200, // Adjust width as needed
-                  fit: BoxFit.cover, // Adjust the fit
-                  repeat: false, // Play animation only once
+                  height: 200,
+                  width: 200,
+                  fit: BoxFit.cover,
+                  repeat: false,
                 ),
               ),
               Padding(
@@ -57,15 +63,14 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                     fontFamily: 'Archivo-SemiBold',
                     fontWeight: FontWeight.bold,
                     height: 0.08,
-
                   ),
                 ),
               ),
-             Spacer(),
+              Spacer(),
               customButtonRed(context, 'Continuer', onPressed: () {
-                // widget.onNextPressed();
-                navigateToNextPage(context,ChallengeScreen());
-
+                // navigateToNextPage(context, ChallengeScreen());
+                Navigator.pop(context);
+                widget.onContinue!();
               })
             ],
           ),
@@ -73,14 +78,14 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(40), // Adjust the radius as needed
-        topRight: Radius.circular(40), // Adjust the radius as needed
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
       ),
-
       child: Container(
         color: Colors.white,
         padding: EdgeInsets.all(16),
@@ -89,7 +94,7 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30.0,left: 5),
+              padding: const EdgeInsets.only(top: 30.0, left: 5),
               child: Text(
                 'Select Date',
                 style: TextStyle(
@@ -123,16 +128,16 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                     height: 0.12,
                   ),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE2E8F0)), // Grey border color
+                    borderSide: BorderSide(color: Color(0xFFE2E8F0)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE2E8F0)), // Grey border color when focused
+                    borderSide: BorderSide(color: Color(0xFFE2E8F0)),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE2E8F0)), // Grey border color when enabled
+                    borderSide: BorderSide(color: Color(0xFFE2E8F0)),
                   ),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.calendar_today,color:Color(0xFFE2E8F0) ,),
+                    icon: Icon(Icons.calendar_today, color: Color(0xFFE2E8F0)),
                     onPressed: () async {
                       DateTime? pickedDate = await showDatePicker(
                         context: context,
@@ -196,13 +201,15 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                     child: Container(
                       width: 56,
                       height: 48,
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 14),
                       decoration: ShapeDecoration(
-                        // color:
-                        // selectedDays[index] ? Color(0xFFD1D5DB) : Colors.white,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: selectedDays[index] ?Color(0xFFFFA142):Color(0xFFD1D5DB)),
+                          side: BorderSide(
+                              width: 1,
+                              color: selectedDays[index]
+                                  ? Color(0xFFFFA142)
+                                  : Color(0xFFD1D5DB)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -213,12 +220,11 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                           style: TextStyle(
                             color: selectedDays[index]
                                 ? Color(0xFFE88E32)
-                                :  Color(0xFF334155),
+                                : Color(0xFF334155),
                             fontSize: 14,
                             fontFamily: 'Archivo-Medium',
                             fontWeight: FontWeight.w500,
                             height: 1.10,
-
                           ),
                         ),
                       ),
@@ -242,7 +248,6 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
               ),
             ),
             SizedBox(height: 16),
-
             Padding(
               padding: const EdgeInsets.only(
                   left: 5.0, right: 5, bottom: 1, top: 15),
@@ -252,12 +257,10 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pop(
-                            context); // Close the modal when tapped
+                        Navigator.pop(context);
                       },
                       child: Container(
                         height: 52,
-
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
@@ -280,16 +283,12 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  SizedBox(width: 20),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        print("Second button clicked");
-                        Navigator.pop(context); // Close the bottom sheet after a delay
-
+                        Navigator.pop(context);
                         _showCongratulationsBottomSheet();
-
-
                       },
                       child: Container(
                         width: 150,
@@ -297,8 +296,7 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                         decoration: ShapeDecoration(
                           color: Color(0xFFFF4343),
                           shape: RoundedRectangleBorder(
-                              borderRadius:
-                              BorderRadius.circular(8)),
+                              borderRadius: BorderRadius.circular(8)),
                         ),
                         child: Center(
                           child: Text(
@@ -318,7 +316,6 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                 ],
               ),
             ),
-
           ],
         ),
       ),

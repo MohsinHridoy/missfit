@@ -363,7 +363,7 @@ class _HomeState extends State<Home> {
 
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 20.0, right: 20, top: 45, bottom: 20),
+                        left: 20.0, right: 20, top: 25, bottom: 20),
                     child: GestureDetector(
                       onTap: () {
                         navigateToNextPage(context, CoachListScreen());
@@ -443,13 +443,15 @@ class _HomeState extends State<Home> {
                   ),
 
                   SizedBox(
-                    height: 25,
+                    height: 35,
                   ),
                   _textTitle('Événement à venir'),
-
+                  SizedBox(
+                    height: 5,
+                  ),
                   _buildListUpcomingEventListItem(upcomingEventsItems, 'event'),
                   SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
 
                   Padding(
@@ -494,7 +496,7 @@ class _HomeState extends State<Home> {
 
                   _buildBlogItem(),
                   SizedBox(
-                    height: 20,
+                    height: 25,
                   ),
 
                   // _buildBlogIndicatorItem(),
@@ -641,86 +643,78 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            child: Stack(
-              children: [
-                // Visibility(
-                //   visible: hasCrossedAboveWhileUp ? true : false,
-                //   child: BackdropFilter(
-                //     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                //     child: Container(),
-                //   ),
-                // ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.,
-                    children: [
-                      Container(
-                        width: 44,
-                        height: 44,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/home/img_profile.png"),
-                            fit: BoxFit.fill,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40.0),
+              child: Container(
+                height: 22,
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.,
+                  children: [
+                    Container(
+                      width: 44,
+                      height: 44,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: ShapeDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/home/img_profile.png"),
+                          fit: BoxFit.fill,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 1,
+                            strokeAlign: BorderSide.strokeAlignOutside,
+                            color: Color(0x7FFF4343),
                           ),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              strokeAlign: BorderSide.strokeAlignOutside,
-                              color: Color(0x7FFF4343),
-                            ),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
+                          borderRadius: BorderRadius.circular(4),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0,top: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 10.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0,top: 6),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            'Hi 💪🏻',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 12,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 1.12,
                             ),
-                            Text(
-                              'Hi 💪🏻',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 1.12,
-                              ),
+                          ),
+                          Text(
+                            'Helen Hanf',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 18,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 1.08,
                             ),
-                            Text(
-                              'Helen Hanf',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 18,
-                                fontFamily: 'Archivo-Medium',
-                                fontWeight: FontWeight.w500,
-                                height: 1.08,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Spacer(),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsPage()));
-                        },
-                        child: Image.asset(
-                          "assets/home/icon_notifications.png",
-                          width: 24,
-                          height: 24,
-                          color: Color(0xFF334155),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsPage()));
+                      },
+                      child: Image.asset(
+                        "assets/home/icon_notifications.png",
+                        width: 24,
+                        height: 24,
+                        color: Color(0xFF334155),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ],
@@ -1388,7 +1382,7 @@ class _HomeState extends State<Home> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 25.0, bottom: 23),
+        padding: const EdgeInsets.only(left: 25.0, bottom: 25),
         child: Text(
           title,
           style: TextStyle(
@@ -1773,7 +1767,7 @@ class _HomeState extends State<Home> {
                     ));
               },
               child: activityCard('assets/home/img_workout.png',
-                  'Start a workout', '200 Workouts'),
+                  'Entraînement', '200 Entraînement'),
             ),
           ),
         ),
@@ -1789,7 +1783,7 @@ class _HomeState extends State<Home> {
                     ));
               },
               child: activityCard('assets/home/img_follow_programme.png',
-                  'Follow a program', '11 Active programs'),
+                  'Suivre un \nprogramme', '11 programmes actifs'),
             ),
           ),
         )
@@ -1815,7 +1809,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 80.h,
+              height: 60.h,
             ),
             Text(
               title,
@@ -1841,7 +1835,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 10,
             ),
           ],
         ),

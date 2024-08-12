@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glossy/glossy.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/cartscreen/cart001.dart';
 import 'package:miss_fit/screens/reviewlistscreen/review_list_screen.dart';
@@ -940,88 +941,94 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             Positioned(
               bottom: 0,
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 76,
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                  decoration: ShapeDecoration(
-                    color: Colors.white.withOpacity(0.5000000074505806),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1,
-                        color: Colors.white.withOpacity(0.10999999940395355),
+              child: GlossyContainer(
+                width: MediaQuery.of(context).size.width,
+                height: 76,
+                blendMode: BlendMode.srcATop,
+                // opacity:0.1,
+                color: Colors.white.withOpacity(0.04),
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 76,
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          color: Colors.white.withOpacity(0.10999999940395355),
+                        ),
                       ),
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
 
 
-                            Text(
-                              'CHF 210',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Medium',
-                                fontWeight: FontWeight.w500,
-                                height: 0.09,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                                'CHF 32.00',
+                              Text(
+                                'CHF 210',
                                 style: TextStyle(
-                                  color: Color(0xFF66758C),
-                                  fontSize: 10,
-                                  fontFamily: 'Archivo-Regular',
-                                  fontWeight: FontWeight.w400,
-                                  decoration: TextDecoration.lineThrough, // Apply line-through decoration
-                                  height: 0.14,
-                                )
-                            ),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          navigateToNextPage(context, Cart001());
-                        },
-                        child: Container(
-                          width: 120.h,
-                          height: 44.h,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFF4343),
-                            borderRadius: BorderRadius.circular(8),
+                                  color: Color(0xFF334155),
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.09,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                  'CHF 32.00',
+                                  style: TextStyle(
+                                    color: Color(0xFF66758C),
+                                    fontSize: 10,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.lineThrough, // Apply line-through decoration
+                                    height: 0.14,
+                                  )
+                              ),
+                            ],
                           ),
-                          child: Center(
-                            child: Text(
-                              'Ajouter au panier',
-                              textAlign: TextAlign.center,
-                              // Ensure text alignment is centered
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            navigateToNextPage(context, Cart001());
+                          },
+                          child: Container(
+                            width: 120.h,
+                            height: 44.h,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFF4343),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Ajouter au panier',
+                                textAlign: TextAlign.center,
+                                // Ensure text alignment is centered
 
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 1.00,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.00,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  )),
+                      ],
+                    )),
+              ),
             )
           ],
         ),

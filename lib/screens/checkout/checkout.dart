@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:glossy/glossy.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 
@@ -75,174 +76,185 @@ class _CheckOutState extends State<CheckOut> {
     return Scaffold(
       body: Container(
         color: Color(0xFFF6F6F6),
-        child: Column(
+        child: Stack(
           children: [
-            CustomAppBar(
-              title: 'Checkout',
-              onBackTap: () {
-                Navigator.pop(context);
-              },
-              iconSpacing: 3.2,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 20),
-                    Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: title_textView_Kt_SBld('Lieu de livraison')
-                    ),
-                    SizedBox(height: 10),
+            Column(
+              children: [
+                CustomAppBar(
+                  title: 'Checkout',
+                  onBackTap: () {
+                    Navigator.pop(context);
+                  },
+                  iconSpacing: 3.2,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20),
+                        Padding(
+                            padding: const EdgeInsets.all(25.0),
+                            child: title_textView_Kt_SBld('Lieu de livraison')
+                        ),
+                        SizedBox(height: 10),
 
-                    GestureDetector(
-                      onTap: (){
-                        navigateToNextPage(context,  DeliavryAddress(status: 'cart',));
+                        GestureDetector(
+                          onTap: (){
+                            navigateToNextPage(context,  DeliavryAddress(status: 'cart',));
 
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width, // Container width
-                          height: 44,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ), // Background color
-                          child: Center(
-                            child: Text(
-                              'Ajouter une adresse de livraison',
-                              style: TextStyle(
-                                color: Color(0xFFFF4343),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 1.10,
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width, // Container width
+                              height: 44,
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ), // Background color
+                              child: Center(
+                                child: Text(
+                                  'Ajouter une adresse de livraison',
+                                  style: TextStyle(
+                                    color: Color(0xFFFF4343),
+                                    fontSize: 14,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.10,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
 
-                    SizedBox(height: 25),
+                        SizedBox(height: 25),
 
-                    _buildCartItemsList(),
-                    SizedBox(height: 40),
-                    _buildVoucherCode(),
-                    SizedBox(
-                      height: 50,
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25.0,bottom: 10),
-                      child: Text(
-                        'Récapitulatif de la commande',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
+                        _buildCartItemsList(),
+                        SizedBox(height: 40),
+                        _buildVoucherCode(),
+                        SizedBox(
+                          height: 50,
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    _buildSummeryItemText('Sous-total', 'CHF 140'),
 
-                    _buildOrderSummeryItem(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-                width: MediaQuery.of(context).size.width,
-                height: 76,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25.0,bottom: 10),
+                          child: Text(
+                            'Récapitulatif de la commande',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 20,
+                              fontFamily: 'Kanit-Medium',
+                              fontWeight: FontWeight.w600,
+                              height: 0.06,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        _buildSummeryItemText('Sous-total', 'CHF 140'),
 
-                decoration: ShapeDecoration(
-                  color: Colors.white.withOpacity(0.05000000074505806),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 1,
-                      color:
-                      Colors.white.withOpacity(0.10999999940395355),
+                        _buildOrderSummeryItem(),
+                        SizedBox(
+                          height: 150,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25.0,left: 25),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Prix total',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 10,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.14,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'CHF 210',
-                            style: TextStyle(
-                              color: Color(0xFF334155),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-Medium',
-                              fontWeight: FontWeight.w500,
-                              height: 0.09,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
 
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Container(
-                          width: 150,
-                          height: 44,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFD1D5DB),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Vérifier',
+              ],
+            ),
+
+            Positioned(
+              bottom: 0,
+              child: GlossyContainer(
+                  width: MediaQuery.of(context).size.width,
+                  height: 76,
+                  blendMode: BlendMode.srcATop,
+                  // opacity:0.1,
+                  color: Colors.white.withOpacity(0.04),
+                  // decoration: ShapeDecoration(
+                  //   color: Colors.white.withOpacity(0.05000000074505806),
+                  //   shape: RoundedRectangleBorder(
+                  //     side: BorderSide(
+                  //       width: 1,
+                  //       color:
+                  //       Colors.white.withOpacity(0.10999999940395355),
+                  //     ),
+                  //   ),
+                  // ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25.0,left: 25),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Prix total',
                               style: TextStyle(
-                                color: Color(0xFF66758C),
-                                fontSize: 14,
-                                fontFamily: 'Archivo-SemiBold',
-                                fontWeight: FontWeight.w600,
-                                height: 1.10,
+                                color: Color(0xFF334155),
+                                fontSize: 10,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.14,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'CHF 210',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.09,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Container(
+                            width: 150,
+                            height: 44,
+                            decoration: ShapeDecoration(
+                              color: Color(0xFFD1D5DB),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Vérifier',
+                                style: TextStyle(
+                                  color: Color(0xFF66758C),
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-SemiBold',
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.10,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ))
+                    ],
+                  )),
+            )
 
           ],
         ),

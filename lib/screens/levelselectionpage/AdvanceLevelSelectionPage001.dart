@@ -184,7 +184,7 @@ class _AdvanceLevelSelectionPageState001
                         child: GestureDetector(
                             onTap: () async {
                               SharedPreferences prefs = await SharedPreferences.getInstance();
-                              await prefs.setBool('first_launch', true); // Set first launch to false
+                              await prefs.setString('first_launch_status', 'onboarded'); // Set status to 'onboarded'
 
                               setState(() {
 

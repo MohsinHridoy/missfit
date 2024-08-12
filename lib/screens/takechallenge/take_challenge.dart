@@ -523,7 +523,7 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        'Apply',
+                                        'Appliquer',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,

@@ -160,16 +160,10 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: TakeChallenge(),
+      child: DashBoard(),
     );
   }
 }
-
-
-
-
-
-
 
 
 

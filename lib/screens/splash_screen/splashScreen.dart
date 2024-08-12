@@ -22,16 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _checkLoggedInStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isFirstLaunch = prefs.getBool('first_launch') ?? true;
+    String firstLaunchStatus = prefs.getString('first_launch_status') ?? 'first_time';
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
     // bool isFirstLaunch=false;
     // Log the values for debugging
-    print("isFirstLaunch: $isFirstLaunch");
+    print("isFirstLaunch: $firstLaunchStatus");
     print("isLoggedIn: $isLoggedIn");
     // Simulate a splash screen delay
     await Future.delayed(Duration(seconds: 3));
 
-    if (isFirstLaunch==false) {
+    if (firstLaunchStatus == 'first_time') {
       // First launch, navigate to OnboardingScreen
       // await prefs.setBool('first_launch', false); // Set first launch to false
 

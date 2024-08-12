@@ -32,6 +32,7 @@ class ChallengesDetails extends StatefulWidget {
 
 class _ChallengesDetailsState extends State<ChallengesDetails> {
   bool isFavourite=false;
+  bool isButtonVisible=true;
   final List<String> _items = [
     'Semaine 1',
     'Semaine 2',
@@ -216,6 +217,8 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         SizedBox(
                             height:
                             35.h), // Add some spacing between text and containers
+
+                        if(widget.status!='followprogramme')
                         Text(
                           'Des exercices',
                           style: TextStyle(
@@ -228,8 +231,10 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         ),
                         SizedBox(
                             height:
-                            15.h),
-                        Container(
+                            5.h),
+                        if(widget.status!='followprogramme')
+
+                          Container(
                           child: ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
@@ -428,10 +433,8 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                           width: 320.h,
                           child: Wrap(
                             spacing: 10.0, // space between items horizontally
-                            runSpacing: 7.0, // space between items vertically
                             children: chipitems.map((chipitems) {
                               return SizedBox(
-                                height: 30.h, // Set the height of each Chip widget
 
                                 child: Chip(
                                   backgroundColor: Color(0xFFE5E7EB),
@@ -444,8 +447,8 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 12,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
                                       height:
                                       1.12,
                                     ),
@@ -457,7 +460,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         ),
 
 
-                        SizedBox(height: 35),
+                        SizedBox(height: 50),
 
                         Container(
                           width: 320,
@@ -604,7 +607,20 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                           ),
                         ),
 
-
+                        if(widget.status=='followprogramme')
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25.0),
+                            child: Text(
+                              'Plan de temps de formation',
+                              style: TextStyle(
+                                color: Color(0xFF334155),
+                                fontSize: 16,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 0.09,
+                              ),
+                            ),
+                          ),
                         SizedBox(height: 30,),
                         if(widget.status=='followprogramme')
                           Container(
@@ -741,9 +757,8 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                               },
                             ),
                           ),
-                        SizedBox(height: 35),
+                        SizedBox(height: 8),
 
-                        SizedBox(height: 20),
                         Container(
                           width: 320,
                           height: 128,
@@ -779,7 +794,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 60.h),
+                        SizedBox(height: 80.h),
 
                       ],
                     ),
@@ -856,45 +871,56 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
 
           Positioned(
             bottom: 0,
-            child: GlossyContainer(
-              width: MediaQuery.of(context).size.width,
-              // opacity:0.1,
-              color: Colors.white.withOpacity(0.04),
-              height: 88,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 10,right: 15,left: 15),
-                  // Added bottom padding
-                  child: GestureDetector(
-                    onTap: (){
-                      // navigateToNextPage(context,ChallengeScreen());
-                      if(widget.status!='followprogramme')
-                        navigateToNextPage(context,ChallengeScreen());
-                      else
-                        showModalBottomSheet(
-                        context: context,
-                        builder: (context) => BottomSheetContent(),
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 52,
+            child: Visibility(
+              visible: isButtonVisible,
+              child: GlossyContainer(
+                width: MediaQuery.of(context).size.width,
+                  blendMode: BlendMode.srcATop,
+                // opacity:0.1,
+                color: Colors.white.withOpacity(0.04),
+                height: 88,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 10,right: 15,left: 15),
+                    // Added bottom padding
+                    child: GestureDetector(
+                      onTap: (){
+                        // navigateToNextPage(context,ChallengeScreen());
+                        if(widget.status!='followprogramme')
+                          navigateToNextPage(context,ChallengeScreen());
+                        else
+                          showModalBottomSheet(
+                          context: context,
+                          builder: (context) => BottomSheetContent(
+                            onContinue: () {
+                              // Your callback logic here
+                              setState(() {
+                                isButtonVisible=false;
+                              });
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 52,
 
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFF4343),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFF4343),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
-                      ),
-                      child: Center(
-                        child:  Text(
-                          'Commencez maintenant',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 1.09,
+                        child: Center(
+                          child:  Text(
+                            'Commencez maintenant',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 1.09,
+                            ),
                           ),
                         ),
                       ),

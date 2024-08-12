@@ -25,28 +25,31 @@ class ProductItem extends StatelessWidget {
       onTap: onTap != null ? () => onTap!() : null,
       child: Container(
         width: MediaQuery.of(context).size.width / 2,
+        height: 114.h,
         child: Stack(
           children: [
             Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 114.h,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(4),
-                        topRight: Radius.circular(4),
+                AspectRatio(
+                  aspectRatio: 1.2, // Adjust aspect ratio as needed
+                  child: Container(
+                    width: double.infinity,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          topRight: Radius.circular(4),
+                        ),
                       ),
                     ),
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      item.image!,
-                      width: 100,
-                      height: 100,
+                    child: Center(
+                      child: Image.asset(
+                        item.image!,
+                        width: 100,
+                        height: 100,
+                      ),
                     ),
                   ),
                 ),

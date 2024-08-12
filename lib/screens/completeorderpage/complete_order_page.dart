@@ -164,20 +164,21 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                     ),
 
                     _buildOrderSummeryItem(),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: GestureDetector(
+                          onTap: (){
+                            navigateToNextPage(context, OrderStatus( status: OrderStatusEnum.Packed,));
+                          },
+                          child: outlineButton(context, 'Afficher le statut de la commande')
+                      ),
+                    )
+
 
                   ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: GestureDetector(
-                  onTap: (){
-                    navigateToNextPage(context, OrderStatus( status: OrderStatusEnum.Packed,));
-                  },
-                  child: outlineButton(context, 'Afficher le statut de la commande')
-              ),
-            )
           ],
         ),
       ),
@@ -616,7 +617,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                     fontSize: 14,
                     fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
-                    height: 0.10,
+                    height: 1.10,
                   ),
                 ),
               ),
@@ -631,7 +632,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                   fontSize: 12,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
-                  height: 0.12,
+                  height: 1.12,
                 ),
               ),
             )
