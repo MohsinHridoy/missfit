@@ -594,6 +594,8 @@ class _VerticalProgressBarState extends State<VerticalProgressBar>
     with SingleTickerProviderStateMixin {
   int progress = 1; // Initial progress value
   late AnimationController _controller;
+  bool isEditable=true;
+
   bool isVisible = false;
   bool isVisible1 = false;
   TextEditingController controller = TextEditingController();
@@ -894,6 +896,7 @@ class _VerticalProgressBarState extends State<VerticalProgressBar>
                                             bottom: 13.0, left: 15),
                                         child: TextFormField(
                                           controller: controller,
+                                          enabled: isEditable,
                                           onChanged: (value) {
                                             setState(() {
                                               // Update button color state based on text length
@@ -932,6 +935,7 @@ class _VerticalProgressBarState extends State<VerticalProgressBar>
                                                 setState(() {
                                                   isButtonRedInVisible =
                                                       true; // Make the button invisible
+                                                  isEditable=false;
                                                 });
                                               }
                                             },
@@ -974,8 +978,12 @@ class _VerticalProgressBarState extends State<VerticalProgressBar>
                                             child: GestureDetector(
                                               onTap: (){
                                                 setState(() {
+                                                  isButtonRed = false;
+                                                  isEditable=true;
                                                   isButtonRedInVisible =
                                                   false; // Make the button invisible
+                                                  controller.clear();
+
                                                 });
                                               },
                                               child: Row(
@@ -1029,7 +1037,12 @@ class _VerticalProgressBarState extends State<VerticalProgressBar>
                               child: isButtonRedInVisible?customButtonRed(context, 'Continue', onPressed: () {
                                 navigateToNextPage(context, DeliavryAddress(status: 'subscription',));
 
-                              }):outlineButton(context,'Sauter'),
+                              }):GestureDetector(
+                                  onTap: (){
+                                    navigateToNextPage(context, DeliavryAddress(status: 'subscription',));
+
+                                  },
+                                  child: outlineButton(context,'Sauter')),
                             ),
                           ],
                         ),

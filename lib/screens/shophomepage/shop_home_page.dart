@@ -115,12 +115,9 @@ class _ShopPageState extends State<ShopPage> {
                     SizedBox(
                       height: 35,
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          navigateToNextPage(context, AllItemsSearchPage());
-                        },
-                        child: _buildSearchBar()),
-                    SizedBox(height: 30),
+                    _buildSearchBar(),
+
+                    SizedBox(height: 40),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0, right: 25),
@@ -138,7 +135,7 @@ class _ShopPageState extends State<ShopPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 10),
 
                     Padding(
                       padding: const EdgeInsets.only(right: 20.0),
@@ -163,7 +160,7 @@ class _ShopPageState extends State<ShopPage> {
                                 },
                                 child: Container(
                                   width:
-                                      MediaQuery.of(context).size.width / 2.37,
+                                      MediaQuery.of(context).size.width / 2.36,
                                   // Set width to half of screen width
                                   height: 170,
                                   padding: const EdgeInsets.only(bottom: 5),
@@ -213,7 +210,7 @@ class _ShopPageState extends State<ShopPage> {
                                               ),
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.all(8.0),
+                                                    const EdgeInsets.all(9.0),
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -235,51 +232,34 @@ class _ShopPageState extends State<ShopPage> {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(height: 18),
-                                                    Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            'CHF ${item.price.toStringAsFixed(2)}',
-                                                            style: TextStyle(
-                                                              color: Color(
-                                                                  0xFF334155),
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'Archivo-Medium',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              height: 0.12,
-                                                            ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top: 10.0),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          'CHF ${item.price!.toStringAsFixed(2)}',
+                                                          style: TextStyle(
+                                                            color: Color(0xFF334155),
+                                                            fontSize: 12,
+                                                            fontFamily: 'Archivo-Medium',
+                                                            fontWeight: FontWeight.w500,
                                                           ),
-                                                          Text(
-                                                            'CHF ${item.originalPrice.toStringAsFixed(2)}',
-                                                            style: TextStyle(
-                                                              color: Color(
-                                                                  0xFF66758C),
-                                                              fontSize: 10,
-                                                              fontFamily:
-                                                                  'Archivo-Regular',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .lineThrough,
-                                                              height: 0.14,
-                                                            ),
+                                                        ),
+                                                        Text(
+                                                          'CHF ${item.originalPrice!.toStringAsFixed(2)}',
+                                                          style: TextStyle(
+                                                            color: Color(0xFF66758C),
+                                                            fontSize: 10,
+                                                            fontFamily: 'Archivo-Regular',
+                                                            fontWeight: FontWeight.w400,
+                                                            decoration: TextDecoration.lineThrough,
                                                           ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                      ],
                                                     ),
+                                                  ),
+
                                                     SizedBox(height: 4),
                                                   ],
                                                 ),
@@ -298,7 +278,7 @@ class _ShopPageState extends State<ShopPage> {
                                         ),
                                       ),
                                       Positioned(
-                                        top: 19,
+                                        top: 13,
                                         left: 10,
                                         child: Visibility(
                                           visible: items[index].isChecked,
@@ -309,7 +289,7 @@ class _ShopPageState extends State<ShopPage> {
                                               fontSize: 10,
                                               fontFamily: 'Archivo-Medium',
                                               fontWeight: FontWeight.w500,
-                                              height: 0.15,
+                                              height: 1.15,
                                             ),
                                           ),
                                         ),
@@ -341,12 +321,12 @@ class _ShopPageState extends State<ShopPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 5),
 
                     Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 0.0, horizontal: 18),
-                      child: Container(
+                      child: SizedBox(
                         height: 50.0,
                         width: MediaQuery.of(context).size.width,
                         child: ListView.builder(
@@ -431,45 +411,180 @@ class _ShopPageState extends State<ShopPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5.h),
+                    SizedBox(height: 20),
 
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 25.0, right: 25),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GridView.count(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              crossAxisCount: 2,
-                              // Number of items per row
-                              mainAxisSpacing: 20,
-                              // Adjust the spacing between items vertically
-                              crossAxisSpacing: 12,
-                              childAspectRatio: 0.75,
-                              // Adjust the aspect ratio of items
-                              children: List.generate(
-                                filteredItems.length,
-                                    (index) {
+                        child:  SizedBox(
+                          height: MediaQuery.of(context).size.height,  // Adjust the height as needed
+                          child: Padding(
+                            padding:  EdgeInsets.zero,
+                            child: MediaQuery.removePadding(
+                              context: context,
+                              removeTop: true,
+                              child: GridView.builder(
+                                scrollDirection: Axis.vertical,
+                                physics: NeverScrollableScrollPhysics(), // Disable internal scrolling
+                                itemCount: filteredItems.length,
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 13,
+                                  crossAxisSpacing: 13,
+                                  childAspectRatio: 0.752,
+                                ),
+                                itemBuilder: (context, index) {
                                   final item = filteredItems[index];
-                                  return ProductItem(
-                                    item: item,
-                                    onTap: () {
-                                      navigateToNextPage(
-                                          context, ProductDetails());
+                                  return LayoutBuilder(
+                                    builder: (context, constraints) {
+                                      double itemWidth = constraints.maxWidth;
+                                      double aspectRatio = 4 / 3; // Example aspect ratio of 4:3
+                                      double itemHeight = itemWidth * (3 / 4); // Calculate height based on the aspect ratio
+                              
+                                      return GestureDetector(
+                                        onTap: () {
+                                          navigateToNextPage(context, ProductDetails());
+                                        },
+                                        child: Container(
+                                          width: itemWidth, // Use the width provided by LayoutBuilder
+                                          height: itemHeight, // Dynamic height based on aspect ratio
+                                          padding: const EdgeInsets.only(bottom: 5),
+                                          child: Stack(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Container(
+                                                    width: double.infinity,
+                                                    height: itemHeight * 1.25, // Adjust this value based on design
+                                                    clipBehavior: Clip.antiAlias,
+                                                    decoration: ShapeDecoration(
+                                                      color: Colors.white,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.only(
+                                                          topLeft: Radius.circular(4),
+                                                          topRight: Radius.circular(4),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    child: Center(
+                                                      child: Image.asset(
+                                                        item.image!,
+                                                        width: itemWidth * 0.75,
+                                                        height: itemHeight * 0.75, // Adjust the image size as needed
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration: ShapeDecoration(
+                                                        color: Color(0xFFF3F4F6),
+                                                        shape: RoundedRectangleBorder(
+                                                          side: BorderSide(
+                                                            width: 1,
+                                                            color: Color(0xFFE5E7EB),
+                                                          ),
+                                                          borderRadius: BorderRadius.only(
+                                                            bottomLeft: Radius.circular(4),
+                                                            bottomRight: Radius.circular(4),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(9.0),
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(
+                                                              item.title!,
+                                                              overflow: TextOverflow.ellipsis,
+                                                              style: TextStyle(
+                                                                color: Color(0xFF334155),
+                                                                fontSize: 14,
+                                                                fontFamily: 'Archivo-SemiBold',
+                                                                fontWeight: FontWeight.w600,
+                                                              ),
+                                                            ),
+                                                            // Spacer(),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(top: 10.0),
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
+                                                                  Text(
+                                                                    'CHF ${item.price!.toStringAsFixed(2)}',
+                                                                    style: TextStyle(
+                                                                      color: Color(0xFF334155),
+                                                                      fontSize: 12,
+                                                                      fontFamily: 'Archivo-Medium',
+                                                                      fontWeight: FontWeight.w500,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    'CHF ${item.originalPrice!.toStringAsFixed(2)}',
+                                                                    style: TextStyle(
+                                                                      color: Color(0xFF66758C),
+                                                                      fontSize: 10,
+                                                                      fontFamily: 'Archivo-Regular',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      decoration: TextDecoration.lineThrough,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Visibility(
+                                                visible: item.isChecked ?? false,
+                                                child: Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 50,
+                                                    child: Image.asset("assets/product_details/icon_sale.png"),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 13,
+                                                left: 10,
+                                                child: Visibility(
+                                                  visible: item.isChecked ?? false,
+                                                  child: Text(
+                                                    'Sale',
+                                                    style: TextStyle(
+                                                      color: Color(0xFF0F172A),
+                                                      fontSize: 10,
+                                                      fontFamily: 'Archivo-Medium',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
                                     },
                                   );
+                                  ;
                                 },
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
 
-                    SizedBox(height: 200),
+                    SizedBox(height: 40),
                   ],
                 ),
               ),
@@ -488,14 +603,68 @@ class _ShopPageState extends State<ShopPage> {
         child: Row(
           children: [
             Expanded(
-              child: Container(
-                height: 40,
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  left: 12,
-                  right: 8,
-                  bottom: 8,
+              child: GestureDetector(
+                onTap: (){
+                  navigateToNextPage(context, AllItemsSearchPage());
+
+                },
+                child: Container(
+                  height: 40,
+
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    left: 12,
+                    right: 8,
+                    bottom: 8,
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: Colors.white.withOpacity(0.05),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: GestureDetector(
+                    onTap: (){
+                      navigateToNextPage(context, AllItemsSearchPage());
+
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/shophome/icon_search.png"),
+                        SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            'Recherche',
+                            style: TextStyle(
+                              color: Color(0xFF9CA3AF),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 1.10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
+              ),
+            ),
+            SizedBox(width: 10),
+            GestureDetector(
+              onTap: (){
+                navigateToNextPage(context, FilterShopScreen());
+
+              },
+              child: Container(
+                width: 40,
+                height: 40,
+                padding: const EdgeInsets.all(8),
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
                   color: Colors.white.withOpacity(0.05),
@@ -504,59 +673,14 @@ class _ShopPageState extends State<ShopPage> {
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/shophome/icon_search.png"),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: TextFormField(
-                        readOnly: true,
-                        style: TextStyle(
-                          color: Color(0xFF9CA3AF),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 0.10,
-                        ),
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Recherche',
-                          hintStyle: TextStyle(
-                            color: Color(0xFF9CA3AF),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Regular',
-                            fontWeight: FontWeight.w400,
-                            height: 1.10,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(width: 10),
-            Container(
-              width: 40,
-              height: 40,
-              padding: const EdgeInsets.all(8),
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.05),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/shophome/icon_filter.png',
-                  // Replace 'your_image.png' with the actual path to your image asset
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.cover, // Adjust the fit as needed
+                child: Center(
+                  child: Image.asset(
+                    'assets/shophome/icon_filter.png',
+                    // Replace 'your_image.png' with the actual path to your image asset
+                    width: 24,
+                    height: 24,
+                    fit: BoxFit.cover, // Adjust the fit as needed
+                  ),
                 ),
               ),
             ),

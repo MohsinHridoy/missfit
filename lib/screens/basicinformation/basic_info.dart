@@ -415,8 +415,8 @@ class _BasicInfoState extends State<BasicInfo> {
             CustomAppBar(
               title: 'Informations de base',
               onBackTap: () {
-                // Navigator.pop(context);
-                navigateToNextPage(context, DashBoard(number: 3));
+                Navigator.pop(context);
+                // navigateToNextPage(context, DashBoard(number: 3));
 
               },
               iconSpacing: 5,

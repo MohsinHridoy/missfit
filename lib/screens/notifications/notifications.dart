@@ -1,237 +1,300 @@
 import 'package:flutter/material.dart';
 
-class NotificationsPage extends StatefulWidget {
+import '../../widgets/custom_app_bar.dart';
+
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({super.key});
+
   @override
-  _NotificationsPageState createState() => _NotificationsPageState();
+  _NotificationScreenState createState() => _NotificationScreenState();
 }
 
-class _NotificationsPageState extends State<NotificationsPage> {
-  // Define the filter state
-  String _selectedFilter = 'All';
+class _NotificationScreenState extends State<NotificationScreen> {
+  int _selectedIndex = 0;
 
-  // Define all notifications with dates and status
-  final List<Map<String, String>> allNotifications = [
-    {"title": "Order Placed", "message": "Your order successfully placed. Your Order no #3432314", "status": "unseen", "date": "2024-07-27"},
-    {"title": "Order Placed", "message": "Your order successfully placed. Your Order no #3432315", "status": "seen", "date": "2024-07-26"},
-    {"title": "Order Out for Delivery", "message": "Your order is out for delivery. Your Order no #3432316", "status": "unseen", "date": "2024-07-26"},
+  final List<Map<String, dynamic>> notifications = [
+    {
+      'date': DateTime.now(),
+      'message': 'Your order successfully placed. Your Order no #3432314',
+      'time': '4:12 PM',
+      'seen': false,
+    },
+    {
+      'date': DateTime.now(),
+      'message': 'Your payment was received.',
+      'time': '3:50 PM',
+      'seen': false,
+    },
+    {
+      'date': DateTime.now().subtract(Duration(days: 1)),
+      'message': 'Your order has been shipped.',
+      'time': '3:00 PM',
+      'seen': false,
+    },
+    {
+      'date': DateTime.now().subtract(Duration(days: 1)),
+      'message': 'Your order is out for delivery.',
+      'time': '2:15 PM',
+      'seen': true,
+    },
+    {
+      'date': DateTime.now().subtract(Duration(days: 2)),
+      'message': 'Your package was delivered.',
+      'time': '1:15 PM',
+      'seen': true,
+    },
+    {
+      'date': DateTime.now().subtract(Duration(days: 3)),
+      'message': 'Your package was delivered.',
+      'time': '1:15 PM',
+      'seen': true,
+    },
   ];
 
-  // Method to filter notifications based on the selected filter
-  List<Map<String, String>> get filteredNotifications {
-    if (_selectedFilter == 'Unseen') {
-      return allNotifications
-          .where((notification) => notification['status'] == 'unseen')
-          .toList();
+  List<Map<String, dynamic>> getFilteredNotifications() {
+    if (_selectedIndex == 0) {
+      // Filter unseen notifications
+      return notifications.where((notif) => !notif['seen']).toList();
+    } else {
+      // Return all notifications
+      return notifications;
     }
-    return allNotifications;
   }
 
-  // Method to handle filter change
-  void _setFilter(String filter) {
-    setState(() {
-      _selectedFilter = filter;
-    });
+  String formatDate(DateTime date) {
+    final today = DateTime.now();
+    final yesterday = DateTime.now().subtract(Duration(days: 1));
+
+    if (date.year == today.year &&
+        date.month == today.month &&
+        date.day == today.day) {
+      return 'Today';
+    } else if (date.year == yesterday.year &&
+        date.month == yesterday.month &&
+        date.day == yesterday.day) {
+      return 'Yesterday';
+    } else {
+      return '${date.day}/${date.month}/${date.year}';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final filteredNotifications = getFilteredNotifications();
+
+    // Group notifications by date
+    final Map<String, List<Map<String, dynamic>>> groupedNotifications = {};
+    for (var notification in filteredNotifications) {
+      final dateKey = formatDate(notification['date']);
+      if (!groupedNotifications.containsKey(dateKey)) {
+        groupedNotifications[dateKey] = [];
+      }
+      groupedNotifications[dateKey]!.add(notification);
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Notifications'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        color: const Color(0xFFF6F6F6), // Background color of the body
+        width: screenWidth, // Set width to cover the entire screen width
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FilterRow(
-              selectedFilter: _selectedFilter,
-              onFilterChanged: _setFilter,
+            CustomAppBar(
+              title:  'Notification',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3.5,
             ),
-            SizedBox(height: 16),
             Expanded(
-              child: NotificationsList(
-                notifications: filteredNotifications,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, // Align children to start
+                children: [
+              
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25, left: 20), // Add left padding to align to start
+                    child: Container(
+                      width: screenWidth - 40, // Adjust width based on screen width
+                      height: 32,
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFFE5E7EB),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedIndex = 0;
+                                });
+                              },
+                              child: Container(
+                                width: (screenWidth - 40) / 2, // Half of the adjusted width
+                                height: 32,
+                                decoration: ShapeDecoration(
+                                  color: _selectedIndex == 0 ? Colors.white : Colors.transparent,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Unseen',
+                                    style: TextStyle(
+                                      color: _selectedIndex == 0 ? const Color(0xFF334155) :  Color(0xFF334155),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.09, // Adjust height to fit better
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedIndex = 1;
+                                });
+                              },
+                              child: Container(
+                                width: (screenWidth - 40) / 2, // Half of the adjusted width
+                                height: 32,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+                                decoration: ShapeDecoration(
+                                  color: _selectedIndex == 1 ? Colors.white : Colors.transparent,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'All',
+                                    style: TextStyle(
+                                      color: _selectedIndex == 1 ? const Color(0xFF334155) : Color(0xFF334155),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.09, // Adjust height to fit better
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(bottom: 100), //Increase this as per your requirment
+                      itemCount: groupedNotifications.length,
+                      itemBuilder: (context, index) {
+                        final dateKey = groupedNotifications.keys.elementAt(index);
+                        final notificationsForDate = groupedNotifications[dateKey]!;
+              
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40, left: 20), // Align text to start
+                              child: Text(
+                                dateKey,
+                                style: TextStyle(
+                                  color: Color(0xFF334155),
+                                  fontSize: 18,
+                                  fontFamily: 'Kanit-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.07,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 20,),
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Column(
+                                children: notificationsForDate.map((notification) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            width: 8,
+                                            height: 8,
+                                            decoration: ShapeDecoration(
+                                              color: notification['seen']
+                                                  ? Colors.transparent
+                                                  : const Color(0xFF22C55E),
+                                              shape: const OvalBorder(),
+                                            ),
+                                          ),
+                                        ),
+
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              width: screenWidth - 111,
+                                              child: Text(
+                                              notification['message'],
+
+                                                style: const TextStyle(
+                                                  color: Color(0xFF334155),
+                                                  fontSize: 14,
+                                                  fontFamily: 'Archivo-Medium',
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 1.6,
+
+                                                ),
+                                              ),
+                                            ),
+
+                                            Text(
+                                              '\nToday at ${notification['time']}',
+                                              style: const TextStyle(
+                                                color: Color(0xFF66758C),
+                                                fontSize: 12,
+                                                fontFamily: 'Archivo-Regular',
+                                                fontWeight: FontWeight.w400,
+                                                height: 1.00,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+
+
+
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class FilterRow extends StatelessWidget {
-  final String selectedFilter;
-  final Function(String) onFilterChanged;
-
-  FilterRow({required this.selectedFilter, required this.onFilterChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () => onFilterChanged('Unseen'),
-          child: Container(
-            width: 150, // Adjusted width to fit screen
-            height: 32,
-            decoration: ShapeDecoration(
-              color: selectedFilter == 'Unseen' ? Colors.blue : Color(0xFFE5E7EB),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Center(
-              child: Text(
-                'Unseen',
-                style: TextStyle(
-                  color: selectedFilter == 'Unseen' ? Colors.white : Color(0xFF334155),
-                  fontSize: 14,
-                  fontFamily: 'Archivo',
-                  fontWeight: FontWeight.w500,
-                  height: 1.2, // Adjusted for better text alignment
-                ),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(width: 16.84),
-        GestureDetector(
-          onTap: () => onFilterChanged('All'),
-          child: Container(
-            width: 150, // Adjusted width to fit screen
-            height: 32,
-            decoration: ShapeDecoration(
-              color: selectedFilter == 'All' ? Colors.blue : Color(0xFFE5E7EB),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Center(
-              child: Text(
-                'All',
-                style: TextStyle(
-                  color: selectedFilter == 'All' ? Colors.white : Color(0xFF334155),
-                  fontSize: 14,
-                  fontFamily: 'Archivo',
-                  fontWeight: FontWeight.w500,
-                  height: 1.2, // Adjusted for better text alignment
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class NotificationsList extends StatelessWidget {
-  final List<Map<String, String>> notifications;
-
-  NotificationsList({required this.notifications});
-
-  @override
-  Widget build(BuildContext context) {
-    final todayDate = DateTime.now().toLocal().toString().split(' ')[0];
-    final yesterdayDate = DateTime.now().subtract(Duration(days: 1)).toLocal().toString().split(' ')[0];
-
-    // Group notifications by date
-    final Map<String, List<Map<String, String>>> groupedNotifications = {};
-    for (var notification in notifications) {
-      final date = notification['date']!;
-      if (!groupedNotifications.containsKey(date)) {
-        groupedNotifications[date] = [];
-      }
-      groupedNotifications[date]!.add(notification);
-    }
-
-    // Prepare sorted dates and their labels
-    final sortedDates = groupedNotifications.keys.toList();
-    sortedDates.sort((a, b) => a.compareTo(b));
-
-    return ListView.builder(
-      itemCount: sortedDates.length,
-      itemBuilder: (context, index) {
-        final date = sortedDates[index];
-        final notificationsForDate = groupedNotifications[date]!;
-
-        // Determine the section label based on the date
-        final sectionLabel = date == todayDate
-            ? 'Today'
-            : date == yesterdayDate
-            ? 'Yesterday'
-            : 'Earlier';
-
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16.0),
-          child: Container(
-            color: Colors.white, // Background color for each date group
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  sectionLabel,
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 16,
-                    fontFamily: 'Archivo',
-                    fontWeight: FontWeight.w600,
-                    height: 1.2,
-                  ),
-                ),
-                SizedBox(height: 8),
-                ...notificationsForDate.map((notification) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Container(
-                    padding: EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          notification['title']!,
-                          style: TextStyle(
-                            color: Color(0xFF334155),
-                            fontSize: 14,
-                            fontFamily: 'Archivo',
-                            fontWeight: FontWeight.w500,
-                            height: 1.2,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          notification['message']!,
-                          style: TextStyle(
-                            color: Color(0xFF334155),
-                            fontSize: 14,
-                            fontFamily: 'Archivo',
-                            fontWeight: FontWeight.w500,
-                            height: 1.2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )).toList(),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }

@@ -48,13 +48,9 @@ dependencies:
   flutter_riverpod: ^2.3.0
   glossy: ^0.0.4
   glass: ^2.0.0+1
-
-
-
-
-
-
   lottie: ^3.1.0
+
+
 
 
 
@@ -123,6 +119,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+
     - family: Archivo-Regular
       fonts:
         - asset: fonts/archivo/Archivo-Regular.ttf

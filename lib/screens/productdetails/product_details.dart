@@ -223,7 +223,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   SizedBox(height: 20),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 1462,
+                    height: 1360,
                     clipBehavior: Clip.antiAlias,
                     decoration: ShapeDecoration(
                       color: Color(0xFFF6F6F6),
@@ -307,14 +307,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 fontSize: 18,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
-                                height: 0.08,
+                                height: 1.08,
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
+
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 20.0, right: 20, top: 20, bottom: 20),
@@ -333,7 +331,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           fontSize: 18,
                                           fontFamily: 'Archivo-Medium',
                                           fontWeight: FontWeight.w500,
-                                          height: 0.08,
+                                          height: 1.08,
                                         ),
                                       ),
                                       TextSpan(
@@ -747,7 +745,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             child: Padding(
                                               padding:
                                               const EdgeInsets.only(
-                                                  top: 8.0,
                                                   left: 10),
                                               child: Column(
                                                 crossAxisAlignment:
@@ -765,10 +762,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       fontWeight:
                                                       FontWeight
                                                           .w400,
-                                                      height: 0.09,
+                                                      height: 1.1,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 15),
+                                                  SizedBox(height: 7),
                                                   if (item.stars !=
                                                       null) ...[
                                                     Row(
@@ -853,13 +850,18 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           children: item.imageUrls
                                               ?.map((imageUrl) {
                                             return Padding(
-                                              padding:
-                                              const EdgeInsets
-                                                  .all(8.0),
-                                              child: Image.asset(
-                                                  imageUrl,
-                                                  width: 50,
-                                                  height: 50),
+                                              padding: const EdgeInsets.only(right: 8,bottom:10 ),
+                                              child: Container(
+                                                width: 56,
+                                                height: 56,
+                                                padding: const EdgeInsets.all(4),
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: ShapeDecoration(
+                                                  color: Color(0xFFE2E8F0),
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                                                ),
+                                                child:  Center(child: Image.asset(imageUrl, width: 50, height: 50)),
+                                              ),
                                             );
                                           }).toList() ??
                                               [], // Use an empty list if imageUrls is null

@@ -19,7 +19,7 @@ class _WishListState extends State<WishList> {
   List<CustomItem> items = [
     CustomItem(
       title: 'Dumbbells',
-      image: 'assets/product_details/img_dumble.png',
+      image: 'assets/product_details/img_power_bottle.png',
       price: 25.00,
       originalPrice: 30.00,
       category: 'Gym Equipment',
@@ -27,7 +27,7 @@ class _WishListState extends State<WishList> {
     ),
     CustomItem(
       title: 'Big Power Nutrition',
-      image: 'assets/product_details/img_power_bottle.png',
+      image: 'assets/product_details/img_dumble.png',
       price: 25.00,
       originalPrice: 30.00,
       category: 'Gym Equipment',
@@ -51,7 +51,7 @@ class _WishListState extends State<WishList> {
     ),
   ];
 
-  List<String> categoryItems = ['All', 'Gym Equipment', 'Nutrition', 'Body'];
+  List<String> categoryItems = ['Toute', 'Gym Equipment', 'Nutrition', 'Body'];
   List<CustomItem> filteredItems = [];
   int selectedIndex = 0;
   List<bool> itemAdded = [];
@@ -209,7 +209,7 @@ class _WishListState extends State<WishList> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 10.0, top: 5, right: 3),
+                                            left: 10.0, top: 2, right: 3),
                                         child: Column(
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -225,7 +225,7 @@ class _WishListState extends State<WishList> {
                                                   fontFamily:
                                                   'Archivo-SemiBold',
                                                   fontWeight: FontWeight.w600,
-                                                  height: 0.09,
+                                                  height: 1.09,
                                                 ),
                                               ),
                                             ),
@@ -268,7 +268,7 @@ class _WishListState extends State<WishList> {
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(height: 25),
+                                            SizedBox(height: 20),
                                             GestureDetector(
                                               onTap: () {
                                                 ScaffoldMessenger.of(context)
@@ -305,7 +305,7 @@ class _WishListState extends State<WishList> {
                                                     color: Color(0xFFFF4343),
                                                     borderRadius:
                                                     BorderRadius.circular(
-                                                        8),
+                                                        4),
                                                   ),
                                                   child: Center(
                                                     child: Text(
@@ -332,7 +332,7 @@ class _WishListState extends State<WishList> {
                                   Align(
                                     alignment: Alignment.bottomLeft,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 50.0, right: 10),
+                                      padding: const EdgeInsets.only(top: 50.0, right: 3),
                                       child: GestureDetector(
                                         onTap: () {
                                           showModalBottomSheet(

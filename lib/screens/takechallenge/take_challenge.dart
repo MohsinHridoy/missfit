@@ -410,12 +410,11 @@ class _TakeChallengeState extends State<TakeChallenge> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 30),
+                                padding: const EdgeInsets.only(left: 25.0,top: 35),
                                 child: _buildTitle('Type de défi'),
                               ),
-                              SizedBox(height: 20),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 15,right: 25),
+                                padding: const EdgeInsets.only(left: 25.0,top: 25,right: 25),
                                 child: Wrap(
                                   spacing: 12.0, // Spacing between items
                                   runSpacing: 12.0, // Spacing between lines
@@ -436,12 +435,11 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 35,right: 25),
+                                padding: const EdgeInsets.only(left: 25.0,top: 45,right: 25),
                                 child: _buildTitle('Difficulté'),
                               ),
-                              SizedBox(height: 30),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0),
+                                padding: const EdgeInsets.only(left: 25.0,top: 25),
                                 child: Wrap(
                                   spacing: 12.0, // Spacing between items
                                   runSpacing: 12.0, // Spacing between lines
@@ -471,12 +469,11 @@ class _TakeChallengeState extends State<TakeChallenge> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0,top: 35),
+                                padding: const EdgeInsets.only(left: 25.0,top: 45),
                                 child: _buildTitle('Durée'),
                               ),
-                              SizedBox(height: 20),
                               Padding(
-                                padding: const EdgeInsets.only(left: 25.0, top: 20),
+                                padding: const EdgeInsets.only(left: 25.0, top: 25),
                                 child: Wrap(
                                   spacing: 12.0, // Spacing between items
                                   runSpacing: 12.0, // Spacing between lines

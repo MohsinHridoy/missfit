@@ -83,174 +83,184 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(40),
-        topRight: Radius.circular(40),
+        topLeft: Radius.circular(50),
+        topRight: Radius.circular(50),
       ),
       child: Container(
         color: Colors.white,
         padding: EdgeInsets.all(16),
+        height: showErrorMessage?360.h:340.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 5),
-              child: Text(
-                'Select Date',
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 16,
-                  fontFamily: 'Archivo-Medium',
-                  fontWeight: FontWeight.w500,
-                  height: 0.09,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 5.0),
-              child: TextField(
-                controller: _textController,
-                readOnly: true,
-                style: TextStyle(
-                  color: Color(0xFF334155),
-                  fontSize: 16,
-                  fontFamily: 'Archivo-Medium',
-                  fontWeight: FontWeight.w500,
-                  height: 1.09,
-                ),
-                decoration: InputDecoration(
-                  labelText: 'Starting Date',
-                  labelStyle: TextStyle(
-                    color: Color(0xFF6B7280),
-                    fontSize: 12,
-                    fontFamily: 'Archivo-Regular',
-                    fontWeight: FontWeight.w400,
-                    height: 0.12,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Select Date',
+                    style: TextStyle(
+                      color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.09,
+                    ),
                   ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE2E8F0)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE2E8F0)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE2E8F0)),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.calendar_today, color: Color(0xFFE2E8F0)),
-                    onPressed: () async {
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2101),
-                      );
-                      if (pickedDate != null) {
-                        setState(() {
-                          _textController.text =
-                          "${pickedDate.toLocal()}".split(' ')[0];
-                        });
-                      }
-                    },
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Jour',
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 16,
-                fontFamily: 'Archivo-Medium',
-                fontWeight: FontWeight.w500,
-                height: 0.09,
-              ),
-            ),
-            Container(
-              height: 90.h,
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 88 / 48,
-                ),
-                itemCount: days.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (!selectedDays[index]) {
-                          if (selectedCount < 3) {
-                            selectedDays[index] = true;
-                            selectedCount++;
-                            showErrorMessage = false;
-                          } else {
-                            showErrorMessage = true;
-                          }
-                        } else {
-                          selectedDays[index] = false;
-                          selectedCount--;
-                          showErrorMessage = false;
-                        }
-                      });
-                    },
-                    child: Container(
-                      width: 56,
-                      height: 48,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 14),
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              width: 1,
-                              color: selectedDays[index]
-                                  ? Color(0xFFFFA142)
-                                  : Color(0xFFD1D5DB)),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0,bottom: 40),
+                    child: TextField(
+                      controller: _textController,
+                      readOnly: true,
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-Medium',
+                        fontWeight: FontWeight.w500,
+                        height: 1.09,
                       ),
-                      child: Center(
-                        child: Text(
-                          days[index],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: selectedDays[index]
-                                ? Color(0xFFE88E32)
-                                : Color(0xFF334155),
-                            fontSize: 14,
-                            fontFamily: 'Archivo-Medium',
-                            fontWeight: FontWeight.w500,
-                            height: 1.10,
-                          ),
+                      decoration: InputDecoration(
+                        labelText: 'Starting Date',
+                        labelStyle: TextStyle(
+                          color: Color(0xFF6B7280),
+                          fontSize: 12,
+                          fontFamily: 'Archivo-Regular',
+                          fontWeight: FontWeight.w400,
+                          height: 0.12,
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.calendar_today, color: Color(0xFFE2E8F0)),
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2101),
+                            );
+                            if (pickedDate != null) {
+                              setState(() {
+                                _textController.text =
+                                "${pickedDate.toLocal()}".split(' ')[0];
+                              });
+                            }
+                          },
                         ),
                       ),
                     ),
-                  );
-                },
+                  ),
+                  Text(
+                    'Jour',
+                    style: TextStyle(
+                      color: Color(0xFF334155),
+                      fontSize: 16,
+                      fontFamily: 'Archivo-Medium',
+                      fontWeight: FontWeight.w500,
+                      height: 0.09,
+                    ),
+                  ),
+                   SizedBox(height: 25,),
+                  Container(
+                    height: 100.h,
+                    width: 230.h,
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        mainAxisSpacing: 14,
+                        crossAxisSpacing: 14,
+                        childAspectRatio: 98 / 82,
+                      ),
+                      itemCount: days.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (!selectedDays[index]) {
+                                if (selectedCount < 3) {
+                                  selectedDays[index] = true;
+                                  selectedCount++;
+                                  showErrorMessage = false;
+                                } else {
+                                  showErrorMessage = true;
+                                }
+                              } else {
+                                selectedDays[index] = false;
+                                selectedCount--;
+                                showErrorMessage = false;
+                              }
+                            });
+                          },
+                          child: Container(
+                            height: 48,
+
+
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1,
+                                    color: selectedDays[index]
+                                        ? Color(0xFFFFA142)
+                                        : Color(0xFFD1D5DB)),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                days[index],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: selectedDays[index]
+                                      ? Color(0xFFE88E32)
+                                      : Color(0xFF334155),
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                ],
               ),
             ),
-            SizedBox(height: 5),
-            Visibility(
-              visible: showErrorMessage,
-              child: Text(
-                'You can select only 3 days',
-                style: TextStyle(
-                  color: Color(0xFFEF4444),
-                  fontSize: 16,
-                  fontFamily: 'Archivo-Medium',
-                  fontWeight: FontWeight.w500,
-                  height: 0.09,
+
+
+
+            if(showErrorMessage)
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Text(
+                  'You can select only 3 days',
+                  style: TextStyle(
+                    color: Color(0xFFEF4444),
+                    fontSize: 16,
+                    fontFamily: 'Archivo-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 1.09,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16),
+            Spacer(),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 5.0, right: 5, bottom: 1, top: 15),
+                  left: 5.0, right: 5, bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

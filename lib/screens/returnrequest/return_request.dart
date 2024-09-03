@@ -147,18 +147,15 @@ bool isVisible=false;
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Text(
-                                      selectedText,
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 16,
-                                        overflow: TextOverflow.ellipsis,
-                                        fontFamily: 'Archivo-Medium',
-                                        fontWeight: FontWeight.w500,
-                                        height: 0.09,
-                                      ),
+                                  child: Text(
+                                    selectedText,
+                                    style: TextStyle(
+                                      color: Color(0xFF334155),
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.09,
                                     ),
                                   ),
                                 ),

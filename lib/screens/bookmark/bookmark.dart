@@ -33,8 +33,10 @@ class Bookmark extends StatelessWidget {
             },
             iconSpacing: 4.5,
           ),
+          SizedBox(height: 25,),
           Expanded(
             child: ListView.builder(
+              padding: EdgeInsets.zero,
               itemCount: assetImages.length,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -46,7 +48,7 @@ class Bookmark extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15,right: 15,bottom: 15), // Add padding here
                     child: Container(
                       width: double.infinity,
-                      height: 100,
+                      height: 85,
                       clipBehavior: Clip.antiAlias,
                       decoration: ShapeDecoration(
                         color: Colors.white,

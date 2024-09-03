@@ -24,80 +24,236 @@ class ReviewList extends StatefulWidget {
 
 class _ReviewListState extends State<ReviewList> {
   int selectedIndex = 0;
-
+  final List<ReviewItem> reviews = [
+    ReviewItem(
+      reviewText: 'Not satisfied with the quality.',
+      details: '2 stars - March 2023',
+      name: 'Jane Smith',
+      stars: 2,
+    ),
+    ReviewItem(
+        reviewText: 'Great product, highly recommended!',
+        details: '5 stars - January 2023',
+        name: 'John Doe',
+        stars: 3,
+        imageUrls: [
+          'assets/product_details/img_dumble.png',
+          'assets/product_details/img_dumble.png'
+        ] // Example image URLs
+    ),
+    ReviewItem(
+      reviewText: 'Not satisfied with the quality.',
+      details: '2 stars - March 2023',
+      name: 'Jane Smith',
+      stars: 2,
+    ),
+    // Add more review items as needed...
+  ];
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          color: Color(0xFFF6F6F6),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              CustomAppBar(
-                title: 'Revoir',
-                onBackTap: () {
-                  Navigator.pop(context);
-                },
-                iconSpacing: 3,
-              ),
-              SizedBox(height: 15,),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 11.0,right: 5,left: 4),
-                      child: Image.asset("assets/review/icon_star.png",scale: 1.7,),
+    List<ReviewItem> filteredReviews = selectedIndex == 0
+        ? reviews
+        : reviews.where((review) => review.stars == selectedIndex).toList();
+    return Scaffold(
+      body: Container(
+        color: Color(0xFFF6F6F6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            CustomAppBar(
+              title: 'Revoir',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 3,
+            ),
+            SizedBox(height: 15,),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 11.0,right: 5,left: 4),
+                    child: Image.asset("assets/review/icon_star.png",scale: 1.7,),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '4.2 ',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 1.09,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '(12 avis)',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 12,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                              height: 0.12,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Text.rich(
-                        TextSpan(
+                  ),
+                ],
+              ),
+            ),
+            HorizontalListView(
+              selectedIndex: selectedIndex,
+              onItemSelected: (index) {
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+            ),
+            // Expanded(
+            //   child: ReviewListView(
+            //     selectedIndex: selectedIndex,
+            //   ),
+            // ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.zero,
+                child: ListView.builder(
+                  itemCount: filteredReviews.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TextSpan(
-                              text: '4.2 ',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 16,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 0.09,
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 40,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: ShapeDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/review/icon_girl.png"),
+                                        fit: BoxFit.fill,
+                                      ),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only( left: 10),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Rhaenyra',
+                                            style: TextStyle(
+                                              color: Color(0xFF334155),
+                                              fontSize: 16,
+                                              fontFamily: 'Archivo-Regular',
+                                              fontWeight: FontWeight.w400,
+                                              height: 1.09,
+                                            ),
+                                          ),
+                                          SizedBox(height: 8,),
+                                          if (index >= 0) ...[
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    ...(filteredReviews[index].stars != null
+                                                        ? List.generate(filteredReviews[index].stars, (i) => Padding(
+                                                      padding: EdgeInsets.symmetric(horizontal: 0.5),
+                                                      child: Image.asset("assets/review/icon_star.png", scale: 2.2),
+                                                    ))
+                                                        : []),
+                                                  ],
+                                                ),
+                                                Text(
+                                                  '5 days ago',
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color: Color(0xFF66758C),
+                                                    fontSize: 12,
+                                                    fontFamily: 'Archivo-Regular',
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 0.12,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            TextSpan(
-                              text: '(12 avis)',
-                              style: TextStyle(
-                                color: Color(0xFF334155),
-                                fontSize: 12,
-                                fontFamily: 'Archivo-Regular',
-                                fontWeight: FontWeight.w400,
-                                height: 0.12,
+                            SizedBox(height: 15,),
+                            SizedBox(
+                              height: 66,
+                              child: Text(
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui,',
+                                style: TextStyle(
+                                  color: Color(0xFF475569),
+                                  fontSize: 14,
+                                  fontFamily: 'Archivo-Regular',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
+                            SizedBox(height: 5,),
+                            if (filteredReviews[index].imageUrls != null)
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: filteredReviews[index].imageUrls?.map((imageUrl) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(right: 8,bottom:10 ),
+                                      child: Container(
+                                        width: 56,
+                                        height: 56,
+                                        padding: const EdgeInsets.all(4),
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: ShapeDecoration(
+                                          color: Color(0xFFE2E8F0),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                                        ),
+                                        child:  Center(child: Image.asset(imageUrl, width: 50, height: 50)),
+                                      ),
+                                    );
+                                  }).toList() ?? [], // Use an empty list if imageUrls is null
+                                ),
+                              ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
-              HorizontalListView(
-                selectedIndex: selectedIndex,
-                onItemSelected: (index) {
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                },
-              ),
-              Expanded(
-                child: ReviewListView(
-                  selectedIndex: selectedIndex,
-                ),
-              ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
@@ -119,6 +275,7 @@ class HorizontalListView extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
       child: SizedBox(
         height: 45.0,
+
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: 6,
@@ -213,120 +370,135 @@ class ReviewListView extends StatelessWidget {
         ? reviews
         : reviews.where((review) => review.stars == selectedIndex).toList();
 
-    return ListView.builder(
-      itemCount: filteredReviews.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: ShapeDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/review/icon_girl.png"),
-                            fit: BoxFit.fill,
-                          ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 12.0, left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Rhaenyra',
-                                style: TextStyle(
-                                  color: Color(0xFF334155),
-                                  fontSize: 16,
-                                  fontFamily: 'Archivo-Regular',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.09,
-                                ),
-                              ),
-                              SizedBox(height: 8,),
-                              if (index >= 0) ...[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        ...(filteredReviews[index].stars != null
-                                            ? List.generate(filteredReviews[index].stars, (i) => Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: 0.5),
-                                          child: Image.asset("assets/review/icon_star.png", scale: 2.2),
-                                        ))
-                                            : []),
-                                      ],
-                                    ),
-                                    Text(
-                                      '5 days ago',
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xFF66758C),
-                                        fontSize: 12,
-                                        fontFamily: 'Archivo-Regular',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0.12,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15,),
-                SizedBox(
-                  height: 66,
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui,',
-                    style: TextStyle(
-                      color: Color(0xFF475569),
-                      fontSize: 14,
-                      fontFamily: 'Archivo-Regular',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                SizedBox(height: 5,),
-                if (filteredReviews[index].imageUrls != null)
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
+    return Padding(
+      padding: EdgeInsets.zero,
+      child: ListView.builder(
+        itemCount: filteredReviews.length,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 40,
                     child: Row(
-                      children: filteredReviews[index].imageUrls?.map((imageUrl) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(imageUrl, width: 50, height: 50),
-                        );
-                      }).toList() ?? [], // Use an empty list if imageUrls is null
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/review/icon_girl.png"),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only( left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Rhaenyra',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.09,
+                                  ),
+                                ),
+                                SizedBox(height: 8,),
+                                if (index >= 0) ...[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          ...(filteredReviews[index].stars != null
+                                              ? List.generate(filteredReviews[index].stars, (i) => Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 0.5),
+                                            child: Image.asset("assets/review/icon_star.png", scale: 2.2),
+                                          ))
+                                              : []),
+                                        ],
+                                      ),
+                                      Text(
+                                        '5 days ago',
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          color: Color(0xFF66758C),
+                                          fontSize: 12,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0.12,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-              ],
+                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 66,
+                    child: Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor ac leo lorem nisl. Viverra vulputate sodales quis et dui, Viverra vulputate sodales quis et dui,',
+                      style: TextStyle(
+                        color: Color(0xFF475569),
+                        fontSize: 14,
+                        fontFamily: 'Archivo-Regular',
+                        fontWeight: FontWeight.w400,
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(height: 5,),
+                  if (filteredReviews[index].imageUrls != null)
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: filteredReviews[index].imageUrls?.map((imageUrl) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8,bottom:10 ),
+                            child: Container(
+                              width: 56,
+                              height: 56,
+                              padding: const EdgeInsets.all(4),
+                              clipBehavior: Clip.antiAlias,
+                              decoration: ShapeDecoration(
+                                color: Color(0xFFE2E8F0),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                              ),
+                              child:  Center(child: Image.asset(imageUrl, width: 50, height: 50)),
+                            ),
+                          );
+                        }).toList() ?? [], // Use an empty list if imageUrls is null
+                      ),
+                    ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

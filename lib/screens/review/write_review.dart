@@ -6,9 +6,14 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
+
+import '../../common_utils.dart';
 
 class ProductReview extends StatefulWidget {
-  const ProductReview({Key? key}) : super(key: key);
+  final String? status;
+
+  const ProductReview({Key? key,this.status}) : super(key: key);
 
   @override
   State<ProductReview> createState() => _ProductReviewState();
@@ -104,17 +109,101 @@ class _ProductReviewState extends State<ProductReview> {
                         SizedBox(height: 20.h),
                   
                         _buildImageUploader(),
-                  
+                        SizedBox(height: 10.h),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: SizedBox(
+                            height: 88, // Height of each item in the list
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _images.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 8.0), // Spacing between items
+                                  child: Container(
+                                    width: 88,
+                                    height: 88,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: ShapeDecoration(
+                                      color: Color(0xFFE5E7EB),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              // if (!isDeleted[index]) {
+                                              //   isDeleted[index] = true;
+                                              // } else {
+                                              //   // If already deleted, remove the item completely
+                                              //   imageUrls.removeAt(index);
+                                              //   isDeleted.removeAt(index);
+                                              // }
+
+                                              _images.removeAt(index);
+
+                                            });
+                                          },
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(right: 8.0,top: 2),
+                                              child: Container(
+                                                width: 20,
+                                                height: 20,
+                                                padding: const EdgeInsets.all(4),
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.circular(4),
+                                                ),
+                                                child: Icon(
+                                                  Icons.delete ,
+                                                  size: 12,
+                                                  color: Colors.red,
+
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                        Center(
+                                          child: Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: FileImage(_images[index]),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 50.h),
+
+                        _buildSubmitButton(),
+                        SizedBox(height: 20.h),
+
                       ],
                     ),
                   ),
                 ),
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: _buildSubmitButton(),
-              )
+
 
             ],
           ),
@@ -189,15 +278,18 @@ class _ProductReviewState extends State<ProductReview> {
                   ),
                 ),
               ),
+              Spacer(),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20, top: 8),
+                padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context); // Close the bottom sheet
+                    // Navigator.pop(context); // Close the bottom sheet
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => DashBoard()),
                     // );
+
+                    navigateToNextPage(context,OrderStatus(navigationStatus: 'Delivered', status:OrderStatusEnum.Processing,));
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -387,7 +479,7 @@ class _ProductReviewState extends State<ProductReview> {
       padding: const EdgeInsets.only(left: 2.0,right: 2.0),
       child: DottedBorder(
         color: Color(0xFFFF4343),
-        strokeWidth: 2,
+        strokeWidth: 1,
         borderType: BorderType.RRect,
         child: GestureDetector(
           onTap: _images.length >= 5
@@ -398,6 +490,7 @@ class _ProductReviewState extends State<ProductReview> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 40,
+            color: Color(0xFFF6F6F6),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

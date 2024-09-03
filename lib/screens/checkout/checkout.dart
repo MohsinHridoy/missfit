@@ -34,6 +34,7 @@ class CheckOut extends StatefulWidget {
 class _CheckOutState extends State<CheckOut> {
   TextEditingController _voucherCodeController = TextEditingController();
   bool isVoucherCodeResponse = false;
+  bool isEditable=true;
 
   List<CartItem> cartItems = [
     CartItem(
@@ -137,7 +138,7 @@ class _CheckOutState extends State<CheckOut> {
                         SizedBox(height: 40),
                         _buildVoucherCode(),
                         SizedBox(
-                          height: 50,
+                          height: 40,
                         ),
 
                         Padding(
@@ -154,13 +155,12 @@ class _CheckOutState extends State<CheckOut> {
                           ),
                         ),
                         SizedBox(
-                          height: 25,
+                          height: 15,
                         ),
-                        _buildSummeryItemText('Sous-total', 'CHF 140'),
 
                         _buildOrderSummeryItem(),
                         SizedBox(
-                          height: 150,
+                          height: 100,
                         ),
                       ],
                     ),
@@ -266,76 +266,16 @@ class _CheckOutState extends State<CheckOut> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        buildSummeryItemText(context,'Sous-total', 'CHF 140'),
 
-        SizedBox(
-          height: 10,
-        ),
-        _buildSummeryItemText('Rabais', '-CHF 140'),
-        _buildSummeryItemText('T.V.A', 'CHF 140'),
-        _buildSummeryItemText('Frais de port', 'CHF 140'),
-        _buildSummeryItemText('Total', 'CHF 140'),
+        buildSummeryItemText(context,'Rabais', '-CHF 140'),
+        buildSummeryItemText(context,'T.V.A', 'CHF 140'),
+        buildSummeryItemText(context,'Frais de port', 'CHF 140'),
+        buildSummeryItemText1('Total', 'CHF 140'),
       ],
     );
   }
 
-  Widget _buildSummeryItemText(String title, String value) {
-    return Padding(
-      padding:
-      const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: 150,
-                child: Text(
-                  title,
-                  style: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Regular',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
-                      wordSpacing: 1),
-                ),
-              ),
-              SizedBox(
-                width: 71,
-                child: Text(
-                  value,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 16,
-                    fontFamily: 'Archivo-Regular',
-                    fontWeight: FontWeight.w400,
-                    height: 0.09,
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: 25,),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 1,
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 0.5,
-                  color: Colors.grey.withOpacity(0.3),
-                ),
-              ),
-            ),
-            child: CustomPaint(
-              painter: DashedLinePainter(),
-            ),
-          )
-        ],
-      ),
-    );
-  }
 
   Widget _buildVoucherCode() {
     return GestureDetector(
@@ -376,6 +316,7 @@ class _CheckOutState extends State<CheckOut> {
                       padding: const EdgeInsets.only(left: 15.0,bottom: 2),
                       child: TextField(
                         controller: _voucherCodeController,
+                        enabled:isEditable ,
                         cursorColor: Color(0xFF9CA3AF).withOpacity(0.7),
                         style: TextStyle(
                           color: Color(0xFF9CA3AF),
@@ -404,6 +345,7 @@ class _CheckOutState extends State<CheckOut> {
                     {
                       setState(() {
                         isVoucherCodeResponse=true;
+                        isEditable=false;
 
                       });
                     },
@@ -622,7 +564,7 @@ class _CheckOutState extends State<CheckOut> {
                                           fontSize: 16,
                                           fontFamily: 'Archivo-Medium',
                                           fontWeight: FontWeight.w500,
-                                          height: 0.09,
+                                          height: 0.5,
                                         ),
                                       ),
                                       Padding(
@@ -743,17 +685,9 @@ class _CheckOutState extends State<CheckOut> {
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+                          buildDivider(context)
+
                         ],
                       ),
                     ),

@@ -26,7 +26,7 @@ class ShowModalBottomSheet extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 50),
           Text(
-            'Delete Existing Wishlist!',
+            'Supprimer la carte existante',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color(0xFF334155),
@@ -36,9 +36,9 @@ class ShowModalBottomSheet extends StatelessWidget {
               height: 0.08,
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 40),
           Text(
-            'Do you want to delete this item?',
+            'Voulez-vous supprimer cette carte ?',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color(0xFF334155),
@@ -54,52 +54,76 @@ class ShowModalBottomSheet extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: onCancel,
-                  child: Container(
-                    width: 150,
-                    height: 52,
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                        borderRadius: BorderRadius.circular(8),
+
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      onCancel();// Close the modal when tapped
+                    },
+                    child: Container(
+                      height: 52,
+
+                      decoration: ShapeDecoration(
+                        shape:
+                        RoundedRectangleBorder(
+                          side: BorderSide(
+                              width: 1,
+                              color: Color(
+                                  0xFFFF4343)),
+                          borderRadius:
+                          BorderRadius
+                              .circular(8),
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'No',
-                        style: TextStyle(
-                          color: Color(0xFFFF4343),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
+                      child: Center(
+                        child: Text(
+                          'Non',
+                          style: TextStyle(
+                            color: Color(
+                                0xFFFF4343),
+                            fontSize: 16,
+                            fontFamily:
+                            'Archivo',
+                            fontWeight:
+                            FontWeight.w600,
+                            height: 1.09,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: onConfirm,
-                  child: Container(
-                    width: 150,
-                    height: 52,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFF4343),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      onConfirm();
+                    },
+                    child: Container(
+                      height: 52,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape:
+                        RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius
+                                .circular(
+                                8)),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Yes',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
+                      child: Center(
+                        child: Text(
+                          'Oui',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily:
+                            'Archivo-SemiBold',
+                            fontWeight:
+                            FontWeight.w600,
+                            height: 1.09,
+                          ),
                         ),
                       ),
                     ),

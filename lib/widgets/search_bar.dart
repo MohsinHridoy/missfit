@@ -126,7 +126,7 @@ class CustomSearchBar extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 5),
+          SizedBox(width: 10),
           GestureDetector(
             onTap: onTapFilter,
 

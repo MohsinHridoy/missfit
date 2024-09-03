@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:glossy/glossy.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/addnewcard/add_new_card_screen.dart';
 import 'package:miss_fit/screens/billingaddress/billing_address.dart';
@@ -149,7 +150,7 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         _textFormField(_cityController, 'Ville'),
                         _textFormField(_addressController, 'Adresse'),
                         SizedBox(
-                          height: 100,
+                          height: 130,
                         ),
                       ],
                     ),
@@ -160,46 +161,52 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
             ),
             Positioned(
               bottom: 0,
-              left: 20,
-              right: 20,
-              child: GestureDetector(
-                onTap: () {
-                  if (widget.status == 'subscription') {
 
-                    navigateToNextPage(context, AddNewCard(status: 'subscription',));
-                    // navigateToNextPage(context, ReviewSummary1());
+              child: GlossyContainer(
+                width: MediaQuery.of(context).size.width,
+                height: 76,
+                blendMode: BlendMode.srcATop,
+                // opacity:0.1,
+                color: Colors.white.withOpacity(0.04),
+                child: GestureDetector(
+                  onTap: () {
+                    if (widget.status == 'subscription') {
+                if( _isAllFieldsFilled)
+                      navigateToNextPage(context, AddNewCard(status: 'subscription',));
+                      // navigateToNextPage(context, ReviewSummary1());
 
-                  }
-                  else {
-                    _isAllFieldsFilled ? _saveData() : null;
+                    }
+                    else {
+                      _isAllFieldsFilled ? _saveData() : null;
 
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 52,
+                    }
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20,top: 12),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 52,
 
-                    decoration: ShapeDecoration(
-                      color: _isAllFieldsFilled
-                          ? Colors.red
-                          : Color(0xFFD1D5DB),
-                      // Dynamic color based on validation
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Enregistrer continuer',
-                        style: TextStyle(
-                          color: _isAllFieldsFilled
-                              ? Colors.white
-                              : Color(0xFF334155),
-                          fontSize: 14,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 1.10,
+                      decoration: ShapeDecoration(
+                        color: _isAllFieldsFilled
+                            ? Colors.red
+                            : Color(0xFFD1D5DB),
+                        // Dynamic color based on validation
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Enregistrer continuer',
+                          style: TextStyle(
+                            color: _isAllFieldsFilled
+                                ? Colors.white
+                                : Color(0xFF334155),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.10,
+                          ),
                         ),
                       ),
                     ),

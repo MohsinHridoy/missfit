@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/filtershopscreen/filter_shop_screen.dart';
@@ -131,7 +132,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                   ),
                 )),
             Padding(
-              padding: const EdgeInsets.only(left: 5, right: 12.0, top: 8),
+              padding: const EdgeInsets.only(left: 5, right: 12.0),
               child: Text(
                 item,
                 style: TextStyle(
@@ -139,7 +140,7 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                   fontSize: 14,
                   fontFamily: 'Archivo-Regular',
                   fontWeight: FontWeight.w400,
-                  height: 0.10,
+                  height: 1.10,
                 ),
               ),
             ),
@@ -190,10 +191,10 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height:widget.status == 'filter'? 20.h:0,
                     ),
                     widget.status == 'filter'? Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20),
+                      padding: const EdgeInsets.only(left: 23.0, right: 23),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Wrap(
@@ -207,48 +208,219 @@ class _AllItemsShopPageState extends State<AllItemsShopPage> {
                       ),
                     ):SizedBox(),
                     SizedBox(
-                      height: 10,
+                      height:widget.status == 'filter'? 5:0,
                     ),
+                    // SingleChildScrollView(
+                    //   scrollDirection: Axis.vertical,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(left: 22.0, right: 22),
+                    //     child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         GridView.builder(
+                    //           shrinkWrap: true,
+                    //
+                    //           physics: NeverScrollableScrollPhysics(),
+                    //           gridDelegate:
+                    //               SliverGridDelegateWithFixedCrossAxisCount(
+                    //             crossAxisCount: 2,
+                    //             // Number of items per row
+                    //             crossAxisSpacing: 12,
+                    //             // Adjust the spacing between items horizontally
+                    //             mainAxisSpacing: 20,
+                    //             // Adjust the spacing between items vertically
+                    //             childAspectRatio:
+                    //                 0.73, // Adjust the aspect ratio of items
+                    //           ),
+                    //           itemCount: filteredItems.length,
+                    //           // Replace 6 with your actual item count
+                    //           itemBuilder: (context, index) {
+                    //             final item = filteredItems[index];
+                    //
+                    //             return ProductItem(
+                    //               item: item,
+                    //               onTap: () {
+                    //                 navigateToNextPage(
+                    //                     context, ProductDetails());
+                    //               },
+                    //             );
+                    //           },
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 22.0, right: 22),
+                        padding: const EdgeInsets.only(left: 25.0, right: 25),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            GridView.builder(
-                              shrinkWrap: true,
+                            // Wrap GridView.builder in a SizedBox with a specific height
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height,  // Adjust the height as needed
+                              child: GridView.builder(
+                                scrollDirection: Axis.vertical,
+                                physics: NeverScrollableScrollPhysics(), // Disable internal scrolling
+                                itemCount: filteredItems.length,
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 13,
+                                  crossAxisSpacing: 13,
+                                  childAspectRatio: 0.752,
+                                ),
+                                itemBuilder: (context, index) {
+                                  final item = filteredItems[index];
+                                  return LayoutBuilder(
+                                    builder: (context, constraints) {
+                                      double itemWidth = constraints.maxWidth;
+                                      double aspectRatio = 4 / 3; // Example aspect ratio of 4:3
+                                      double itemHeight = itemWidth * (3 / 4); // Calculate height based on the aspect ratio
 
-                              physics: NeverScrollableScrollPhysics(),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                // Number of items per row
-                                crossAxisSpacing: 12,
-                                // Adjust the spacing between items horizontally
-                                mainAxisSpacing: 20,
-                                // Adjust the spacing between items vertically
-                                childAspectRatio:
-                                    0.73, // Adjust the aspect ratio of items
+                                      return GestureDetector(
+                                        onTap: () {
+                                          navigateToNextPage(context, ProductDetails());
+                                        },
+                                        child: Container(
+                                          width: itemWidth, // Use the width provided by LayoutBuilder
+                                          height: itemHeight, // Dynamic height based on aspect ratio
+                                          padding: const EdgeInsets.only(bottom: 5),
+                                          child: Stack(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Container(
+                                                    width: double.infinity,
+                                                    height: itemHeight * 1.25, // Adjust this value based on design
+                                                    clipBehavior: Clip.antiAlias,
+                                                    decoration: ShapeDecoration(
+                                                      color: Colors.white,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.only(
+                                                          topLeft: Radius.circular(4),
+                                                          topRight: Radius.circular(4),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    child: Center(
+                                                      child: Image.asset(
+                                                        item.image!,
+                                                        width: itemWidth * 0.75,
+                                                        height: itemHeight * 0.75, // Adjust the image size as needed
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration: ShapeDecoration(
+                                                        color: Color(0xFFF3F4F6),
+                                                        shape: RoundedRectangleBorder(
+                                                          side: BorderSide(
+                                                            width: 1,
+                                                            color: Color(0xFFE5E7EB),
+                                                          ),
+                                                          borderRadius: BorderRadius.only(
+                                                            bottomLeft: Radius.circular(4),
+                                                            bottomRight: Radius.circular(4),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(
+                                                              item.title!,
+                                                              overflow: TextOverflow.ellipsis,
+                                                              style: TextStyle(
+                                                                color: Color(0xFF334155),
+                                                                fontSize: 14,
+                                                                fontFamily: 'Archivo-SemiBold',
+                                                                fontWeight: FontWeight.w600,
+                                                              ),
+                                                            ),
+                                                            // Spacer(),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(top: 8.0),
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
+                                                                  Text(
+                                                                    'CHF ${item.price!.toStringAsFixed(2)}',
+                                                                    style: TextStyle(
+                                                                      color: Color(0xFF334155),
+                                                                      fontSize: 12,
+                                                                      fontFamily: 'Archivo-Medium',
+                                                                      fontWeight: FontWeight.w500,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    'CHF ${item.originalPrice!.toStringAsFixed(2)}',
+                                                                    style: TextStyle(
+                                                                      color: Color(0xFF66758C),
+                                                                      fontSize: 10,
+                                                                      fontFamily: 'Archivo-Regular',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      decoration: TextDecoration.lineThrough,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Visibility(
+                                                visible: item.isChecked ?? false,
+                                                child: Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 50,
+                                                    child: Image.asset("assets/product_details/icon_sale.png"),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 13,
+                                                left: 10,
+                                                child: Visibility(
+                                                  visible: item.isChecked ?? false,
+                                                  child: Text(
+                                                    'Sale',
+                                                    style: TextStyle(
+                                                      color: Color(0xFF0F172A),
+                                                      fontSize: 10,
+                                                      fontFamily: 'Archivo-Medium',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                  ;
+                                },
                               ),
-                              itemCount: filteredItems.length,
-                              // Replace 6 with your actual item count
-                              itemBuilder: (context, index) {
-                                final item = filteredItems[index];
-
-                                return ProductItem(
-                                  item: item,
-                                  onTap: () {
-                                    navigateToNextPage(
-                                        context, ProductDetails());
-                                  },
-                                );
-                              },
                             ),
                           ],
                         ),
                       ),
                     ),
+
                     SizedBox(height: 50),
                   ],
                 ),

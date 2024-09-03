@@ -703,7 +703,7 @@ class _HomeState extends State<Home> {
                     Spacer(),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
                       },
                       child: Image.asset(
                         "assets/home/icon_notifications.png",

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/completeorderpage/complete_order_page.dart';
+import 'package:miss_fit/screens/orderhistory/order_history.dart';
 import 'package:miss_fit/screens/orderstatus/cancel_order_status_screen.dart';
 import 'package:miss_fit/screens/returnproduct/return_product.dart';
+import 'package:miss_fit/screens/review/write_review.dart';
 
 import '../../common_utils.dart';
 import '../../common_widgets.dart';
@@ -48,218 +50,259 @@ class _OrderStatusState extends State<OrderStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Color(0xFFF6F6F6),
+      backgroundColor: Color(0xFFF6F6F6),
+      body: Column(
+        children: [
+          CustomAppBar(
+            title:  'Statut de la commande',
+            onBackTap: () {
+              // Navigator.pop(context);
 
-        child: Column(
-          children: [
-            CustomAppBar(
-              title:  'Statut de la commande',
-              onBackTap: () {
-                Navigator.pop(context);
-              },
-              iconSpacing: 5.5,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 20,),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0,right: 20),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 420,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: SizedBox(
-                                    width: 121,
-                                    child: Text(
-                                      'Order #23232314',
-                                      style: TextStyle(
-                                        color: Color(0xFF334155),
-                                        fontSize: 14,
-                                        fontFamily: 'Archivo-Medium',
-                                        fontWeight: FontWeight.w500,
-                                        height: 0.10,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 25),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
+              navigateToNextPage(context,OrderHistory());
+            },
+            iconSpacing: 5.5,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20,),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0,right: 20),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 20),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: SizedBox(
+                                  width: 121,
                                   child: Text(
-                                    'Order Placed on 24th March, 2024',
+                                    'Order #23232314',
                                     style: TextStyle(
                                       color: Color(0xFF334155),
-                                      fontSize: 12,
-                                      fontFamily: 'Archivo-Regular',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.12,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10.0,right: 15),
-                                  child: buildDivider(context)
-                                ),
-                                SizedBox(height: 20),
-
-                                _buildStatusItem(OrderStatusEnum.Processing,
-                                    'Commande en cours de traitement', 'Tuesday, 26 March, 09:13 AM'),
-                                _buildStatusItem(OrderStatusEnum.Placed, 'Commande passée',
-                                    'Tuesday, 26 March, 09:15 AM'),
-                                _buildStatusItem(OrderStatusEnum.Packed,'Emballée',
-                                    'Tuesday, 26 March, 10:00 AM'),
-                                _buildStatusItem(OrderStatusEnum.Shipped,'Expédié',
-                                    'Wednesday, 27 March, 08:00 AM'),
-                                _buildStatusItem(OrderStatusEnum.Packed1, 'Emballée',
-                                    'Wednesday, 27 March, 11:00 AM',
-                                    isLast: true),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0,top: 40),
-                      child: Text(
-                        'Lieu de livraison',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _buildDelivaryStatusTextItem(),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
-                      child: Text(
-                        'Détails du produit',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-Medium',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
-                        ),
-                      ),
-                    ),
-
-                    _buildCartItemsList(),
-
-
-                    if(widget.navigationStatus=='Processing')
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
-                                },
-                                child: Container(
-                                  height: 52,
-                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 17),
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Text(
-                                        'Return',
-                                        style: TextStyle(
-                                          color: Color(0xFFFF4343),
-                                          fontSize: 16,
-                                          fontFamily: 'Archivo-SemiBold',
-                                          fontWeight: FontWeight.w600,
-                                          height: 0.09,
-                                        ),
-                                      ),
+                                      fontSize: 14,
+                                      fontFamily: 'Archivo-Medium',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.10,
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 20),
-                            Expanded(
+                              SizedBox(height: 25),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  'Order Placed on 24th March, 2024',
+                                  style: TextStyle(
+                                    color: Color(0xFF334155),
+                                    fontSize: 12,
+                                    fontFamily: 'Archivo-Regular',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.12,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              Padding(
+                                  padding: const EdgeInsets.only(left: 10.0,right: 15),
+                                  child: buildDivider(context)
+                              ),
+                              SizedBox(height: 20),
+
+                              _buildStatusItem(OrderStatusEnum.Processing,
+                                  'Commande en cours de traitement', 'Tuesday, 26 March, 09:13 AM'),
+                              _buildStatusItem(OrderStatusEnum.Placed, 'Commande passée',
+                                  'Tuesday, 26 March, 09:15 AM'),
+                              _buildStatusItem(OrderStatusEnum.Packed,'Emballée',
+                                  'Tuesday, 26 March, 10:00 AM'),
+                              _buildStatusItem(OrderStatusEnum.Shipped,'Expédié',
+                                  'Wednesday, 27 March, 08:00 AM'),
+                              _buildStatusItem(OrderStatusEnum.Packed1, 'Emballée',
+                                  'Wednesday, 27 March, 11:00 AM',
+                                  isLast: true),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,top: 40),
+                    child: Text(
+                      'Lieu de livraison',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 20,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w600,
+                        height: 0.06,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _buildDelivaryStatusTextItem(),
+
+                  Padding(
+                      padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
+                      child: title_textView_Kt_SBld('Délai de livraison')
+                  ),
+
+                  buildEsrtimatedDateStatus(context),
+
+                  Padding(
+                      padding: const EdgeInsets.only(left: 20.0,top: 30,bottom: 20),
+                      child: title_textView_Kt_SBld('Mode de paiement')
+                  ),
+
+                  buildPaymentMethodStatus(),
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
+                    child: Text(
+                      'Détails du produit',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 20,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w600,
+                        height: 0.06,
+                      ),
+                    ),
+                  ),
+
+                  _buildCartItemsList(),
+
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 25.0, bottom: 10),
+                    child: Text(
+                      'Récapitulatif de la commande',
+                      style: TextStyle(
+                        color: Color(0xFF334155),
+                        fontSize: 20,
+                        fontFamily: 'Kanit-Medium',
+                        fontWeight: FontWeight.w600,
+                        height: 0.06,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  _buildOrderSummeryItem(),
+
+                  if(widget.navigationStatus=='Delivered')
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnProduct()));
+                              },
                               child: Container(
                                 height: 52,
                                 decoration: ShapeDecoration(
-                                  color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
                                 child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top:7.0),
-                                    child: Text(
-                                      'Buy Again',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo-SemiBold',
-                                        fontWeight: FontWeight.w600,
-                                        height: 0.09,
-                                      ),
+                                  child:  Text(
+                                    'Retour',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF4343),
+                                      fontSize: 16,
+                                      fontFamily: 'Archivo-SemiBold',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.09,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      )
-                    else
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: GestureDetector(
-                            onTap: (){
-                              _showBottomSheet(context);
-                            },
-                            child: outlineButton(context, 'Annuler la commande')
-                        ),
+                          ),
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: Container(
+                              height: 52,
+                              decoration: ShapeDecoration(
+                                color: Color(0xFFFF4343),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Acheter à nouveau',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-SemiBold',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.09,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                    )
+                  else
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: GestureDetector(
+                          onTap: (){
+                            _showBottomSheet(context);
+                          },
+                          child: outlineButton(context, 'Annuler la commande')
+                      ),
+                    ),
 
 
 
-                  ],
-                ),
+                ],
               ),
             ),
+          ),
 
-          ],
-        ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildOrderSummeryItem() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildSummeryItemText(context, 'Sous-total', 'CHF 140'),
+        buildSummeryItemText(context, 'Rabais', '-CHF 140'),
+        buildSummeryItemText(context, 'T.V.A', 'CHF 140'),
+        buildSummeryItemText(context, 'Frais de port', 'CHF 140'),
+        buildSummeryItemText1('Total', 'CHF 140'),
+      ],
     );
   }
   void _showBottomSheet(BuildContext context) {
@@ -615,7 +658,7 @@ class _OrderStatusState extends State<OrderStatus> {
                                           fontSize: 16,
                                           fontFamily: 'Archivo-Medium',
                                           fontWeight: FontWeight.w500,
-                                          height: 0.09,
+                                          height: 0.4,
                                         ),
                                       ),
                                       Padding(
@@ -731,35 +774,66 @@ class _OrderStatusState extends State<OrderStatus> {
                               //     ),
                               //   ),
                               // )
-                              SizedBox(
-                                width: 79,
-                                child: Text(
-                                  'CHF 50.00',
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 14,
-                                    fontFamily: 'Archivo',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.10,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20.0),
+                                    child: Text(
+                                      'CHF 50.00',
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 14,
+                                        fontFamily: 'Archivo',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.10,
+                                      ),
+                                    ),
                                   ),
-                                ),
+
+                                  if(widget.navigationStatus=='Delivered')
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 15.0),
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        navigateToNextPage(context, ProductReview(status: 'Delivered',));
+                                      },
+                                      child: Container(
+                                        width: 140,
+                                        height: 40,
+                                        decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                            side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'Ecrire une critique',
+                                            style: TextStyle(
+                                              color: Color(0xFFFF4343),
+                                              fontSize: 14,
+                                              fontFamily: 'Archivo-Semibold',
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.10,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
                           ),
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+
+                          buildDivider(context)
                         ],
                       ),
                     ),

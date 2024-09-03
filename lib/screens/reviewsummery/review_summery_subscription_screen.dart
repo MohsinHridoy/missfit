@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
 
+import '../../common_widgets.dart';
+
 class ReviewSummary1 extends StatefulWidget {
   const ReviewSummary1({Key? key}) : super(key: key);
 
@@ -134,7 +136,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                      child: _buildDivider(context),
+                      child: buildDivider(context),
                     ),
                     const SizedBox(height: 16),
                     // Add any additional widgets or SizedBoxes here
@@ -145,7 +147,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                      child: _buildDivider(context),
+                      child: buildDivider(context),
                     ),
                     const SizedBox(height: 20),
                     _buildSummeryText1('Abonnement', 'CHF 990'),
@@ -153,7 +155,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                     const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                      child: _buildDivider(context),
+                      child: buildDivider(context),
                     ),
                     const SizedBox(height: 16),
                     Padding(
@@ -211,7 +213,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 10),
-                      child: _buildDivider(context),
+                      child: buildDivider(context),
                     ),
               
                     Padding(
@@ -529,18 +531,5 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
     );
   }
 
-  Widget _buildDivider(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
-            // strokeAlign: StrokeAlign.center,
-            color: Color(0xFFE5E7EB),
-          ),
-        ),
-      ),
-    );
-  }
+
 }

@@ -66,6 +66,7 @@ class _DashBoardState extends State<DashBoard> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: Color(0xFFF6F6F6),
         body: Stack(
           children: [
             _widgetOptions.elementAt(_selectedIndex), // Removed Expanded widget here
@@ -139,15 +140,15 @@ class _DashBoardState extends State<DashBoard> {
                           children: [
                             SizedBox(height: 20),
                             SizedBox(
-                              height: 20,
-                              width: 20,
+                              height: 21,
+                              width: 21,
                               child: _getIconData(index),
                             ),
                           ],
                         ),
                         Positioned(
                           bottom: 12,
-                          left: 7,
+                          left: 8,
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 300),
                             width: 6,
@@ -172,7 +173,7 @@ class _DashBoardState extends State<DashBoard> {
 
   Widget _getIconData(int index) {
     bool isSelected = _isSelected[index];
-    Color iconColor = isSelected ? Colors.red : Colors.grey; // Change color to green if selected
+    Color iconColor = isSelected ? Colors.red : Colors.transparent; // Change color to green if selected
 
     switch (index) {
       case 0:
@@ -184,7 +185,7 @@ class _DashBoardState extends State<DashBoard> {
       // case 2:
       //   return _buildIcon('assets/dashboard/icon.png', iconColor);
       case 2:
-        return _buildIcon(isSelected ?'assets/dashboard/icon_shop.png':'assets/dashboard/icon_shop.png', iconColor);
+        return _buildIcon(isSelected ?'assets/dashboard/icon_subscription_fill.png':'assets/dashboard/icon_shop.png', iconColor);
 
       case 3:
         return _buildIcon(isSelected ?'assets/dashboard/icon_profile_fill.png':'assets/dashboard/icon_profile.png', iconColor);
@@ -194,10 +195,7 @@ class _DashBoardState extends State<DashBoard> {
   }
 
   Widget _buildIcon(String imagePath, Color iconColor) {
-    return ColorFiltered(
-      colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-      child: Image.asset(imagePath),
-    );
+    return Image.asset(imagePath);
   }
 
 }

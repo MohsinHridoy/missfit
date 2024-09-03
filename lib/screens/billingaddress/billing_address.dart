@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:glossy/glossy.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/checkout/checkout_with_address.dart';
 import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
@@ -61,183 +62,197 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Color(0xFFF6F6F6),
-        child: Column(
-          children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(
-                      width: widget.status == 'cart'
-                          ? MediaQuery.of(context).size.width / 5.2
-                          : (widget.status == 'profile'
-                          ? MediaQuery.of(context).size.width / 7.2
-                          : MediaQuery.of(context).size.width / 3.4),
-                    ),
-                    Text(
-                      widget.status == 'cart'
-                          ? 'Adresse de livraison'
-                          : (widget.status == 'profile'
-                          ? 'Informations de facturation'
-                          : 'CheckOut'),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
+      backgroundColor:Color(0xFFF6F6F6) ,
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                height: 97,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16)),
+                  border: Border.all(color: Colors.white.withOpacity(0.11)),
                 ),
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 15,
-                    ),
-                    widget.status == 'profile'
-                        ? Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        'Add Billing Address',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 20,
-                          fontFamily: 'Kanit-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.06,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 35.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          "assets/cart/icon_left_arrow.png",
+                          scale: 2,
                         ),
                       ),
-                    )
-                        : SizedBox(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    widget.status == 'profile'|| widget.status == 'cart'
-                        ? _buildSelectAllCheckbox()
-                        : SizedBox(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        'Informations personnelles',
+                      SizedBox(
+                        width: widget.status == 'cart'
+                            ? MediaQuery.of(context).size.width / 5.2
+                            : (widget.status == 'profile'
+                            ? MediaQuery.of(context).size.width / 7.2
+                            : MediaQuery.of(context).size.width / 3.4),
+                      ),
+                      Text(
+                        widget.status == 'cart'
+                            ? 'Adresse de livraison'
+                            : (widget.status == 'profile'
+                            ? 'Informations de facturation'
+                            : 'CheckOut'),
+                        textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xFF334155),
+                          color: Color(0xFF1E293B),
                           fontSize: 18,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.08,
+                          fontFamily: 'Kanit-Medium',
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    _textFormField(_firstNameController, 'Prénom'),
-                    _textFormField(_lastNameController, 'Nom de famille'),
-                    _textFormField(_emailController, 'Email'),
-                    _textFormField(_phoneNumberController, 'Numéro de téléphone''Phone Number'),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 20.0, right: 20, top: 20),
-                      child: Text(
-                        'Adresse',
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 18,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.08,
-                        ),
-                      ),
-                    ),
-                    _textFormField(_regionController, 'Région'),
-                    _textFormField(_postCodeController, 'Code Postal'),
-                    _textFormField(_streetAddressController, 'Adresse de la rue'),
-                    _textFormField(_cityController, 'Ville'),
-                    _textFormField(_addressController, 'Adresse'),
-                    SizedBox(
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            GestureDetector(
-              onTap: () {
-                _saveData();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 52,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 32, vertical: 17),
-                  decoration: ShapeDecoration(
-                    color: _isAllFieldsFilled
-                        ? Colors.red
-                        : Color(0xFFD1D5DB),
-                    // Dynamic color based on validation
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      widget.status != 'profile'
-                          ? 'Enregistrer continuer'
-                          : 'Enregistrer continuer',
-                      style: TextStyle(
-                        color: _isAllFieldsFilled
-                            ? Colors.white
-                            : Color(0xFF334155),
-                        fontSize: 14,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 1.10,
-                      ),
-                    ),
+                      Spacer(),
+                    ],
                   ),
                 ),
               ),
-            )
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      widget.status == 'profile'
+                          ? Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          'Add Billing Address',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 20,
+                            fontFamily: 'Kanit-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.06,
+                          ),
+                        ),
+                      )
+                          : SizedBox(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      widget.status == 'profile'|| widget.status == 'cart'
+                          ? _buildSelectAllCheckbox()
+                          : SizedBox(),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Text(
+                          'Informations personnelles',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 18,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.08,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      _textFormField(_firstNameController, 'Prénom'),
+                      _textFormField(_lastNameController, 'Nom de famille'),
+                      _textFormField(_emailController, 'Email'),
+                      _textFormField(_phoneNumberController, 'Numéro de téléphone''Phone Number'),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding:
+                        const EdgeInsets.only(left: 20.0, right: 20, top: 20),
+                        child: Text(
+                          'Adresse',
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 18,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 0.08,
+                          ),
+                        ),
+                      ),
+                      _textFormField(_regionController, 'Région'),
+                      _textFormField(_postCodeController, 'Code Postal'),
+                      _textFormField(_streetAddressController, 'Adresse de la rue'),
+                      _textFormField(_cityController, 'Ville'),
+                      _textFormField(_addressController, 'Adresse'),
+                      SizedBox(
+                        height: 130,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
 
-          ],
-        ),
+
+            ],
+          ),
+
+          Positioned(
+            bottom: 0,
+            child: GlossyContainer(
+              width: MediaQuery.of(context).size.width,
+              height: 76,
+              blendMode: BlendMode.srcATop,
+              // opacity:0.1,
+              color: Colors.white.withOpacity(0.04),
+              child: GestureDetector(
+                onTap: () {
+                  _saveData();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0,right: 20,top: 12),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 52,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 17),
+                    decoration: ShapeDecoration(
+                      color: _isAllFieldsFilled
+                          ? Colors.red
+                          : Color(0xFFD1D5DB),
+                      // Dynamic color based on validation
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        widget.status != 'profile'
+                            ? 'Enregistrer continuer'
+                            : 'Enregistrer continuer',
+                        style: TextStyle(
+                          color: _isAllFieldsFilled
+                              ? Colors.white
+                              : Color(0xFF334155),
+                          fontSize: 14,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 1.10,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+
+        ],
       ),
     );
   }

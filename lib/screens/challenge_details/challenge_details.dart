@@ -104,6 +104,9 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
 
+    if(widget.status=='bookmark')
+      isFavourite=true;
+
   }
   @override
   void dispose() {
@@ -172,24 +175,39 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         ),
                         SizedBox(
                             height:
-                            45), // Add some spacing between text and containers
+                            30), // Add some spacing between text and containers
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                          child: Row(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildContainerBox( 'assets/takechallenge/icon_time.png','30 min'),
-                              SizedBox(width: 10), // Add spacing between containers
-                              _buildContainerBox( 'assets/takechallenge/icon_level.png','Intermédiaire'),
+                              Row(
+                                children: [
+                                  _buildContainerBox( 'assets/takechallenge/icon_time.png',widget.status=='followprogramme'?'3 weeks/ 4days':'30 min'),
+                                  SizedBox(width: 10), // Add spacing between containers
+                                  _buildContainerBox( 'assets/takechallenge/icon_level.png','Intermédiaire'),
 
-                              SizedBox(width: 10), // Add spacing between containers
-                              _buildContainerBox( 'assets/takechallenge/icon_flame.png','247 cal'),
+                                  SizedBox(width: 10), // Add spacing between containers
+                                  if(widget.status !='followprogramme')
+
+                                  _buildContainerBox( 'assets/takechallenge/icon_flame.png','247 cal')
+
+                                ],
+                              ),
+
+                              if(widget.status=='followprogramme')
+
+                                Padding(
+                                padding: const EdgeInsets.only(top: 12.0),
+                                child: _buildContainerBox( 'assets/takechallenge/icon_flame.png','247 cal'),
+                              ),
 
                             ],
                           ),
                         ),
                         SizedBox(
                             height:
-                            35), // Add some spacing between text and containers
+                            45), // Add some spacing between text and containers
                         Text(
                           'Aperçu',
                           style: TextStyle(
@@ -323,9 +341,12 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             },
                           ),
                         ),
-                        SizedBox(
-                            height:
-                            35), // Add some spacing between text and containers
+
+                        if(widget.status!='followprogramme')
+                          SizedBox(
+                              height:
+                              25.h),
+                        // Add some spacing between text and containers
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

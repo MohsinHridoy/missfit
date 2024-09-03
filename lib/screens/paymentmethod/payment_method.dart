@@ -3,6 +3,8 @@ import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class Category {
   final String name;
   final int itemCount;
@@ -93,48 +95,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
         color: Color(0xFFF6F6F6),
         child: Column(
           children: [
-            Container(
-              height: 97,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-                border: Border.all(color: Colors.white.withOpacity(0.11)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        "assets/cart/icon_left_arrow.png",
-                        scale: 2,
-                      ),
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width / 4.5),
-
-                    Text(
-                      'Mode de paiement',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF1E293B),
-                        fontSize: 18,
-                        fontFamily: 'Kanit-Medium',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Spacer(),
-
-                  ],
-                ),
-              ),
+            CustomAppBar(
+              title:  'Mode de paiement',
+              onBackTap: () {
+                Navigator.pop(context);
+              },
+              iconSpacing: 4.5,
             ),
             SizedBox(height: 15,),
             Expanded(

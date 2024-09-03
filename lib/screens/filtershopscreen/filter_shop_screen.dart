@@ -12,6 +12,7 @@ import 'package:miss_fit/screens/filtersortscreenpage/filter_sort_screen_page.da
 import 'package:miss_fit/screens/shophomepage/shop_home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../common_widgets.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../colourselectionpage/colour_selection_page.dart';
 import '../filtercategoryselectionpage/categoryselectionpage.dart';
@@ -204,306 +205,296 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
         (screenWidth * (maxValue / 3000)).clamp(knobSize, screenWidth);
 
     return Scaffold(
-      body: Center(
-        child: Container(
-          color: Color(0xFFF6F6F6),
-          child: Column(
-            children: [
+      backgroundColor:Color(0xFFF6F6F6) ,
+      body: Column(
+        children: [
 
-              CustomAppBar(
-                title: 'Filtre',
-                onBackTap: () {
-                  navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
-                },
-                iconSpacing: 2.9,
-              ),
+          CustomAppBar(
+            title: 'Filtre',
+            onBackTap: () {
+              navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
+            },
+            iconSpacing: 2.9,
+          ),
 
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Trier par',
-                          _fetchSort.isNotEmpty ? '${_fetchSort[0]}' : '',
-                            SortByPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Catégorie',
-                          _fetchCategories.isNotEmpty
-                              ? '${_fetchCategories[0]}, ${_fetchCategories.length > 1 ? _fetchCategories[1] : ''}...+${_fetchCategories.length}'
-                              : 'No categories selected',
-                            CategorySelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Marques',
-                          _fetchBrands.isNotEmpty
-                              ? '${_fetchBrands[0]}, ${_fetchBrands.length > 1 ? _fetchBrands[1] : ''}...+${_fetchBrands.length > 2 ? _fetchBrands.length - 2 : ''}'
-                              : 'No Brands selected',
-                            BrandsSelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Couleur',
-                          _fetchColours.isNotEmpty
-                              ? '${_fetchColours[0]}, ${_fetchColours.length > 1 ? _fetchColours[1] : ''}...+${_fetchColours.length > 2 ? _fetchColours.length - 2 : ''}'
-                              : '',
-                            ColourSelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Taille',
-                          _fetchSize.isNotEmpty
-                              ? '${_fetchSize[0]}, ${_fetchSize.length > 1 ? _fetchSize[1] : ''}...+${_fetchSize.length > 2 ? _fetchSize.length - 2 : ''}'
-                              : '',
-                            SizeSelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Notation',
-                          _fetchReviews.isNotEmpty
-                              ? '${_fetchReviews[0]}, ${_fetchReviews.length > 1 ? _fetchReviews[1] : ''}...+${_fetchReviews.length > 2 ? _fetchReviews.length - 2 : ''}'
-                              : '',
-                            ReviewSelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'La mesure',
-                          _fetchMeasurements.isNotEmpty
-                              ? '${_fetchMeasurements[0]}, ${_fetchMeasurements.length > 1 ? _fetchMeasurements[1] : ''}...+${_fetchMeasurements.length > 2 ? _fetchMeasurements.length - 2 : ''}'
-                              : '',
-                            MeasurementsSelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                            'Les saveurs',
-                          _fetchFlavour.isNotEmpty
-                              ? '${_fetchFlavour[0]}, ${_fetchFlavour.length > 1 ? _fetchFlavour[1] : ''}...+${_fetchFlavour.length > 2 ? _fetchFlavour.length - 2 : ''}'
-                              : '',
-                          FlavourSelectionPage()
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        child: _buildCategorySection(
-                          context,
-                          'Discounts',
-                          _fetchDiscounts.isNotEmpty
-                              ? '${_fetchDiscounts[0]}, ${_fetchDiscounts.length > 1 ? _fetchDiscounts[1] : ''}...+${_fetchDiscounts.length > 2 ? _fetchDiscounts.length - 2 : ''}'
-                              : '',
-                            DiscountSelectionPage()
-                        ),
-                      ),
-                      SizedBox(height: 20),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Trier par',
+                        _fetchSort.isNotEmpty ? '${_fetchSort[0]}' : '',
+                        SortByPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Catégorie',
+                        _fetchCategories.isNotEmpty
+                            ? '${_fetchCategories[0]}, ${_fetchCategories.length > 1 ? _fetchCategories[1] : ''}...+${_fetchCategories.length}'
+                            : 'No categories selected',
+                        CategorySelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Marques',
+                        _fetchBrands.isNotEmpty
+                            ? '${_fetchBrands[0]}, ${_fetchBrands.length > 1 ? _fetchBrands[1] : ''}...+${_fetchBrands.length > 2 ? _fetchBrands.length - 2 : ''}'
+                            : 'No Brands selected',
+                        BrandsSelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Couleur',
+                        _fetchColours.isNotEmpty
+                            ? '${_fetchColours[0]}, ${_fetchColours.length > 1 ? _fetchColours[1] : ''}...+${_fetchColours.length > 2 ? _fetchColours.length - 2 : ''}'
+                            : '',
+                        ColourSelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Taille',
+                        _fetchSize.isNotEmpty
+                            ? '${_fetchSize[0]}, ${_fetchSize.length > 1 ? _fetchSize[1] : ''}...+${_fetchSize.length > 2 ? _fetchSize.length - 2 : ''}'
+                            : '',
+                        SizeSelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Notation',
+                        _fetchReviews.isNotEmpty
+                            ? '${_fetchReviews[0]}, ${_fetchReviews.length > 1 ? _fetchReviews[1] : ''}...+${_fetchReviews.length > 2 ? _fetchReviews.length - 2 : ''}'
+                            : '',
+                        ReviewSelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'La mesure',
+                        _fetchMeasurements.isNotEmpty
+                            ? '${_fetchMeasurements[0]}, ${_fetchMeasurements.length > 1 ? _fetchMeasurements[1] : ''}...+${_fetchMeasurements.length > 2 ? _fetchMeasurements.length - 2 : ''}'
+                            : '',
+                        MeasurementsSelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Les saveurs',
+                        _fetchFlavour.isNotEmpty
+                            ? '${_fetchFlavour[0]}, ${_fetchFlavour.length > 1 ? _fetchFlavour[1] : ''}...+${_fetchFlavour.length > 2 ? _fetchFlavour.length - 2 : ''}'
+                            : '',
+                        FlavourSelectionPage()
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: _buildCategorySection(
+                        context,
+                        'Discounts',
+                        _fetchDiscounts.isNotEmpty
+                            ? '${_fetchDiscounts[0]}, ${_fetchDiscounts.length > 1 ? _fetchDiscounts[1] : ''}...+${_fetchDiscounts.length > 2 ? _fetchDiscounts.length - 2 : ''}'
+                            : '',
+                        DiscountSelectionPage()
+                    ),
+                  ),
+                  SizedBox(height: 20),
 
 
-                      Container(
-                        margin: EdgeInsets.only(top: 10, left: 20, right: 20),
-                        alignment: Alignment.centerLeft,
-                        child: FlutterSlider(
-                          values: [_lowerValue, _upperValue],
-                          rangeSlider: true,
-                          max: 3000,
-                          min: 0,
-                          jump: true,
-                          trackBar: FlutterSliderTrackBar(
-                            activeTrackBarHeight: 3,
-                            activeTrackBar: BoxDecoration(color: Color(0xFF22C55E)),
-                          ),
-                          tooltip: FlutterSliderTooltip(
-                              textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
-                              boxStyle: FlutterSliderTooltipBox(
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent
-                                  )
+                  Container(
+                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    alignment: Alignment.centerLeft,
+                    child: FlutterSlider(
+                      values: [_lowerValue, _upperValue],
+                      rangeSlider: true,
+                      max: 3000,
+                      min: 0,
+                      jump: true,
+                      trackBar: FlutterSliderTrackBar(
+                        activeTrackBarHeight: 3,
+                        activeTrackBar: BoxDecoration(color: Color(0xFF22C55E)),
+                      ),
+                      tooltip: FlutterSliderTooltip(
+                          textStyle: TextStyle(fontSize: 17, color: Colors.transparent),
+                          boxStyle: FlutterSliderTooltipBox(
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent
                               )
+                          )
+                      ),
+                      handler: FlutterSliderHandler(
+                        decoration: BoxDecoration(),
+                        child: Container(
+                          height: 25,
+                          width: 25,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: Color(0xFF22C55E), width: 2),
+
+
                           ),
-                          handler: FlutterSliderHandler(
-                            decoration: BoxDecoration(),
-                            child: Container(
-                              height: 25,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(25),
-                                border: Border.all(color: Color(0xFF22C55E), width: 2),
-
-
-                              ),
-                              padding: EdgeInsets.all(3),
-                              child: Container(
-                                height: 18,
-                                width: 18,
-                                decoration: BoxDecoration(
-                                    color: Color(0xFF22C55E),
-                                    borderRadius: BorderRadius.circular(25)),
-                              ),
-                            ),
+                          padding: EdgeInsets.all(3),
+                          child: Container(
+                            height: 18,
+                            width: 18,
+                            decoration: BoxDecoration(
+                                color: Color(0xFF22C55E),
+                                borderRadius: BorderRadius.circular(25)),
                           ),
-                          rightHandler: FlutterSliderHandler(
-
-                            decoration: BoxDecoration(),
-                            child: Container(
-                              height: 25,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(25),
-                                border: Border.all(color: Color(0xFF22C55E), width: 2),
-
-
-                              ),
-                              padding: EdgeInsets.all(3),
-                              child: Container(
-                                height: 18,
-                                width: 18,
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                    color: Color(0xFF22C55E),
-                                    borderRadius: BorderRadius.circular(25)),
-                              ),
-                            ),
-                          ),
-                          disabled: false,
-                          onDragging: (handlerIndex, lowerValue, upperValue) {
-                            setState(() {
-                              _lowerValue = lowerValue;
-                              _upperValue = upperValue;
-
-                              print(_lowerValue);
-                            });
-                          },
                         ),
                       ),
+                      rightHandler: FlutterSliderHandler(
 
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _buildRangeTextItem('${_lowerValue.round()} '),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12.0,right: 12),
-                            child: _buildRangeText('to'),
+                        decoration: BoxDecoration(),
+                        child: Container(
+                          height: 25,
+                          width: 25,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: Color(0xFF22C55E), width: 2),
+
+
                           ),
-                          _buildRangeTextItem('${_upperValue.round()} ')
-                        ],
+                          padding: EdgeInsets.all(3),
+                          child: Container(
+                            height: 18,
+                            width: 18,
+                            padding: EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: Color(0xFF22C55E),
+                                borderRadius: BorderRadius.circular(25)),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 45),
+                      disabled: false,
+                      onDragging: (handlerIndex, lowerValue, upperValue) {
+                        setState(() {
+                          _lowerValue = lowerValue;
+                          _upperValue = upperValue;
 
+                          print(_lowerValue);
+                        });
+                      },
+                    ),
+                  ),
+
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildRangeTextItem('${_lowerValue.round()} '),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12.0,right: 12),
+                        child: _buildRangeText('to'),
+                      ),
+                      _buildRangeTextItem('${_upperValue.round()} ')
                     ],
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap:(){
-                          setState(() {
-                            _fetchSort.clear();
-                            _fetchCategories.clear();
-                            _fetchBrands.clear();
-                          });
-                        },
-                        child: Container(
-                          height: 44,
+                  SizedBox(height: 45),
 
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(width: 1, color: Color(0xFFFF4343)),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                'Tout effacer',
-                                style: TextStyle(
-                                  color: Color(0xFFFF4343),
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
-                              ),
-                            ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap:(){
+                      setState(() {
+                        _fetchSort.clear();
+                        _fetchCategories.clear();
+                        _fetchBrands.clear();
+                      });
+                    },
+                    child: Container(
+                      height: 44,
+
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 1, color: Color(0xFFFF4343)),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Tout effacer',
+                          style: TextStyle(
+                            color: Color(0xFFFF4343),
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.10,
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 20,),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
+                  ),
+                ),
+                SizedBox(width: 20,),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
 
 
-                          navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
-                      
-                        },
-                        child: Container(
-                          height: 44,
-                          decoration: ShapeDecoration(
-                            color: Color(0xFFFF4343),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                'Appliquer',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
-                              ),
-                            ),
+                      navigateToNextPage(context,AllItemsShopPage(status: 'filter',));
+
+                    },
+                    child: Container(
+                      height: 44,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Appliquer',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.10,
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              )
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
 
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }
@@ -520,7 +511,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15),
+              padding: const EdgeInsets.only(top: 15.0, bottom: 10),
               child: Row(
                 children: [
                   Text(
@@ -530,7 +521,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                       fontSize: 16,
                       fontFamily: 'Archivo-Regular',
                       fontWeight: FontWeight.w400,
-                      height: 0.09,
+                      height: 1.09,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -545,30 +536,21 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
                           fontSize: 16,
                           fontFamily: 'Archivo-Regular',
                           fontWeight: FontWeight.w400,
-                          height: 0.09,
+                          height: 0.5,
                         ),
                       ),
                     ),
                   ),
-                  Icon(Icons.keyboard_arrow_right)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 3.0),
+                    child: Icon(Icons.keyboard_arrow_right),
+                  )
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 3.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 1,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                      color: Color(0xFFE5E7EB),
-                    ),
-                  ),
-                ),
-              ),
-            )
+
+            buildDivider(context)
+
           ],
         ),
       ),
@@ -587,23 +569,21 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 12.0),
-        child: Row(
-          children: [
-            Text(
-              '\$',
-              style: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 16,
-                fontFamily: 'Archivo-Regular',
-                fontWeight: FontWeight.w400,
-                height: 0.09,
-              ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '\$',
+            style: TextStyle(
+              color: Color(0xFF334155),
+              fontSize: 16,
+              fontFamily: 'Archivo-Regular',
+              fontWeight: FontWeight.w400,
+              height: 1.09,
             ),
-            Expanded(child: _buildRangeText(text)),
-          ],
-        ),
+          ),
+          Expanded(child: _buildRangeText(text)),
+        ],
       ),
     );
   }
@@ -617,7 +597,7 @@ class _FilterShopScreenState extends State<FilterShopScreen> {
         fontSize: 16,
         fontFamily: 'Archivo-Regular',
         fontWeight: FontWeight.w400,
-        height: 0.09,
+        height: 1.09,
       ),
     );
   }

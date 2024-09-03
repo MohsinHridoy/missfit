@@ -255,7 +255,7 @@ class _ProfileState extends State<Profile> {
                     SizedBox(
                       height: 30,
                     ),
-                    _buildIndicatorTitleText('General'),
+                    _buildIndicatorTitleText('Générale'),
                     SizedBox(
                       height: 20,
                     ),
@@ -276,7 +276,7 @@ class _ProfileState extends State<Profile> {
                         AddNewCard(
                           status: 'profile',
                         )),
-                    _buildIndicatorTitleText('Subscription'),
+                    _buildIndicatorTitleText('Signet'),
                     SizedBox(
                       height: 20,
                     ),
@@ -285,12 +285,8 @@ class _ProfileState extends State<Profile> {
                         "assets/profile/icon_bookmark.png",
                         'Élément de signet',
                         Bookmark()),
-                    _buildProfileItemCategory(
-                        context,
-                        "assets/profile/icons_terms_condition.png",
-                        'Terms & Conditions',
-                        TermConditions()),
-                    _buildIndicatorTitleText('Shop'),
+
+                    _buildIndicatorTitleText('Boutique'),
                     SizedBox(
                       height: 20,
                     ),
@@ -458,7 +454,7 @@ class _ProfileState extends State<Profile> {
             context: context,
             builder: (BuildContext context) {
               return Container(
-                height: 250.h, // Adjust the height as necessary
+                height: 230.h, // Adjust the height as necessary
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -476,18 +472,22 @@ class _ProfileState extends State<Profile> {
                       scale: 2,
                     ),
                     SizedBox(height: 20.h),
-                    Text(
-                      'Êtes-vous sûr de vous déconnecter de cette application ?',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 18,
-                        fontFamily: 'Archivo-SemiBold',
-                        fontWeight: FontWeight.w600,
-                        height: 1.08,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0,right: 20),
+                      child: Text(
+                        ' Êtes-vous sûr de vous déconnecter de\n cette application ?',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 18,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 1.5,
+                          wordSpacing: 5.7
+                        ),
                       ),
                     ),
-                    SizedBox(height: 25.h),
+                    Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 30.0, right: 30, bottom: 1),

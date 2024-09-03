@@ -102,7 +102,7 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                         padding: const EdgeInsets.only(left: 20.0,right: 20),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 425,
+                          height: 450,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -206,21 +206,21 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
 
 
                     _buildCartItemsList(),
-
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: GestureDetector(
+                        onTap: (){
+                          navigateToNextPage(context, DashBoard(number: 1,));
+                        },
+                        child: outlineButton(context, 'Retour aux achats'),
+                      ),
+                    )
 
                   ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: GestureDetector(
-                onTap: (){
-                  navigateToNextPage(context, DashBoard(number: 1,));
-                },
-                child: outlineButton(context, 'Retour aux achats'),
-              ),
-            )
+
 
           ],
         ),
@@ -336,17 +336,9 @@ class _CancelOrderStatusState extends State<CancelOrderStatus> {
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+                          buildDivider(context),
+
                         ],
                       ),
                     ),

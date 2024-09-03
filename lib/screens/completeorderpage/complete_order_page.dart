@@ -137,14 +137,14 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                       child: title_textView_Kt_SBld('Délai de livraison')
                     ),
 
-                    _buildEsrtimatedDateStatus(),
+                    buildEsrtimatedDateStatus(context),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 30,bottom: 20),
                       child: title_textView_Kt_SBld('Mode de paiement')
                     ),
 
-                    _buildPaymentMethodStatus(),
+                    buildPaymentMethodStatus(),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0,top: 40,bottom: 20),
@@ -370,7 +370,10 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
                             height: 15,
                           ),
 
-                          buildDivider(context)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0,right: 8),
+                            child: buildDivider(context),
+                          )
                         ],
                       ),
                     ),
@@ -384,73 +387,14 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 10,
-        ),
-        _buildSummeryItemText('Sous-total', 'CHF 140'),
-        _buildSummeryItemText('Rabais', 'CHF 140'),
-        _buildSummeryItemText('T.V.A', 'CHF 140'),
-        _buildSummeryItemText('Frais de port', 'CHF 140'),
-      ],
-    );
-  }
 
-  Widget _buildSummeryItemText(String title, String value) {
-    return Padding(
-      padding:
-      const EdgeInsets.only(left: 25.0, right: 25, top: 10, bottom: 10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: 150,
-                child: Text(
-                  title,
-                  style: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Regular',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
-                      wordSpacing: 1),
-                ),
-              ),
-              SizedBox(
-                width: 71,
-                child: Text(
-                  value,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 16,
-                    fontFamily: 'Archivo-Regular',
-                    fontWeight: FontWeight.w400,
-                    height: 0.09,
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: 25,),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 1,
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 0.5,
-                  color: Colors.grey.withOpacity(0.3),
-                ),
-              ),
-            ),
-            child: CustomPaint(
-              painter: DashedLinePainter(),
-            ),
-          )
-        ],
-      ),
+        buildSummeryItemText(context,'Sous-total', 'CHF 140'),
+
+        buildSummeryItemText(context,'Rabais', '-CHF 140'),
+        buildSummeryItemText(context,'T.V.A', 'CHF 140'),
+        buildSummeryItemText(context,'Frais de port', 'CHF 140'),
+        buildSummeryItemText1('Total', 'CHF 140'),
+      ],
     );
   }
 
@@ -510,137 +454,7 @@ class _CompleteOrderPageState extends State<CompleteOrderPage> {
     );
   }
 
-  Widget _buildPaymentMethodStatus() {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 6),
-            child: Container(
-              width: 55,
-              height: 55,
-              padding: const EdgeInsets.all(12),
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/payment/img_delivary_item2.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: SizedBox(
-                    width: 153,
-                    height: 20,
-                    child: Text(
-                      "Stripe",
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Regular',
-                        fontWeight: FontWeight.w400,
-                        height: 0.09,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 10,
-                  child: Text(
-                    '•••• •••• •••• 222323',
-                    style: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Regular',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Spacer(),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildEsrtimatedDateStatus() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 48,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 28,
-              height: 28,
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                color: Color(0xFFE5E7EB),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: SizedBox(
-                width: 122,
-                child: Text(
-                  'Estimated Date',
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 14,
-                    fontFamily: 'Archivo-Medium',
-                    fontWeight: FontWeight.w500,
-                    height: 1.10,
-                  ),
-                ),
-              ),
-            ),
-            Spacer(),
-            SizedBox(
-              width: 90,
-              child: Text(
-                '20 Mar - 26 Mar',
-                style: TextStyle(
-                  color: Color(0xFF66758C),
-                  fontSize: 12,
-                  fontFamily: 'Archivo-Regular',
-                  fontWeight: FontWeight.w400,
-                  height: 1.12,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget _buildDelivaryDetailsTextItem(String text) {
     return SizedBox(

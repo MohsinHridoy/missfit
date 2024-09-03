@@ -19,6 +19,8 @@ class SubscriptionPriceSelectionPage extends StatefulWidget {
 class _SubscriptionPriceSelectionPageState
     extends State<SubscriptionPriceSelectionPage> {
   int selectedIndex = 0;
+  bool isEditable=true;
+
   bool isVisible = false;
   bool isVisible1 = false;
   bool isButtonRed = false; // Variable to hold button color state
@@ -194,6 +196,7 @@ class _SubscriptionPriceSelectionPageState
                                             bottom: 13.0, left: 15),
                                         child: TextFormField(
                                           controller: controller,
+                                          enabled: isEditable,
                                           onChanged: (value) {
                                             setState(() {
                                               // Update button color state based on text length
@@ -215,7 +218,7 @@ class _SubscriptionPriceSelectionPageState
                                             border: InputBorder.none,
                                             hintText: 'code',
                                             hintStyle: TextStyle(
-                                              color: Color(0xFF334155),
+                                              color: Color(0xFFD1D5DB),
                                               fontSize: 14,
                                               fontFamily: 'Archivo-Regular',
                                               fontWeight: FontWeight.w400,
@@ -232,6 +235,8 @@ class _SubscriptionPriceSelectionPageState
                                           setState(() {
                                             isButtonRedInVisible =
                                             true; // Make the button invisible
+                                            isEditable=false;
+
                                           });
                                         }
                                       },
@@ -274,8 +279,13 @@ class _SubscriptionPriceSelectionPageState
                                       child: GestureDetector(
                                         onTap: (){
                                           setState(() {
+                                            isButtonRed = false;
+                                            isEditable=true;
                                             isButtonRedInVisible =
                                             false; // Make the button invisible
+                                            controller.clear();
+
+
                                           });
                                         },
                                         child: Row(
@@ -329,7 +339,13 @@ class _SubscriptionPriceSelectionPageState
                               child: isButtonRedInVisible?customButtonRed(context, 'Continue', onPressed: () {
                                 navigateToNextPage(context, DeliavryAddress(status: 'subscription',));
 
-                              }):outlineButton(context,'Sauter'),
+                              }):GestureDetector(
+                                onTap: (){
+                                  navigateToNextPage(context, DeliavryAddress(status: 'subscription',));
+
+                                },
+                                  child: outlineButton(context,'Sauter')
+                              ),
                             ),
                           ],
                         ),

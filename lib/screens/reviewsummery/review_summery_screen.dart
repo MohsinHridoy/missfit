@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
 
 import '../../common_utils.dart';
+import '../../common_widgets.dart';
 import '../../widgets/custom_app_bar.dart';
 
 class ReviewSummary extends StatefulWidget {
@@ -141,7 +142,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                    child: _buildDivider(context),
+                    child: buildDivider(context),
                   ),
                   const SizedBox(height: 16),
                   // Add any additional widgets or SizedBoxes here
@@ -187,7 +188,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0,right: 20.0),
-                    child: _buildDivider(context),
+                    child: buildDivider(context),
                   ),
                   const SizedBox(height: 16),
               
@@ -494,18 +495,4 @@ class _ReviewSummaryState extends State<ReviewSummary> {
     );
   }
 
-  Widget _buildDivider(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
-            // strokeAlign: StrokeAlign.center,
-            color: Color(0xFFE5E7EB),
-          ),
-        ),
-      ),
-    );
-  }
 }
