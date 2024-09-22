@@ -149,7 +149,7 @@ class _AddNewCardState extends State<AddNewCard> {
                     child: customButtonRed(
                         context,
                         isVisible == false
-                            ? 'Continue'
+                            ? 'Continuer'
                             : 'Ajouter une nouvelle carte', onPressed: () {
                       widget.status == 'subscription'
                           ? navigateToNextPage(context, ReviewSummary1())

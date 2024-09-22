@@ -91,10 +91,10 @@ class _FitnessGoalState extends State<FitnessGoal> {
               child: Visibility(
                 visible: widget.status != 'profile',
 
-                child:customButtonRed(context, 'Suivante', onPressed: () async{
+                child:selectedTitles.isNotEmpty ?customButtonRed(context, 'Suivante', onPressed: () async{
                   widget.onNextPressed();
 
-                }),
+                }):deactiveButton(context, 'Suivante'),
               ),
             ),
 
@@ -103,10 +103,10 @@ class _FitnessGoalState extends State<FitnessGoal> {
 
               child:  Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: customButtonRed(context, 'Enregistrer et suivant', onPressed: () {
+                child:selectedTitles.isNotEmpty ? customButtonRed(context, 'Enregistrer et suivant', onPressed: () {
                   widget.onNextPressed();
 
-                }),
+                }):deactiveButton(context, 'Suivante'),
               ),
 
 
@@ -142,6 +142,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
           margin: EdgeInsets.symmetric(vertical: 6),
           child: Row(
             children: [
+              SizedBox(width: 7,),
               isSelected
                   ? Image.asset(
                 "assets/registration/icon_selected_box.png",
@@ -152,7 +153,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
                 scale: 2.0,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
                   text,
                   style: TextStyle(

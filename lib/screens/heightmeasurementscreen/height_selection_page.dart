@@ -3,6 +3,8 @@ import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_buttons.dart';
+
 
 
 class HeightMeasurementsScreen extends StatefulWidget {
@@ -292,41 +294,19 @@ class _HeightMeasurementsScreenState extends State<HeightMeasurementsScreen> {
 
 
             Spacer(),
-            Center(
-              child:  GestureDetector(
-                onTap: () async{
+            Padding(
+                padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 26),
+                child:
+
+
+                customButtonRed(context, widget.status == 'profile'?'Sauvegarder':'Suivante', onPressed: () async{
                   if(widget.status == 'profile')
                     navigateToNextPage(context,DashBoard(number: 2,));
                   await _saveIndex(currentPageIndex!);
                   print(currentPageIndex);
 
                   widget.onNextPressed();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 30),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 52,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFF4343),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        widget.status == 'profile'?'Sauvegarder':'Suivant',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-Medium',
-                          fontWeight: FontWeight.w500,
-                          height: 1.09,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
+                })
             )
 
             // Your existing UI code

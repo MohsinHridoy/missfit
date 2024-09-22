@@ -4,6 +4,7 @@ import 'package:miss_fit/screens/activityselectiondashboard/activityselectiondas
 import 'package:miss_fit/screens/basicinformation/basic_info.dart';
 import 'package:miss_fit/screens/heightselectiondashboard/height_selection_dashboard.dart';
 
+import '../../widgets/common_text_widgets.dart';
 import '../../widgets/custom_app_bar.dart';
 
 
@@ -68,16 +69,9 @@ class _PersonalInfoState extends State<PersonalInfo> {
 
                     SizedBox(
                       width: 200.h,
-                      child: Text(
-                        title,
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
-                        ),
-                      ),
+
+                  child:txtArchivoSemiBoldBlack16(title)
+
                     ),
 
                     GestureDetector(

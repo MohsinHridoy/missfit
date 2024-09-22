@@ -116,7 +116,7 @@ class _EventDetailsState extends State<EventDetails> {
                           ),
                           child: Center(
                             child: Text(
-                              'Continue',
+                              'Continuer',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -384,7 +384,7 @@ class _EventDetailsState extends State<EventDetails> {
                       child: SizedBox(
                         width: 208,
                         child: Text(
-                          'Date & Time',
+                          'Date et heure',
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 16,
@@ -454,17 +454,14 @@ class _EventDetailsState extends State<EventDetails> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, top: 25),
-                      child: SizedBox(
-                        width: 208,
-                        child: Text(
-                          'About Event',
-                          style: TextStyle(
-                            color: Color(0xFF334155),
-                            fontSize: 18,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 0.08,
-                          ),
+                      child:  Text(
+                        "À propos de l'événement",
+                        style: TextStyle(
+                          color: Color(0xFF334155),
+                          fontSize: 18,
+                          fontFamily: 'Archivo-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          height: 0.08,
                         ),
                       ),
                     ),
@@ -554,7 +551,7 @@ class _EventDetailsState extends State<EventDetails> {
                       child: SizedBox(
                         width: 208,
                         child: Text(
-                          'Host',
+                          'Hôtesse',
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 16,
@@ -628,7 +625,7 @@ class _EventDetailsState extends State<EventDetails> {
                       child: SizedBox(
                         width: 318,
                         child: Text(
-                          'Gallery (Pre-Event)',
+                          'Galerie (pré-événement)',
                           style: TextStyle(
                             color: Color(0xFF334155),
                             fontSize: 18,
@@ -799,7 +796,7 @@ class _EventDetailsState extends State<EventDetails> {
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Text(
-            '10 seats left',
+            'reste 10 places',
             textAlign: TextAlign.right,
             style: TextStyle(
               color: Color(0xFF66758C),

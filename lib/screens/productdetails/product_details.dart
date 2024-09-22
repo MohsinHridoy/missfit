@@ -125,105 +125,165 @@ class _ProductDetailsState extends State<ProductDetails> {
                   Container(
                     height: 380,
                     width: MediaQuery.of(context).size.width,
-                    child: Column(
+                    child: Stack(
                       children: [
-                        SizedBox(height: 100),
-                        Center(
-                          child: selectedImageUrl == null
-                              ? const Placeholder()
-                              : SizedBox(
-                              width: 280,
-                              height: 180,
-                              child: Image.asset(selectedImageUrl!,
-                                  fit: BoxFit.contain)),
-                        ),
-                        SizedBox(height: 20),
-                        Container(
-                          width: 290,
-                          height: 64,
-                          padding: const EdgeInsets.all(12),
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFD1D5DB),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                for (int index = 0;
-                                index <
-                                    (imageUrls.length >= 4 && !showAll
-                                        ? 5
-                                        : imageUrls.length);
-                                index++)
-                                  if (index == 4 && !showAll)
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          showAll =
-                                          true; // Expand to show all items
-                                        });
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 8),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(5),
-                                          color: Colors.black.withOpacity(0.4),
-                                        ),
-                                        width: 36,
-                                        height: 36,
-                                        child: Text(
-                                          '+${imageUrls.length - 4}',
-                                          style: TextStyle(
-                                            color: Color(0xFFE88E32),
-                                            fontSize: 12,
-                                            fontFamily: 'Archivo-Medium',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  else
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          selectedImageUrl = imageUrls[index];
-                                        });
-                                      },
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 8),
-                                        width: 36,
-                                        height: 36,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(5),
-                                          color: Colors.white,
-                                        ),
-                                        child: Center(
-                                          child: Image.asset(
-                                            imageUrls[index],
-                                            scale: 1.5,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                              ],
+                        Column(
+                          children: [
+                            SizedBox(height: 100),
+                            Center(
+                              child: selectedImageUrl == null
+                                  ? const Placeholder()
+                                  : SizedBox(
+                                  width: 280,
+                                  height: 180,
+                                  child: Image.asset(selectedImageUrl!,
+                                      fit: BoxFit.contain)),
                             ),
+                            SizedBox(height: 20),
+                            Container(
+                              width: 290,
+                              height: 64,
+                              padding: const EdgeInsets.all(12),
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFD1D5DB),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    for (int index = 0;
+                                    index <
+                                        (imageUrls.length >= 4 && !showAll
+                                            ? 5
+                                            : imageUrls.length);
+                                    index++)
+                                      if (index == 4 && !showAll)
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              showAll =
+                                              true; // Expand to show all items
+                                            });
+                                          },
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                              color: Colors.black.withOpacity(0.4),
+                                            ),
+                                            width: 36,
+                                            height: 36,
+                                            child: Text(
+                                              '+${imageUrls.length - 4}',
+                                              style: TextStyle(
+                                                color: Color(0xFFE88E32),
+                                                fontSize: 12,
+                                                fontFamily: 'Archivo-Medium',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      else
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedImageUrl = imageUrls[index];
+                                            });
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            width: 36,
+                                            height: 36,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                              color: Colors.white,
+                                            ),
+                                            child: Center(
+                                              child: Image.asset(
+                                                imageUrls[index],
+                                                scale: 1.5,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 60),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  print("Some things");
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  padding: const EdgeInsets.all(10),
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x0C18181B),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Center(
+                                    child: Image.asset(
+                                      "assets/cart/icon_left_arrow.png",
+                                      scale: 2,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  print("Some things");
+                                  setState(() {
+                                    isFavourite=!isFavourite;
+
+                                  });
+                                },
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  padding: const EdgeInsets.all(10),
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x0C18181B),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Center(
+                                    child: Image.asset(
+                                      isFavourite==true ?  "assets/shophome/icon_wishlist_fill.png":"assets/shophome/icon_wishlist.png",
+                                      scale: 2,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
+
                       ],
                     ),
                   ),
                   SizedBox(height: 20),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 1360,
                     clipBehavior: Clip.antiAlias,
                     decoration: ShapeDecoration(
                       color: Color(0xFFF6F6F6),
@@ -614,7 +674,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           height: 25,
                         ),
-                        _buildDivider(),
+                        buildDivider(context),
                         SizedBox(
                           height: 40,
                         ),
@@ -698,247 +758,157 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           height: 30,
                         ),
-                        SingleChildScrollView(
-                          child: Column(
-                            children: reviews
-                                .map((item) => Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20.0, right: 20, bottom: 15),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          color:  Color(0xFFE5E7EB)
-                                      )),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context)
-                                          .size
-                                          .width,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: 40,
-                                            height: 40,
-                                            clipBehavior:
-                                            Clip.antiAlias,
-                                            decoration: ShapeDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/review/icon_girl.png"),
-                                                fit: BoxFit.fill,
-                                              ),
-                                              shape:
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      4)),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                              const EdgeInsets.only(
-                                                  left: 10),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment
-                                                    .start,
-                                                children: [
-                                                  Text(
-                                                    'Rhaenyra',
-                                                    style: TextStyle(
-                                                      color: Color(
-                                                          0xFF334155),
-                                                      fontSize: 16,
-                                                      fontFamily:
-                                                      'Archivo-Regular',
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .w400,
-                                                      height: 1.1,
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 7),
-                                                  if (item.stars !=
-                                                      null) ...[
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            ...(item.stars !=
-                                                                null
-                                                                ? List.generate(
-                                                                item.stars!,
-                                                                    (i) => Padding(
-                                                                  padding: EdgeInsets.symmetric(horizontal: 0.5),
-                                                                  child: Image.asset("assets/review/icon_star.png", scale: 2.2),
-                                                                ))
-                                                                : []),
-                                                          ],
-                                                        ),
-                                                        Text(
-                                                          '5 days ago',
-                                                          textAlign:
-                                                          TextAlign
-                                                              .right,
-                                                          style:
-                                                          TextStyle(
-                                                            color: Color(
-                                                                0xFF66758C),
-                                                            fontSize:
-                                                            12,
-                                                            fontFamily:
-                                                            'Archivo',
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w400,
-                                                            height:
-                                                            0.12,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 15),
-                                    SizedBox(
-                                      height: 66,
-                                      child: Text(
-                                        item.reviewText,
-                                        style: TextStyle(
-                                          color: Color(0xFF475569),
-                                          fontSize: 14,
-                                          fontFamily: 'Archivo-Regular',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    // Text(
-                                    //   item.details,
-                                    //   style: TextStyle(color: Colors.grey),
-                                    // ),
-                                    // SizedBox(height: 5),
-                                    // Text(
-                                    //   'By: ${item.name}',
-                                    //   style: TextStyle(fontWeight: FontWeight.bold),
-                                    // ),
-                                    if (item.imageUrls !=
-                                        null) // Check if image URLs exist
-                                      SingleChildScrollView(
-                                        scrollDirection:
-                                        Axis.horizontal,
-                                        child: Row(
-                                          children: item.imageUrls
-                                              ?.map((imageUrl) {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(right: 8,bottom:10 ),
-                                              child: Container(
-                                                width: 56,
-                                                height: 56,
-                                                padding: const EdgeInsets.all(4),
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: ShapeDecoration(
-                                                  color: Color(0xFFE2E8F0),
-                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                                                ),
-                                                child:  Center(child: Image.asset(imageUrl, width: 50, height: 50)),
-                                              ),
-                                            );
-                                          }).toList() ??
-                                              [], // Use an empty list if imageUrls is null
-                                        ),
-                                      ),
-                                  ],
+                         SingleChildScrollView(
+            child: Column(
+              children: reviews.asMap().entries.map((entry) {
+                int index = entry.key;
+                var item = entry.value;
+
+                return Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: index != reviews.length - 1 // Check if it's not the last item
+                          ? Border(
+                        bottom: BorderSide(
+                          color: Color(0xFFE5E7EB),
+                        ),
+                      )
+                          : null, // No border for the last item
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 40,
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: ShapeDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/review/icon_girl.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
                                 ),
                               ),
-                            ))
-                                .toList(),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Rhaenyra',
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 16,
+                                          fontFamily: 'Archivo-Regular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                      SizedBox(height: 7),
+                                      if (item.stars != null) ...[
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                ...(item.stars != null
+                                                    ? List.generate(
+                                                  item.stars!,
+                                                      (i) => Padding(
+                                                    padding: EdgeInsets.symmetric(horizontal: 0.5),
+                                                    child: Image.asset("assets/review/icon_star.png", scale: 2.2),
+                                                  ),
+                                                )
+                                                    : []),
+                                              ],
+                                            ),
+                                            Text(
+                                              '5 days ago',
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                color: Color(0xFF66758C),
+                                                fontSize: 12,
+                                                fontFamily: 'Archivo',
+                                                fontWeight: FontWeight.w400,
+                                                height: 0.12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Spacer(),
+                        SizedBox(height: 15),
+                        SizedBox(
+                          height: 66,
+                          child: Text(
+                            item.reviewText,
+                            style: TextStyle(
+                              color: Color(0xFF475569),
+                              fontSize: 14,
+                              fontFamily: 'Archivo-Regular',
+                              fontWeight: FontWeight.w400,
+                            ),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        if (item.imageUrls != null) // Check if image URLs exist
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: item.imageUrls?.map((imageUrl) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 8, bottom: 10),
+                                  child: Container(
+                                    width: 56,
+                                    height: 56,
+                                    padding: const EdgeInsets.all(4),
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: ShapeDecoration(
+                                      color: Color(0xFFE2E8F0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Image.asset(imageUrl, width: 50, height: 50),
+                                    ),
+                                  ),
+                                );
+                              }).toList() ??
+                                  [], // Use an empty list if imageUrls is null
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+
+                        SizedBox(height: 50.h,),
                       ],
                     ),
                   )
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 60),
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 500),
-                // Adjust the duration as needed
-                opacity: isVisible ? 1.0 : 0.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        print("Some things");
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        padding: const EdgeInsets.all(10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          color: Color(0x0C18181B),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            "assets/cart/icon_left_arrow.png",
-                            scale: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print("Some things");
-                        setState(() {
-                          isFavourite=!isFavourite;
-
-                        });
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        padding: const EdgeInsets.all(10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          color: Color(0x0C18181B),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            isFavourite==true ?  "assets/shophome/icon_wishlist_fill.png":"assets/shophome/icon_wishlist.png",
-                            scale: 2,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
               ),
             ),
             Positioned(
@@ -953,7 +923,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     width: MediaQuery.of(context).size.width,
                     height: 76,
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     decoration: ShapeDecoration(
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
@@ -967,7 +937,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
+                          padding:  EdgeInsets.only(top: 15.h),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1075,18 +1045,4 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  Widget _buildDivider() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 1,
-            strokeAlign: BorderSide.strokeAlignCenter,
-            color: Color(0xFFE5E7EB),
-          ),
-        ),
-      ),
-    );
-  }
 }

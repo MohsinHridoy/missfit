@@ -4,11 +4,17 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glossy/glossy.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:miss_fit/screens/orderstatus/order_status_screen.dart';
 
 import '../../common_utils.dart';
+import '../../widgets/common_buttons.dart';
+import '../../widgets/common_text_widgets.dart';
+import '../../widgets/dotted_image_uploader.dart';
+import '../../widgets/horizontal_product_list.dart';
+import '../../widgets/review_text_field.dart';
 
 class ProductReview extends StatefulWidget {
   final String? status;
@@ -23,7 +29,78 @@ class _ProductReviewState extends State<ProductReview> {
   TextEditingController textEditingController = TextEditingController();
   List<File> _images = [];
 
-  double _rating = 3.0;
+  double _rating = 0.0;
+  void _deleteImage(int index) {
+    setState(() {
+      _images.removeAt(index);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).requestFocus(FocusNode());
+
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor:  Color(0xFFF6F6F6),
+        body: Column(
+          children: [
+            _buildAppBar(context),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20.0,top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                    children: [
+                      SizedBox(height: 10.h,),
+                      _buildProductInfo(),
+                      SizedBox(height: 30.h,),
+
+                      _buildRatingQuestion('Quelle note donneriez-vous à cet article ?'),
+                      SizedBox(height: 15.h,),
+
+                      _buildRatingBar(),
+                      SizedBox(height: 25.h,),
+
+                      _buildRatingQuestion('Ecrire une critique'),
+                      SizedBox(height: 17.h,),
+
+                      _buildReviewTextField(),
+                      SizedBox(height: 20.h),
+
+                      _buildImageUploader(),
+                      SizedBox(height: 10.h),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: HorizontalProductList(
+                          images: _images,
+                          onDelete: _deleteImage,
+                        ),
+                      ),
+                      SizedBox(height: 50.h),
+
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            _buildSubmitButton(),
+
+
+
+          ],
+        ),
+      ),
+    );
+  }
+
 
   Future<void> _pickImage() async {
     final ImagePicker _picker = ImagePicker();
@@ -68,149 +145,6 @@ class _ProductReviewState extends State<ProductReview> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-
-    return GestureDetector(
-      onTap: (){
-        FocusScope.of(context).requestFocus(FocusNode());
-
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          color: Color(0xFFF6F6F6),
-
-          child: Column(
-            children: [
-              _buildAppBar(context),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                  
-                      children: [
-                        SizedBox(height: 10.h,),
-                        _buildProductInfo(),
-                        SizedBox(height: 50.h,),
-                  
-                        _buildRatingQuestion('Quelle note donneriez-vous à cet article ?'),
-                        SizedBox(height: 25.h,),
-                  
-                        _buildRatingBar(),
-                        SizedBox(height: 30.h,),
-                  
-                        _buildRatingQuestion('Ecrire une critique'),
-                        SizedBox(height: 25.h,),
-                  
-                        _buildReviewTextField(),
-                        SizedBox(height: 20.h),
-                  
-                        _buildImageUploader(),
-                        SizedBox(height: 10.h),
-
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: SizedBox(
-                            height: 88, // Height of each item in the list
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _images.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 8.0), // Spacing between items
-                                  child: Container(
-                                    width: 88,
-                                    height: 88,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFE5E7EB),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              // if (!isDeleted[index]) {
-                                              //   isDeleted[index] = true;
-                                              // } else {
-                                              //   // If already deleted, remove the item completely
-                                              //   imageUrls.removeAt(index);
-                                              //   isDeleted.removeAt(index);
-                                              // }
-
-                                              _images.removeAt(index);
-
-                                            });
-                                          },
-                                          child: Align(
-                                            alignment: Alignment.topRight,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(right: 8.0,top: 2),
-                                              child: Container(
-                                                width: 20,
-                                                height: 20,
-                                                padding: const EdgeInsets.all(4),
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius: BorderRadius.circular(4),
-                                                ),
-                                                child: Icon(
-                                                  Icons.delete ,
-                                                  size: 12,
-                                                  color: Colors.red,
-
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                        Center(
-                                          child: Container(
-                                            width: 35,
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                image: FileImage(_images[index]),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 50.h),
-
-                        _buildSubmitButton(),
-                        SizedBox(height: 20.h),
-
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-
-
-
-            ],
-          ),
-        ),
-      ),
-    );
-  }
   void showCongratulationsModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -279,41 +213,18 @@ class _ProductReviewState extends State<ProductReview> {
                 ),
               ),
               Spacer(),
+
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
-                child: GestureDetector(
-                  onTap: () {
-                    // Navigator.pop(context); // Close the bottom sheet
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => DashBoard()),
-                    // );
+                child: customButtonRed(context, 'Continuer', onPressed: () {
+                  Navigator.pop(context);
+                  if(widget.status=='profile')
+                    Navigator.pop(context);
+                  else
 
-                    navigateToNextPage(context,OrderStatus(navigationStatus: 'Delivered', status:OrderStatusEnum.Processing,));
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 52,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF4343),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w500,
-                          height: 1.11,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                  navigateToNextPage(context,OrderStatus(navigationStatus: 'WriteReview', status:OrderStatusEnum.Processing,));
+
+                }),
               ),
             ],
           ),
@@ -364,206 +275,112 @@ class _ProductReviewState extends State<ProductReview> {
   }
 
   Widget _buildProductInfo() {
-    return Row(
-      children: [
-        Container(
-          width: 50,
-          height: 50,
-          decoration: ShapeDecoration(
-            color: Color(0xFF94A3B8).withOpacity(0.3),
-            image: DecorationImage(
-              image: AssetImage('assets/cart/cart_items.png'),
-              fit: BoxFit.fill,
-            ),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          ),
-        ),
-        SizedBox(width: 10),
-        SizedBox(
-          width: 128,
-          child: Text(
-            'Dumbbells',
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 16,
-              fontFamily: 'Archivo-Medium',
-              fontWeight: FontWeight.w500,
-              height: 0.09,
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Row(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: ShapeDecoration(
+              color: Color(0xFF94A3B8).withOpacity(0.3),
+              image: DecorationImage(
+                image: AssetImage('assets/cart/cart_items.png'),
+                fit: BoxFit.fill,
+              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             ),
           ),
-        )
-      ],
+          SizedBox(width: 10),
+          SizedBox(
+            width: 128,
+            child: Text(
+              'Dumbbells',
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 16,
+                fontFamily: 'Archivo-Medium',
+                fontWeight: FontWeight.w500,
+                height: 0.09,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
   Widget _buildRatingQuestion(String text) {
-    return Text(
-      text,
-      style: TextStyle(
-        color: Color(0xFF334155),
-        fontSize: 18,
-        fontFamily: 'Kanit-Medium',
-        fontWeight: FontWeight.w500,
-        height: 1.07,
-      ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: SizedBox(width:300,child: txtKanitMedium18_2(text)),
     );
   }
 
   Widget _buildRatingBar() {
-    return RatingBar.builder(
-      initialRating: _rating,
-      minRating: 1,
-      direction: Axis.horizontal,
-      allowHalfRating: true,
-      itemCount: 5,
-      unratedColor: Colors.grey.withOpacity(0.5),
-      itemSize: 35,
-      itemBuilder: (context, _) => Image.asset(
-        "assets/review/icon_star_review.png",
-        color: Colors.amber,
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: RatingBar.builder(
+        initialRating: _rating,
+        minRating: 1,
+        direction: Axis.horizontal,
+        allowHalfRating: true,
+        itemCount: 5,
+        unratedColor: Colors.grey.withOpacity(0.5),
+        itemSize: 30,
+        itemBuilder: (context, _) => Image.asset(
+          "assets/review/icon_star_review.png",
+          color:  Color(0xFFFFA142),
+        ),
+        onRatingUpdate: (rating) {
+          setState(() {
+            _rating = rating;
+          });
+        },
+        itemPadding: EdgeInsets.symmetric(horizontal: 11.0),
+        updateOnDrag: true,
       ),
-      onRatingUpdate: (rating) {
-        setState(() {
-          _rating = rating;
-        });
-      },
-      itemPadding: EdgeInsets.symmetric(horizontal: 10.0),
-      updateOnDrag: true,
     );
   }
 
   Widget _buildReviewTextField() {
     return Padding(
-      padding: const EdgeInsets.all(1.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 210,
-        decoration: ShapeDecoration(
-          // color: Colors.white,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-            borderRadius: BorderRadius.circular(5),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-          child: TextField(
-            controller: textEditingController,
-            maxLines: null,
-
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 16,
-              fontFamily: 'Archivo-Medium',
-              fontWeight: FontWeight.w500,
-            ),
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 15,top: 10),
-              hintText: 'Décrivez votre expérience (facultatif)', // Your hint text here
-              hintStyle: TextStyle(
-                color: Color(0xFF334155),
-                fontSize: 16,
-                fontFamily: 'Archivo-Medium',
-                fontWeight: FontWeight.w500,
-              ),
-              border: InputBorder.none,
-            ),
-          ),
-        ),
-      ),
+      padding: const EdgeInsets.only(left: 20.0),
+      child: buildReviewTextField(context,textEditingController),
     );
   }
 
   Widget _buildImageUploader() {
     return Padding(
-      padding: const EdgeInsets.only(left: 2.0,right: 2.0),
-      child: DottedBorder(
-        color: Color(0xFFFF4343),
-        strokeWidth: 1,
-        borderType: BorderType.RRect,
-        child: GestureDetector(
-          onTap: _images.length >= 5
-              ? null
-              : () {
-            _pickImage();
-          },
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            color: Color(0xFFF6F6F6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/review/icon_camera.png",
-                  height: 25,
-                  width: 25,
-                ),
-                SizedBox(width: 10),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Télécharger une photo(${_images.length}/5)',
-                    style: TextStyle(
-                      color: Color(0xFFFF4343),
-                      fontSize: 14,
-                      fontFamily: 'Archivo-SemiBold',
-                      fontWeight: FontWeight.w600,
-                      height: 0.10,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+      padding: const EdgeInsets.only(left: 20.0),
+      child: DottedImageUploader(
+        imageCount: _images.length,
+        onPickImage: _images.length >= 5
+            ? null
+            : () {
+          _pickImage();
+        }, // Pass the function to handle image picking
       ),
     );
   }
 
   Widget _buildSubmitButton() {
-    return GestureDetector(
-      onTap: (){
-        showCongratulationsModal(context);
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 52,
-        decoration: ShapeDecoration(
-          color: Color(0xFFFF4343),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        child: Center(
+    return GlossyContainer(
+      width: MediaQuery.of(context).size.width,
+      height: 76,
+      blendMode: BlendMode.srcATop,
+      // opacity:0.1,
+      color: Colors.white.withOpacity(0.04),
+      child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              'Soumettre',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontFamily: 'Archivo-Semibold',
-                fontWeight: FontWeight.w600,
-                height: 0.09,
-              ),
-            ),
-          ),
-        ),
+            padding: const EdgeInsets.only(left: 20.0,right: 20),
+            child: customButtonRed(context, 'Soumettre', onPressed: () {
+              showCongratulationsModal(context);
+
+            }),
+          )
       ),
     );
   }
 
-  Widget _buildStarText(String txt) {
-    return Flexible(
-      child: Text(
-        txt,
-        style: TextStyle(
-          color: Color(0xFFF1B31C),
-          fontSize: 14,
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.w400,
-          height: 1,
-        ),
-      ),
-    );
-  }
 }

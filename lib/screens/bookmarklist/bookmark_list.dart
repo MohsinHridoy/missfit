@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/screens/challenge_details/challenge_details.dart';
-import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import '../../common_utils.dart';
+import '../../common_widgets.dart';
 import '../../widgets/custom_app_bar.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
-
-
 
 class BookmarkItem {
   final String name;
@@ -18,8 +11,6 @@ class BookmarkItem {
 
   BookmarkItem({required this.name, required this.imagePath});
 }
-
-
 
 class BookmarkList extends StatefulWidget {
   final String title;
@@ -43,16 +34,89 @@ class _BookmarkListState extends State<BookmarkList> {
     BookmarkItem(name: 'Torche calorique 9', imagePath: 'assets/bookmark/bookmarklist.png'),
   ];
 
+  BookmarkItem? _lastRemovedItem;
+  int? _lastRemovedItemIndex;
+
   void _removeItem(int index) {
     setState(() {
-      bookmarkItems.removeAt(index);
+      _lastRemovedItem = bookmarkItems.removeAt(index);  // Store the removed item
+      _lastRemovedItemIndex = index;  // Store its index
     });
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(bookmarkItems[index].name +'  removed'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         duration: Duration(seconds: 2),
+        content: Container(
+          width: 320.h,
+          height: 40.h,
+          padding: const EdgeInsets.only(
+            top: 10,
+            left: 12,
+            right: 14,
+            bottom: 9,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '“${_lastRemovedItem?.name}” Supprimé',  // Use stored item name
+                style: TextStyle(
+                  color: Color(0xFF334155),
+                  fontSize: 14,
+                  fontFamily: 'Archivo-Regular',
+                  fontWeight: FontWeight.w400,
+                  height: 1.7,
+                ),
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () {
+                  _undoRemove();
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size(0, 0),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: Text(
+                  'Défaire',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Color(0xFFEF4444),
+                    fontSize: 14,
+                    fontFamily: 'Archivo-Regular',
+                    fontWeight: FontWeight.w400,
+                    height: 1.7,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.only(bottom: 10.0),
       ),
     );
+  }
+
+  void _undoRemove() {
+    if (_lastRemovedItem != null && _lastRemovedItemIndex != null) {
+      setState(() {
+        bookmarkItems.insert(_lastRemovedItemIndex!, _lastRemovedItem!);  // Reinsert the removed item
+      });
+
+      // Clear the temporary storage
+      _lastRemovedItem = null;
+      _lastRemovedItemIndex = null;
+    }
   }
 
   @override
@@ -75,7 +139,6 @@ class _BookmarkListState extends State<BookmarkList> {
                   SizedBox(height: 15.h),
                   ListView.builder(
                     padding: EdgeInsets.zero,
-
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: bookmarkItems.length,
@@ -83,14 +146,16 @@ class _BookmarkListState extends State<BookmarkList> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
                         child: GestureDetector(
-                          onTap: (){
-                            print("ccccc");
-                            navigateToNextPage(context, ChallengesDetails(status: 'bookmark',));
+                          onTap: () {
+                            navigateToNextPage(
+                              context,
+                              ChallengesDetails(status: 'bookmark'),
+                            );
                           },
                           child: Container(
                             width: double.infinity,
                             height: 78,
-                            color:Color(0xFFF6F6F6) ,
+                            color: Color(0xFFF6F6F6),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -185,17 +250,9 @@ class _BookmarkListState extends State<BookmarkList> {
                                   ],
                                 ),
                                 const SizedBox(height: 16),
-                                Container(
-                                  width: double.infinity,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        color: Color(0xFFE5E7EB),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+
+                                buildDivider(context)
+
                               ],
                             ),
                           ),

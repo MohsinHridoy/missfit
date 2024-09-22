@@ -41,7 +41,7 @@ class _SubscriptionPriceSelectionPageState
               // navigateToNextPage(context, DashBoard(number: 3,));
 
             },
-            iconSpacing:3.6,
+            iconSpacing:3.8,
           ),
           Expanded(
             child: Padding(

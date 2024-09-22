@@ -9,6 +9,8 @@ import 'package:miss_fit/screens/reviewsummery/review_summery_screen.dart';
 import 'package:miss_fit/screens/reviewsummery/review_summery_subscription_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/textfields.dart';
+
 class DeliavryAddress extends StatefulWidget {
   String? status;
 
@@ -123,10 +125,11 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                         SizedBox(
                           height: 15,
                         ),
-                        _textFormField(_firstNameController, 'Prénom'),
-                        _textFormField(_lastNameController, 'Nom de famille'),
-                        _textFormField(_emailController, 'Email'),
-                        _textFormField(_phoneNumberController, 'Numéro de téléphone''Phone Number'),
+
+                        textFormFieldAddress(context,_firstNameController,'Prénom',TextInputType.emailAddress, _checkFieldsFilled),
+                        textFormFieldAddress(context,_lastNameController,'Nom de famille',TextInputType.emailAddress, _checkFieldsFilled),
+                        textFormFieldAddress(context,_emailController,'Email',TextInputType.emailAddress, _checkFieldsFilled),
+                        textFormFieldAddress(context,_phoneNumberController,'Numéro de téléphone''Phone Number',TextInputType.phone, _checkFieldsFilled),
                         SizedBox(
                           height: 30,
                         ),
@@ -144,11 +147,12 @@ class _DeliavryAddressState extends State<DeliavryAddress> {
                             ),
                           ),
                         ),
-                        _textFormField(_regionController, 'Région'),
-                        _textFormField(_postCodeController, 'Code Postal'),
-                        _textFormField(_streetAddressController, 'Adresse de la rue'),
-                        _textFormField(_cityController, 'Ville'),
-                        _textFormField(_addressController, 'Adresse'),
+
+                        textFormFieldAddress(context,_regionController,'Région',TextInputType.emailAddress, _checkFieldsFilled),
+                        textFormFieldAddress(context,_postCodeController,'Code Postal',TextInputType.phone, _checkFieldsFilled),
+                        textFormFieldAddress(context,_streetAddressController,'Adresse de la rue',TextInputType.emailAddress, _checkFieldsFilled),
+                        textFormFieldAddress(context,_cityController,'Ville',TextInputType.emailAddress, _checkFieldsFilled),
+                        textFormFieldAddress(context,_addressController,'Adresse',TextInputType.emailAddress, _checkFieldsFilled),
                         SizedBox(
                           height: 130,
                         ),

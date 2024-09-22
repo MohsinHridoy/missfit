@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glossy/glossy.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/timeselectionscreen/select_time_screen.dart';
@@ -61,7 +62,7 @@ class ServiceDetails extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 45),
+                          SizedBox(height: 25.h),
                           // Add some spacing between text and containers
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -83,7 +84,7 @@ class ServiceDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(height: 35),
+                          SizedBox(height: 40.h),
                           // Add some spacing between text and containers
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
@@ -98,7 +99,7 @@ class ServiceDetails extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 35),
+                           SizedBox(height: 20.h),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: SizedBox(
@@ -115,7 +116,7 @@ class ServiceDetails extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 35),
+                          SizedBox(height: 35.h),
                           // Add some spacing between text and containers
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
@@ -130,7 +131,7 @@ class ServiceDetails extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 30),
+                           SizedBox(height: 25.h),
 
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
@@ -150,7 +151,7 @@ class ServiceDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(height: 35),
+                          SizedBox(height: 35.h),
                           // Add some spacing between text and containers
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
@@ -210,7 +211,7 @@ class ServiceDetails extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 76,
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
@@ -223,39 +224,39 @@ class ServiceDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
 
 
-                            Text(
-                              'Frais de réservation',
+                          Text(
+                            'Frais de réservation',
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 10,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.14,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 7.h,
+                          ),
+                          SizedBox(
+                            width: 161,
+                            child: Text(
+                              'CHF 210',
                               style: TextStyle(
                                 color: Color(0xFF334155),
                                 fontSize: 16,
-                                fontFamily: 'Archivo-Medium',
+                                fontFamily: 'Archivo',
                                 fontWeight: FontWeight.w500,
-                                height: 0.09,
+                                height: 1.09,
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                                'CHF 32.00',
-                                style: TextStyle(
-                                  color: Color(0xFF66758C),
-                                  fontSize: 10,
-                                  fontFamily: 'Archivo-Regular',
-                                  fontWeight: FontWeight.w400,
-                                  decoration: TextDecoration.lineThrough, // Apply line-through decoration
-                                  height: 0.14,
-                                )
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       GestureDetector(
                         onTap: () {
@@ -263,26 +264,23 @@ class ServiceDetails extends StatelessWidget {
                         },
                         child: Container(
                           width: 150,
-                          height: 44,
+                          height: 52,
                           decoration: BoxDecoration(
                             color: Color(0xFFFF4343),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 0.0),
-                              child: Text(
-                                'Continuer',
-                                textAlign: TextAlign.center,
-                                // Ensure text alignment is centered
+                            child: Text(
+                              'Continuer',
+                              textAlign: TextAlign.center,
+                              // Ensure text alignment is centered
 
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-SemiBold',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.10,
-                                ),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Archivo-SemiBold',
+                                fontWeight: FontWeight.w600,
+                                height: 1.10,
                               ),
                             ),
                           ),
@@ -337,7 +335,7 @@ class ServiceDetails extends StatelessWidget {
                 fontSize: 14,
                 fontFamily: 'Archivo-Medium',
                 fontWeight: FontWeight.w500,
-                height: 0.10,
+                height: 1.10,
               ),
             ),
           ),
@@ -372,7 +370,7 @@ class ServiceDetails extends StatelessWidget {
                 fontSize: 12,
                 fontFamily: 'Archivo-Regular',
                 fontWeight: FontWeight.w400,
-                height: 0.12,
+                height: 1.12,
               ),
             ),
           ],

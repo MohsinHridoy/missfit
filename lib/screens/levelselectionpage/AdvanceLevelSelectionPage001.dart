@@ -6,6 +6,7 @@ import 'package:miss_fit/common_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../widgets/common_buttons.dart';
+import '../../widgets/level_container_selection.dart';
 import '../dashboard/dashboard.dart';
 
 class AdvanceLevelSelectionPage001 extends StatefulWidget {
@@ -66,16 +67,33 @@ class _AdvanceLevelSelectionPageState001
                   SizedBox(
                       child: title_textView(
                           'Pendant combien de temps  aimez-vous vous entraîner ?')),
-                  SizedBox(height: 30),
-                  buildLevelContainer(
-                      0,'Activité légère', 'Environ 10-20 minutes'),
-                  buildLevelContainer(
-                      1, 'Activité modérée', 'Environ 30 - 40 minutes'),
-                  buildLevelContainer(2, 'Activité professionnelle', 'Environ 40 - 60 minutes'),
+                  SizedBox(height: 20),
+                  LevelContainer(
+                    index: 0,
+                    title: 'Activité légère',
+                    subtitle: 'Environ 10-20 minutes',
+                    selectedIndex: selectedIndex,
+                    onTap: handleLevelTap,
+                  ),
+                  LevelContainer(
+                    index: 1,
+                    title: 'Activité modérée',
+                    subtitle: 'Environ 30 - 40 minutes',
+                    selectedIndex: selectedIndex,
+                    onTap: handleLevelTap,
+                  ),
+                  LevelContainer(
+                    index: 2,
+                    title: 'Activité professionnelle',
+                    subtitle:  'Environ 40 - 60 minutes',
+                    selectedIndex: selectedIndex,
+                    onTap: handleLevelTap,
+                  ),
+
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 10.0, right: 10, bottom: 15),
+                        left: 5.0, right: 5, bottom: 5),
                     child: Visibility(
                       visible: widget.status != 'profile',
                       child: GestureDetector(
@@ -124,7 +142,7 @@ class _AdvanceLevelSelectionPageState001
                   width: MediaQuery.of(context).size.width,
                   height: 303,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -180,7 +198,7 @@ class _AdvanceLevelSelectionPageState001
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 20.0, right: 20, top: 10),
+                            left: 16.0, right: 16, top: 15),
                         child: GestureDetector(
                             onTap: () async {
                               SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -230,52 +248,17 @@ class _AdvanceLevelSelectionPageState001
         ),
       ),
     );
+
+
+  }
+  void handleLevelTap(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+    saveSelectedIndex();
   }
   Future<void> _setLoggedIn(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', value);
-  }
-  Widget buildLevelContainer(int index, String title, String subtitle) {
-    Color titleColor =
-        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
-    Color borderColor =
-        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
-
-    return GestureDetector(
-      onTap: () async {
-        setState(() {
-          selectedIndex = index;
-        });
-        await saveSelectedIndex(); // Save the index as soon as it's selected
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: Container(
-          width: 320.h,
-          height: 84,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              width: 1,
-              color: borderColor,
-            ),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-
-              item_txt_Archvo_M_500(title,titleColor),
-              SizedBox(height: 10.h),
-              subItem_txt_Archvo_R_400(subtitle),
-
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

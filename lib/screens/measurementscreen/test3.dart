@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_buttons.dart';
+
 class TestScroll extends StatefulWidget {
   final VoidCallback onNextPressed;
 
@@ -261,41 +263,20 @@ class _TestScrollState extends State<TestScroll> {
 
 
             Spacer(),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 30),
-                child: GestureDetector(
-                  onTap: () async{
-                    await _saveIndex(currentPageIndex!);
 
-                    print(currentPageIndex);
-                    widget.onNextPressed();
+            Padding(
+                padding: const EdgeInsets.only(left: 20.0,right: 20.0,bottom: 25),
+                child:
 
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 52,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFFF4343),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        widget.status == 'profile'?'Enregistrer et suivant':'Suivant',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Archivo-Medium',
-                          fontWeight: FontWeight.w500,
-                          height: 1.09,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+
+                customButtonRed(context,widget.status == 'profile'?'Enregistrer et suivant':'Suivante', onPressed: () async{
+                  await _saveIndex(currentPageIndex!);
+
+                  print(currentPageIndex);
+                  widget.onNextPressed();
+                })
             )
+
 
             // Your existing UI code
             // ...

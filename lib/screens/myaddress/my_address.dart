@@ -8,6 +8,7 @@ import 'package:miss_fit/screens/delivaryaddress/delivary_address.dart';
 import 'package:miss_fit/screens/payment/payment_screeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/common_text_widgets.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../cartscreen/cart001.dart';
 
@@ -126,7 +127,7 @@ class _MyAddressState extends State<MyAddress> {
       padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 15),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 175,
+        height: 185,
         padding: const EdgeInsets.all(5),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
@@ -143,17 +144,8 @@ class _MyAddressState extends State<MyAddress> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 0.09,
-                      ),
-                    ),
 
+                    txtArchivoSemiBoldBlack16(title),
                     GestureDetector(
                         onTap: (){
                           Navigator.push(
@@ -166,6 +158,8 @@ class _MyAddressState extends State<MyAddress> {
                   ],
                 ),
               ),
+              SizedBox(height: 10,),
+
               SizedBox(
                 height: 25,
                 child: Text(

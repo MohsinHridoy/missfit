@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common_widgets.dart';
 import '../../widgets/common_buttons.dart';
+import '../../widgets/level_container_selection.dart';
 
 class WorkOutLevelSelectionPage extends StatefulWidget {
   final VoidCallback onNextPressed;
@@ -65,16 +66,34 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
                 // buildLevelContainer(0, 'Light Activity', 'About 10-20 minutes'),
                 // buildLevelContainer(1, 'Moderate Activity', 'About 30-40 minutes'),
                 // buildLevelContainer(2, 'Pro Activity', 'About 40-60 minutes'),
-                buildLevelContainer(0, 'Débutante', 'Je suis nouveau à la salle de sport'),
-                buildLevelContainer(
-                    1, 'Intermédiaire', 'Je connais mon chemin dans une salle de sport'),
-                buildLevelContainer(2, 'Avance', 'Je suis un expert en salle de sport'),
+                LevelContainer(
+                  index: 0,
+                  title: 'Débutante',
+                  subtitle: 'Je suis nouveau à la salle de sport',
+                  selectedIndex: selectedIndex,
+                  onTap: handleLevelTap,
+                ),
+                LevelContainer(
+                  index: 1,
+                  title: 'Intermédiaire',
+                  subtitle: 'Je connais mon chemin dans une salle de sport',
+                  selectedIndex: selectedIndex,
+                  onTap: handleLevelTap,
+                ),
+                LevelContainer(
+                  index: 2,
+                  title: 'Avance',
+                  subtitle: 'Je suis un expert en salle de sport',
+                  selectedIndex: selectedIndex,
+                  onTap: handleLevelTap,
+                ),
+
                 Spacer(),
                 Visibility(
                   visible: widget.status != 'profile',
 
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 5.0,right: 5,bottom: 15),
+                    padding: const EdgeInsets.only(left: 5.0,right: 5,bottom: 5),
                     // child: GestureDetector(
                     //     onTap: () async{
                     //       setState(() {
@@ -113,46 +132,10 @@ class _WorkOutLevelSelectionPageState extends State<WorkOutLevelSelectionPage> {
       ),
     );
   }
-
-  Widget buildLevelContainer(int index, String title, String subtitle) {
-    Color titleColor =
-        index == selectedIndex ? Color(0xFFE88E32) : Color(0xFF334155);
-    Color borderColor =
-        index == selectedIndex ? Color(0xFFFFA142) : Color(0xFFE5E7EB);
-
-    return GestureDetector(
-      onTap: () async {
-        setState(() {
-          selectedIndex = index;
-        });
-        await saveSelectedIndex(); // Save the index as soon as it's selected
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: Container(
-          width: 320.h,
-          height: 80.h,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              width: 1,
-              color: borderColor,
-            ),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              item_txt_Archvo_M_500(title,titleColor),
-              SizedBox(height: 10.h),
-              subItem_txt_Archvo_R_400(subtitle)
-            ],
-          ),
-        ),
-      ),
-    );
+  void handleLevelTap(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+    saveSelectedIndex();
   }
 }

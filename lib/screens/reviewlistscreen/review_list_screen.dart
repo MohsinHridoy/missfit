@@ -133,7 +133,7 @@ class _ReviewListState extends State<ReviewList> {
                       padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
+                          border: index != reviews.length - 1 ?Border(bottom: BorderSide(color: Color(0xFFE5E7EB))):null,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

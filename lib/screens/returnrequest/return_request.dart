@@ -6,10 +6,17 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glossy/glossy.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:miss_fit/screens/dashboard/dashboard.dart';
 
+import '../../common_widgets.dart';
+import '../../widgets/common_text_widgets.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../../widgets/dotted_image_uploader.dart';
+import '../../widgets/horizontal_product_list.dart';
+import '../../widgets/review_text_field.dart';
 import '../cartscreen/cart.dart';
 
 class ReturnRequest extends StatefulWidget {
@@ -34,7 +41,11 @@ class _ReturnRequestState extends State<ReturnRequest> {
         image: 'assets/cart/cart_items.png',
         weight: 0.7),
   ];
-
+  void _deleteImage(int index) {
+    setState(() {
+      _images.removeAt(index);
+    });
+  }
 
   String selectedText =
       'Select Reason'; // Declare a variable to store the selected text
@@ -95,275 +106,268 @@ bool isVisible=false;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
-      body: Container(
-        color: Color(0xFFF6F6F6),
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  _buildAppBar(context),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 18.0, right: 18.0, top: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 30,
-                        ),
-                        _buildRatingQuestion('Retourner le produit'),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        _buildCartItemsList(),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        _buildRatingQuestion('Raison du retour'),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              isVisible=true;
+      body: Column(
+        children: [
+          _buildAppBar(context),
 
-                            });
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 48,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    width: 1, color: Color(0xFFD1D5DB)),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
+          Expanded(
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+            
+            
+                      Padding(
+                        padding:
+                        const EdgeInsets.only(left: 18.0, right: 18.0, top: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 30,
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    selectedText,
-                                    style: TextStyle(
-                                      color: Color(0xFF334155),
-                                      fontSize: 16,
-                                      overflow: TextOverflow.ellipsis,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.09,
-                                    ),
+                            _buildRatingQuestion('Retourner le produit'),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            _buildCartItemsList(),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            _buildRatingQuestion('Raison du retour'),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  isVisible=true;
+            
+                                });
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 48,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1, color: Color(0xFFD1D5DB)),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                 ),
-                                Image.asset(
-                                    "assets/review/icon_dropdown.png")
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        _buildRatingQuestion('Ajouter une photo'),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        _buildImageUploader(),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        _buildRatingQuestion("Remarques"),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        _buildReviewTextField(),
-                        SizedBox(height: 60),
-                        _buildSubmitButton(),
-                        SizedBox(height: 30),
-
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Visibility(
-              visible: isVisible,
-              child: Container(
-                height: double.infinity,
-                width: double.infinity,
-                color: Colors.black.withOpacity(0.550000011920929),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 355,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0),
-                        ),
-                        color: Colors.white,
-
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0,top: 20),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(height: 20,),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                width: 288,
-                                child: Text(
-                                  "J'ai reçu le mauvais article",
-                                  style: TextStyle(
-                                    color: Color(0xFF334155),
-                                    fontSize: 18,
-                                    fontFamily: 'Kanit-Semibold',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.07,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        selectedText,
+                                        style: TextStyle(
+                                          color: Color(0xFF334155),
+                                          fontSize: 16,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontFamily: 'Archivo-Medium',
+                                          fontWeight: FontWeight.w500,
+                                          height: 1.09,
+                                        ),
+                                      ),
+                                    ),
+                                    Image.asset(
+                                        "assets/review/icon_dropdown.png")
+                                  ],
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 50,
                             ),
-                            for (int i = 0; i < 4; i++) // Build items dynamically
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      // Unselect all items
-                                      for (int j = 0; j < 4; j++) {
-                                        itemSelection[j] = false;
-                                      }
-                                      itemSelection[i] = true; // Select current item
-                                      print(itemSelection[i]);
-                                      selectedText = _getBottomSheetItemText(
-                                          i); // Store selected text
-                                      print(selectedText); // Pr
-                                    });
-                                  },
-                                  child: Container(
-                                    color: Colors.white,
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 24,
-                                          height: 24,
-                                          child: Image.asset(
-                                            itemSelection[i]
-                                                ? "assets/payment/icon_radio_check.png"
-                                                : "assets/payment/icon_radio_uncheck.png",
-                                            scale: 2,
-                                          ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        // Add spacing between checkbox and text
-                                        _buildBottomSheetText(
-                                            _getBottomSheetItemText(i)),
-                                        // Get text based on index
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          isVisible=false;
-                                          selectedText = 'Select Reason';
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 52,
+                            _buildRatingQuestion('Ajouter une photo'),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            _buildImageUploader(),
+                            SizedBox(height: 10.h),
+            
+                            if(_images.length>0)
+            
+            
+                            HorizontalProductList(
+                              images: _images,
+                              onDelete: _deleteImage,
+                            ),
+                            SizedBox(height: 30.h),
+            
+                            _buildRatingQuestion("Remarques"),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            _buildReviewTextField(),
+                            SizedBox(height: 120.h),
 
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                                width: 1, color: Color(0xFFFF4343)),
-                                            borderRadius: BorderRadius.circular(8),
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 8.0),
-                                            child: Text(
-                                              'Cancel',
-                                              style: TextStyle(
-                                                color: Color(0xFFFF4343),
-                                                fontSize: 16,
-                                                fontFamily: 'Archivo-SemiBold',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.09,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          isVisible=false;
-                                          ; // Update selected text to trigger a rebuild
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 52,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFFFF4343),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(8)),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 7.0),
-                                            child: Text(
-                                              'Continue',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontFamily: 'Archivo-SemiBold',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.09,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
+                Positioned(
+                    bottom: 0,
+                    child: _buildSubmitButton()
+                ),
+
+                Visibility(
+                  visible: isVisible,
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    color: Colors.black.withOpacity(0.550000011920929),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 355,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30.0),
+                              topRight: Radius.circular(30.0),
+                            ),
+                            color: Colors.white,
+            
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0,top: 20),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(height: 20,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width: 288,
+                                    child: Text(
+                                      "J'ai reçu le mauvais article",
+                                      style: TextStyle(
+                                        color: Color(0xFF334155),
+                                        fontSize: 18,
+                                        fontFamily: 'Kanit-Semibold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.07,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                for (int i = 0; i < 4; i++) // Build items dynamically
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          // Unselect all items
+                                          for (int j = 0; j < 4; j++) {
+                                            itemSelection[j] = false;
+                                          }
+                                          itemSelection[i] = true; // Select current item
+                                          print(itemSelection[i]);
+                                          selectedText = _getBottomSheetItemText(
+                                              i); // Store selected text
+                                          print(selectedText); // Pr
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: 24,
+                                              height: 24,
+                                              child: Image.asset(
+                                                itemSelection[i]
+                                                    ? "assets/payment/icon_radio_check.png"
+                                                    : "assets/payment/icon_radio_uncheck.png",
+                                                scale: 2,
+                                              ),
+                                            ),
+                                            SizedBox(width: 10),
+                                            // Add spacing between checkbox and text
+                                            _buildBottomSheetText(
+                                                _getBottomSheetItemText(i)),
+                                            // Get text based on index
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              isVisible=false;
+                                              selectedText = 'Select Reason';
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 52,
+            
+                                            decoration: ShapeDecoration(
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(
+                                                    width: 1, color: Color(0xFFFF4343)),
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child:  txtArchivoSemiBold16Red('Annuler'),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              isVisible=false;
+                                              ; // Update selected text to trigger a rebuild
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 52,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFFFF4343),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(8)),
+                                            ),
+                                            child: Center(
+                                                child: txtArchivoSemiBold16('Continuer')
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -451,7 +455,7 @@ bool isVisible=false;
                                           fontSize: 16,
                                           fontFamily: 'Archivo-Medium',
                                           fontWeight: FontWeight.w500,
-                                          height: 0.09,
+                                          height: 0.4,
                                         ),
                                       ),
                                       SizedBox(
@@ -515,17 +519,9 @@ bool isVisible=false;
                           SizedBox(
                             height: 15,
                           ),
-                          Container(
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0xFFE5E7EB),
-                                ),
-                              ),
-                            ),
-                          )
+
+                          buildDivider(context)
+
                         ],
                       ),
                     ),
@@ -608,7 +604,7 @@ bool isVisible=false;
                     // Navigator.pop(context); // Close the bottom sheet
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DashBoard(number: 3,)),
+                      MaterialPageRoute(builder: (context) => DashBoard(number: 1,)),
                     );
                   },
                   child: Container(
@@ -621,7 +617,7 @@ bool isVisible=false;
                     ),
                     child: Center(
                       child: Text(
-                        'Continue',
+                        'Continuer',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -642,44 +638,12 @@ bool isVisible=false;
   }
 
   Widget _buildAppBar(BuildContext context) {
-    return Container(
-      height: 97,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
-        border: Border.all(color: Colors.white.withOpacity(0.11)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 35.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Image.asset(
-                "assets/cart/icon_left_arrow.png",
-                scale: 2,
-              ),
-            ),
-            SizedBox(width: MediaQuery.of(context).size.width / 4.8),
-            Text(
-              'Demande de retour',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF1E293B),
-                fontSize: 18,
-                fontFamily: 'Kanit-Medium',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Spacer(),
-          ],
-        ),
-      ),
+    return CustomAppBar(
+      title: 'Demande de retour',
+      onBackTap: () {
+        Navigator.pop(context);
+      },
+      iconSpacing: 4.8,
     );
   }
 
@@ -749,112 +713,55 @@ bool isVisible=false;
   }
 
   Widget _buildReviewTextField() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 152,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color(0xFFD1D5DB)),
-          borderRadius: BorderRadius.circular(5),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 6),
-        child: TextField(
-          controller: textEditingController,
-          maxLines: null,
-          decoration: InputDecoration(
-            hintText: 'Describe your experience (optional)', // Your hint text here
-            hintStyle: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 16,
-              fontFamily: 'Archivo-Medium',
-              fontWeight: FontWeight.w500,
-            ),
-            border: InputBorder.none,
-          ),
-          style: TextStyle(
-            color: Color(0xFF334155),
-            fontSize: 16,
-            fontFamily: 'Archivo-Medium',
-            fontWeight: FontWeight.w500,
-            height: 0.09,
-          ),
-
-        ),
-      ),
-    );
+    return buildReviewTextField(context,textEditingController);
   }
 
   Widget _buildImageUploader() {
-    return DottedBorder(
-      color: Colors.red,
-      strokeWidth: 2,
-      borderType: BorderType.RRect,
-      child: GestureDetector(
-        onTap: _images.length >= 5
-            ? null
-            : () {
-                _pickImage();
-              },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 46,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/review/icon_camera.png",
-                height: 25,
-                width: 25,
-              ),
-              SizedBox(width: 10),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  'Upload Photo (${_images.length}/5)',
-                  style: TextStyle(
-                    color: Color(0xFFFF4343),
-                    fontSize: 14,
-                    fontFamily: 'Archivo-SemiBold',
-                    fontWeight: FontWeight.w600,
-                    height: 0.10,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return DottedImageUploader(
+      imageCount: _images.length,
+      onPickImage: _images.length >= 5
+          ? null
+          : () {
+        _pickImage();
+      }, // Pass the function to handle image picking
     );
   }
+
+
 
   Widget _buildSubmitButton() {
     return GestureDetector(
       onTap: () {
         showCongratulationsModal(context);
       },
-      child: Container(
+      child: GlossyContainer(
         width: MediaQuery.of(context).size.width,
-        height: 52,
-        padding: const EdgeInsets.symmetric(horizontal: 112, vertical: 17),
-        decoration: ShapeDecoration(
-          color:selectedText == 'Select Reason'?Color(0xFFD1D5DB):Color(0xFFFF4343),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
+        height: 76,
+        blendMode: BlendMode.srcATop,
+        // opacity:0.1,
+        color: Colors.white.withOpacity(0.04),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              selectedText == 'Select Reason'?'Continue':'Confirm Request',
-             style: TextStyle(
-                color:selectedText == 'Select Reason'? Color(0xFF66758C):Colors.white,
-            fontSize: 16,
-            fontFamily: 'Archivo-SemiBold',
-            fontWeight: FontWeight.w600,
-            height: 0.09,
-                    ),
+            padding: const EdgeInsets.only(left: 18.0,right: 18),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 52,
+              decoration: ShapeDecoration(
+                color:selectedText == 'Select Reason'?Color(0xFFD1D5DB):Color(0xFFFF4343),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              ),
+              child: Center(
+                child: Text(
+                  selectedText == 'Select Reason'?'Continuer':'Confirm Request',
+                  style: TextStyle(
+                    color:selectedText == 'Select Reason'? Color(0xFF66758C):Colors.white,
+                    fontSize: 16,
+                    fontFamily: 'Archivo-SemiBold',
+                    fontWeight: FontWeight.w600,
+                    height: 1.09,
+                  ),
+                ),
+              ),
             ),
           ),
         ),

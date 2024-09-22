@@ -33,42 +33,41 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
       context: context,
       builder: (context) => ClipRRect(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40), // Adjust the radius as needed
-          topRight: Radius.circular(40), // Adjust the radius as needed
+          topLeft: Radius.circular(40.r),
+          topRight: Radius.circular(40.r),
         ),
         child: Container(
-          height: 265,
+          height: 265.h,
           color: Colors.white,
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: Column(
             children: [
               SizedBox(
-                height: 100,
-                width: 100,
+                height: 100.w,
+                width: 100.w,
                 child: Lottie.asset(
                   'assets/lottie_anim/tik_anim.json',
-                  height: 200,
-                  width: 200,
+                  height: 200.h,
+                  width: 200.w,
                   fit: BoxFit.cover,
                   repeat: false,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 25.0),
+                padding: EdgeInsets.only(top: 25.h),
                 child: Text(
                   'Votre planning est terminé',
                   style: TextStyle(
                     color: Color(0xFF334155),
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontFamily: 'Archivo-SemiBold',
                     fontWeight: FontWeight.bold,
-                    height: 0.08,
+                    height: 1.2,
                   ),
                 ),
               ),
               Spacer(),
               customButtonRed(context, 'Continuer', onPressed: () {
-                // navigateToNextPage(context, ChallengeScreen());
                 Navigator.pop(context);
                 widget.onContinue!();
               })
@@ -81,67 +80,69 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(50),
-        topRight: Radius.circular(50),
-      ),
-      child: Container(
+    // Adjust height dynamically based on the visibility of the error message
+    double bottomSheetHeight = showErrorMessage ? 450.h : 380.h;
+
+    return  Container(
+      decoration: BoxDecoration(
         color: Colors.white,
-        padding: EdgeInsets.all(16),
-        height: showErrorMessage?360.h:340.h,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0, left: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Select Date',
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
+
+      ),
+      padding: EdgeInsets.all(16.w),
+      height: bottomSheetHeight, // Dynamically adjust height
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 15.h, left: 5.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Select Date',
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 16.sp,
+                    fontFamily: 'Archivo-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 1.2,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+                  child: TextField(
+                    controller: _textController,
+                    readOnly: true,
                     style: TextStyle(
                       color: Color(0xFF334155),
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontFamily: 'Archivo-Medium',
                       fontWeight: FontWeight.w500,
-                      height: 0.09,
+                      height: 1.5,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0,bottom: 40),
-                    child: TextField(
-                      controller: _textController,
-                      readOnly: true,
-                      style: TextStyle(
-                        color: Color(0xFF334155),
-                        fontSize: 16,
-                        fontFamily: 'Archivo-Medium',
-                        fontWeight: FontWeight.w500,
-                        height: 1.09,
+                    decoration: InputDecoration(
+                      labelText: 'Starting Date',
+                      labelStyle: TextStyle(
+                        color: Color(0xFF6B7280),
+                        fontSize: 12.sp,
+                        fontFamily: 'Archivo-Regular',
+                        fontWeight: FontWeight.w400,
+                        height: 1.2,
                       ),
-                      decoration: InputDecoration(
-                        labelText: 'Starting Date',
-                        labelStyle: TextStyle(
-                          color: Color(0xFF6B7280),
-                          fontSize: 12,
-                          fontFamily: 'Archivo-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 0.12,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.calendar_today, color: Color(0xFFE2E8F0)),
-                          onPressed: () async {
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                      ),
+
+                      suffixIcon: GestureDetector(
+                          onTap: () async{
                             DateTime? pickedDate = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
@@ -155,179 +156,174 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                               });
                             }
                           },
-                        ),
-                      ),
+                          child: Image.asset('assets/takechallenge/icon_calendar.png',scale: 2,)),
                     ),
                   ),
-                  Text(
-                    'Jour',
-                    style: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Medium',
-                      fontWeight: FontWeight.w500,
-                      height: 0.09,
-                    ),
+                ),
+                Text(
+                  'Jour',
+                  style: TextStyle(
+                    color: Color(0xFF334155),
+                    fontSize: 16.sp,
+                    fontFamily: 'Archivo-Medium',
+                    fontWeight: FontWeight.w500,
+                    height: 1.2,
                   ),
-                   SizedBox(height: 25,),
-                  Container(
-                    height: 100.h,
-                    width: 230.h,
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 14,
-                        crossAxisSpacing: 14,
-                        childAspectRatio: 98 / 82,
-                      ),
-                      itemCount: days.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (!selectedDays[index]) {
-                                if (selectedCount < 3) {
-                                  selectedDays[index] = true;
-                                  selectedCount++;
-                                  showErrorMessage = false;
-                                } else {
-                                  showErrorMessage = true;
-                                }
-                              } else {
-                                selectedDays[index] = false;
-                                selectedCount--;
+                ),
+                SizedBox(height: 15.h),
+                Container(
+                  height: 100.h,
+                  width: 230.w,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 14.h,
+                      crossAxisSpacing: 14.w,
+                      childAspectRatio: 98 / 82,
+                    ),
+                    itemCount: days.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (!selectedDays[index]) {
+                              if (selectedCount < 3) {
+                                selectedDays[index] = true;
+                                selectedCount++;
                                 showErrorMessage = false;
+                              } else {
+                                showErrorMessage = true;
                               }
-                            });
-                          },
-                          child: Container(
-                            height: 48,
-
-
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    width: 1,
-                                    color: selectedDays[index]
-                                        ? Color(0xFFFFA142)
-                                        : Color(0xFFD1D5DB)),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                days[index],
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
+                            } else {
+                              selectedDays[index] = false;
+                              selectedCount--;
+                              showErrorMessage = false;
+                            }
+                          });
+                        },
+                        child: Container(
+                          height: 48.h,
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 1.w,
                                   color: selectedDays[index]
-                                      ? Color(0xFFE88E32)
-                                      : Color(0xFF334155),
-                                  fontSize: 14,
-                                  fontFamily: 'Archivo-Medium',
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.10,
-                                ),
+                                      ? Color(0xFFFFA142)
+                                      : Color(0xFFD1D5DB)),
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              days[index],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: selectedDays[index]
+                                    ? Color(0xFFE88E32)
+                                    : Color(0xFF334155),
+                                fontSize: 14.sp,
+                                fontFamily: 'Archivo-Medium',
+                                fontWeight: FontWeight.w500,
+                                height: 1.1,
                               ),
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
-
-                ],
-              ),
+                ),
+              ],
             ),
-
-
-
-            if(showErrorMessage)
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
+          ),
+          if(showErrorMessage)
+            Padding(
+              padding: EdgeInsets.only(top: 5.h),
+              child: SizedBox(
+                height: 25,
                 child: Text(
                   'You can select only 3 days',
                   style: TextStyle(
                     color: Color(0xFFEF4444),
-                    fontSize: 16,
+                    fontSize: 14.sp, // Reduce font size for small screens
                     fontFamily: 'Archivo-Medium',
                     fontWeight: FontWeight.w500,
-                    height: 1.09,
+                    height: 1.2,
                   ),
                 ),
               ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 5.0, right: 5, bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        height: 52,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                width: 1, color: Color(0xFFFF4343)),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+            ),
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.only(left: 5.w, right: 5.w, bottom: showErrorMessage?8.h:20.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 52.h,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              width: 1.w, color: Color(0xFFFF4343)),
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
-                        child: Center(
-                          child: Text(
-                            'Annuler',
-                            style: TextStyle(
-                              color: Color(0xFFFF4343),
-                              fontSize: 16,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 1.09,
-                            ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Annuler',
+                          style: TextStyle(
+                            color: Color(0xFFFF4343),
+                            fontSize: 16.sp,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.2,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        _showCongratulationsBottomSheet();
-                      },
-                      child: Container(
-                        width: 150,
-                        height: 52,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFF4343),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Calendrier',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Archivo-SemiBold',
-                              fontWeight: FontWeight.w600,
-                              height: 1.09,
-                            ),
+                ),
+                SizedBox(width: 20.w),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      _showCongratulationsBottomSheet();
+                    },
+                    child: Container(
+                      width: 150.w,
+                      height: 52.h,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFFF4343),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Calendrier',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontFamily: 'Archivo-SemiBold',
+                            fontWeight: FontWeight.w600,
+                            height: 1.2,
                           ),
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

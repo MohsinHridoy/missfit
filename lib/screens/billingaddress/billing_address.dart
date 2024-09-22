@@ -7,6 +7,8 @@ import 'package:miss_fit/screens/checkout/checkout_with_address.dart';
 import 'package:miss_fit/screens/mysubscription/my_subscription.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../widgets/textfields.dart';
+
 class BillingDeliavryAddress extends StatefulWidget {
   final String? status;
 
@@ -165,10 +167,10 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                       SizedBox(
                         height: 15,
                       ),
-                      _textFormField(_firstNameController, 'Prénom'),
-                      _textFormField(_lastNameController, 'Nom de famille'),
-                      _textFormField(_emailController, 'Email'),
-                      _textFormField(_phoneNumberController, 'Numéro de téléphone''Phone Number'),
+                      textFormFieldAddress(context,_firstNameController,'Prénom',TextInputType.emailAddress, _checkFieldsFilled),
+                      textFormFieldAddress(context,_lastNameController,'Nom de famille',TextInputType.emailAddress, _checkFieldsFilled),
+                      textFormFieldAddress(context,_emailController,'Email',TextInputType.emailAddress, _checkFieldsFilled),
+                      textFormFieldAddress(context,_phoneNumberController,'Numéro de téléphone''Phone Number',TextInputType.phone, _checkFieldsFilled),
                       SizedBox(
                         height: 30,
                       ),
@@ -186,11 +188,11 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
                           ),
                         ),
                       ),
-                      _textFormField(_regionController, 'Région'),
-                      _textFormField(_postCodeController, 'Code Postal'),
-                      _textFormField(_streetAddressController, 'Adresse de la rue'),
-                      _textFormField(_cityController, 'Ville'),
-                      _textFormField(_addressController, 'Adresse'),
+                      textFormFieldAddress(context,_regionController,'Région',TextInputType.emailAddress, _checkFieldsFilled),
+                      textFormFieldAddress(context,_postCodeController,'Code Postal',TextInputType.phone, _checkFieldsFilled),
+                      textFormFieldAddress(context,_streetAddressController,'Adresse de la rue',TextInputType.emailAddress, _checkFieldsFilled),
+                      textFormFieldAddress(context,_cityController,'Ville',TextInputType.emailAddress, _checkFieldsFilled),
+                      textFormFieldAddress(context,_addressController,'Adresse',TextInputType.emailAddress, _checkFieldsFilled),
                       SizedBox(
                         height: 130,
                       ),
@@ -391,46 +393,5 @@ class _BillingDeliavryAddressState extends State<BillingDeliavryAddress> {
       // Handle the case where not all fields are filled
       // Possibly show an alert dialog or a snackbar
     }
-  }
-
-  Widget _textFormField(TextEditingController controller, String Label) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 25),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 48,
-        child: TextFormField(
-          controller: controller,
-          keyboardType: TextInputType.emailAddress,
-          onChanged: (value) {
-            _checkFieldsFilled(); // This will be called every time the text changes
-          },
-          style: TextStyle(
-            color: Color(0xFF334155),
-            fontSize: 16,
-            fontFamily: 'Archivo-Medium',
-            fontWeight: FontWeight.w500,
-            height: 1.09,
-          ),
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFD1D5DB)),
-            ),
-            labelText: Label,
-            labelStyle: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 16,
-              fontFamily: 'Archivo-Medium',
-              fontWeight: FontWeight.w500,
-              height: 0.09,
-            ),
-            border: OutlineInputBorder(),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFD1D5DB)),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

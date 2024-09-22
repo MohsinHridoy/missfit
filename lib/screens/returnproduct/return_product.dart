@@ -108,17 +108,14 @@ class _ReturnProductState extends State<ReturnProduct> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
                   child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color:hasSelectedItems? Colors.white:Color(0xFF66758C),
-                          fontSize: 16,
-                          fontFamily: 'Archivo-Semibold',
-                          fontWeight: FontWeight.w600,
-                          height: 0.09,
-                        ),
+                    child:Text(
+                      'Continuer',
+                      style: TextStyle(
+                        color:hasSelectedItems? Colors.white:Color(0xFF66758C),
+                        fontSize: 16,
+                        fontFamily: 'Archivo-Semibold',
+                        fontWeight: FontWeight.w600,
+                        height: 1.09,
                       ),
                     ),
                   ),

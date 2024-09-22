@@ -33,7 +33,7 @@ class _SubscriptionState extends State<Subscription> {
                 // navigateToNextPage(context, DashBoard(number: 3,));
 
               },
-              iconSpacing:3.6,
+              iconSpacing:3.8,
             ),
 
             Expanded(

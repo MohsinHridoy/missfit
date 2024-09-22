@@ -5,6 +5,7 @@ import 'package:miss_fit/screens/payment_status/payment_status.dart';
 import '../../common_utils.dart';
 import '../../common_widgets.dart';
 import '../../widgets/custom_app_bar.dart';
+import '../../widgets/terms_conditions.dart';
 
 class ReviewSummary extends StatefulWidget {
   String? status;
@@ -322,7 +323,7 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
+                              padding: const EdgeInsets.only(right: 8.0,top: 1),
                               child: Container(
                                   child:  Image.asset(
                                     isSelected ? "assets/registration/icon_selected_box.png" : "assets/registration/icon_unselected_checkbox1.png",
@@ -330,35 +331,32 @@ class _ReviewSummaryState extends State<ReviewSummary> {
                                   )
                               ),
                             ),
-                            Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: "je suis d'accord avec ",
-                                    style: TextStyle(
-                                      color: Color(0xFF66758C),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo',
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.08,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'termes et conditions',
-                                    style: TextStyle(
-                                      color: Color(0xFFE88E32),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo',
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.08,
-                                    ),
-                                  ),
-                                ],
+                            SizedBox(
+                              width: 292,
+                              child: Text(
+                                'Je souhaite confirmer la commande',
+                                style: TextStyle(
+                                  color: Color(0xFF66758C),
+                                  fontSize: 16,
+                                  fontFamily: 'Archivo-Medium',
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.3,
+                                ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
+                    ),
+                  ),
+                  SizedBox(height: 20.h,),
+
+                  Padding(
+                    padding:  EdgeInsets.only(left: 20.0,right: 20),
+                    child: TermsAndConditionsText(
+                      regularText: 'En confirmant la commande, vous acceptez nos ',
+                      highlightedText: 'termes et conditions',
+
                     ),
                   ),
                   SizedBox(height: 50.h,),

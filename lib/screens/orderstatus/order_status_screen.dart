@@ -56,7 +56,11 @@ class _OrderStatusState extends State<OrderStatus> {
           CustomAppBar(
             title:  'Statut de la commande',
             onBackTap: () {
-              // Navigator.pop(context);
+
+              if(widget.navigationStatus=='WriteReview')
+              Navigator.pop(context);
+              else
+
 
               navigateToNextPage(context,OrderHistory());
             },

@@ -4,6 +4,7 @@ import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/payment_status/payment_status.dart';
 
 import '../../common_widgets.dart';
+import '../../widgets/terms_conditions.dart';
 
 class ReviewSummary1 extends StatefulWidget {
   const ReviewSummary1({Key? key}) : super(key: key);
@@ -114,7 +115,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                                     fontSize: 18,
                                     fontFamily: 'Archivo-SemiBold',
                                     fontWeight: FontWeight.w600,
-                                    height: 0.07,
+                                    height: 0.6,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
@@ -339,7 +340,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
+                                padding: const EdgeInsets.only(right: 8.0,top: 1),
                                 child: Container(
                                     child:  Image.asset(
                                       isSelected ? "assets/registration/icon_selected_box.png" : "assets/registration/icon_unselected_checkbox1.png",
@@ -347,30 +348,17 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                                     )
                                 ),
                               ),
-                              Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: "je suis d'accord avec",
-                                      style: TextStyle(
-                                        color: Color(0xFF66758C),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo',
-                                        fontWeight: FontWeight.w500,
-                                        height: 1.08,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'termes et conditions',
-                                      style: TextStyle(
-                                        color: Color(0xFFE88E32),
-                                        fontSize: 16,
-                                        fontFamily: 'Archivo',
-                                        fontWeight: FontWeight.w500,
-                                        height: 1.08,
-                                      ),
-                                    ),
-                                  ],
+                              SizedBox(
+                                width: 292,
+                                child: Text(
+                                  'Je souhaite confirmer la commande',
+                                  style: TextStyle(
+                                    color: Color(0xFF66758C),
+                                    fontSize: 16,
+                                    fontFamily: 'Archivo-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.3,
+                                  ),
                                 ),
                               ),
                             ],
@@ -379,7 +367,16 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                       ),
                     ),
                     // Spacer(),
+                    SizedBox(height: 15.h),
 
+                    Padding(
+                      padding:  EdgeInsets.only(left: 20.0,right: 20),
+                      child: TermsAndConditionsText(
+                        regularText: 'En confirmant la commande, vous acceptez nos ',
+                        highlightedText: 'termes et conditions',
+
+                      ),
+                    ),
 
                      SizedBox(height: 30.h),
 
@@ -398,6 +395,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                 decoration: BoxDecoration(color: Colors.white),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text.rich(
                       TextSpan(
@@ -409,7 +407,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                               fontSize: 18,
                               fontFamily: 'Archivo-SemiBold',
                               fontWeight: FontWeight.w600,
-                              height: 0.08,
+                              height: 1.08,
                             ),
                           ),
                           TextSpan(
@@ -419,7 +417,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                               fontSize: 18,
                               fontFamily: 'Archivo-SemiBold',
                               fontWeight: FontWeight.w600,
-                              height: 0.08,
+                              height: 1.08,
                             ),
                           ),
                         ],
@@ -442,7 +440,7 @@ class _ReviewSummary1State extends State<ReviewSummary1> {
                         ),
                         child: Center(
                           child:Text(
-                            'Continue',
+                            'Continuer',
                             style: TextStyle(
                               color: isSelected ?  Colors.white:Color(0xFF66758C),
                               fontSize: 16,

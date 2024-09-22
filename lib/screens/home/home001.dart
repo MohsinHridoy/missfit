@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miss_fit/common_utils.dart';
 import 'package:miss_fit/screens/allblogitem/all_blog_item.dart';
 import 'package:miss_fit/screens/coachbookingscreen/coach_booking_screen.dart';
+import 'package:miss_fit/screens/dashboard/dashboard.dart';
 import 'package:miss_fit/screens/eventdetails/event_details_screen.dart';
 import 'package:miss_fit/screens/notifications/notifications.dart';
 import 'package:miss_fit/screens/selectservicescreen/select_service_screen.dart';
@@ -426,12 +427,11 @@ class _HomeState extends State<Home> {
                                   child: Text(
                                     'Reserve maintenant',
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 1
-                                    ),
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 1),
                                   ),
                                 ),
                               ),
@@ -455,7 +455,8 @@ class _HomeState extends State<Home> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 22.0,top: 20,right: 25,bottom: 20),
+                    padding: const EdgeInsets.only(
+                        left: 22.0, top: 20, right: 25, bottom: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -472,7 +473,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             navigateToNextPage(context, AllBlogItemPage());
                           },
                           child: Text(
@@ -537,7 +538,8 @@ class _HomeState extends State<Home> {
                   // _buildListSubcribeItem(),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 25.0,right: 25,bottom: 25),
+                    padding: const EdgeInsets.only(
+                        left: 25.0, right: 25, bottom: 25),
                     child: GestureDetector(
                       onTap: () {
                         navigateToNextPage(context, Subscription());
@@ -579,7 +581,8 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 45.0,top: 4),
+                              padding:
+                                  const EdgeInsets.only(left: 45.0, top: 4),
                               child: Text(
                                 'Commence à partir de',
                                 style: TextStyle(
@@ -624,35 +627,35 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.15,
-            padding:
-                const EdgeInsets.only(top: 10, left: 16, right: 16, bottom: 12),
+            width: 1.sw,
+            // Use full screen width
+            height: 0.15.sh,
+            // 15% of screen height
+            padding: EdgeInsets.only(
+              top: 10.h, // Responsive top padding
+              left: 16.w, // Responsive left padding
+              right: 16.w, // Responsive right padding
+              bottom: 12.h, // Responsive bottom padding
+            ),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
-              // color: hasCrossedAboveWhileUp
-              //     ? Colors.white.withAlpha(27)
-              //     : Colors.white,
-
               color: Colors.white,
-              // Set color to transparent
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20.r), // Responsive radius
+                  bottomRight: Radius.circular(20.r), // Responsive radius
                 ),
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+              padding: EdgeInsets.only(top: 40.h), // Responsive top padding
               child: Container(
-                height: 22,
+                height: 22.h, // Responsive height
                 child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.,
                   children: [
                     Container(
-                      width: 44,
-                      height: 44,
+                      width: 44.w, // Responsive width
+                      height: 44.h, // Responsive height
                       clipBehavior: Clip.antiAlias,
                       decoration: ShapeDecoration(
                         image: DecorationImage(
@@ -661,37 +664,40 @@ class _HomeState extends State<Home> {
                         ),
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
-                            width: 1,
+                            width: 1.w, // Responsive border width
                             strokeAlign: BorderSide.strokeAlignOutside,
                             color: Color(0x7FFF4343),
                           ),
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius:
+                              BorderRadius.circular(4.r), // Responsive radius
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0,top: 6),
+                      padding: EdgeInsets.only(left: 12.w),
+                      // Responsive padding
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 10.h,
-                          ),
+
                           Text(
                             'Hi 💪🏻',
                             style: TextStyle(
                               color: Color(0xFF334155),
-                              fontSize: 12,
+                              fontSize: 12.sp,
+                              // Responsive font size
                               fontFamily: 'Archivo-Regular',
                               fontWeight: FontWeight.w400,
-                              height: 1.12,
+                              height: 1.4,
                             ),
                           ),
                           Text(
                             'Helen Hanf',
                             style: TextStyle(
                               color: Color(0xFF334155),
-                              fontSize: 18,
+                              fontSize: 18.sp,
+                              // Responsive font size
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
                               height: 1.08,
@@ -702,13 +708,16 @@ class _HomeState extends State<Home> {
                     ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationScreen()));
                       },
                       child: Image.asset(
                         "assets/home/icon_notifications.png",
-                        width: 24,
-                        height: 24,
+                        width: 24.w, // Responsive width
+                        height: 24.h, // Responsive height
                         color: Color(0xFF334155),
                       ),
                     )
@@ -1000,7 +1009,7 @@ class _HomeState extends State<Home> {
 
   Widget _buildBlogItem() {
     return Container(
-      height: 180.h,  // Adjust the height to suit your design
+      height: 180.h, // Adjust the height to suit your design
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: blogItems.length,
@@ -1013,7 +1022,7 @@ class _HomeState extends State<Home> {
               navigateToNextPage(context, BlogDetails());
             },
             child: Padding(
-              padding: const EdgeInsets.only(left:  20.0),
+              padding: const EdgeInsets.only(left: 20.0),
               child: Container(
                 width: 270.h,
                 height: 180.h,
@@ -1043,7 +1052,8 @@ class _HomeState extends State<Home> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Image.asset("assets/home/icon_calendar.png", scale: 2),
+                                Image.asset("assets/home/icon_calendar.png",
+                                    scale: 2),
                                 Text(
                                   '02 Fév',
                                   style: TextStyle(
@@ -1065,7 +1075,6 @@ class _HomeState extends State<Home> {
                             child: Container(
                               width: 60,
                               height: 23,
-
                               decoration: ShapeDecoration(
                                 color: Color(0xFF252323),
                                 shape: RoundedRectangleBorder(
@@ -1199,7 +1208,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30.0,left: 25),
+              padding: const EdgeInsets.only(top: 30.0, left: 25),
               child: Text(
                 'Demain, 18h00',
                 style: TextStyle(
@@ -1212,7 +1221,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25.0,top: 30),
+              padding: const EdgeInsets.only(left: 25.0, top: 30),
               child: Text(
                 'Nutrition pour tout le monde',
                 style: TextStyle(
@@ -1287,28 +1296,32 @@ class _HomeState extends State<Home> {
                           fontFamily: 'Archivo-SemiBold',
                           fontWeight: FontWeight.w600,
                           height: 1.4,
-
                         ),
                       ),
                     ),
                     SizedBox(height: 20),
-                    Container(
-                      width: 154,
-                      height: 36,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFFF4343),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Renew subscription',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Archivo-SemiBold',
-                            fontWeight: FontWeight.w600,
-                            height: 1.10,
+                    GestureDetector(
+                      onTap: (){
+                        navigateToNextPage(context,DashBoard(number: 2,));
+                      },
+                      child: Container(
+                        width: 154,
+                        height: 36,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFFF4343),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Renew subscription',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 1.10,
+                            ),
                           ),
                         ),
                       ),
@@ -1353,7 +1366,6 @@ class _HomeState extends State<Home> {
                               height: 1.05,
                             ),
                           ),
-
                           Text(
                             'Days left',
                             textAlign: TextAlign.center,
@@ -1676,7 +1688,8 @@ class _HomeState extends State<Home> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(top: 2.0),
+                                            padding:
+                                                const EdgeInsets.only(top: 2.0),
                                             child: Text(
                                               '18.00 - 23.00 PM',
                                               style: TextStyle(
@@ -1756,9 +1769,9 @@ class _HomeState extends State<Home> {
     return Row(
       children: [
         Expanded(
-          child: Padding( 
+          child: Padding(
             padding: const EdgeInsets.only(left: 22.0, top: 15, right: 5),
-            child:  GestureDetector(
+            child: GestureDetector(
               onTap: () {
                 navigateToNextPage(
                     context,
@@ -1766,14 +1779,14 @@ class _HomeState extends State<Home> {
                       status: 'workout',
                     ));
               },
-              child: activityCard('assets/home/img_workout.png',
-                  'Entraînement', '200 Entraînement'),
+              child: activityCard('assets/home/img_workout.png', 'Entraînement',
+                  '200 Entraînement'),
             ),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(right: 22.0, top: 15,left: 5),
+            padding: const EdgeInsets.only(right: 22.0, top: 15, left: 5),
             child: GestureDetector(
               onTap: () {
                 navigateToNextPage(

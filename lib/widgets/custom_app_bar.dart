@@ -31,9 +31,12 @@ class CustomAppBar extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: onBackTap,
-              child: Image.asset(
-                "assets/cart/icon_left_arrow.png",
-                scale: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 0.0,right: 0),
+                child: Image.asset(
+                  "assets/cart/icon_left_arrow.png",
+                  scale: 2,
+                ),
               ),
             ),
             SizedBox(width: MediaQuery.of(context).size.width /iconSpacing),

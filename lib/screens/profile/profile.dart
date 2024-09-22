@@ -18,6 +18,7 @@ import 'package:miss_fit/screens/settings/settings.dart';
 import 'package:miss_fit/screens/termsconditions/terms_conditions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../common_widgets.dart';
 import '../bookmark/bookmark.dart';
 
 class Profile extends StatefulWidget {
@@ -422,19 +423,8 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: 15,
               ),
+              buildDivider(context)
 
-              Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 1,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                      color: Color(0xFFF3F4F6),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),
@@ -446,7 +436,7 @@ class _ProfileState extends State<Profile> {
       BuildContext context, String imgPath, String title, Widget page) {
     return Padding(
       padding:
-      const EdgeInsets.only(left: 20.0, right: 20, top: 15, bottom: 15),
+      const EdgeInsets.only(left: 20.0, right: 20, top: 15, bottom: 10),
       child: GestureDetector(
         onTap: (){
           showModalBottomSheet(
@@ -454,126 +444,122 @@ class _ProfileState extends State<Profile> {
             context: context,
             builder: (BuildContext context) {
               return Container(
-                height: 230.h, // Adjust the height as necessary
+                height: MediaQuery.of(context).size.height * 0.4, // Set a relative height
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
                   ),
-
                 ),
                 width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 30.h),
-                    Image.asset(
-                      "assets/profile/icon_bottomsheet_logout.png",
-                      scale: 2,
-                    ),
-                    SizedBox(height: 20.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 18.0,right: 20),
-                      child: Text(
-                        ' Êtes-vous sûr de vous déconnecter de\n cette application ?',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF334155),
-                          fontSize: 18,
-                          fontFamily: 'Archivo-SemiBold',
-                          fontWeight: FontWeight.w600,
-                          height: 1.5,
-                          wordSpacing: 5.7
-                        ),
+                child: SingleChildScrollView(  // Wrap the content with SingleChildScrollView
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 40.h),
+                      Image.asset(
+                        "assets/profile/icon_bottomsheet_logout.png",
+                        scale: 2,
                       ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 30.0, right: 30, bottom: 1),
-                      child: Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                            
-                            
-                            
-                                Navigator.pop(
-                                    context); // Close the modal when tapped
-                              },
-                              child: Container(
-                                height: 52,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        width: 1,
-                                        color: Color(0xFFFF4343)),
-                                    borderRadius:
-                                    BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: Center(
-                                  child:Text(
-                                    'Non',
-                                    style: TextStyle(
-                                      color: Color(0xFFFF4343),
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.09,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                      SizedBox(height: 20.h),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 18.0, right: 20),
+                        child: SizedBox(
+                          height: 60.h,
+                          child: Text(
+                            ' Êtes-vous sûr de vous déconnecter de cette application ?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 18,
+                              fontFamily: 'Archivo-SemiBold',
+                              fontWeight: FontWeight.w600,
+                              height: 1.5,
+                              wordSpacing: 5.7,
                             ),
                           ),
-                          SizedBox(width: 10,),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () async{
-                                // setState(() {
-                                //   paymentItems.removeAt(index);
-                                //
-                                // });
-                                SharedPreferences prefs = await SharedPreferences.getInstance();
-                                prefs.setBool('isLoggedIn', false);
-                                navigateToNextPage(context,LoginPage(status: 'profile',));
-                              },
-                              child: Container(
-                                height: 52,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFFF4343),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(8)),
-                                ),
-                                child: Center(
-                                  child:  Text(
-                                    'Oui',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontFamily: 'Archivo-SemiBold',
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.09,
+                        ),
+                      ),
+                      SizedBox(height: 20.h), // Adjust the spacing as needed
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0, right: 30, bottom: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context); // Close the modal when tapped
+                                },
+                                child: Container(
+                                  height: 52,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: Color(0xFFFF4343),
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Non',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF4343),
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.09,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          )
-                        ],
+                            SizedBox(width: 10.h),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () async {
+                                  SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                                  prefs.setBool('isLoggedIn', false);
+                                  navigateToNextPage(context,
+                                      LoginPage(status: 'profile',));
+                                },
+                                child: Container(
+                                  height: 52,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFFFF4343),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Oui',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Archivo-SemiBold',
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.09,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
           );
+          ;
         },
         child: Container(
           color: Colors.white,

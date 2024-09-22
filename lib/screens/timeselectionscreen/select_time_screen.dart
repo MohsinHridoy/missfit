@@ -118,7 +118,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Archivo-Medium',
                                 fontWeight: FontWeight.w500,
-                                height: 0.09,
+                                height: 1.09,
                               ),
                             ),
                           ),
@@ -193,7 +193,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                               fontSize: 14,
                               fontFamily: 'Archivo-Medium',
                               fontWeight: FontWeight.w500,
-                              height: 0.10,
+                              height: 1.10,
                             ),
                           ),
                         ),
@@ -225,7 +225,7 @@ class _TImeSelectionScreenState extends State<TImeSelectionScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Continue',
+                      'Continuer',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,

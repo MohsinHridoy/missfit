@@ -59,87 +59,101 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: true,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 60,),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 5.0),
-                child: Container(
-                  height: 150,
-                  width: 180,
-                  child: Center(
-                    child: Image.asset(
-                      "assets/splash/splash_icon.png",
-                      height: 140,
-                      width: 180,
-                      fit: BoxFit.cover,
+            Expanded(
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 60,),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: Container(
+                          height: 150,
+                          width: 180,
+                          child: Center(
+                            child: Image.asset(
+                              "assets/splash/splash_icon.png",
+                              height: 140,
+                              width: 180,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 10,),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: SizedBox(
-                width: 320,
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: SizedBox(
+                        width: 320,
 
-                child: Text(
-                  loginToYourAccountText_fr,
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 24,
-                    fontFamily: 'Kanit-Medium',
-                    fontWeight: FontWeight.w500,
-                    height: 1.2,
-                  ),
+                        child: Text(
+                          loginToYourAccountText_fr,
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 24,
+                            fontFamily: 'Kanit-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 1.2,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 42),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 20),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 48,
+                        child: TextFormField(
+                          // autofocus: true,
+                          controller: _emailOrPhoneNumberController,
+                          keyboardType: TextInputType.emailAddress,
+                          scrollPadding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          autofocus: true,
+                          focusNode: _emailOrPhoneNumberFocusNode,
+                          style: TextStyle(
+                            color: Color(0xFF334155),
+                            fontSize: 16,
+                            fontFamily: 'Archivo-Medium',
+                            fontWeight: FontWeight.w500,
+                            height: 1.09,
+                          ),
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                            ),
+                            labelText: _emailOrPhoneNumberFocusNode.hasFocus ? 'Email' : '${enterYourEmailAddressText_fr}',
+                            labelStyle: TextStyle(
+                              color: Color(0xFF334155),
+                              fontSize: 16,
+                              fontFamily: 'Archivo-Medium',
+                              fontWeight: FontWeight.w500,
+                              height: 0.09,
+                            ),
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                  ],
                 ),
               ),
             ),
-            SizedBox(height: 42),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 48,
-                child: TextFormField(
-                  // autofocus: true,
-                  controller: _emailOrPhoneNumberController,
-                  keyboardType: TextInputType.emailAddress,
-                  autofocus: true,
-                  focusNode: _emailOrPhoneNumberFocusNode,
-                  style: TextStyle(
-                    color: Color(0xFF334155),
-                    fontSize: 16,
-                    fontFamily: 'Archivo-Medium',
-                    fontWeight: FontWeight.w500,
-                    height: 1.09,
-                  ),
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFD1D5DB)),
-                    ),
-                    labelText: _emailOrPhoneNumberFocusNode.hasFocus ? 'Email' : '${enterYourEmailAddressText_fr}',
-                    labelStyle: TextStyle(
-                      color: Color(0xFF334155),
-                      fontSize: 16,
-                      fontFamily: 'Archivo-Medium',
-                      fontWeight: FontWeight.w500,
-                      height: 0.09,
-                    ),
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFD1D5DB)),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Spacer(),
+
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 30),
               child: GestureDetector(
@@ -185,6 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+
           ],
         ),
       ),
@@ -217,5 +232,4 @@ class _LoginPageState extends State<LoginPage> {
 
   }
 }
-
 

@@ -448,7 +448,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                             height: 0.09,
                           ),
                         ),
-                        SizedBox(height: 35),
+                        SizedBox(height: 25),
 
                         Container(
                           width: 320.h,
@@ -468,10 +468,10 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                     style: TextStyle(
                                       color: Color(0xFF334155),
                                       fontSize: 12,
-                                      fontFamily: 'Archivo-Medium',
-                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Archivo-Regular',
+                                      fontWeight: FontWeight.w400,
                                       height:
-                                      1.12,
+                                      01.12,
                                     ),
                                   ),
                                 ),
@@ -481,7 +481,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                         ),
 
 
-                        SizedBox(height: 50),
+                        SizedBox(height: 40),
 
                         Container(
                           width: 320,
@@ -501,7 +501,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                                   height: 0.09,
                                 ),
                               ),
-                              const SizedBox(height: 30),
+                              const SizedBox(height: 25),
                               Container(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -778,7 +778,7 @@ class _ChallengesDetailsState extends State<ChallengesDetails> {
                               },
                             ),
                           ),
-                        SizedBox(height: 8),
+                        SizedBox(height:widget.status=='followprogramme'?20: 3),
 
                         Container(
                           width: 320,

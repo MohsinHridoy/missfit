@@ -107,9 +107,9 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                       onItemSelected(index);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: Container(
-                        height: 36,
+                        height: 40,
                         alignment: Alignment.center,
                         decoration: ShapeDecoration(
                           color:index == selectedIndex
@@ -218,10 +218,16 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
 
 
                                               filteredReviews[index]
-                                                  .isReviewed==false? SizedBox():  Image.asset(
-                                                "assets/product_details/icon_edit.png",
-                                                scale: 2.5,
-                                              )
+                                                  .isReviewed==false? SizedBox():  GestureDetector(
+
+                                                   onTap: (){
+                                                     navigateToNextPage(context,ProductReview(status: 'profile',));
+                                                   },
+                                                    child: Image.asset(
+                                                                                                    "assets/product_details/icon_edit.png",
+                                                                                                    scale: 2.5,
+                                                                                                  ),
+                                                  )
                                             ],
                                           ),
                                           SizedBox(
@@ -290,7 +296,7 @@ class _ReviewListProfileState extends State<ReviewListProfile> {
                                         ),
                                         GestureDetector(
                                           onTap: (){
-                                            navigateToNextPage(context,ProductReview());
+                                            navigateToNextPage(context,ProductReview(status: 'profile',));
                                           },
                                           child: Container(
                                             width: 140.h,

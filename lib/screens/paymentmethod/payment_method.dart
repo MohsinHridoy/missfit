@@ -261,7 +261,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   ),
                   child: Center(
                     child: Text(
-                      'Apply',
+                      'Continuer',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
